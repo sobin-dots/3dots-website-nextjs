@@ -8,7 +8,7 @@ export default function AboutSection() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h2 className="text-4xl md:text-5xl font-light text-slate-800 tracking-tight mb-6">Who We Are</h2>
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-slate-800 tracking-normal leading-[1.2] md:leading-[1.2] mb-10">Who We Are</h2>
                     <p className="text-slate-600 font-light text-lg mb-8 leading-relaxed">
                         3Dots is a technology company building world-class software and helping founders turn ideas into real products. We combine product engineering, startup expertise, and community to support innovators from concept to launch and beyond.
                     </p>

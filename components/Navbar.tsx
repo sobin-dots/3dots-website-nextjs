@@ -21,11 +21,12 @@ export default function Navbar() {
                         </Link>
                     </div>
                     <div className="hidden md:flex space-x-12 text-sm font-light text-slate-600">
-                        <Link href="/#services" className="hover:text-brand transition-colors">Services</Link>
+                        <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+                        <Link href="/services" className="hover:text-brand transition-colors">Services</Link>
                         <Link href="/launchpad" className="hover:text-brand transition-colors">Launchpad</Link>
                         <Link href="/about" className="hover:text-brand transition-colors">About</Link>
-                        <Link href="/#ecosystem" className="hover:text-brand transition-colors">Ecosystem</Link>
                         <Link href="/careers" className="hover:text-brand transition-colors">Careers</Link>
+                        <Link href="/contact" className="hover:text-brand transition-colors">Contact Us</Link>
                     </div>
                     <div className="hidden md:block">
                         <Link href="/contact" className="inline-block bg-brand text-white px-7 py-2.5 rounded-[1.2rem] text-sm font-light hover:bg-brand-dark transition-all shadow-md">
@@ -44,11 +45,12 @@ export default function Navbar() {
 
             <div className={`md:hidden fixed inset-0 bg-[#F4F6FB] z-40 transition-all duration-500 ease-in-out flex flex-col justify-center items-center gap-8 ${isMenuOpen ? 'opacity-100 pointer-events-auto transform translate-y-0' : 'opacity-0 pointer-events-none transform -translate-y-4'}`}>
                 <div className="flex flex-col items-center gap-8 text-2xl font-light text-slate-800">
-                    <Link href="/#services" onClick={() => setIsMenuOpen(false)} className="hover:text-brand transition-colors">Services</Link>
+                    <Link href="/" onClick={() => setIsMenuOpen(false)} className="hover:text-brand transition-colors">Home</Link>
+                    <Link href="/services" onClick={() => setIsMenuOpen(false)} className="hover:text-brand transition-colors">Services</Link>
                     <Link href="/launchpad" onClick={() => setIsMenuOpen(false)} className="hover:text-brand transition-colors">Launchpad</Link>
                     <Link href="/about" onClick={() => setIsMenuOpen(false)} className="hover:text-brand transition-colors">About</Link>
-                    <Link href="/#ecosystem" onClick={() => setIsMenuOpen(false)} className="hover:text-brand transition-colors">Ecosystem</Link>
                     <Link href="/careers" onClick={() => setIsMenuOpen(false)} className="hover:text-brand transition-colors">Careers</Link>
+                    <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="hover:text-brand transition-colors">Contact Us</Link>
                 </div>
                 <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="mt-8 bg-brand text-white px-10 py-4 rounded-full text-lg font-medium shadow-xl">
                     Talk to Us

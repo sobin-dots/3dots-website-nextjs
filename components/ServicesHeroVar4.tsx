@@ -1,4 +1,4 @@
-export default function HeroSection() {
+export default function ServicesHeroVar4() {
     return (
         <section className="relative w-full bg-white pt-28 pb-8 md:pt-32 md:pb-10 border-b border-slate-200 overflow-hidden">
             
@@ -37,8 +37,8 @@ export default function HeroSection() {
                     <div className="text-left relative z-20">
                         <div className="w-10 h-1 bg-brand mb-4 rounded-full"></div>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-slate-800 tracking-tight leading-[1.1]">
-                            Join Our <br />
-                            <span className="font-bold text-slate-900">Team.</span>
+                            Digital <br />
+                            <span className="font-bold text-slate-900">Services.</span>
                         </h1>
                         
                         {/* Subtle decorative dot */}

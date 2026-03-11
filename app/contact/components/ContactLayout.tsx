@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Send, MapPin, Phone, Mail } from "lucide-react";
 
 export default function ContactLayout() {
@@ -10,15 +10,19 @@ export default function ContactLayout() {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [errorMessage, setErrorMessage] = useState("");
 
-    useEffect(() => {
-        generateCaptcha();
-    }, []);
-
-    const generateCaptcha = () => {
+  
+    const generateCaptcha = useCallback(() => {
         setNum1(Math.floor(Math.random() * 10) + 1);
         setNum2(Math.floor(Math.random() * 10) + 1);
         setCaptchaAnswer("");
-    };
+    }, []);
+
+    useEffect(() => {
+        const initForm = setTimeout(() => {
+            generateCaptcha();
+        }, 0);
+        return () => clearTimeout(initForm);
+    }, [generateCaptcha]);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -37,7 +41,7 @@ export default function ContactLayout() {
     };
 
     return (
-        <section className="pb-32 px-6 max-w-[1400px] mx-auto">
+        <section className="py-24 px-6 max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-24">
 
                 {/* Left Side: Contact Form */}
@@ -52,7 +56,7 @@ export default function ContactLayout() {
                                     <Send className="w-8 h-8" />
                                 </div>
                                 <h3 className="text-2xl font-medium mb-2">Message Sent!</h3>
-                                <p className="font-light">Thank you for reaching out. We'll be in touch soon.</p>
+                                <p className="font-light">Thank you for reaching out. We&apos;ll be in touch soon.</p>
                                 <button
                                     onClick={() => { setStatus("idle"); generateCaptcha(); }}
                                     className="mt-8 text-emerald-700 font-medium hover:underline"
@@ -146,10 +150,9 @@ export default function ContactLayout() {
                                 <MapPin className="w-5 h-5" />
                             </div>
                             <div>
-                                <h4 className="font-medium text-slate-800 mb-1">Our Studio</h4>
+                                <h4 className="font-medium text-slate-800 mb-1">Our Office</h4>
                                 <p className="text-slate-500 font-light leading-relaxed">
-                                    123 Innovation Drive, Suite 400<br />
-                                    Tech District, NY 10001
+                                    317/4 Joe Daniel Street, <br />Kottar-Parvathipuram Rd, <br /> Nagercoil, Tamil Nadu 629003
                                 </p>
                             </div>
                         </div>
@@ -161,8 +164,8 @@ export default function ContactLayout() {
                             <div>
                                 <h4 className="font-medium text-slate-800 mb-1">Email Us</h4>
                                 <p className="text-slate-500 font-light leading-relaxed">
-                                    hello@3dots.studio<br />
-                                    support@3dots.studio
+                                    hello@3dots.co<br />
+                                    support@3dots.co
                                 </p>
                             </div>
                         </div>
@@ -174,8 +177,8 @@ export default function ContactLayout() {
                             <div>
                                 <h4 className="font-medium text-slate-800 mb-1">Call Us</h4>
                                 <p className="text-slate-500 font-light leading-relaxed">
-                                    +1 (555) 123-4567<br />
-                                    Mon-Fri, 9am - 6pm EST
+                                    +91 9876543210<br />
+                                    Mon-Fri, 9am - 7pm IST
                                 </p>
                             </div>
                         </div>
@@ -183,8 +186,9 @@ export default function ContactLayout() {
 
                     <div className="w-full h-full min-h-[300px] mt-4 rounded-3xl overflow-hidden shadow-lg border border-slate-100 relative group">
                         {/* Google Maps iFrame embedding a stylized location view */}
+
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.11976397304603!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1709400000000!5m2!1sen!2sus"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d987.2995801212941!2d77.41448329325391!3d8.18276687067637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04f10024e53967%3A0x4a38b2e01fba34e8!2sPicstol%20VFX!5e0!3m2!1sen!2sin!4v1773230787567!5m2!1sen!2sin"
                             className="w-full h-full absolute inset-0 filter grayscale opacity-90 group-hover:grayscale-0 transition-all duration-700"
                             allowFullScreen={false}
                             loading="lazy"

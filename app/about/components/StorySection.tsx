@@ -2,8 +2,9 @@ import { Code2, Compass } from "lucide-react";
 
 export default function StorySection() {
     return (
-        <section className="py-24 px-6 relative">
-            <div className="absolute inset-0 bg-white border-y border-slate-100 skew-y-[2deg] origin-right z-0"></div>
+        <section className="py-24 px-6 relative bg-white border-b border-slate-100">
+            {/* Flat background removed skew to make height even */}
+            <div className="absolute inset-0 z-0"></div>
 
             <div className="max-w-[1400px] mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div className="order-2 lg:order-1 relative">

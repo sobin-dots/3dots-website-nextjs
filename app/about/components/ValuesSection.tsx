@@ -31,7 +31,7 @@ export default function ValuesSection() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {values.map((v, i) => (
                     <div key={i} className="bg-white p-10 rounded-[2rem] shadow-sm border border-slate-100 text-left hover:shadow-xl transition-shadow relative overflow-hidden group flex flex-col h-full">
-                        <div className="text-7xl font-black text-slate-100 absolute -top-4 -right-4 group-hover:text-brand/5 transition-colors z-0">
+                        <div className="text-7xl font-black text-slate-100 absolute top-4 right-4 group-hover:text-brand/5 transition-colors z-0">
                             {v.num}
                         </div>
 

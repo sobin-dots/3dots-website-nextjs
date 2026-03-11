@@ -7,6 +7,7 @@
   --font-sans: var(--font-outfit), sans-serif;
 
   --animate-marquee: marquee 25s linear infinite;
+  --animate-glare: glare 1s ease-in-out forwards;
 
   @keyframes marquee {
     0% {
@@ -15,6 +16,23 @@
 
     100% {
       transform: translateX(-50%);
+    }
+  }
+
+  @keyframes glare {
+    0% {
+      transform: translateX(-150%) skewX(-30deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(150%) skewX(-30deg);
+      opacity: 0;
     }
   }
 }

@@ -3,11 +3,10 @@ import { ArrowRight } from "lucide-react";
 export default function HeroSection() {
     return (
         <section className="pt-36 pb-20 px-6 max-w-[1400px] mx-auto min-h-[90vh] flex flex-col justify-center relative">
-            <div className="text-brand text-3xl font-light opacity-30 absolute top-32 right-10 md:right-32 font-mono">01</div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div className="z-10">
-                    <h1 className="text-5xl md:text-[4rem] leading-[1.1] font-light text-slate-800 tracking-tight mb-8">
-                        We build technology that powers <span className="font-medium text-brand">startups, growing businesses, and enterprises.</span>
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-slate-800 tracking-normal leading-[1.2] md:leading-[1.2] mb-10">
+                        We build technology that powers <span className="font-medium text-secondary">startups, growing businesses, and enterprises.</span>
                     </h1>
                     <p className="text-slate-600 text-lg md:text-xl font-light leading-relaxed mb-10 max-w-xl">
                         3Dots is a product engineering company helping startups and businesses build scalable software, launch MVPs fast, automate workflows with AI, and grow through technology, community, and strategic execution.
@@ -22,7 +21,7 @@ export default function HeroSection() {
                     </div>
                 </div>
 
-                <div className="relative h-[500px] lg:h-[650px] rounded-[3rem] overflow-hidden group">
+                <div className="relative h-[300px] lg:h-[450px] rounded-[3rem] overflow-hidden group">
                     <div className="absolute inset-0 bg-brand/10 group-hover:bg-transparent transition-colors duration-500 z-10 rounded-[3rem]"></div>
                     <img
                         src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
