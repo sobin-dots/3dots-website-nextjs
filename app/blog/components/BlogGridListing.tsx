@@ -4,93 +4,11 @@ import { useState } from "react";
 import { ArrowRight, Clock, Tag, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { blogPosts } from "../data";
 
 export default function BlogGridListing() {
     // Extended Dummy Data for Pagination
-    const allPosts = [
-        {
-            id: 1,
-            title: "Scaling Next.js Architecture for Global Audiences",
-            excerpt: "Advanced caching strategies and routing patterns to handle millions of requests with minimal latency.",
-            category: "Engineering",
-            readTime: "8 min read",
-            date: "Oct 12, 2026",
-            image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-            id: 2,
-            title: "The Death of the 6-Month MVP",
-            excerpt: "Why spending half a year building your first version is the fastest way to kill your startup.",
-            category: "Product Strategy",
-            readTime: "5 min read",
-            date: "Oct 09, 2026",
-            image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-            id: 3,
-            title: "Dark Mode By Default: Analyzing Modern Design Trends",
-            excerpt: "A deep dive into why enterprise tools and developer platforms are abandoning light mode entirely.",
-            category: "Design",
-            readTime: "6 min read",
-            date: "Oct 05, 2026",
-            image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-            id: 4,
-            title: "Building Community Through Discord and Slack",
-            excerpt: "Analyzing the infrastructure behind our 3,000+ member developer ecosystem.",
-            category: "Ecosystem",
-            readTime: "7 min read",
-            date: "Sep 28, 2026",
-            image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-            id: 5,
-            title: "Serverless vs Edge: Where to deploy in 2026",
-            excerpt: "Breaking down the cost, performance, and developer experience between major cloud deployment architectures.",
-            category: "Engineering",
-            readTime: "12 min read",
-            date: "Sep 22, 2026",
-            image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-            id: 6,
-            title: "Hiring Your First Founding Engineer",
-            excerpt: "What non-technical founders need to prioritize when making their most critical early technical hire.",
-            category: "Founder Insights",
-            readTime: "9 min read",
-            date: "Sep 15, 2026",
-            image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-            id: 7,
-            title: "Why We Switched to Tailwind CSS (And Never Looked Back)",
-            excerpt: "A look into our design system refactor and the benefits of utility-first styling for large teams.",
-            category: "Engineering",
-            readTime: "6 min read",
-            date: "Sep 05, 2026",
-            image: "https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-            id: 8,
-            title: "User Onboarding: Friction vs Education",
-            excerpt: "Balancing the need to educate your users with the urgency to get them inside your product.",
-            category: "Product Strategy",
-            readTime: "7 min read",
-            date: "Aug 29, 2026",
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-            id: 9,
-            title: "Designing for AI: The Next Frontier",
-            excerpt: "How conversational interfaces and predictive UI are changing the way we design software.",
-            category: "Design",
-            readTime: "10 min read",
-            date: "Aug 21, 2026",
-            image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
-        }
-    ];
-
     const categories = ["All", "Engineering", "Design", "Product Strategy", "Founder Insights", "Ecosystem"];
     
     // State
@@ -99,7 +17,7 @@ export default function BlogGridListing() {
     const [isLoading, setIsLoading] = useState(false);
 
     // Derived Logic
-    const filteredPosts = allPosts.filter(post => activeCategory === "All" || post.category === activeCategory);
+    const filteredPosts = blogPosts.filter(post => activeCategory === "All" || post.category === activeCategory);
     const displayedPosts = filteredPosts.slice(0, visibleCount);
     const hasMore = visibleCount < filteredPosts.length;
 
@@ -176,8 +94,9 @@ export default function BlogGridListing() {
                                     viewport={{ once: true }}
                                     className="group cursor-pointer flex flex-col h-full"
                                 >
+                                    <Link href={`/blog/${post.slug}`} className="flex flex-col h-full grow">
                                     {/* Image Wrapper */}
-                                    <div className="relative w-full aspect-[4/3] rounded-4xl overflow-hidden mb-6 bg-slate-100">
+                                    <div className="relative w-full aspect-4/3 rounded-4xl overflow-hidden mb-6 bg-slate-100">
                                         <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
                                             <Tag className="w-3 h-3 text-brand" />
                                             <span className="text-[10px] font-bold uppercase tracking-widest text-slate-800">{post.category}</span>
@@ -213,6 +132,7 @@ export default function BlogGridListing() {
                                             Read Full Article <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                                         </div>
                                     </div>
+                                    </Link>
                                 </motion.div>
                             ))}
                         </motion.div>
