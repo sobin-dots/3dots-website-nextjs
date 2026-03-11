@@ -6,7 +6,13 @@ import { motion } from "framer-motion";
 export default function NewsletterSection() {
     return (
         <section className="py-24 px-6 max-w-[1200px] mx-auto relative mt-10">
-            <div className="bg-slate-800 rounded-[3rem] p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 shadow-2xl relative overflow-hidden">
+            <motion.div 
+                initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="bg-slate-800 rounded-4xl p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 shadow-2xl relative overflow-hidden"
+            >
                 {/* Background pattern */}
                 <div className="absolute inset-0 opacity-10">
                     <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -25,44 +31,44 @@ export default function NewsletterSection() {
                     <motion.div
                         animate={{ x: ["-100%", "4000%"] }}
                         transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
-                        className="absolute top-[80px] left-0 h-[1px] w-6 bg-gradient-to-r from-transparent to-[#0055FF] shadow-[0_0_6px_1px_#0055FF]"
+                        className="absolute top-[80px] left-0 h-[1px] w-6 bg-linear-to-r from-transparent to-[#0055FF] shadow-[0_0_6px_1px_#0055FF]"
                     />
                     {/* Horizontal Line 2 (Moving Left) */}
                     <motion.div
                         animate={{ x: ["4000%", "-100%"] }}
                         transition={{ repeat: Infinity, duration: 10, ease: "linear", repeatDelay: 1 }}
-                        className="absolute top-[160px] left-0 h-[1px] w-8 bg-gradient-to-r from-[#0055FF] to-transparent shadow-[0_0_6px_1px_#0055FF]"
+                        className="absolute top-[160px] left-0 h-[1px] w-8 bg-linear-to-r from-[#0055FF] to-transparent shadow-[0_0_6px_1px_#0055FF]"
                     />
                     {/* Horizontal Line 3 (Moving Right) */}
                     <motion.div
                         animate={{ x: ["-100%", "4000%"] }}
                         transition={{ repeat: Infinity, duration: 7, ease: "linear", repeatDelay: 2 }}
-                        className="absolute top-[240px] left-0 h-[1px] w-6 bg-gradient-to-r from-transparent to-[#0055FF] shadow-[0_0_6px_1px_#0055FF]"
+                        className="absolute top-[240px] left-0 h-[1px] w-6 bg-linear-to-r from-transparent to-[#0055FF] shadow-[0_0_6px_1px_#0055FF]"
                     />
 
                     {/* Vertical Line 1 (Moving Down) */}
                     <motion.div
                         animate={{ y: ["-100%", "1000%"] }}
                         transition={{ repeat: Infinity, duration: 4, ease: "linear", repeatDelay: 0.5 }}
-                        className="absolute left-[80px] top-0 w-[1px] h-6 bg-gradient-to-b from-transparent to-[#0055FF] shadow-[0_0_6px_1px_#0055FF]"
+                        className="absolute left-[80px] top-0 w-[1px] h-6 bg-linear-to-b from-transparent to-[#0055FF] shadow-[0_0_6px_1px_#0055FF]"
                     />
                     {/* Vertical Line 2 (Moving Up) */}
                     <motion.div
                         animate={{ y: ["1000%", "-100%"] }}
                         transition={{ repeat: Infinity, duration: 7, ease: "linear" }}
-                        className="absolute left-[360px] top-0 w-[1px] h-8 bg-gradient-to-b from-[#0055FF] to-transparent shadow-[0_0_6px_1px_#0055FF]"
+                        className="absolute left-[360px] top-0 w-[1px] h-8 bg-linear-to-b from-[#0055FF] to-transparent shadow-[0_0_6px_1px_#0055FF]"
                     />
                     {/* Vertical Line 3 (Moving Down) */}
                     <motion.div
                         animate={{ y: ["-100%", "1000%"] }}
                         transition={{ repeat: Infinity, duration: 6, ease: "linear", repeatDelay: 1.5 }}
-                        className="hidden md:block absolute left-[600px] top-0 w-[1px] h-6 bg-gradient-to-b from-transparent to-[#0055FF] shadow-[0_0_6px_1px_#0055FF]"
+                        className="hidden md:block absolute left-[600px] top-0 w-[1px] h-6 bg-linear-to-b from-transparent to-[#0055FF] shadow-[0_0_6px_1px_#0055FF]"
                     />
                     {/* Vertical Line 4 (Moving Up) */}
                     <motion.div
                         animate={{ y: ["1000%", "-100%"] }}
                         transition={{ repeat: Infinity, duration: 8, ease: "linear", repeatDelay: 0.5 }}
-                        className="hidden lg:block absolute left-[880px] top-0 w-[1px] h-8 bg-gradient-to-b from-[#0055FF] to-transparent shadow-[0_0_6px_1px_#0055FF]"
+                        className="hidden lg:block absolute left-[880px] top-0 w-[1px] h-8 bg-linear-to-b from-[#0055FF] to-transparent shadow-[0_0_6px_1px_#0055FF]"
                     />
                 </div>
 
@@ -86,7 +92,7 @@ export default function NewsletterSection() {
                         Subscribe
                     </button>
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 }

@@ -1,4 +1,7 @@
+"use client";
+
 import { ArrowRight, Workflow } from "lucide-react";
+import { motion } from "framer-motion";
 
 const services = [
     {
@@ -33,7 +36,14 @@ export default function ServicesSection() {
                     const isEven = index % 2 !== 0; // false for 0, true for 1
 
                     return (
-                        <div key={service.id} className={`flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 items-center`}>
+                        <motion.div 
+                            key={service.id} 
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: index * 0.1 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            className={`flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 items-center`}
+                        >
                             
                             {/* Visual Side */}
                             <div className="w-full lg:w-1/2 relative">
@@ -76,7 +86,7 @@ export default function ServicesSection() {
                                     Learn More <ArrowRight className="w-4 h-4 ml-1 opacity-70" />
                                 </button>
                             </div>
-                        </div>
+                        </motion.div>
                     );
                 })}
             </div>

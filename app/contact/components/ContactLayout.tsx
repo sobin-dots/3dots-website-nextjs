@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { Send, MapPin, Phone, Mail } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function ContactLayout() {
     const [num1, setNum1] = useState(0);
@@ -45,7 +46,13 @@ export default function ContactLayout() {
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-24">
 
                 {/* Left Side: Contact Form */}
-                <div className="lg:col-span-3">
+                <motion.div 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                    className="lg:col-span-3"
+                >
                     <div className="bg-white p-10 md:p-14 rounded-[2.5rem] shadow-[0_10px_50px_-15px_rgba(0,0,0,0.05)] border border-slate-50 relative overflow-hidden">
                         <h2 className="text-3xl font-medium text-slate-800 mb-2">Send a Message</h2>
                         <p className="text-slate-500 font-light mb-10">Fill out the form below and we will get back to you shortly.</p>
@@ -127,64 +134,65 @@ export default function ContactLayout() {
                                     )}
                                 </div>
 
-                                <button
+                                <motion.button
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
                                     type="submit"
                                     disabled={status === "submitting"}
                                     className="w-full mt-6 bg-brand text-white px-8 py-5 rounded-full text-lg font-medium hover:bg-brand-dark transition-all shadow-xl flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
                                     {status === "submitting" ? "Sending..." : "Send Message"} <Send className="w-5 h-5" />
-                                </button>
+                                </motion.button>
                             </form>
                         )}
                     </div>
-                </div>
+                </motion.div>
 
                 {/* Right Side: Contact Info & Map */}
-                <div className="lg:col-span-2 flex flex-col gap-10">
+                <motion.div 
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    className="lg:col-span-2 flex flex-col gap-10"
+                >
 
                     <div className="space-y-8">
                         <h3 className="text-2xl font-medium text-slate-800 tracking-tight">Contact Information</h3>
 
-                        <div className="flex items-start gap-5 group">
-                            <div className="w-12 h-12 rounded-full bg-brand/5 group-hover:bg-brand group-hover:text-white text-brand flex items-center justify-center transition-colors flex-shrink-0">
-                                <MapPin className="w-5 h-5" />
-                            </div>
-                            <div>
-                                <h4 className="font-medium text-slate-800 mb-1">Our Office</h4>
-                                <p className="text-slate-500 font-light leading-relaxed">
-                                    317/4 Joe Daniel Street, <br />Kottar-Parvathipuram Rd, <br /> Nagercoil, Tamil Nadu 629003
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="flex items-start gap-5 group">
-                            <div className="w-12 h-12 rounded-full bg-brand/5 group-hover:bg-brand group-hover:text-white text-brand flex items-center justify-center transition-colors flex-shrink-0">
-                                <Mail className="w-5 h-5" />
-                            </div>
-                            <div>
-                                <h4 className="font-medium text-slate-800 mb-1">Email Us</h4>
-                                <p className="text-slate-500 font-light leading-relaxed">
-                                    hello@3dots.co<br />
-                                    support@3dots.co
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="flex items-start gap-5 group">
-                            <div className="w-12 h-12 rounded-full bg-brand/5 group-hover:bg-brand group-hover:text-white text-brand flex items-center justify-center transition-colors flex-shrink-0">
-                                <Phone className="w-5 h-5" />
-                            </div>
-                            <div>
-                                <h4 className="font-medium text-slate-800 mb-1">Call Us</h4>
-                                <p className="text-slate-500 font-light leading-relaxed">
-                                    +91 9876543210<br />
-                                    Mon-Fri, 9am - 7pm IST
-                                </p>
-                            </div>
-                        </div>
+                        {[
+                            { icon: <MapPin className="w-5 h-5" />, title: "Our Office", desc: <>317/4 Joe Daniel Street, <br />Kottar-Parvathipuram Rd, <br /> Nagercoil, Tamil Nadu 629003</> },
+                            { icon: <Mail className="w-5 h-5" />, title: "Email Us", desc: <>hello@3dots.co<br />support@3dots.co</> },
+                            { icon: <Phone className="w-5 h-5" />, title: "Call Us", desc: <>+91 9894070458<br />Mon-Fri, 9am - 7pm IST</> }
+                        ].map((item, i) => (
+                            <motion.div 
+                                key={i}
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
+                                viewport={{ once: true }}
+                                className="flex items-start gap-5 group"
+                            >
+                                <div className="w-12 h-12 rounded-full bg-brand/5 group-hover:bg-brand group-hover:text-white text-brand flex items-center justify-center transition-colors flex-shrink-0">
+                                    {item.icon}
+                                </div>
+                                <div>
+                                    <h4 className="font-medium text-slate-800 mb-1">{item.title}</h4>
+                                    <p className="text-slate-500 font-light leading-relaxed">
+                                        {item.desc}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
 
-                    <div className="w-full h-full min-h-[300px] mt-4 rounded-3xl overflow-hidden shadow-lg border border-slate-100 relative group">
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1, delay: 0.6 }}
+                        viewport={{ once: true }}
+                        className="w-full h-full min-h-[300px] mt-4 rounded-3xl overflow-hidden shadow-lg border border-slate-100 relative group"
+                    >
                         {/* Google Maps iFrame embedding a stylized location view */}
 
                         <iframe
@@ -194,9 +202,9 @@ export default function ContactLayout() {
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade">
                         </iframe>
-                    </div>
+                    </motion.div>
 
-                </div>
+                </motion.div>
             </div>
         </section>
     );

@@ -15,18 +15,28 @@ export default function BrandsSection() {
             <div className="w-full relative overflow-hidden flex whitespace-nowrap [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
                 <motion.div
                     animate={{ x: ["0%", "-50%"] }}
-                    transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
-                    className="flex w-max gap-x-16 md:gap-x-28 items-center"
+                    transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
+                    className="flex w-max items-center"
                 >
                     {[...Array(2)].map((_, i) => (
-                        <div key={i} className="flex gap-x-16 md:gap-x-28 items-center *:text-slate-400 *:text-3xl *:md:text-[2rem] *:opacity-50 *:transition-all *:duration-300 hover:*:opacity-100 hover:*:text-slate-800">
-                            <div className="font-serif font-bold tracking-tight">ACME Corp</div>
-                            <div className="italic font-black text-[1.85rem]">Globex</div>
-                            <div className="font-serif font-semibold text-[1.95rem]">Soylent</div>
-                            <div className="font-light tracking-[0.15em] uppercase text-2xl">INITECH</div>
-                            <div className="font-serif font-bold text-[1.9rem]">Umbrella</div>
-                            <div className="font-serif font-bold tracking-tight text-[1.95rem]">Stark Tech</div>
-                            <div className="italic font-bold font-serif opacity-40">Cyberdyne</div>
+                        <div key={i} className="flex gap-x-16 md:gap-x-24 items-center pr-16 md:pr-24">
+                            {[
+                                { src: "/painted-logo.png", alt: "Painted" },
+                                { src: "/toyota-logo.png", alt: "Toyota" },
+                                { src: "/verbal-logo.png", alt: "Verbal" },
+                                { src: "/campfire-logo.svg", alt: "Campfire" },
+                                { src: "/bonafai-logo.png", alt: "Bonafai" },
+                                { src: "/picstol-logo.png", alt: "Picstol" },
+                                {src: "/gearloop-logo.svg", alt: "Gearloop"}
+                            ].map((brand, idx) => (
+                                <div key={idx} className="group flex items-center justify-center shrink-0 w-[120px] md:w-[160px] h-12">
+                                    <img 
+                                        src={brand.src} 
+                                        alt={brand.alt} 
+                                        className="max-w-full max-h-full object-contain grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                                    />
+                                </div>
+                            ))}
                         </div>
                     ))}
                 </motion.div>

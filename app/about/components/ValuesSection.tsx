@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function ValuesSection() {
     const values = [
         {
@@ -24,13 +28,26 @@ export default function ValuesSection() {
 
     return (
         <section className="py-24 px-6 max-w-[1400px] mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-light text-slate-800 tracking-tight mb-16">
-                Our core <span className="font-medium text-brand">Values</span>
-            </h2>
+            <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="text-4xl md:text-5xl font-light text-slate-800 tracking-tight mb-16"
+            >
+                Our core <span className="font-medium ">Values</span>
+            </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {values.map((v, i) => (
-                    <div key={i} className="bg-white p-10 rounded-[2rem] shadow-sm border border-slate-100 text-left hover:shadow-xl transition-shadow relative overflow-hidden group flex flex-col h-full">
+                    <motion.div 
+                        key={i} 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: i * 0.1 }}
+                        viewport={{ once: true }}
+                        className="bg-white p-10 rounded-[2rem] shadow-sm border border-slate-100 text-left hover:shadow-xl transition-shadow relative overflow-hidden group flex flex-col h-full"
+                    >
                         <div className="text-7xl font-black text-slate-100 absolute top-4 right-4 group-hover:text-brand/5 transition-colors z-0">
                             {v.num}
                         </div>
@@ -41,7 +58,7 @@ export default function ValuesSection() {
                         </div>
 
                         <div className="w-12 h-1 bg-slate-200 group-hover:bg-brand mt-8 transition-colors relative z-10"></div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </section>

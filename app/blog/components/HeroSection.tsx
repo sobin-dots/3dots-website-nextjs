@@ -6,14 +6,22 @@ import { motion } from "framer-motion";
 export default function HeroSection() {
     return (
         <section className="relative w-full bg-slate-50 pt-24 pb-6 border-b border-slate-200 overflow-hidden mb-16">
+            
+            {/* Background Layer */}
             <div className="absolute inset-0 z-0 bg-white">
+                {/* Clean geometric pattern background */}
                 <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+                
+                {/* Solid soft fade on the right side for depth */}
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-slate-100 to-transparent z-10"></div>
+                
+                {/* Abstract shape */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand/5 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/4"></div>
             </div>
 
             <div className="max-w-[1200px] mx-auto px-6 relative z-20 w-full min-h-[120px] flex items-center">
                 <div className="w-full flex justify-between items-center h-full">
+                    {/* Text side */}
                     <motion.div 
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -23,12 +31,15 @@ export default function HeroSection() {
                     >
                         <div className="w-10 h-1 bg-brand mb-4 rounded-full"></div>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-slate-800 tracking-tight leading-[1.1]">
-                            Join Our <span className="font-bold text-slate-900">Team.</span>
+                            Insights & <span className="font-bold text-slate-900">Ideas.</span>
                         </h1>
+                        
+                        {/* Subtle decorative dots */}
                         <div className="absolute -left-8 top-16 w-2.5 h-2.5 bg-brand/30 rounded-full"></div>
-                        <div className="absolute left-32 -bottom-6 w-1.5 h-1.5 bg-blue-400/50 rounded-full"></div>
+                        <div className="absolute left-40 -bottom-6 w-1.5 h-1.5 bg-blue-400/50 rounded-full"></div>
                     </motion.div>
 
+                    {/* Right side floating feature chip (Desktop only) */}
                     <motion.div 
                         initial={{ opacity: 0, x: 30, scale: 0.95 }}
                         whileInView={{ opacity: 1, x: 0, scale: 1 }}
@@ -36,11 +47,11 @@ export default function HeroSection() {
                         viewport={{ once: true }}
                         className="hidden md:flex flex-col items-start bg-white/70 backdrop-blur-md border border-white p-6 rounded-4xl shadow-xl shadow-slate-200/40 relative z-20 max-w-[300px]"
                     >
-                        <span className="bg-brand text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-sm mb-3">Hiring Now</span>
-                        <h3 className="text-sm font-medium text-slate-800 mb-2 leading-snug">Open Positions</h3>
-                        <p className="text-xs font-light text-slate-500 mb-4 line-clamp-2">Ownership, speed, and fun. Come build with an elite squad of engineers and designers.</p>
+                        <span className="bg-brand text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-sm mb-3">Featured Post</span>
+                        <h3 className="text-sm font-medium text-slate-800 mb-2 leading-snug">The Architecture of a Modern MVP</h3>
+                        <p className="text-xs font-light text-slate-500 mb-4 line-clamp-2">How we build scalable, testable products in just 15 days without cutting corners.</p>
                         <button className="text-brand text-xs font-medium flex items-center gap-1 hover:gap-2 transition-all">
-                            View Roles <ArrowRight className="w-3 h-3" />
+                            Read Article <ArrowRight className="w-3 h-3" />
                         </button>
                     </motion.div>
                 </div>

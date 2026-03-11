@@ -1,4 +1,7 @@
+"use client";
+
 import { ShieldCheck, Zap, Smile } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function CultureSection() {
     const values = [
@@ -21,18 +24,31 @@ export default function CultureSection() {
 
     return (
         <section className="py-24 px-6 max-w-[1200px] mx-auto bg-transparent relative z-10 border-t border-slate-100">
-            <div className="text-center mb-20">
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="text-center mb-20"
+            >
                 <h2 className="text-4xl md:text-5xl font-light text-slate-800 tracking-tight mb-4">
                     Our Work <span className="font-semibold text-brand">Culture</span>
                 </h2>
                 <p className="text-slate-500 font-light text-xl tracking-wide">
                     What we care about every day
                 </p>
-            </div>
+            </motion.div>
 
             <div className="flex flex-col md:flex-row justify-between gap-12 lg:gap-20">
                 {values.map((v, i) => (
-                    <div key={i} className="flex-1 group">
+                    <motion.div 
+                        key={i} 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: i * 0.1 }}
+                        viewport={{ once: true }}
+                        className="flex-1 group"
+                    >
                         <div className="flex items-center gap-4 mb-5 pb-5 border-b border-slate-200 group-hover:border-brand transition-colors duration-500">
                             <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-800 group-hover:bg-brand group-hover:text-white transition-all duration-300 shadow-sm border border-slate-100">
                                 {v.icon}
@@ -44,7 +60,7 @@ export default function CultureSection() {
                         <p className="text-slate-500 font-light leading-relaxed text-[15.5px]">
                             {v.desc}
                         </p>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </section>

@@ -1,36 +1,43 @@
-import { Target, Eye } from "lucide-react";
+"use client";
+
+import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function MissionVisionSection() {
     return (
         <section className="py-24 px-6 max-w-[1400px] mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                {/* Mission Card */}
-                <div className="bg-[#F4F6FB] p-12 rounded-[3rem] hover:-translate-y-2 transition-transform duration-500 border border-slate-100 relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-brand/5 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000"></div>
-
-                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-8 text-brand relative z-10">
-                        <Target className="w-8 h-8" />
-                    </div>
-                    <h3 className="text-3xl font-medium mb-6 text-slate-800 relative z-10">Our Mission</h3>
-                    <p className="text-slate-600 font-light text-lg leading-relaxed relative z-10">
-                        Our mission is to accelerate innovation by helping founders and businesses transform ideas into impactful software products while nurturing a community of builders and entrepreneurs.
-                    </p>
-                </div>
-
-                {/* Vision Card */}
-                <div className="bg-slate-800 text-white p-12 rounded-[3rem] hover:-translate-y-2 transition-transform duration-500 relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-brand/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000"></div>
-
-                    <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 text-brand backdrop-blur-sm relative z-10">
-                        <Eye className="w-8 h-8" />
-                    </div>
-                    <h3 className="text-3xl font-medium mb-6 relative z-10">Our Vision</h3>
-                    <p className="text-slate-300 font-light text-lg leading-relaxed relative z-10">
-                        We aim to build a world-class technology team that creates impactful software products while supporting founders and innovators in building the next generation of startups.
-                    </p>
-                </div>
-
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-200 border border-slate-200">
+                {/* Mission and Vision Grid */}
+                {[
+                    { 
+                        num: "01", 
+                        title: "Our Mission", 
+                        desc: "Our mission is to accelerate innovation by helping founders and businesses transform ideas into impactful software products while nurturing a community of builders and entrepreneurs." 
+                    },
+                    { 
+                        num: "02", 
+                        title: "Our Vision", 
+                        desc: "We aim to build a world-class technology team that creates impactful software products while supporting founders and innovators in building the next generation of startups." 
+                    }
+                ].map((item, i) => (
+                    <motion.div 
+                        key={i} 
+                        initial={{ opacity: 0, x: i === 0 ? -30 : 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                        className="bg-white p-12 lg:p-20 hover:bg-[#F4F6FB] transition-colors duration-500 group relative overflow-hidden"
+                    >
+                        <div className="flex justify-between items-start mb-24 relative z-10">
+                            <span className="text-sm font-mono text-slate-400 font-medium">{item.num}</span>
+                            <ArrowUpRight className="w-5 h-5 text-slate-300 group-hover:text-brand transition-colors duration-500" />
+                        </div>
+                        <div className="relative z-10">
+                            <h4 className="text-3xl lg:text-4xl font-light text-slate-800 tracking-tight mb-6">{item.title}</h4>
+                            <p className="text-slate-500 font-light text-lg leading-relaxed">{item.desc}</p>
+                        </div>
+                    </motion.div>
+                ))}
             </div>
         </section>
     );

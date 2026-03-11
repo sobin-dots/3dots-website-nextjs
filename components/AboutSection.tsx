@@ -1,5 +1,8 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import BrandsSection from "./BrandsSection";
+import { motion } from "framer-motion";
 
 export default function AboutSection() {
     return (
@@ -7,7 +10,12 @@ export default function AboutSection() {
             <div className="text-brand text-3xl font-light opacity-50 absolute top-10 right-10 md:right-32 font-mono">04</div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
+                <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                >
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-slate-800 tracking-normal leading-[1.2] md:leading-[1.2] mb-10">Who We Are</h2>
                     <p className="text-slate-600 font-light text-lg mb-8 leading-relaxed">
                         3Dots is a technology company building world-class software and helping founders turn ideas into real products. We combine product engineering, startup expertise, and community to support innovators from concept to launch and beyond.
@@ -15,9 +23,15 @@ export default function AboutSection() {
                     <button className="text-brand border border-brand/30 hover:bg-brand hover:text-white px-8 py-3 rounded-full text-[15px] transition-all flex items-center gap-2">
                         Learn More About Us <ArrowRight className="w-4 h-4" />
                     </button>
-                </div>
+                </motion.div>
 
-                <div className="relative min-h-[400px]">
+                <motion.div 
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                    className="relative min-h-[400px]"
+                >
                     <svg className="absolute inset-0 w-full h-full text-slate-200 pointer-events-none" style={{ stroke: 'currentColor', fill: 'none', strokeWidth: 1.5 }}>
                         <path d="M 50 200 Q 200 50 400 300 T 600 100" />
                     </svg>
@@ -34,7 +48,7 @@ export default function AboutSection() {
                     <div className="absolute top-[20%] right-[10%] w-20 h-20 rounded-full border-4 border-white shadow-xl overflow-hidden z-10 transition-transform hover:scale-110">
                         <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" className="w-full h-full object-cover grayscale" alt="Person" />
                     </div>
-                </div>
+                </motion.div>
             </div>
 
             <BrandsSection />

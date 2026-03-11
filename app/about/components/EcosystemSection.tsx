@@ -1,150 +1,226 @@
 "use client";
 
-import { Code2, Search, Users, Laptop, ArrowRight, MessageSquare } from "lucide-react";
+import { Users } from "lucide-react";
+import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function EcosystemSection() {
-    const ecosystems = [
-        {
-            title: "JS Mavens",
-            icon: <Code2 className="w-5 h-5" />,
-            desc: "A growing community of 300+ developers.",
-            users: ["https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"],
-            color: "bg-blue-50 text-blue-600 border-blue-100",
-            delay: 0.1
-        },
-        {
-            title: "RexHive",
-            icon: <Search className="w-5 h-5" />,
-            desc: "Premium community for tech & AI discussions.",
-            users: ["https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80"],
-            color: "bg-indigo-50 text-indigo-600 border-indigo-100",
-            delay: 0.2
-        },
-        {
-            title: "Dots",
-            icon: <Users className="w-5 h-5" />,
-            desc: "Founders & devs discussing startup strategy.",
-            users: ["https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=100&q=80"],
-            color: "bg-purple-50 text-purple-600 border-purple-100",
-            delay: 0.3
-        },
-        {
-            title: "RexCoders",
-            icon: <Laptop className="w-5 h-5" />,
-            desc: "Coding academy for practical software development.",
-            users: ["https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&q=80"],
-            color: "bg-emerald-50 text-emerald-600 border-emerald-100",
-            delay: 0.4
-        }
-    ];
-
     return (
-        <section id="ecosystem" className="py-24 px-6 bg-white relative overflow-hidden mt-10 border-t border-slate-100">
-
-            {/* Network Background Pattern */}
-            <div className="absolute inset-0 opacity-40 pointer-events-none">
-                <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <pattern id="network-pattern" width="60" height="60" patternUnits="userSpaceOnUse">
-                            <circle cx="2" cy="2" r="1.5" fill="#CBD5E1" />
-                            <path d="M 2 2 L 60 60" fill="none" stroke="#F1F5F9" strokeWidth="1" />
-                            <path d="M 60 2 L 2 60" fill="none" stroke="#F1F5F9" strokeWidth="1" />
-                        </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#network-pattern)" />
-                </svg>
+        <section className="py-24 md:py-32 bg-[#fafbfc] relative overflow-hidden flex items-center">
+            
+            {/* The giant merged network watermark on the right side */}
+            <div className="absolute top-1/2 right-[30%] translate-x-[15%] -translate-y-[25%] text-[15vw] font-bold text-slate-100/80 select-none pointer-events-none z-0 tracking-tighter leading-none">
+                500+
             </div>
 
-            <div className="max-w-[1400px] mx-auto relative z-10">
-
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-
-                    {/* Left Side: Header & Context */}
-                    <div className="lg:col-span-5 text-center lg:text-left">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/5 border border-brand/20 text-brand text-sm font-medium mb-8">
-                            <MessageSquare className="w-4 h-4" /> Global Community
-                        </div>
-                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-slate-800 tracking-normal leading-[1.2] md:leading-[1.2] mb-10">
-                            A Network Built <br className="hidden lg:block" />
-                            <span className="font-medium text-brand">For Builders.</span>
+            <div className="max-w-[1400px] mx-auto px-6 relative z-10 w-full">
+                <div className="flex flex-col lg:flex-row gap-12 items-center w-full">
+                    
+                    {/* Left Side: Typography */}
+                    <motion.div 
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                        className="w-full lg:w-4/12 shrink-0 z-20 md:pl-8"
+                    >
+                        <h2 className="text-5xl md:text-[64px] font-normal text-slate-800 tracking-tight leading-[1.1] mb-2">
+                            Community.
                         </h2>
-                        <p className="text-slate-600 font-light text-lg mb-10 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                            We believe strong networks spark the best ideas. Connect with over 3,000+ developers, founders, and innovators in our curated tech communities. Learn, share, and launch together.
+                        <h2 className="text-5xl md:text-[64px] font-bold tracking-tight text-[#0066FF] mb-8 leading-[1.1]">
+                            Connected.
+                        </h2>
+                        <p className="text-lg text-slate-500 font-light leading-relaxed mb-12 max-w-sm">
+                            Our entire infrastructure is built to cross-pollinate ideas between our specialized communities.
                         </p>
-
-                        <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
-                            <button className="bg-brand text-white px-8 py-4 rounded-full text-[15px] font-medium hover:bg-brand-dark transition-all shadow-lg shadow-brand/20 flex items-center gap-2">
-                                Join our Network <ArrowRight className="w-4 h-4" />
-                            </button>
-
-                            {/* Trust cluster */}
-                            <div className="flex items-center gap-3">
-                                <div className="flex -space-x-3">
-                                    {["https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"].map((img, i) => (
-                                        <img key={i} src={img} alt="Member avatar" className="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover grayscale" />
-                                    ))}
-                                    <div className="w-10 h-10 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-xs font-semibold text-slate-500 shadow-sm z-10">
-                                        +3k
+                        <div className="flex items-center gap-4">
+                            <div className="flex -space-x-4">
+                                {[10, 12, 15, 20, 25].map((id, i) => (
+                                    <div key={i} className="relative w-12 h-12 rounded-full border-[3px] border-[#fafbfc] overflow-hidden grayscale">
+                                        <Image 
+                                            src={`https://i.pravatar.cc/100?img=${id}`} 
+                                            alt="Avatar" 
+                                            fill
+                                            className="object-cover" 
+                                        />
                                     </div>
+                                ))}
+                            </div>
+                            <div className="flex flex-col text-left ml-2">
+                                <span className="text-[#5984cb] font-semibold text-sm leading-tight">500+</span>
+                                <span className="text-[#8492a6] font-medium text-sm leading-tight">active members</span>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Right Side: Centered Network Graph */}
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1 }}
+                        viewport={{ once: true }}
+                        className="w-full lg:w-8/12 relative h-[600px] md:h-[750px] flex items-center justify-center mt-12 lg:mt-0 z-10"
+                    >
+                        {/* SVG Connections radiating from center */}
+                        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.35] z-0" stroke="#0066FF" fill="none">
+                            <motion.line 
+                                x1="50%" y1="48%" x2="18%" y2="20%" 
+                                strokeWidth="2" 
+                                strokeDasharray="4 6"
+                                animate={{ strokeDashoffset: [0, -20] }}
+                                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                            />
+                            <motion.line 
+                                x1="50%" y1="48%" x2="82%" y2="20%" 
+                                strokeWidth="2" 
+                                strokeDasharray="4 6"
+                                animate={{ strokeDashoffset: [0, -20] }}
+                                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                            />
+                            <motion.line 
+                                x1="50%" y1="48%" x2="50%" y2="82%" 
+                                strokeWidth="2" 
+                                strokeDasharray="4 6"
+                                animate={{ strokeDashoffset: [0, -20] }}
+                                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                            />
+                            
+                            {/* Inner delicate connections */}
+                            <motion.line 
+                                x1="18%" y1="20%" x2="50%" y2="82%" 
+                                strokeWidth="1" 
+                                strokeDasharray="2 4" 
+                                opacity="0.4"
+                                animate={{ strokeDashoffset: [0, -12] }}
+                                transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                            />
+                            <motion.line 
+                                x1="82%" y1="20%" x2="50%" y2="82%" 
+                                strokeWidth="1" 
+                                strokeDasharray="2 4" 
+                                opacity="0.4"
+                                animate={{ strokeDashoffset: [0, -12] }}
+                                transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                            />
+                        </svg>
+
+                        {/* Center point: Global Builders */}
+                        <div className="absolute top-[48%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
+                            <div className="bg-white rounded-full py-4 px-8 shadow-2xl shadow-[#0066FF]/10 flex items-center gap-5 border border-blue-50/50 hover:scale-105 transition-transform duration-500 cursor-default">
+                                <div className="w-12 h-12 rounded-full bg-[#f0f5ff] text-[#0066FF] flex items-center justify-center shrink-0">
+                                    <Users className="w-6 h-6" strokeWidth={1.5} />
+                                </div>
+                                <div className="text-left hidden sm:block whitespace-nowrap">
+                                    <h3 className="text-lg font-semibold text-slate-800 leading-tight mb-1">Global Builders</h3>
+                                    <p className="text-slate-500 text-xs font-light">Founders, engineers, creatives</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Right Side: Network Cards */}
-                    <div className="lg:col-span-7">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
-
-                            {/* Decorative SVG connection lines linking cards */}
-                            <svg className="absolute inset-0 w-full h-full hidden sm:block text-slate-200 pointer-events-none -z-10" style={{ stroke: 'currentColor', fill: 'none', strokeWidth: 2, strokeDasharray: "4 4" }}>
-                                <path d="M 25% 25% C 50% 25%, 50% 75%, 75% 75%" />
-                                <path d="M 75% 25% C 50% 25%, 50% 75%, 25% 75%" />
-                            </svg>
-
-                            {ecosystems.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: item.delay }}
-                                    viewport={{ once: true }}
-                                    className="bg-white rounded-[2rem] p-8 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 flex flex-col group relative overflow-hidden"
-                                >
-                                    {/* Background flare on hover */}
-                                    <div className={`absolute top-0 right-0 w-32 h-32 rounded-full blur-[40px] opacity-0 group-hover:opacity-40 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2 ${item.color.split(' ')[0]}`}></div>
-
-                                    <div className="flex justify-between items-start mb-6 relative z-10">
-                                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border ${item.color}`}>
-                                            {item.icon}
+                        {/* Surrounding Cards */}
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                            viewport={{ once: true }}
+                            className="absolute top-[20%] left-[18%] -translate-x-1/2 -translate-y-1/2 z-20 w-[240px] md:w-[280px]"
+                        >
+                            <div className="bg-white/95 backdrop-blur-md rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center shadow-xl shadow-slate-200/50 border border-slate-100/50 hover:-translate-y-2 transition-transform duration-400">
+                                <Image src="/js-mavens-logo.png" alt="JS Mavens" width={100} height={36} className="h-[36px] w-auto object-contain mb-8" />
+                                <p className="text-slate-400 text-[10px] font-light tracking-widest mb-8 uppercase">Top tier JS developers</p>
+                                <div className="flex -space-x-3">
+                                    {[11, 12, 13, 14].map((id, i) => (
+                                        <div key={i} className="relative w-10 h-10 rounded-full border-[3px] border-white overflow-hidden grayscale focus-within:grayscale-0 hover:z-10 hover:grayscale-0 hover:scale-110 transition-all duration-300">
+                                            <Image 
+                                                src={`https://i.pravatar.cc/100?img=${id}`} 
+                                                alt="Avatar" 
+                                                fill
+                                                className="object-cover" 
+                                            />
                                         </div>
-                                        {/* Tiny avatar intersection for card */}
-                                        <div className="flex -space-x-2">
-                                            {item.users.map((img, i) => (
-                                                <img key={i} src={img} className="w-8 h-8 rounded-full border-2 border-white shadow-sm object-cover grayscale" alt="Member" />
-                                            ))}
+                                    ))}
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.5 }}
+                            viewport={{ once: true }}
+                            className="absolute top-[20%] left-[82%] -translate-x-1/2 -translate-y-1/2 z-20 w-[240px] md:w-[280px]"
+                        >
+                            <div className="bg-white/95 backdrop-blur-md rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center shadow-xl shadow-slate-200/50 border border-slate-100/50 hover:-translate-y-2 transition-transform duration-400">
+                                <Image src="/rexhive-logo.png" alt="REXHive" width={120} height={40} className="h-[40px] w-auto object-contain mb-8" />
+                                <p className="text-slate-400 text-[10px] font-light tracking-widest mb-8 uppercase">AI & Tech researchers</p>
+                                <div className="flex -space-x-3">
+                                    {[24, 25, 26, 27].map((id, i) => (
+                                        <div key={i} className="relative w-10 h-10 rounded-full border-[3px] border-white overflow-hidden grayscale focus-within:grayscale-0 hover:z-10 hover:grayscale-0 hover:scale-110 transition-all duration-300">
+                                            <Image 
+                                                src={`https://i.pravatar.cc/100?img=${id}`} 
+                                                alt="Avatar" 
+                                                fill
+                                                className="object-cover" 
+                                            />
                                         </div>
-                                    </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </motion.div>
 
-                                    <div className="relative z-10">
-                                        <h3 className="text-xl font-semibold mb-3 text-slate-800 group-hover:text-brand transition-colors">{item.title}</h3>
-                                        <p className="text-slate-500 font-light text-[15px] leading-relaxed mb-6">
-                                            {item.desc}
-                                        </p>
-                                    </div>
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.7 }}
+                            viewport={{ once: true }}
+                            className="absolute top-[82%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-20 w-[240px] md:w-[280px]"
+                        >
+                            <div className="bg-white/95 backdrop-blur-md rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center shadow-xl shadow-slate-200/50 border border-slate-100/50 hover:-translate-y-2 transition-transform duration-400">
+                                <Image src="/3dots-logo.png" alt="3dots" width={100} height={32} className="h-[32px] w-auto object-contain mb-8" />
+                                <p className="text-slate-400 text-[10px] font-light tracking-widest mb-8 uppercase">Founders & strategists</p>
+                                <div className="flex -space-x-3">
+                                    {[32, 33, 34, 35].map((id, i) => (
+                                        <div key={i} className="relative w-10 h-10 rounded-full border-[3px] border-white overflow-hidden grayscale focus-within:grayscale-0 hover:z-10 hover:grayscale-0 hover:scale-110 transition-all duration-300">
+                                            <Image 
+                                                src={`https://i.pravatar.cc/100?img=${id}`} 
+                                                alt="Avatar" 
+                                                fill
+                                                className="object-cover" 
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </motion.div>
 
-                                    <div className="mt-auto relative z-10">
-                                        <div className="w-full h-[1px] bg-slate-100 mb-4 group-hover:bg-brand/10 transition-colors"></div>
-                                        <button className="text-sm font-medium text-slate-600 group-hover:text-brand transition-colors flex items-center gap-2">
-                                            View Details <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-                                        </button>
-                                    </div>
-
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-
+                        {/* Floating extra constellation avatars */}
+                        {[
+                            { top: "10%", left: "50%", size: "48px" },
+                            { top: "48%", left: "8%", size: "52px" },
+                            { top: "48%", left: "92%", size: "48px" },
+                            { top: "85%", left: "20%", size: "44px" },
+                            { top: "85%", left: "80%", size: "56px" },
+                        ].map((avatar, i) => (
+                            <motion.div 
+                                key={i} 
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 0.65 }}
+                                transition={{ duration: 1, delay: 1 + (i * 0.1) }}
+                                viewport={{ once: true }}
+                                className="absolute rounded-full border-[3px] border-white shadow-lg overflow-hidden grayscale"
+                                style={{
+                                    top: avatar.top,
+                                    left: avatar.left,
+                                    width: avatar.size,
+                                    height: avatar.size,
+                                    transform: "translate(-50%, -50%)"
+                                }}
+                            >
+                                <Image src={`https://i.pravatar.cc/100?img=${i + 40}`} alt="Community Member" fill className="object-cover" />
+                            </motion.div>
+                        ))}
+                    </motion.div>
                 </div>
             </div>
         </section>
