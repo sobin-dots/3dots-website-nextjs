@@ -2,6 +2,8 @@
 
 import { ArrowRight, Workflow } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 const services = [
     {
@@ -13,7 +15,8 @@ const services = [
         highlightIcon: <span className="text-brand font-semibold text-2xl tracking-normal">&lt;/&gt;</span>,
         highlightTitle: "Enterprise Scale",
         highlightDesc: "Custom platforms built for reliability and massive growth.",
-        image: "/images/software-development.jpeg"
+        image: "/images/software-development.jpeg",
+        slug:"software-products"
     },
     {
         id: "02",
@@ -24,7 +27,8 @@ const services = [
         highlightIcon: <Workflow className="w-7 h-7 text-brand" strokeWidth={1.5} />,
         highlightTitle: "Intelligent Workflows",
         highlightDesc: "Connecting your tools into seamless, automated pipelines.",
-        image: "/images/automation-service.jpg"
+        image: "/images/automation-service.jpg",
+        slug:"intelligent-workflows"
     }
 ];
 
@@ -82,9 +86,9 @@ export default function ServicesSection() {
                                     {service.description}
                                 </p>
 
-                                <button className="text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 px-6 py-2.5 rounded-full text-sm font-medium transition-all flex items-center gap-2 bg-white w-fit">
+                                <Link href={`/services/${service.slug}`} className="text-slate-700 border cursor-pointer border-slate-200 hover:border-slate-300 hover:bg-slate-50 px-6 py-2.5 rounded-full text-sm font-medium transition-all flex items-center gap-2 bg-white w-fit">
                                     Learn More <ArrowRight className="w-4 h-4 ml-1 opacity-70" />
-                                </button>
+                                </Link>
                             </div>
                         </motion.div>
                     );
