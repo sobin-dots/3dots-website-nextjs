@@ -7,11 +7,11 @@ export default function LaunchpadWhatIs() {
     return (
         <section className="py-24 px-6 relative overflow-hidden">
             <motion.div 
-                initial={{ rotate: -2, scaleY: 0 }}
+                initial={{ rotate: 0, scaleY: 0 }}
                 whileInView={{ scaleY: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
                 viewport={{ once: true }}
-                className="absolute inset-0 bg-slate-800 skew-y-[-2deg] origin-left"
+                className="absolute inset-0 bg-slate-800 origin-left"
             ></motion.div>
             <div className="max-w-[1200px] mx-auto relative z-10 flex flex-col md:flex-row gap-12 items-center text-white">
                 <motion.div 

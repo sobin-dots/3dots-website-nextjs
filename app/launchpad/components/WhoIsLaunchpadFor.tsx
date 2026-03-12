@@ -6,13 +6,13 @@ import { motion } from "framer-motion";
 export default function WhoIsLaunchpadFor() {
     return (
         <section className="py-24 px-6 max-w-[1200px] mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-slate-200">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-slate-200 rounded-[3rem] overflow-hidden">
                 <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="md:col-span-2 p-10 lg:p-12 border-b border-r border-slate-200 flex flex-col justify-center bg-slate-50/50"
+                    className="md:col-span-2 p-10 lg:p-12 border-b border-r  border-slate-200 flex flex-col justify-center bg-slate-50/50"
                 >
                     <h2 className="text-4xl font-light text-slate-800 tracking-tight mb-4">Who Is Launchpad For?</h2>
                     <p className="text-slate-500 font-light text-lg">Launchpad is designed for founders, entrepreneurs, and businesses who want to turn ideas into real products quickly.</p>

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function MissionVisionSection() {
     return (
         <section className="py-24 px-6 max-w-[1400px] mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-200 border border-slate-200">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-200 border rounded-[3rem] border-slate-200 overflow-hidden">
                 {/* Mission and Vision Grid */}
                 {[
                     { 

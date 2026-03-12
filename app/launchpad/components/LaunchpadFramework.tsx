@@ -38,7 +38,7 @@ export default function LaunchpadFramework() {
                             viewport={{ once: true }}
                             className="group"
                         >
-                            <span className={`text-[2rem] lg:text-[2rem] leading-none font-light ${item.highlight ? 'text-brand/50' : 'text-slate-300'} mb-6 group-hover:text-brand/10 transition-colors duration-500 select-none`}>{item.label}</span>
+                            <span className={`text-[1rem] lg:text-[1.5rem] font-bold leading-none ${item.highlight ? 'text-brand' : 'text-slate-800'} mb-6 group-hover:text-brand/10 transition-colors duration-500 select-none`}>{item.label}</span>
                             <div className={`mt-5 h-px w-full ${item.highlight ? 'bg-brand/30' : 'bg-slate-200'} mb-8 group-hover:bg-brand transition-colors duration-500 relative`}>
                                 {item.highlight && <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand"></div>}
                             </div>

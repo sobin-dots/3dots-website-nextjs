@@ -26,10 +26,10 @@ export default function EcosystemSection() {
                         className="w-full lg:w-4/12 shrink-0 z-20 md:pl-8"
                     >
                         <h2 className="text-5xl md:text-[64px] font-normal text-slate-800 tracking-tight leading-[1.1] mb-2">
-                            Community.
+                            Connected 
                         </h2>
                         <h2 className="text-5xl md:text-[64px] font-bold tracking-tight text-[#0066FF] mb-8 leading-[1.1]">
-                            Connected.
+                            Community
                         </h2>
                         <p className="text-lg text-slate-500 font-light leading-relaxed mb-12 max-w-sm">
                             Our entire infrastructure is built to cross-pollinate ideas between our specialized communities.

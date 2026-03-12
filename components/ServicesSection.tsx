@@ -13,7 +13,7 @@ const services = [
         highlightIcon: <span className="text-brand font-semibold text-2xl tracking-normal">&lt;/&gt;</span>,
         highlightTitle: "Enterprise Scale",
         highlightDesc: "Custom platforms built for reliability and massive growth.",
-        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80"
+        image: "/images/software-development.jpeg"
     },
     {
         id: "02",
@@ -24,7 +24,7 @@ const services = [
         highlightIcon: <Workflow className="w-7 h-7 text-brand" strokeWidth={1.5} />,
         highlightTitle: "Intelligent Workflows",
         highlightDesc: "Connecting your tools into seamless, automated pipelines.",
-        image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80"
+        image: "/images/automation-service.jpg"
     }
 ];
 
