@@ -58,9 +58,9 @@ export default function ServicesSection() {
                                         className="w-full h-full object-cover grayscale-80"
                                     />
                                     {/* Blue Overlay Gradient perfectly matching image */}
-                                    <div className={`absolute inset-0 bg-linear-to-r ${isEven ? 'from-brand/10 to-brand/70' : 'from-brand/70 to-brand/10'} mix-blend-overlay`}></div>
-                                    <div className={`absolute inset-0 bg-linear-to-r ${isEven ? 'from-transparent to-brand/50' : 'from-brand/50 to-transparent'} mix-blend-multiply opacity-80`}></div>
-                                    <div className="absolute inset-0 bg-brand/20"></div>
+                                    <div className={`absolute inset-0 bg-linear-to-r ${isEven ? 'from-brand/10 to-brand/10' : 'from-brand/10 to-brand/10'} mix-blend-overlay`}></div>
+                                    <div className={`absolute inset-0 bg-linear-to-r ${isEven ? 'from-transparent to-brand/10' : 'from-brand/10 to-transparent'} mix-blend-multiply opacity-80`}></div>
+                                    <div className="absolute inset-0 bg-brand/5"></div>
                                 </div>
                                 
                                 {/* Floating Card */}
