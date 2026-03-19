@@ -125,7 +125,7 @@ export default function ServicesSectionVar2() {
             </div>
             
             {/* Fade out gradient at bottom of sticky area */}
-            <div className="h-32 bg-linear-to-b from-transparent to-[#F4F6FB] -mt-16 relative z-50 pointer-events-none"></div>
+            <div className="h-32 bg-linear-to-b from-transparent to-brand-50 -mt-16 relative z-50 pointer-events-none"></div>
         </section>
     );
 }

@@ -9,7 +9,7 @@ export default function EcosystemVar1() {
     return (
         <section className="py-32 px-6 max-w-[1400px] mx-auto relative overflow-hidden bg-white mt-10 rounded-4xl border border-slate-100 shadow-xl">
             {/* Background elements to reflect network */}
-            <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0055FF 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+            <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#258c7b 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
             <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-brand/10 rounded-full blur-[100px] pointer-events-none"></div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10 px-4 md:px-10">
@@ -49,19 +49,19 @@ export default function EcosystemVar1() {
                     <div className="absolute inset-0 flex items-center justify-center">
                         {/* Middle Orbit */}
                         <div className="w-[300px] h-[300px] rounded-full border border-slate-200 animate-[spin_60s_linear_infinite] opacity-50 absolute">
-                            <div className="w-2 h-2 bg-brand rounded-full absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_12px_rgba(0,85,255,1)]"></div>
-                            <div className="w-2 h-2 bg-blue-400 rounded-full absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 shadow-[0_0_10px_rgba(96,165,250,0.8)]"></div>
+                            <div className="w-2 h-2 bg-brand rounded-full absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_12px_rgba(37,140,123,1)]"></div>
+                            <div className="w-2 h-2 bg-brand-400 rounded-full absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 shadow-[0_0_10px_rgba(37,140,123,0.8)]"></div>
                         </div>
                         
                         {/* Outer Orbit */}
                         <div className="w-[450px] h-[450px] rounded-full border border-slate-100 animate-[spin_80s_linear_reverse_infinite] opacity-50 absolute">
-                            <div className="w-2 h-2 bg-blue-300 rounded-full absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 shadow-[0_0_8px_rgba(147,197,253,0.6)]"></div>
-                            <div className="w-2 h-2 bg-brand/60 rounded-full absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_rgba(0,85,255,0.4)]"></div>
+                            <div className="w-2 h-2 bg-brand-300 rounded-full absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 shadow-[0_0_8px_rgba(37,140,123,0.6)]"></div>
+                            <div className="w-2 h-2 bg-brand/60 rounded-full absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_rgba(37,140,123,0.4)]"></div>
                         </div>
                         
                         {/* Inner Orbit */}
                         <div className="w-[200px] h-[200px] rounded-full border border-brand/20 animate-[spin_40s_linear_infinite] absolute">
-                            <div className="w-2 h-2 bg-brand rounded-full absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 shadow-[0_0_15px_rgba(0,85,255,1)]"></div>
+                            <div className="w-2 h-2 bg-brand rounded-full absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 shadow-[0_0_15px_rgba(37,140,123,1)]"></div>
                             <div className="w-1.5 h-1.5 bg-secondary rounded-full absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_rgba(30,58,138,0.5)]"></div>
                         </div>
                     </div>

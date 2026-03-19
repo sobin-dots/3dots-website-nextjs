@@ -27,7 +27,7 @@ export default function HeroSection() {
                             About <span className="font-bold text-slate-900">Us.</span>
                         </h1>
                         <div className="absolute -left-8 top-16 w-2.5 h-2.5 bg-brand/30 rounded-full"></div>
-                        <div className="absolute left-20 -bottom-6 w-1.5 h-1.5 bg-blue-400/50 rounded-full"></div>
+                        <div className="absolute left-40 -bottom-6 w-1.5 h-1.5 bg-brand-400/50 rounded-full"></div>
                     </motion.div>
 
                     <motion.div 

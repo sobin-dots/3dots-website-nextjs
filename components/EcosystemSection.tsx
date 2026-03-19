@@ -10,7 +10,7 @@ export default function EcosystemSection() {
             icon: <Code2 className="w-5 h-5" />,
             desc: "A growing community of 300+ developers.",
             users: ["https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"],
-            color: "bg-blue-50 text-blue-600 border-blue-100",
+            color: "bg-brand-50 text-brand border-brand-100",
             delay: 0.1
         },
         {
@@ -18,7 +18,7 @@ export default function EcosystemSection() {
             icon: <Search className="w-5 h-5" />,
             desc: "Premium community for tech & AI discussions.",
             users: ["https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80"],
-            color: "bg-indigo-50 text-indigo-600 border-indigo-100",
+            color: "bg-brand-100 text-brand-600 border-brand-200",
             delay: 0.2
         },
         {
@@ -26,7 +26,7 @@ export default function EcosystemSection() {
             icon: <Users className="w-5 h-5" />,
             desc: "Founders & devs discussing startup strategy.",
             users: ["https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=100&q=80"],
-            color: "bg-purple-50 text-purple-600 border-purple-100",
+            color: "bg-brand-50 text-brand-700 border-brand-300",
             delay: 0.3
         },
         {
@@ -34,7 +34,7 @@ export default function EcosystemSection() {
             icon: <Laptop className="w-5 h-5" />,
             desc: "Coding academy for practical software development.",
             users: ["https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=100&q=80", "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&q=80"],
-            color: "bg-emerald-50 text-emerald-600 border-emerald-100",
+            color: "bg-brand-100 text-brand-400 border-brand-200",
             delay: 0.4
         }
     ];

@@ -1,9 +1,20 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme inline {
-  --color-brand: #0055FF;
-  --color-brand-light: #3377FF;
-  --color-brand-dark: #0044CC;
+  --color-brand-50: #f0fdfa;
+  --color-brand-100: #ccfbf1;
+  --color-brand-200: #99f6e4;
+  --color-brand-300: #5eead4;
+  --color-brand-400: #2dd4bf;
+  --color-brand: #258c7b;
+  --color-brand-600: #1a6155;
+  --color-brand-700: #0f766e;
+  --color-brand-800: #115e59;
+  --color-brand-900: #134e4a;
+  --color-brand-dark: #1a6155;
+  --color-brand-light: #44b8a6;
+  --color-secondary: #258c7b;
   --font-sans: var(--font-outfit), sans-serif;
 
   --animate-marquee: marquee 25s linear infinite;
@@ -89,5 +100,41 @@
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background: transparent;
+  }
+
+  /* Prose Code Blocks */
+  .prose pre {
+    background-color: #0f172a !important; /* slate-900 */
+    padding: 1.5rem !important;
+    border-radius: 1rem !important;
+    border: 1px solid #1e293b !important; /* slate-800 */
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+    font-size: 0.875rem !important;
+    line-height: 1.7142857 !important;
+    overflow-x: auto !important;
+  }
+
+  /* Fix for the background of code within pre blocks */
+  .prose pre code {
+    background-color: transparent !important;
+    color: #f8fafc !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    font-weight: 400 !important;
+    border: none !important;
+  }
+
+  /* Inline Code (only when not inside a pre block) */
+  .prose :not(pre) > code {
+    background-color: #f1f5f9; /* slate-100 */
+    color: #258c7b; /* brand */
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+  }
+
+  .prose code::before,
+  .prose code::after {
+    content: "" !important;
   }
 }

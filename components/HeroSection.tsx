@@ -44,7 +44,7 @@ export default function HeroSection() {
                         className="w-full h-full object-cover grayscale opacity-90 transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute bottom-10 -left-10 w-40 h-40 bg-brand rounded-full mix-blend-multiply opacity-80 blur-2xl"></div>
-                    <div className="absolute top-10 -right-10 w-60 h-60 bg-blue-300 rounded-full mix-blend-multiply opacity-60 blur-3xl"></div>
+                    <div className="absolute top-10 -right-10 w-60 h-60 bg-brand-300 rounded-full mix-blend-multiply opacity-60 blur-3xl"></div>
                 </motion.div>
             </div>
         </section>

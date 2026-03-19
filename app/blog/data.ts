@@ -99,3 +99,5 @@ export const blogPosts = [
         content: `Predictive interfaces change everything. Instead of the user searching through menus, the UI anticipates their need and surfaces the correct action dynamically. We call this Intent-Driven Navigation.`
     }
 ];
+
+export const blogCategories = ["Engineering", "Design", "Product Strategy", "Founder Insights", "Ecosystem"];

@@ -14,8 +14,8 @@ const services = [
         icon: Code2,
         image: "https://images.unsplash.com/photo-1555949963-aa79dcee9811?auto=format&fit=crop&w=1200&q=80",
         features: ["Custom Software Development", "Web & Mobile Platforms", "SaaS Product Design", "Legacy System Revival"],
-        gradient: "from-blue-600 to-indigo-600",
-        glow: "shadow-blue-500/20"
+        gradient: "from-brand to-brand-600",
+        glow: "shadow-brand/20"
     },
     {
         id: "02",
@@ -48,7 +48,7 @@ export default function ServicesSectionVar3() {
                 {/* Left Side: Navigation */}
                 <div className="w-full lg:w-5/12 flex flex-col justify-center relative z-10">
                     <h2 className="text-4xl md:text-5xl font-light tracking-tight mb-16">
-                        Our Core <span className="font-semibold block mt-2 text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-indigo-400">Offerings.</span>
+                        Our Core <span className="font-semibold block mt-2 text-transparent bg-clip-text bg-linear-to-r from-brand-300 to-brand-500">Offerings.</span>
                     </h2>
 
                     <div className="flex flex-col gap-6">

@@ -25,8 +25,16 @@ export default function ContactLayout() {
         return () => clearTimeout(initForm);
     }, [generateCaptcha]);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const data = {
+            name: formData.get("name"),
+            email: formData.get("email"),
+            phone: formData.get("phone"),
+            message: formData.get("message"),
+        };
+
         if (parseInt(captchaAnswer) !== num1 + num2) {
             setStatus("error");
             setErrorMessage("Incorrect answer. Please try again.");
@@ -35,10 +43,24 @@ export default function ContactLayout() {
         }
 
         setStatus("submitting");
-        // Simulate API request
-        setTimeout(() => {
-            setStatus("success");
-        }, 1500);
+
+        try {
+            const res = await fetch("/api/inquiries", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+
+            if (res.ok) {
+                setStatus("success");
+            } else {
+                setStatus("error");
+                setErrorMessage("Something went wrong. Please try again later.");
+            }
+        } catch (error) {
+            setStatus("error");
+            setErrorMessage("Failed to send message. Please check your connection.");
+        }
     };
 
     return (
@@ -78,6 +100,7 @@ export default function ContactLayout() {
                                         <label className="text-sm font-medium text-slate-700">Full Name</label>
                                         <input
                                             type="text"
+                                            name="name"
                                             required
                                             className="w-full bg-[#F4F6FB] border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand font-light text-slate-800 transition-all placeholder:text-slate-400"
                                             placeholder="Jane Doe"
@@ -87,6 +110,7 @@ export default function ContactLayout() {
                                         <label className="text-sm font-medium text-slate-700">Email Address</label>
                                         <input
                                             type="email"
+                                            name="email"
                                             required
                                             className="w-full bg-[#F4F6FB] border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand font-light text-slate-800 transition-all placeholder:text-slate-400"
                                             placeholder="jane@example.com"
@@ -107,6 +131,7 @@ export default function ContactLayout() {
                                     <label className="text-sm font-medium text-slate-700">Message</label>
                                     <textarea
                                         required
+                                        name="message"
                                         rows={5}
                                         className="w-full bg-[#F4F6FB] border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand font-light text-slate-800 transition-all placeholder:text-slate-400 resize-none"
                                         placeholder="Tell us about your project or inquiry..."
@@ -162,8 +187,8 @@ export default function ContactLayout() {
 
                         {[
                             { icon: <MapPin className="w-5 h-5" />, title: "Our Office", desc: <>317/4 Joe Daniel Street, <br />Kottar-Parvathipuram Rd, <br /> Nagercoil, Tamil Nadu 629003</> },
-                            { icon: <Mail className="w-5 h-5" />, title: "Email Us", desc: <>hello@3dots.co<br />support@3dots.co</> },
-                            { icon: <Phone className="w-5 h-5" />, title: "Call Us", desc: <>+91 9894070458<br />Mon-Fri, 9am - 7pm IST</> }
+                            { icon: <Mail className="w-5 h-5" />, title: "Email Us", desc: <>hello@3dots.co</> },
+                            { icon: <Phone className="w-5 h-5" />, title: "Call Us", desc: <>+91 995 228 2868<br />Mon-Fri, 9am - 7pm IST</> }
                         ].map((item, i) => (
                             <motion.div 
                                 key={i}

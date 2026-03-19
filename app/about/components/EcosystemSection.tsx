@@ -28,7 +28,7 @@ export default function EcosystemSection() {
                         <h2 className="text-5xl md:text-[64px] font-normal text-slate-800 tracking-tight leading-[1.1] mb-2">
                             Connected 
                         </h2>
-                        <h2 className="text-5xl md:text-[64px] font-bold tracking-tight text-[#0066FF] mb-8 leading-[1.1]">
+                        <h2 className="text-5xl md:text-[64px] font-bold tracking-tight text-brand mb-8 leading-[1.1]">
                             Community
                         </h2>
                         <p className="text-lg text-slate-500 font-light leading-relaxed mb-12 max-w-sm">
@@ -48,7 +48,7 @@ export default function EcosystemSection() {
                                 ))}
                             </div>
                             <div className="flex flex-col text-left ml-2">
-                                <span className="text-[#5984cb] font-semibold text-sm leading-tight">500+</span>
+                                <span className="text-brand font-semibold text-sm leading-tight">500+</span>
                                 <span className="text-[#8492a6] font-medium text-sm leading-tight">active members</span>
                             </div>
                         </div>
@@ -63,7 +63,7 @@ export default function EcosystemSection() {
                         className="w-full lg:w-8/12 relative h-[600px] md:h-[750px] flex items-center justify-center mt-12 lg:mt-0 z-10"
                     >
                         {/* SVG Connections radiating from center */}
-                        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.35] z-0" stroke="#0066FF" fill="none">
+                        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.35] z-0" stroke="#258c7b" fill="none">
                             <motion.line 
                                 x1="50%" y1="48%" x2="18%" y2="20%" 
                                 strokeWidth="2" 
@@ -107,8 +107,8 @@ export default function EcosystemSection() {
 
                         {/* Center point: Global Builders */}
                         <div className="absolute top-[48%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
-                            <div className="bg-white rounded-full py-4 px-8 shadow-2xl shadow-[#0066FF]/10 flex items-center gap-5 border border-blue-50/50 hover:scale-105 transition-transform duration-500 cursor-default">
-                                <div className="w-12 h-12 rounded-full bg-[#f0f5ff] text-[#0066FF] flex items-center justify-center shrink-0">
+                            <div className="bg-white rounded-full py-4 px-8 shadow-2xl shadow-brand/10 flex items-center gap-5 border border-brand-50/50 hover:scale-105 transition-transform duration-500 cursor-default">
+                                <div className="w-12 h-12 rounded-full bg-brand-50 text-brand flex items-center justify-center shrink-0">
                                     <Users className="w-6 h-6" strokeWidth={1.5} />
                                 </div>
                                 <div className="text-left hidden sm:block whitespace-nowrap">

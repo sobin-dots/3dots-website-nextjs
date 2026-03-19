@@ -36,7 +36,7 @@ export default function HeroSection() {
                         
                         {/* Subtle decorative dots */}
                         <div className="absolute -left-8 top-16 w-2.5 h-2.5 bg-brand/30 rounded-full"></div>
-                        <div className="absolute left-40 -bottom-6 w-1.5 h-1.5 bg-blue-400/50 rounded-full"></div>
+                        <div className="absolute left-40 -bottom-6 w-1.5 h-1.5 bg-brand-400/50 rounded-full"></div>
                     </motion.div>
 
                     {/* Right side floating feature chip (Desktop only) */}
