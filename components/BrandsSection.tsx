@@ -24,7 +24,7 @@ export default function BrandsSection() {
                                 { src: "/painted-logo.png", alt: "Painted" },
                                 { src: "/toyota-logo.png", alt: "Toyota" },
                                 { src: "/verbal-logo.png", alt: "Verbal" },
-                                { src: "/campfire-logo.svg", alt: "Campfire" },
+                                { src: "/campfire-logo.png", alt: "Campfire" },
                                 { src: "/bonafai-logo.png", alt: "Bonafai" },
                                 { src: "/picstol-logo.png", alt: "Picstol" },
                                 {src: "/gearloop-logo.svg", alt: "Gearloop"}

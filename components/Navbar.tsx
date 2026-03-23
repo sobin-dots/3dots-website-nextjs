@@ -15,22 +15,19 @@ export default function Navbar() {
 
     const navLinks = [
         { name: "Home", href: "/" },
-        { name: "Services", href: "/services" },
         { name: "Launchpad", href: "/launchpad" },
-        { name: "About", href: "/about" },
         { name: "Careers", href: "/careers" },
         { name: "Blog", href: "/blog" },
-        { name: "Contact Us", href: "/contact" },
     ];
 
     return (
         <>
-            <nav className={`fixed w-full top-0 z-50 border-b transition-all duration-300 ${isMenuOpen ? 'bg-[#F4F6FB] border-transparent' : 'bg-[#F4F6FB]/80 backdrop-blur-md border-slate-200'}`}>
+            <nav className={`fixed w-full top-0 z-50 border-b transition-all duration-300 ${isMenuOpen ? 'bg-brand-50 border-transparent' : 'bg-brand-50/80 backdrop-blur-md border-slate-200'}`}>
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                     <div className="text-3xl font-light tracking-tighter text-slate-800 relative z-50">
                         <Link href="/">
                             <Image
-                                src="/3dots-logo.png"
+                                src="/3dots-logo-1.png"
                                 alt="3dots Logo"
                                 width={128}
                                 height={40}
@@ -77,7 +74,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="md:hidden fixed inset-0 bg-[#F4F6FB] z-40 flex flex-col justify-center items-center gap-8 px-6"
+                        className="md:hidden fixed inset-0 bg-brand-50 z-40 flex flex-col justify-center items-center gap-8 px-6"
                     >
                         <div className="flex flex-col items-center gap-8 text-2xl font-light text-slate-800">
                             {navLinks.map((link, i) => (

@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Outfit } from 'next/font/google';
 import './globals.css';
 
+import { Providers } from '@/components/Providers';
+
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 
 export const metadata: Metadata = {
@@ -16,8 +18,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${outfit.variable} font-sans antialiased bg-[#F8FAFC] text-slate-800`}>
-        {children}
+      <body className={`${outfit.variable} font-sans antialiased bg-brand-50 text-slate-800`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

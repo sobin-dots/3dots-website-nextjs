@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
@@ -7,6 +8,8 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function PositionsSection() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedRole, setSelectedRole] = useState("");
+    const [positions, setPositions] = useState<any[]>([]);
+    const [isLoadingPositions, setIsLoadingPositions] = useState(true);
 
     // Math Captcha State
     const [num1, setNum1] = useState(0);
@@ -16,23 +19,15 @@ export default function PositionsSection() {
     const [errorMessage, setErrorMessage] = useState("");
     const [fileName, setFileName] = useState("No file chosen");
 
-    const positions = [
-        {
-            title: "Full-stack Developer",
-            tag: "ENGINEERING • FULL-TIME",
-            desc: "Build MVPs with modern stacks. You'll work across frontend and backend, ship fast, and work directly with founders."
-        },
-        {
-            title: "Product Designer",
-            tag: "DESIGN • FULL-TIME",
-            desc: "Shape product experiences from concept to launch. You'll own design for multiple MVPs and work closely with engineering."
-        },
-        {
-            title: "General Application",
-            tag: "ANY ROLE",
-            desc: "Have skills we haven&apos;t listed? Tell us what you do best. We&apos;re always open to the right person."
-        }
-    ];
+    useEffect(() => {
+        fetch("/api/careers")
+            .then(res => res.json())
+            .then(data => {
+                setPositions(Array.isArray(data) ? data : []);
+                setIsLoadingPositions(false);
+            })
+            .catch(() => setIsLoadingPositions(false));
+    }, []);
 
     const generateCaptcha = useCallback(() => {
         setNum1(Math.floor(Math.random() * 10) + 1);
@@ -109,15 +104,16 @@ export default function PositionsSection() {
                     <p className="text-slate-600 font-light text-[17px]">
                         Find a role that fits. Don&apos;t see one? Apply anyway and tell us what you&apos;d love to do.
                     </p>
+                    {isLoadingPositions && <p className="mt-4 text-brand animate-pulse">Loading opportunities...</p>}
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {positions.map((pos, i) => (
+                    {positions.map((pos) => (
                         <motion.div
-                            key={i}
+                            key={pos.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: i * 0.1 }}
+                            transition={{ duration: 0.5 }}
                             viewport={{ once: true }}
                             className="bg-white border border-slate-200 rounded-4xl p-10 flex flex-col justify-between hover:shadow-xl hover:border-brand/30 transition-all duration-300 group"
                         >
@@ -126,29 +122,34 @@ export default function PositionsSection() {
                                 <div className="text-brand text-xs font-semibold tracking-widest uppercase mb-6">
                                     {pos.tag}
                                 </div>
-                                <p className="text-slate-600 font-light leading-relaxed mb-10 text-[15px]">
-                                    {pos.desc}
-                                </p>
+                                <div className="text-slate-600 font-light leading-relaxed mb-10 text-[15px] line-clamp-3">
+                                    {pos.description}
+                                </div>
                             </div>
                             <div className="flex">
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     onClick={() => openModal(pos.title)}
-                                    className="bg-brand text-white px-8 py-2.5 rounded-full text-sm font-medium hover:bg-brand-dark transition-all shadow-[0_0_15px_rgba(0,85,255,0.3)] group-hover:shadow-[0_0_20px_rgba(0,85,255,0.4)]"
+                                    className="bg-brand text-white px-8 py-2.5 rounded-full text-sm font-medium hover:bg-brand-dark transition-all shadow-[0_0_15px_rgba(37,140,123,0.3)] group-hover:shadow-[0_0_20px_rgba(37,140,123,0.4)]"
                                 >
                                     Apply
                                 </motion.button>
                             </div>
                         </motion.div>
                     ))}
+                    {!isLoadingPositions && positions.length === 0 && (
+                        <div className="col-span-full text-center py-12 bg-white rounded-4xl border border-slate-100">
+                            <p className="text-slate-400">No active positions at the moment. Check back soon!</p>
+                        </div>
+                    )}
                 </div>
             </div>
 
             {/* Application Modal (Light Theme) */}
             <AnimatePresence>
                 {isModalOpen && (
-                    <div className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-6">
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -187,7 +188,7 @@ export default function PositionsSection() {
                                         </p>
                                         <button
                                             onClick={closeModal}
-                                            className="mt-8 bg-brand text-white px-8 py-3 rounded-full font-medium hover:bg-brand-dark transition-all shadow-[0_0_15px_rgba(0,85,255,0.3)]"
+                                            className="mt-8 bg-brand text-white px-8 py-3 rounded-full font-medium hover:bg-brand-dark transition-all shadow-[0_0_15px_rgba(37,140,123,0.3)]"
                                         >
                                             Close Window
                                         </button>
@@ -241,8 +242,8 @@ export default function PositionsSection() {
                                                     className="w-full bg-[#F4F6FB] border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand font-light text-slate-800 transition-all appearance-none cursor-pointer"
                                                 >
                                                     <option value="" disabled>Select a role</option>
-                                                    {positions.map((p, i) => (
-                                                        <option key={i} value={p.title}>{p.title}</option>
+                                                    {positions.map((p) => (
+                                                        <option key={p.id} value={p.title}>{p.title}</option>
                                                     ))}
                                                 </select>
                                             </div>
@@ -316,7 +317,7 @@ export default function PositionsSection() {
                                                     whileTap={{ scale: 0.98 }}
                                                     type="submit"
                                                     disabled={status === "submitting"}
-                                                    className="bg-brand text-white px-10 py-4 rounded-full text-base font-medium hover:bg-brand-dark transition-all shadow-[0_0_15px_rgba(0,85,255,0.3)] disabled:opacity-70 disabled:cursor-not-allowed w-full sm:w-auto"
+                                                    className="bg-brand text-white px-10 py-4 rounded-full text-base font-medium hover:bg-brand-dark transition-all shadow-[0_0_15px_rgba(37,140,123,0.3)] disabled:opacity-70 disabled:cursor-not-allowed w-full sm:w-auto"
                                                 >
                                                     {status === "submitting" ? "Submitting..." : "Submit application"}
                                                 </motion.button>

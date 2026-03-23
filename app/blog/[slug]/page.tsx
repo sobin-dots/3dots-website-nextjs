@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation";
-import { blogPosts } from "../data";
 import BlogPostClient from "./BlogPostClient";
 import { Metadata } from "next";
+import { prisma } from "@/lib/prisma";
+import { blogCategories } from "../data";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await prisma.post.findUnique({ where: { slug } });
 
   if (!post) {
     return {
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: [post.image],
+      images: post.image ? [post.image] : [],
     },
     alternates: {
       canonical: `/blog/${slug}`,
@@ -29,17 +30,32 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const postIndex = blogPosts.findIndex((p) => p.slug === slug);
+  
+  const post = await prisma.post.findUnique({
+    where: { slug },
+    include: {
+      comments: {
+        orderBy: {
+          createdAt: "desc"
+        }
+      }
+    }
+  });
 
-  if (postIndex === -1) {
+  if (!post) {
     notFound();
   }
 
-  const post = blogPosts[postIndex];
+  // Fetch adjacent posts for navigation
+  const prevPost = await prisma.post.findFirst({
+    where: { date: { lt: post.date } },
+    orderBy: { date: "desc" }
+  });
 
-  // Calculate Next and Previous blogs dynamically over the array
-  const prevPost = postIndex > 0 ? blogPosts[postIndex - 1] : null;
-  const nextPost = postIndex < blogPosts.length - 1 ? blogPosts[postIndex + 1] : null;
+  const nextPost = await prisma.post.findFirst({
+    where: { date: { gt: post.date } },
+    orderBy: { date: "asc" }
+  });
 
   // JSON-LD structured data for article
   const jsonLd = {
@@ -48,12 +64,78 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     "headline": post.title,
     "description": post.excerpt,
     "image": post.image,
-    "datePublished": post.date, // In production, this should be ISO format
+    "datePublished": post.date.toISOString(),
     "author": {
-      "@type": "Organization",
-      "name": "3Dots Editorial"
-    }
+      "@type": "Person",
+      "name": post.authorName || "3Dots Team"
+    },
+    "keywords": post.tags?.join(", ") || ""
   };
+
+  const [recentPosts, allPosts] = await Promise.all([
+    prisma.post.findMany({
+      where: { NOT: { id: post.id }, published: true },
+      orderBy: { date: 'desc' },
+      take: 5,
+    }),
+    prisma.post.findMany({
+      where: { published: true },
+      select: { category: true, tags: true }
+    })
+  ]);
+
+  const categoryMap = new Map<string, number>();
+  // Initialize with all categories from our official list
+  blogCategories.forEach(cat => categoryMap.set(cat, 0));
+  
+  allPosts.forEach((p: { category: string, tags: string[] }) => {
+    categoryMap.set(p.category, (categoryMap.get(p.category) || 0) + 1);
+  });
+  const categories = Array.from(categoryMap.entries()).map(([name, count]) => ({ name, count }));
+
+  const tags = Array.from(new Set(allPosts.flatMap((p: { tags: string[] }) => p.tags)));
+
+  const serializedPost = {
+    id: post.id,
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    content: post.content,
+    category: post.category,
+    readTime: post.readTime,
+    image: post.image || "/images/blog/default.jpg",
+    authorName: post.authorName,
+    authorRole: post.authorRole,
+    authorImage: post.authorImage || undefined,
+    tags: post.tags,
+    likes: post.likes,
+    dislikes: post.dislikes,
+    date: post.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+    comments: post.comments.map((c: { id: string, author: string, content: string, createdAt: Date }) => ({
+      id: c.id,
+      author: c.author,
+      content: c.content,
+      createdAt: c.createdAt.toISOString()
+    }))
+  };
+
+  const serializedRecent = recentPosts.map((p: { id: string, slug: string, title: string, image: string | null, date: Date }) => ({
+    id: p.id,
+    slug: p.slug,
+    title: p.title,
+    image: p.image || "/images/blog/default.jpg",
+    date: p.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+  }));
+
+  const serializedPrev = prevPost ? {
+    ...prevPost,
+    date: prevPost.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  } : null;
+
+  const serializedNext = nextPost ? {
+    ...nextPost,
+    date: nextPost.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  } : null;
 
   return (
     <>
@@ -61,7 +143,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <BlogPostClient post={post} prevPost={prevPost} nextPost={nextPost} />
+      <BlogPostClient 
+        post={serializedPost} 
+        prevPost={serializedPrev} 
+        nextPost={serializedNext} 
+        recentPosts={serializedRecent}
+        categories={categories}
+        tags={tags as string[]}
+      />
     </>
   );
 }

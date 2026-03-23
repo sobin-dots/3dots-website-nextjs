@@ -7,16 +7,9 @@ import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, Zap } from "lucide-r
 import Link from "next/link";
 import Image from "next/image";
 
-type ServiceData = {
-  title: string;
-  shortDescription: string;
-  fullDescription: string;
-  features: { title: string; description: string }[];
-  benefits: string[];
-  image: string;
-};
+import { ServiceInput } from "@/lib/validations";
 
-export default function ServiceDetailClient({ data }: { data: ServiceData }) {
+export default function ServiceDetailClient({ data }: { data: ServiceInput }) {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-800 pb-0">
       <Navbar />
@@ -56,10 +49,10 @@ export default function ServiceDetailClient({ data }: { data: ServiceData }) {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="relative rounded-4xl overflow-hidden shadow-2xl shadow-slate-200/50 border border-white aspect-[4/3] lg:aspect-square"
+              className="relative rounded-4xl overflow-hidden shadow-2xl shadow-slate-200/50 border border-white aspect-4/3 lg:aspect-square"
             >
               <Image 
-                src={data.image} 
+                src={data.image || "/placeholder-service.jpg"} 
                 alt={data.title}
                 fill
                 className="object-cover"
@@ -92,7 +85,7 @@ export default function ServiceDetailClient({ data }: { data: ServiceData }) {
 
                 <h3 className="text-2xl font-light text-slate-800 mb-8 mt-16">Key Features</h3>
                 <div className="space-y-8">
-                  {data.features.map((feature, i) => (
+                  {data.features?.map((feature, i) => (
                     <div key={i} className="flex gap-4">
                       <div className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0 shadow-sm">
                         <Zap className="w-5 h-5 text-brand" />
@@ -118,7 +111,7 @@ export default function ServiceDetailClient({ data }: { data: ServiceData }) {
               >
                 <h3 className="text-2xl font-light text-slate-800 mb-8">Why chose this service?</h3>
                 <ul className="space-y-6">
-                  {data.benefits.map((benefit, i) => (
+                  {data.benefits?.map((benefit, i) => (
                     <li key={i} className="flex items-start gap-4">
                       <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
                       <span className="text-slate-600 font-medium">{benefit}</span>
