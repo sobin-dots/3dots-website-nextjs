@@ -14,7 +14,7 @@ import AboutSectionVar2 from "@/components/AboutSectionVar2";
 
 export default function Home() {
   return (
-    <main className="min-h-screen text-slate-800 pb-0 relative">
+    <main className="min-h-screen text-slate-800 pb-0 relative bg-[#F4F6FB]">
       <Navbar />
       <HeroSection />
       <section className=" mx-auto bg-white">

@@ -5,7 +5,7 @@ import BlogGridListing from "./components/BlogGridListing";
 
 export default function BlogPage() {
     return (
-         <main className="min-h-screen  overflow-hidden text-slate-800 pb-0">
+         <main className="min-h-screen  overflow-hidden text-slate-800 pb-0 bg-[#F4F6FB]">
             <Navbar />
 
             <HeroSection />
