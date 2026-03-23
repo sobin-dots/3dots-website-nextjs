@@ -14,14 +14,14 @@ const stats = [
     { 
         id: "02",
         title: "EXPERIENCE", 
-        value: "50+", 
+        value: "100+", 
         desc: "Successful Deliveries", 
         icon: Rocket 
     },
     { 
         id: "03",
         title: "GLOBAL REACH", 
-        value: "06+", 
+        value: "06", 
         desc: "Active Timezones", 
         icon: Globe 
     },

@@ -149,7 +149,7 @@ export default function Footer() {
                             </div>
                             <div>
                                 <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Find Us</p>
-                                <p className="text-white">Nagercoil, Tamil Nadu 629003</p>
+                                <p className="text-white">Nagercoil, Tamil Nadu - 629003</p>
                             </div>
                         </div>
                     </div>
