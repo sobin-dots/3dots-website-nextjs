@@ -78,7 +78,7 @@ export default function NewsletterSection() {
                         <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-white tracking-normal leading-[1.2] md:leading-[1.2]">Stay Ahead in Tech</h2>
                     </div>
                     <p className="text-slate-300 font-light text-[17px] leading-relaxed">
-                        Join our weekly newsletter where we share insights on software development, AI, product building, and the startup ecosystem. Practical ideas, real lessons, and valuable resources for builders and founders.
+                        Join our monthly newsletter where we share insights on software development, AI, product building, and the startup ecosystem. Practical ideas, real lessons, and valuable resources for builders and founders.
                     </p>
                 </div>
 

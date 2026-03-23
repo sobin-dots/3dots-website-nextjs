@@ -4,191 +4,150 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { 
+    BrainCircuit, 
     MessageSquare, 
-    Zap, 
+    Sparkles, 
     BarChart3, 
     Mic2, 
-    Target, 
-    FileSearch,
-    BrainCircuit,
-    ArrowRight,
-    Sparkles
+    UserPlus, 
+    FileText, 
+    Link2, 
+    Rocket,
+    ArrowRight
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function AIEngineeringPage() {
     const services = [
         {
             title: "Workflow Automation",
-            icon: <Zap className="w-8 h-8" />,
-            desc: "Our AI-powered workflow automation solutions streamline business processes, reduce manual tasks, and improve operational efficiency. Using machine learning and intelligent process automation."
+            icon: <Rocket className="w-8 h-8" />,
+            desc: "Our AI-powered workflow automation solutions streamline business processes, reduce manual tasks, and improve operational efficiency. Using machine learning, intelligent process automation, and AI-driven decision systems, we automate repetitive workflows across departments. Businesses benefit from faster operations, improved accuracy, reduced costs, and scalable automation that accelerates digital transformation and productivity."
         },
         {
             title: "AI Chatbot & Conversational AI",
             icon: <MessageSquare className="w-8 h-8" />,
-            desc: "We build intelligent AI chatbots and conversational AI solutions using advanced natural language processing (NLP). These solutions deliver personalized conversations and 24/7 support."
+            desc: "We build intelligent AI chatbots and conversational AI solutions using advanced natural language processing (NLP) and machine learning. Our chatbots automate customer support, sales interactions, and internal workflows across websites, mobile apps, and messaging platforms. These scalable solutions deliver personalized conversations, 24/7 support, improved engagement, and enhanced customer experience."
         },
         {
             title: "Generative AI Solutions",
             icon: <Sparkles className="w-8 h-8" />,
-            desc: "Leveraging large language models to create intelligent systems that generate content, code, images, and insights. We develop AI-powered applications that enhance productivity."
+            desc: "Our generative AI solutions leverage advanced large language models and machine learning to create intelligent systems that generate content, code, images, and insights. We develop AI-powered applications that enhance productivity, automate content creation, and support decision-making. Businesses gain scalable generative AI capabilities for innovation, personalization, and digital transformation."
         },
         {
             title: "AI Data Analytics",
             icon: <BarChart3 className="w-8 h-8" />,
-            desc: "Transforming raw data into actionable business intelligence. Using predictive analytics and advanced data modeling, we help organizations uncover trends and forecast outcomes."
+            desc: "We deliver AI-driven data analytics solutions that transform raw data into actionable business intelligence. Using machine learning, predictive analytics, and advanced data modeling, we help organizations uncover trends, forecast outcomes, and optimize operations. Our scalable analytics platforms empower data-driven decision making and unlock the full value of enterprise data."
         },
         {
             title: "Speech & Voice AI",
             icon: <Mic2 className="w-8 h-8" />,
-            desc: "Enable intelligent voice recognition, speech-to-text, and natural voice interactions. These solutions enhance accessibility and automate voice-based digital experiences."
+            desc: "Our speech and voice AI solutions enable intelligent voice recognition, speech-to-text, and natural voice interactions. Using advanced AI models and NLP technologies, we build voice assistants, voice automation systems, and speech analytics platforms. These solutions enhance accessibility, automate voice-based workflows, and create seamless voice-enabled digital experiences."
         },
         {
             title: "AI Recommendation Systems",
-            icon: <Target className="w-8 h-8" />,
-            desc: "Personalized product, content, and service recommendations. Using user behavior analysis, our solutions improve customer engagement and conversion rates."
+            icon: <UserPlus className="w-8 h-8" />,
+            desc: "We develop AI-powered recommendation systems that deliver personalized product, content, and service recommendations. Using machine learning algorithms, user behavior analysis, and predictive modeling, our solutions improve customer engagement and conversion rates. Businesses can enhance personalization, increase revenue, and deliver smarter digital experiences across platforms."
         },
         {
             title: "Document AI",
-            icon: <FileSearch className="w-8 h-8" />,
-            desc: "Automate document processing using ML, OCR, and NLP. We extract, classify, and analyze data from invoices, contracts, and reports with deep precision."
+            icon: <FileText className="w-8 h-8" />,
+            desc: "Our Document AI solutions automate document processing using machine learning, OCR, and natural language processing technologies. We extract, classify, and analyze data from invoices, contracts, forms, and reports. This intelligent automation reduces manual processing, improves accuracy, accelerates document workflows, and enables efficient data-driven business operations."
+        },
+        {
+            title: "AI Integration Services",
+            icon: <Link2 className="w-8 h-8" />,
+            desc: "We provide AI integration services that seamlessly embed artificial intelligence capabilities into existing applications, platforms, and enterprise systems. Our experts integrate machine learning models, APIs, and AI services to enhance automation, analytics, and decision-making. Businesses gain scalable AI functionality without rebuilding existing infrastructure or workflows."
+        },
+        {
+            title: "AI Product Development",
+            icon: <BrainCircuit className="w-8 h-8" />,
+            desc: "We design and build end-to-end AI products that transform innovative ideas into scalable intelligent applications. From AI strategy and data engineering to model development and deployment, our team delivers production-ready AI solutions. Businesses launch powerful AI-driven products that enable automation, personalization, and competitive digital innovation."
         }
     ];
 
     return (
-        <main className="min-h-screen bg-[#0F172A]">
+        <main className="min-h-screen bg-white text-slate-800">
             <Navbar />
             
-            {/* Dark Hero Section */}
-            <section className="relative pt-32 pb-24 overflow-hidden border-b border-white/5">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand/10 rounded-full blur-[120px] -mr-32 -mt-32"></div>
-                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] -ml-32 -mb-32"></div>
-
-                <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-                    <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="max-w-4xl"
-                    >
-                        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand/10 text-brand text-xs font-bold uppercase tracking-widest mb-6 border border-brand/20">
-                           <BrainCircuit className="w-3 h-3" /> Future-Proofing Enterprises
-                        </span>
-                        <h1 className="text-6xl md:text-7xl font-light text-white tracking-tight leading-[1.1] mb-8">
-                            AI <span className="font-semibold text-brand">Engineering</span> Solutions
-                        </h1>
-                        <p className="text-xl text-slate-400 font-light leading-relaxed max-w-2xl">
-                            Transforming businesses through intelligent automation and data-driven intelligence. We build the infrastructure for the AI era.
-                        </p>
-                    </motion.div>
+            {/* Header / Hero Section - Matching About Style */}
+            <section className="relative w-full bg-linear-to-b from-slate-50 to-white pt-32 pb-12 border-b border-slate-100 overflow-hidden mb-16">
+                <div className="absolute inset-0 z-0 bg-white">
+                    <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+                    <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-brand/5 to-transparent z-10"></div>
                 </div>
-            </section>
 
-            {/* AI Grid */}
-            <section className="py-24 px-6 relative">
-                <div className="max-w-[1400px] mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {services.map((item, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: idx * 0.05 }}
-                                viewport={{ once: true }}
-                                className="group bg-white/5 border border-white/10 p-10 rounded-4xl hover:bg-white/10 transition-all duration-500 hover:border-brand/40"
-                            >
-                                <div className="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center text-brand mb-8 group-hover:scale-110 transition-transform">
-                                    {item.icon}
-                                </div>
-                                <h3 className="text-2xl font-semibold text-white mb-4">
-                                    {item.title}
-                                </h3>
-                                <p className="text-slate-400 font-light leading-relaxed mb-8">
-                                    {item.desc}
-                                </p>
-                                <div className="inline-flex items-center gap-2 text-sm font-medium text-brand">
-                                    Explore AI Models <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                </div>
-                            </motion.div>
-                        ))}
+                <div className="max-w-[1200px] mx-auto px-6 relative z-20 w-full flex items-center">
+                    <div className="w-full flex justify-between items-center h-full">
+                        <motion.div 
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="text-left relative z-20"
+                        >
+                            <div className="w-10 h-1 bg-brand mb-6 rounded-full"></div>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-slate-800 tracking-tight leading-[1.1]">
+                                AI <br />
+                                <span className="font-bold text-slate-900">Engineering.</span>
+                            </h1>
+                            <p className="mt-8 text-lg text-slate-500 font-light max-w-xl leading-relaxed">
+                                Transforming businesses through intelligent automation and data-driven intelligence. We build the architecture for the AI-first era.
+                            </p>
+                        </motion.div>
+
+                        <motion.div 
+                            initial={{ opacity: 0, x: 30, scale: 0.95 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="hidden lg:flex flex-col items-start bg-slate-50 p-8 border border-slate-100 rounded-4xl shadow-xl shadow-slate-100/50 relative z-20 max-w-[340px]"
+                        >
+                            <span className="bg-brand text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-sm mb-4">Strategic AI</span>
+                            <h3 className="text-base font-semibold text-slate-800 mb-3 leading-snug">Enterprise Automation</h3>
+                            <p className="text-sm font-light text-slate-500 mb-6">Implementing intelligent process automation to accelerate digital transformation & growth.</p>
+                            <Link href="/contact" className="text-brand text-sm font-medium flex items-center gap-1 hover:gap-2 transition-all">
+                                Request AI Audit <ArrowRight className="w-4 h-4" />
+                            </Link>
+                        </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* AI Infographic / Capability Section */}
-            <section className="py-24 px-6 bg-brand relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-full opacity-10">
-                    <div className="grid grid-cols-12 h-full">
-                        {Array.from({length: 12}).map((_, i) => (
-                            <div key={i} className="border-r border-white h-full"></div>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="max-w-[1400px] mx-auto relative z-10">
-                    <div className="text-center mb-20">
-                        <h2 className="text-4xl md:text-5xl font-light text-white mb-6">Our <span className="font-semibold">AI Stack</span></h2>
-                        <p className="text-white/70 max-w-2xl mx-auto font-light text-lg">We leverage industry-leading architectures to deliver production-ready intelligence.</p>
-                    </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        {[
-                            { label: "LLM Operations", value: "GPT-4 / Llama 3" },
-                            { label: "Vision Models", value: "Stable Diffusion" },
-                            { label: "Data Pipelines", value: "Python / PyTorch" },
-                            { label: "Deployment", value: "Cloud Native AI" }
-                        ].map((stat, i) => (
-                            <div key={i} className="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20 text-center">
-                                <p className="text-xs uppercase tracking-[0.2em] text-white/50 font-bold mb-3">{stat.label}</p>
-                                <p className="text-xl font-medium text-white">{stat.value}</p>
+            {/* Service Grid - Clean & Minimal */}
+            <section className="py-24 px-6 max-w-[1200px] mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
+                    {services.map((service, idx) => (
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: idx * 0.05 }}
+                            viewport={{ once: true }}
+                            className="group flex flex-col items-start"
+                        >
+                            <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center justify-center text-brand mb-8 group-hover:scale-110 transition-transform duration-500 border-b-2">
+                                {service.icon}
                             </div>
-                        ))}
-                    </div>
+                            <h3 className="text-xl font-bold text-slate-800 mb-4 tracking-tight group-hover:text-brand transition-colors">
+                                {service.title}
+                            </h3>
+                            <p className="text-slate-500 font-light leading-relaxed text-[15px] group-hover:text-slate-600 transition-colors">
+                                {service.desc}
+                            </p>
+                        </motion.div>
+                    ))}
                 </div>
             </section>
 
-            {/* AI Value Prop */}
-            <section className="py-32 bg-white px-6">
-                <div className="max-w-[1400px] mx-auto">
-                    <div className="flex flex-col lg:flex-row gap-20 items-center">
-                         <div className="lg:w-1/2">
-                            <h2 className="text-5xl font-light text-slate-800 tracking-tight leading-tight mb-8">
-                                Why <span className="font-bold text-brand">AI Engineering</span> Matters Now
-                            </h2>
-                            <div className="space-y-6">
-                                <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                                    <h4 className="text-lg font-bold text-slate-800 mb-2">Automate Repetitive Core</h4>
-                                    <p className="text-slate-500 font-light">Free up your human capital for creative problem solving by automating 80% of routine workflows.</p>
-                                </div>
-                                <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                                    <h4 className="text-lg font-bold text-slate-800 mb-2">Predictive Decision Making</h4>
-                                    <p className="text-slate-500 font-light">Reduce risk by making calls based on mathematical forecasts rather than intuition alone.</p>
-                                </div>
-                                <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                                    <h4 className="text-lg font-bold text-slate-800 mb-2">Hyper-Personalization</h4>
-                                    <p className="text-slate-500 font-light">Treat every single customer like they are your only client with AI-driven personalization at scale.</p>
-                                </div>
-                            </div>
-                         </div>
-                         <div className="lg:w-1/2">
-                            <div className="relative p-10 bg-slate-100 rounded-[3rem]">
-                                <Image src="/ai-visual.png" alt="AI Neural Network" width={600} height={400} className="rounded-2xl shadow-lg mix-blend-multiply opacity-80" />
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-full shadow-2xl">
-                                    <BrainCircuit className="w-12 h-12 text-brand" />
-                                </div>
-                            </div>
-                         </div>
+            {/* Standard Footer Style CTA */}
+            <section className="py-24 px-6 bg-white">
+                <div className="max-w-[1240px] mx-auto bg-[#0F172A] p-12 md:p-24 rounded-[3.5rem] text-white flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-1/2 h-full bg-brand/5 blur-[100px] pointer-events-none group-hover:scale-110 transition-transform duration-[3s]"></div>
+                    <div className="max-w-2xl relative z-10 text-center md:text-left">
+                        <h2 className="text-3xl md:text-5xl font-light mb-8 leading-tight tracking-tight">Ready to build your <br /><span className="font-bold">Software Product?</span></h2>
+                        <p className="text-slate-400 font-light text-lg">Send us your requirements and get a detailed execution plan within 24 hours.</p>
                     </div>
-                </div>
-            </section>
-
-            {/* CTA */}
-            <section className="py-24 px-6 bg-[#0F172A]">
-                <div className="max-w-[1200px] mx-auto text-center">
-                    <h2 className="text-4xl md:text-5xl font-light text-white mb-8">Let&apos;s build your <span className="font-semibold text-brand">Adaptive Intelligent</span> System</h2>
-                    <p className="text-slate-400 text-xl font-light mb-12 max-w-2xl mx-auto">Join the leading 0.1% of companies leveraging deep-tech AI to dominate their markets.</p>
-                    <Link href="/contact" className="inline-flex items-center gap-3 bg-brand text-white px-10 py-5 rounded-2xl font-bold hover:bg-brand-dark transition-all">
-                        Consult with AI Architects <ArrowRight className="w-5 h-5" />
+                    <Link href="/contact" className="bg-brand text-white px-10 py-5 rounded-2xl font-bold hover:bg-brand-dark transition-all shadow-xl relative z-10 text-lg shrink-0 w-full md:w-auto text-center">
+                        Start Your Project
                     </Link>
                 </div>
             </section>

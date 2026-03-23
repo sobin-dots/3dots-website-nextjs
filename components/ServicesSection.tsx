@@ -1,11 +1,30 @@
 "use client";
 
-import { ArrowRight, Workflow } from "lucide-react";
+import { ArrowRight, Workflow, BrainCircuit, Mic2, Sparkles, MessageSquareCode } from "lucide-react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
-const services = [
+interface TechIcon {
+    icon: React.ReactNode;
+    name: string;
+}
+
+interface Service {
+    id: string;
+    number: string;
+    titleLine1: string;
+    titleLine2: string;
+    description: string;
+    highlightIcon: React.ReactNode;
+    highlightTitle: string;
+    highlightDesc: string;
+    image: string;
+    slug: string;
+    techIcons?: TechIcon[];
+}
+
+const services: Service[] = [
     {
         id: "01",
         number: "01",
@@ -15,8 +34,8 @@ const services = [
         highlightIcon: <span className="text-brand font-semibold text-2xl tracking-normal">&lt;/&gt;</span>,
         highlightTitle: "Enterprise Scale",
         highlightDesc: "Custom platforms built for reliability and massive growth.",
-        image: "/images/software-development.jpeg",
-        slug:"software-products"
+        image: "https://ignite.ie/wp-content/uploads/2023/01/AdobeStock_508936825_resized-1080x675.jpg",
+        slug:"software-engineering"
     },
     {
         id: "02",
@@ -27,8 +46,26 @@ const services = [
         highlightIcon: <Workflow className="w-7 h-7 text-brand" strokeWidth={1.5} />,
         highlightTitle: "Intelligent Workflows",
         highlightDesc: "Connecting your tools into seamless, automated pipelines.",
-        image: "/images/automation-service.jpg",
-        slug:"intelligent-workflows"
+        image: "/businessman-working-on-laptop-with-automation-symbols-hovering-above-his-hands-1.avif",
+        slug:"ai-engineering"
+    },
+    {
+        id: "03",
+        number: "03",
+        titleLine1: "Expert Deep-Tech",
+        titleLine2: "AI Engineering",
+        description: "From NLP and custom LLMs (Claude/GPT) to Speech-to-Text and Generative Media (Image/Video). We architect intelligent, agentic systems that see, hear, and create at scale.",
+        highlightIcon: <BrainCircuit className="w-7 h-7 text-brand" strokeWidth={1.5} />,
+        highlightTitle: "Agentic Systems",
+        highlightDesc: "Production-ready NLP, Speech, and Media Synthesis.",
+        image: "/images/ai-engineering-infographic.png",
+        slug: "ai-engineering",
+        techIcons: [
+            { icon: <MessageSquareCode className="w-4 h-4" />, name: "NLP" },
+            { icon: <Sparkles className="w-4 h-4" />, name: "Claude/GPT" },
+            { icon: <Mic2 className="w-4 h-4" />, name: "Speech" },
+            { icon: <BrainCircuit className="w-4 h-4" />, name: "Agents" }
+        ]
     }
 ];
 
@@ -52,10 +89,11 @@ export default function ServicesSection() {
                             {/* Visual Side */}
                             <div className="w-full lg:w-1/2 relative">
                                 <div className="rounded-[2.5rem] overflow-hidden aspect-4/3 lg:aspect-4/3 shadow-lg relative group">
-                                    <img
+                                    <Image
                                         src={service.image}
                                         alt={service.titleLine2}
-                                        className="w-full h-full object-cover grayscale-80"
+                                        fill
+                                        className="w-full h-full object-cover grayscale-80 transition-transform duration-700 group-hover:scale-105"
                                     />
                                     {/* Blue Overlay Gradient perfectly matching image */}
                                     <div className={`absolute inset-0 bg-linear-to-r ${isEven ? 'from-brand/10 to-brand/10' : 'from-brand/10 to-brand/10'} mix-blend-overlay`}></div>
@@ -79,12 +117,22 @@ export default function ServicesSection() {
 
                                 <h2 className="text-4xl md:text-[44px] font-light text-slate-800 tracking-tight leading-[1.1] mb-6 mt-6 lg:mt-0">
                                     {service.titleLine1} <br />
-                                    <span className="text-secondary font-semibold">{service.titleLine2}</span>
+                                    <span className=" font-semibold">{service.titleLine2}</span>
                                 </h2>
                                 
-                                <p className="text-slate-500 font-light text-[15px] md:text-base leading-relaxed mb-10 max-w-lg">
+                                <p className="text-slate-500 font-light text-[15px] md:text-base leading-relaxed mb-8 max-w-lg">
                                     {service.description}
                                 </p>
+
+                                {service.techIcons && (
+                                    <div className="flex flex-wrap gap-3 mb-10">
+                                        {service.techIcons.map((t, i) => (
+                                            <div key={i} className="flex items-center gap-1.5 bg-brand/5 border border-brand/10 px-3 py-1.5 rounded-xl text-[11px] font-medium text-brand">
+                                                {t.icon} {t.name}
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
 
                                 <Link href={`/services/${service.slug}`} className="text-slate-700 border cursor-pointer border-slate-200 hover:border-slate-300 hover:bg-slate-50 px-6 py-2.5 rounded-full text-sm font-medium transition-all flex items-center gap-2 bg-white w-fit">
                                     Learn More <ArrowRight className="w-4 h-4 ml-1 opacity-70" />

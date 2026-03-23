@@ -11,14 +11,9 @@ import {
     CloudCog, 
     LifeBuoy, 
     RefreshCcw,
-    CheckCircle2,
     ArrowRight
 } from "lucide-react";
 import Link from "next/link";
-import ServiceOptionsVarient1 from "./components/ServiceOptionsVarient1";
-import ServiceOptionsVarient2 from "./components/ServiceOptionsVarient2";
-import ServiceOptionsVarient3 from "./components/ServiceOptions";
-import ServiceOptions from "./components/ServiceOptions";
 
 export default function SoftwareEngineeringPage() {
     const services = [
@@ -60,109 +55,88 @@ export default function SoftwareEngineeringPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-white">
+        <main className="min-h-screen bg-white text-slate-800">
             <Navbar />
             
-            {/* Hero Section */}
-            <section className="relative pt-32 pb-20 overflow-hidden">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 opacity-30 pointer-events-none">
-                    <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand/5 rounded-full blur-[120px]"></div>
-                    <div className="absolute bottom-[10%] right-[-5%] w-[30%] h-[30%] bg-brand/10 rounded-full blur-[100px]"></div>
+            {/* Header / Hero Section - Matching About Style */}
+            <section className="relative w-full bg-slate-50 pt-32 pb-12 border-b border-slate-200 overflow-hidden mb-16">
+                <div className="absolute inset-0 z-0 bg-white">
+                    <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+                    <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-slate-100 to-transparent z-10"></div>
                 </div>
 
-                <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-                    <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="max-w-4xl"
-                    >
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-brand/5 text-brand text-xs font-bold uppercase tracking-widest mb-6">
-                            Domain Expertise
-                        </span>
-                        <h1 className="text-6xl md:text-7xl font-light text-slate-800 tracking-tight leading-[1.1] mb-8">
-                            Software <span className="font-semibold text-brand">Engineering</span> Solutions
-                        </h1>
-                        <p className="text-xl text-slate-500 font-light leading-relaxed max-w-2xl">
-                            End-to-end development expertise to build, scale, and maintain world-class digital products. We combine technical rigor with creative execution.
-                        </p>
-                    </motion.div>
-                </div>
-            </section> 
+                <div className="max-w-[1200px] mx-auto px-6 relative z-20 w-full flex items-center">
+                    <div className="w-full flex justify-between items-center h-full">
+                        <motion.div 
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="text-left relative z-20"
+                        >
+                            <div className="w-10 h-1 bg-brand mb-6 rounded-full"></div>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-slate-800 tracking-tight leading-[1.1]">
+                                Software <br />
+                                <span className="font-bold text-slate-900">Engineering.</span>
+                            </h1>
+                            <p className="mt-8 text-lg text-slate-500 font-light max-w-xl leading-relaxed">
+                                End-to-end development expertise to build, scale, and maintain world-class digital products. We combine technical rigor with creative execution.
+                            </p>
+                        </motion.div>
 
-
-<ServiceOptions services={services} />
-
-
-            {/* Process/Infographic Detail */}
-            <section className="py-24 px-6 bg-white overflow-hidden">
-                <div className="max-w-[1400px] mx-auto">
-                    <div className="flex flex-col lg:flex-row items-center gap-20">
-                        <div className="lg:w-1/2">
-                            <h2 className="text-4xl font-light text-slate-800 mb-10">Our <span className="font-semibold">Development Lifecycle</span></h2>
-                            <div className="space-y-8">
-                                {[
-                                    { step: "01", title: "Strategic Discovery", desc: "Understanding business goals and user needs." },
-                                    { step: "02", title: "Architectural Planning", desc: "Defining scalable, future-proof tech stacks." },
-                                    { step: "03", title: "Agile Execution", desc: "Iterative building with continuous feedback." },
-                                    { step: "04", title: "Quality Assurance", desc: "Rigorous testing across all environments." }
-                                ].map((step, i) => (
-                                    <div key={i} className="flex gap-6 items-start">
-                                        <span className="text-brand font-bold text-lg">{step.step}</span>
-                                        <div>
-                                            <h4 className="text-lg font-semibold text-slate-800 mb-1">{step.title}</h4>
-                                            <p className="text-slate-500 font-light">{step.desc}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="lg:w-1/2 relative">
-                             {/* Decorative code block visual */}
-                            <div className="bg-[#0F172A] p-8 rounded-4xl shadow-2xl relative z-10">
-                                <div className="flex gap-2 mb-6">
-                                    <div className="w-3 h-3 rounded-full bg-rose-500"></div>
-                                    <div className="w-3 h-3 rounded-full bg-amber-500"></div>
-                                    <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-                                </div>
-                                <div className="space-y-3 font-mono text-sm">
-                                    <p className="text-brand">async function deployApplication(config) &#123;</p>
-                                    <p className="text-slate-400 pl-4">{"// Preparing infrastructure..."}</p>
-                                    <p className="text-slate-300 pl-4">await <span className="text-amber-400">setupEnvironment</span>(config);</p>
-                                    <p className="text-slate-300 pl-4">await <span className="text-amber-400">runSecurityCheck</span>();</p>
-                                    <p className="text-slate-300 pl-4">await <span className="text-amber-400">optimizeAssets</span>();</p>
-                                    <p className="text-slate-400 pl-4">{"// Scaling to edge..."}</p>
-                                    <p className="text-slate-300 pl-4">return <span className="text-emerald-400">&quot;Production Live!&quot;</span>;</p>
-                                    <p className="text-brand">&#125;</p>
-                                </div>
-                             </div>
-                             {/* Floating elements */}
-                             <motion.div 
-                                animate={{ y: [0, -10, 0] }}
-                                transition={{ duration: 4, repeat: Infinity }}
-                                className="absolute -bottom-10 -left-10 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 z-20 hidden md:block"
-                             >
-                                <div className="flex items-center gap-3">
-                                    <CheckCircle2 className="text-brand w-5 h-5" />
-                                    <span className="text-sm font-medium text-slate-700">99.9% System Uptime</span>
-                                </div>
-                             </motion.div>
-                        </div>
+                        <motion.div 
+                            initial={{ opacity: 0, x: 30, scale: 0.95 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="hidden lg:flex flex-col items-start bg-white/70 backdrop-blur-md border border-white p-8 rounded-4xl shadow-xl shadow-slate-200/40 relative z-20 max-w-[340px]"
+                        >
+                            <span className="bg-brand text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-sm mb-4">Domain Focus</span>
+                            <h3 className="text-base font-semibold text-slate-800 mb-3 leading-snug">Scalable Architectures</h3>
+                            <p className="text-sm font-light text-slate-500 mb-6">Building robust systems designed for performance, security, and exponential growth.</p>
+                            <Link href="/contact" className="text-brand text-sm font-medium flex items-center gap-1 hover:gap-2 transition-all">
+                                Get technical estimate <ArrowRight className="w-4 h-4" />
+                            </Link>
+                        </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* CTA */}
-            <section className="py-24 px-6">
-                <div className="max-w-[1400px] mx-auto">
-                    <div className="bg-brand p-12 md:p-20 rounded-[3rem] text-white flex flex-col md:flex-row items-center justify-between gap-10">
-                        <div className="max-w-xl">
-                            <h2 className="text-3xl md:text-5xl font-light mb-6 leading-tight">Ready to build your <span className="font-semibold">Software Ecosystem?</span></h2>
-                            <p className="text-white/80 font-light text-lg">Send us your requirements and get a technical estimate within 24 hours.</p>
-                        </div>
-                        <Link href="/contact" className="bg-white text-brand px-10 py-5 rounded-2xl font-bold hover:bg-slate-50 transition-all shadow-xl shadow-black/10">
-                            Start Your Project
-                        </Link>
+            {/* Service Grid - Clean & Minimal */}
+            <section className="py-24 px-6 max-w-[1200px] mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    {services.map((service, idx) => (
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: idx * 0.05 }}
+                            viewport={{ once: true }}
+                            className="group flex flex-col items-start"
+                        >
+                            <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-brand mb-8 group-hover:bg-brand group-hover:text-white transition-all duration-500 shadow-sm border-b-2">
+                                {service.icon}
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-800 mb-4 tracking-tight group-hover:text-brand transition-colors">
+                                {service.title}
+                            </h3>
+                            <p className="text-slate-500 font-light leading-relaxed text-[15px]">
+                                {service.desc}
+                            </p>
+                        </motion.div>
+                    ))}
+                </div>
+            </section>
+
+            {/* Simple Footer Style CTA */}
+            <section className="py-24 px-6 bg-white">
+                <div className="max-w-[1240px] mx-auto bg-[#0F172A] p-12 md:p-24 rounded-[3.5rem] text-white flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-1/2 h-full bg-brand/5 blur-[100px] pointer-events-none group-hover:scale-110 transition-transform duration-[3s]"></div>
+                    <div className="max-w-2xl relative z-10 text-center md:text-left">
+                        <h2 className="text-3xl md:text-5xl font-light mb-8 leading-tight tracking-tight">Ready to build your <br /><span className="font-bold">Software Product?</span></h2>
+                        <p className="text-slate-400 font-light text-lg">Send us your requirements and get a detailed execution plan within 24 hours.</p>
                     </div>
+                    <Link href="/contact" className="bg-brand text-white px-10 py-5 rounded-2xl font-bold hover:bg-brand-dark transition-all shadow-xl relative z-10 text-lg shrink-0 w-full md:w-auto text-center">
+                        Start Your Project
+                    </Link>
                 </div>
             </section>
 

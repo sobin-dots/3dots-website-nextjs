@@ -9,12 +9,8 @@ import {
     Home, 
     Layers, 
     Info, 
-    BookOpen, 
-    MessageCircle, 
     Shield, 
     ArrowUpRight,
-    Cpu,
-    Users
 } from "lucide-react";
 
 export default function SitemapPage() {
@@ -24,7 +20,6 @@ export default function SitemapPage() {
             icon: <Home className="w-5 h-5" />,
             links: [
                 { name: "Home Dashboard", href: "/", desc: "Return to the main overview and welcome page." },
-                { name: "All Services", href: "/services", desc: "Explore our full suite of software solutions." },
                 { name: "Launchpad Program", href: "/launchpad", desc: "Dedicated MVP development for early-stage founders." },
                 { name: "About 3Dots", href: "/about", desc: "Our story, mission, and the people behind the code." },
                 { name: "Careers", href: "/careers", desc: "Join our team of engineering experts and creators." },
@@ -36,31 +31,26 @@ export default function SitemapPage() {
             title: "Our Services",
             icon: <Layers className="w-5 h-5" />,
             links: [
-                { name: "Software Development", href: "/services/software-development", desc: "Enterprise-grade web and mobile applications." },
-                { name: "Startup Launchpad", href: "/services/startup-launchpad", desc: "15-day MVP execution for fast-moving founders." },
-                { name: "Workflow Automation", href: "/services/workflow-automation", desc: "Custom internal tools to automate manual processes." },
-                { name: "UI/UX Design", href: "/services/ui-ux-design", desc: "Product design focused on usability and conversion." },
-                { name: "Dedicated Teams", href: "/services/dedicated-teams", desc: "Extend your engineering capacity with our pros." }
+                { name: "Software Engineering", href: "/services/software-engineering", desc: "Enterprise-grade web, mobile, and cloud applications." },
+                { name: "AI Engineering", href: "/services/ai-engineering", desc: "Intelligent automation and production AI systems." },
+                { name: "IT & AI Consulting", href: "/services/it-ai-consulting", desc: "Strategic technology leadership and CTO services." },
             ]
         },
         {
-            title: "Company & Culture",
+            title: "Company & Info",
             icon: <Info className="w-5 h-5" />,
             links: [
-                { name: "Our Values", href: "/about#values", desc: "The principles that guide our daily work." },
-                { name: "Our Process", href: "/about#process", desc: "How we move from idea to production in weeks." },
-                { name: "Open Positions", href: "/careers#positions", desc: "View our current job listings and internships." },
-                { name: "Expert Consultation", href: "/services#consultation", desc: "Book a strategic call with our tech leads." }
+                { name: "Our Values", href: "/about", desc: "The principles that guide our daily work." },
+                { name: "Current Openings", href: "/careers", desc: "View our current job listings and internships." },
+                { name: "Strategy Consultation", href: "/contact", desc: "Book a call with our technical leadership team." }
             ]
         },
         {
-            title: "Legal & Compliance",
+            title: "Legal",
             icon: <Shield className="w-5 h-5" />,
             links: [
                 { name: "Privacy Policy", href: "/privacy", desc: "How we handle and protect your data." },
-                { name: "Terms of Service", href: "/terms", desc: "The rules and agreements of working with 3Dots." },
-                { name: "Cookie Settings", href: "/cookies", desc: "Manage your tracking and browser preferences." },
-                { name: "Partner Program", href: "/partners", desc: "Our collaborative framework for strategic growth." }
+                { name: "Terms of Service", href: "/terms", desc: "The agreements of working with 3Dots." }
             ]
         }
     ];
