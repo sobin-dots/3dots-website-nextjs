@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Search, Activity, Share2, Layers2, LucideIcon, Trophy } from "lucide-react";
+import { ArrowUpRight, Search, Activity, Share2, Layers2, LucideIcon, Trophy, BrainCircuit } from "lucide-react";
 import Link from "next/link";
 
 interface ServiceItem {
@@ -18,21 +18,21 @@ const services: ServiceItem[] = [
         description: "End-to-end product development for high-growth tech firms.",
         icon: Layers2,
         slug: "software-engineering",
-        stack: ["Next.js", "React", "TypeScript", "Node.js", "PostgreSQL", "Docker", "AWS", "GitHub", "Redis"]
+        stack: ["Next.js", "React", "TypeScript", "Node.js", "PostgreSQL", "Docker", "GoogleCloud", "GitHub", "Redis"]
     },
     {
         title: "AI Automation",
         description: "Transforming operations with custom AI-powered workflows.",
         icon: Activity,
         slug: "ai-engineering",
-        stack: ["Python", "n8n", "Make", "OpenAI", "Anthropic", "FastAPI", "Pinecone", "LangChain", "Supabase"]
+        stack: ["Python", "n8n", "Make",  "Anthropic", "FastAPI", "LangChain", "Supabase"]
     },
     {
-        title: "Strategic Consulting",
-        description: "Technology leadership and AI transformation strategies (CTO-as-a-Service).",
-        icon: Trophy,
-        slug: "it-ai-consulting",
-        stack: ["Roadmap", "Architecture", "Audit", "Strategy", "Cloud", "Security", "AI-Readiness"]
+        title: "Deep-Tech AI",
+        description: "From NLP and custom LLMs to Generative Media. We architect intelligent systems that see, hear, and create at scale.",
+        icon: BrainCircuit,
+        slug: "ai-engineering",
+        stack: ["PyTorch", "TensorFlow", "HuggingFace", "NVIDIA",  "Anthropic"]
     }
 ];
 
