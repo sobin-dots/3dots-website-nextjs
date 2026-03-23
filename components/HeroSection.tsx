@@ -70,47 +70,55 @@ export default function HeroSection() {
                                 {codeLines.map((line, idx) => (
                                     <div key={idx} className="flex gap-4">
                                         <span className="text-slate-600 select-none w-4">{line.num}</span>
-                                        <motion.div
-                                            initial={{ clipPath: 'inset(0 100% 0 0)' }}
-                                            animate={{ clipPath: 'inset(0 0% 0 0)' }}
-                                            transition={{ 
-                                                duration: 1, 
-                                                delay: idx * 1,
-                                                ease: "linear"
-                                            }}
-                                            className="flex-1 whitespace-nowrap overflow-hidden relative"
-                                        >
-                                            {line.content}
-                                            {/* Line-based cursor that moves with typing */}
+                                        <div className="flex-1">
                                             <motion.div
-                                                initial={{ left: "0%" }}
-                                                animate={{ 
-                                                    left: ["0%", "100%"],
-                                                    opacity: [1, 1, 0] 
-                                                }}
+                                                initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                                                animate={{ clipPath: 'inset(0 0% 0 0)' }}
                                                 transition={{ 
-                                                    duration: 1, 
-                                                    delay: idx * 1,
+                                                    duration: 1.5, 
+                                                    delay: idx * 1.5,
                                                     ease: "linear"
                                                 }}
-                                                className="absolute top-0 w-2 h-full bg-brand shadow-[0_0_10px_#258c7b] z-10"
-                                            />
-                                        </motion.div>
+                                                className="w-fit whitespace-nowrap overflow-hidden relative pr-2"
+                                            >
+                                                {line.content}
+                                                {/* Line-based cursor that moves with text width */}
+                                                <motion.div
+                                                    initial={{ left: "0%", opacity: 0 }}
+                                                    animate={{ 
+                                                        left: ["0%", "100%"],
+                                                        opacity: [1, 1, 0] 
+                                                    }}
+                                                    transition={{ 
+                                                        duration: 1.5, 
+                                                        delay: idx * 1.5,
+                                                        ease: "linear"
+                                                    }}
+                                                    className="absolute top-0 w-2 h-full bg-brand shadow-[0_0_10px_#258c7b] z-10"
+                                                />
+                                            </motion.div>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
                             
-                            {/* Final Blinking Cursor at bottom */}
+                            {/* Final Blinking Cursor at bottom - strictly hidden during typing */}
                             <motion.div 
                                 initial={{ opacity: 0 }}
-                                animate={{ opacity: [1, 0] }}
+                                animate={{ opacity: [0, 0, 1] }}
                                 transition={{ 
-                                    repeat: Infinity, 
-                                    duration: 0.8,
-                                    delay: codeLines.length * 1
+                                    times: [0, 0.99, 1],
+                                    duration: (codeLines.length * 1.5) + 0.1,
+                                    repeat: 0
                                 }}
-                                className="inline-block w-2.5 h-5 bg-brand ml-8 mt-4 shadow-[0_0_15px_#258c7b]"
-                            />
+                                onAnimationComplete={() => {}} // dummy to trigger re-renders if needed
+                            >
+                                <motion.div
+                                    animate={{ opacity: [1, 0] }}
+                                    transition={{ repeat: Infinity, duration: 0.8 }}
+                                    className="inline-block w-2.5 h-5 bg-brand ml-8 mt-6 shadow-[0_0_15px_#258c7b]"
+                                />
+                            </motion.div>
                         </div>
 
                         {/* Background subtle glow */}
