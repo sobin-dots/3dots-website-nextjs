@@ -7,9 +7,10 @@ import Link from "next/link";
 
 export default function AboutSection() {
     return (
-        <section id="about" className="py-24 px-6 max-w-[1400px] mx-auto relative pt-10">
+        <>
+        {/* // <section id="about" className="py-24 px-6 max-w-[1400px] mx-auto relative pt-10"> */}
            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -49,9 +50,10 @@ export default function AboutSection() {
                         <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" className="w-full h-full object-cover grayscale" alt="Person" />
                     </div>
                 </motion.div>
-            </div>
+            </div> */}
 
             <BrandsSection />
-        </section>
+        {/* // </section> */}
+        </>
     );
 }
