@@ -221,7 +221,7 @@ export default function ContactLayout() {
                         {/* Google Maps iFrame embedding a stylized location view */}
 
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d987.2995801212941!2d77.41448329325391!3d8.18276687067637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04f10024e53967%3A0x4a38b2e01fba34e8!2sPicstol%20VFX!5e0!3m2!1sen!2sin!4v1773230787567!5m2!1sen!2sin"
+                           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.82478381335758!2d77.41452352638932!3d8.182946408357378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04f1000f40b44d%3A0xd715e519a02b64fc!2s3dots!5e0!3m2!1sen!2sin!4v1774278438952!5m2!1sen!2sin"
                             className="w-full h-full absolute inset-0 filter grayscale opacity-90 group-hover:grayscale-0 transition-all duration-700"
                             allowFullScreen={false}
                             loading="lazy"
