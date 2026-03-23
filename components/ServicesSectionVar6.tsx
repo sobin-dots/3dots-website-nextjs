@@ -42,7 +42,7 @@ export default function ServicesSectionVar6() {
             <div className="text-center mb-20 max-w-2xl mx-auto flex flex-col items-center">
                 
                 <h2 className="text-4xl md:text-5xl font-light tracking-tight text-slate-800 mb-6">
-                    Engineering <span className="font-semibold italic ">Excellence.</span>
+                    Engineering <span className="font-semibold  ">Excellence.</span>
                 </h2>
                 <p className="text-slate-500 font-light text-lg">
                     We combine design thinking with deep technical expertise to build future-ready solutions.

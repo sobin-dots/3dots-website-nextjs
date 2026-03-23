@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
-  --color-brand-50: #f0fdfa;
+  --color-brand-50: #f4f6fb;
   --color-brand-100: #ccfbf1;
   --color-brand-200: #99f6e4;
   --color-brand-300: #5eead4;

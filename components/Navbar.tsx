@@ -22,7 +22,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className={`fixed w-full top-0 z-50 border-b transition-all duration-300 ${isMenuOpen ? 'bg-brand-50 border-transparent' : 'bg-brand-50/80 backdrop-blur-md border-slate-200'}`}>
+            <nav className={`fixed w-full top-0 z-50 border-b transition-all duration-300 ${isMenuOpen ? 'bg-[#F4F6FB] border-transparent' : 'bg-[#F4F6FB]/80 backdrop-blur-md border-slate-200'}`}>
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                     <div className="text-3xl font-light tracking-tighter text-slate-800 relative z-50">
                         <Link href="/">

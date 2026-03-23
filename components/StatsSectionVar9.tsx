@@ -44,14 +44,14 @@ export default function StatsSectionVar9() {
                     viewport={{ once: true }}
                     className="text-4xl md:text-5xl font-light text-slate-800 tracking-tight leading-none mb-6"
                 >
-                    Exceptional <span className="font-semibold italic ">Capabilities.</span>
+                    Exceptional <span className="font-semibold ">Capabilities.</span>
                 </motion.h2>
                 <motion.p 
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
                     viewport={{ once: true }}
-                    className="text-slate-400 font-light text-lg italic max-w-xl mx-auto opacity-70"
+                    className="text-slate-400 font-light text-lg  max-w-xl mx-auto opacity-70"
                 >
                     Scaling your vision with a world-class engineering team and proven processes.
                 </motion.p>
@@ -73,11 +73,11 @@ export default function StatsSectionVar9() {
                         
                         <h4 className="text-5xl font-bold text-slate-800 mb-3 tracking-tight">{item.value}</h4>
                         
-                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-300 mb-6 italic transition-colors group-hover:text-brand/50">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-300 mb-6   transition-colors group-hover:text-brand/50">
                             {item.desc}
                         </p>
                         
-                        <p className="text-[13px] font-light text-slate-400 italic leading-relaxed text-center px-2">
+                        <p className="text-[13px] font-light text-slate-400  leading-relaxed text-center px-2">
                             {item.title}
                         </p>
 
