@@ -10,6 +10,7 @@ import AboutSection from "@/components/AboutSection";
 import EcosystemVar1 from "@/components/EcosystemVar1";
 import NewsletterSection from "@/components/NewsletterSection";
 import Footer from "@/components/Footer";
+import AboutSectionVar2 from "@/components/AboutSectionVar2";
 
 export default function Home() {
   return (
@@ -33,8 +34,9 @@ export default function Home() {
       <div className="mt-32">
         <LaunchpadSection />
       </div>
-      
+        <AboutSectionVar2 />
       <AboutSection />
+    
 
       {/* Ecosystem short summary variant designed to drive traffic over to the About Page Ecosystem directory */}
       <EcosystemVar1 />

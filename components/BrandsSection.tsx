@@ -9,7 +9,7 @@ export default function BrandsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="mt-32 pt-16 border-t border-slate-200 relative"
+            className=" pt-16  border-slate-200 relative"
         >
             <h4 className="text-center text-slate-400 font-semibold tracking-[0.2em] uppercase text-xs mb-16">Brands That Trust Us</h4>
             <div className="w-full relative overflow-hidden flex whitespace-nowrap [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
