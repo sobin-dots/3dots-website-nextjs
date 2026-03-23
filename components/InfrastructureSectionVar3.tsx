@@ -8,7 +8,7 @@ export default function InfrastructureSectionVar3() {
         <section className="py-32 px-6 max-w-[1240px] mx-auto bg-white border-y border-slate-50 flex flex-col md:flex-row items-center gap-20">
             
             <div className="w-full md:w-1/3 flex flex-col gap-8">
-                <span className="text-brand font-bold uppercase tracking-[0.4em] text-[10px]">Redundancy First</span>
+                <span className="text-brand font-bold uppercase tracking-[0.4em] text-[10px]"></span>
                 <h2 className="text-4xl md:text-5xl font-light text-slate-900 tracking-tight leading-[1.15]">
                     Engineered <br />
                     for total <br />
@@ -41,7 +41,6 @@ export default function InfrastructureSectionVar3() {
                         <div className="flex flex-col gap-2 pt-2">
                             <div className="flex items-baseline gap-3">
                                 <h4 className="text-2xl font-bold text-slate-800 tracking-tight">{item.value}</h4>
-                                <span className="text-[10px] uppercase tracking-widest text-brand font-bold opacity-0 group-hover:opacity-100 transition-opacity translate-x-4 group-hover:translate-x-0 duration-700">Online</span>
                             </div>
                             <p className="text-sm font-semibold text-slate-400 uppercase tracking-widest leading-none mb-1">{item.title}</p>
                             <p className="text-xs font-light text-slate-400  leading-relaxed group-hover:text-slate-600 transition-colors">{item.desc}</p>

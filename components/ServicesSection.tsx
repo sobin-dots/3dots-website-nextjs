@@ -40,18 +40,6 @@ const services: Service[] = [
     {
         id: "02",
         number: "02",
-        titleLine1: "Automate Work.",
-        titleLine2: "Accelerate Growth.",
-        description: "We implement AI-powered automation to streamline repetitive processes, improve productivity, and connect your tools into intelligent workflows that save time, reduce costs, and unlock operational efficiency.",
-        highlightIcon: <Workflow className="w-7 h-7 text-brand" strokeWidth={1.5} />,
-        highlightTitle: "Intelligent Workflows",
-        highlightDesc: "Connecting your tools into seamless, automated pipelines.",
-        image: "/businessman-working-on-laptop-with-automation-symbols-hovering-above-his-hands-1.avif",
-        slug:"ai-engineering"
-    },
-    {
-        id: "03",
-        number: "03",
         titleLine1: "Expert Deep-Tech",
         titleLine2: "AI Engineering",
         description: "From NLP and custom LLMs (Claude/GPT) to Speech-to-Text and Generative Media (Image/Video). We architect intelligent, agentic systems that see, hear, and create at scale.",
@@ -66,7 +54,20 @@ const services: Service[] = [
             { icon: <Mic2 className="w-4 h-4" />, name: "Speech" },
             { icon: <BrainCircuit className="w-4 h-4" />, name: "Agents" }
         ]
-    }
+    },
+    {
+        id: "03",
+        number: "03",
+        titleLine1: "IT & AI ",
+        titleLine2: "Consulting",
+        description: "We provide expert guidance to help businesses leverage technology and AI to achieve their goals. From strategy and planning to implementation and support, we work closely with you to deliver tailored solutions that drive real impact.",
+        highlightIcon: <Workflow className="w-7 h-7 text-brand" strokeWidth={1.5} />,
+        highlightTitle: "Intelligent Workflows",
+        highlightDesc: "Connecting your tools into seamless, automated pipelines.",
+        image: "/businessman-working-on-laptop-with-automation-symbols-hovering-above-his-hands-1.avif",
+        slug:"it-ai-consulting"
+    },
+    
 ];
 
 export default function ServicesSection() {

@@ -6,14 +6,17 @@ import Link from "next/link";
 
 export default function HeroSection() {
     const codeLines = [
-        { num: '01', content: <><span className="text-brand-300">class</span> <span className="text-white">StartupBuilder</span> <span className="text-slate-400">{"{"}</span></> },
-        { num: '02', content: <><span className="pl-4 text-purple-400">async</span> <span className="text-brand-300">launchMVP</span><span className="text-slate-400">() {"{"}</span></> },
-        { num: '03', content: <><span className="pl-8 text-slate-400">await 3Dots.</span><span className="text-brand-200">engineer</span><span className="text-white">({ "{" }</span></> },
-        { num: '04', content: <><span className="pl-12 text-slate-400">quality:</span> <span className="text-orange-300">&apos;Production-Ready&apos;</span><span className="text-slate-400">,</span></> },
-        { num: '05', content: <><span className="pl-12 text-slate-400">speed:</span> <span className="text-orange-300">&apos;Excellence&apos;</span></> },
-        { num: '06', content: <><span className="pl-8 text-slate-400">{"}"});</span></> },
-        { num: '07', content: <><span className="pl-4 text-slate-400">{"}"}</span></> },
-        { num: '08', content: <><span className="text-slate-400">{"}"}</span></> },
+        { num: '01', content: <><span className="text-brand-300">const</span> <span className="text-white">ThreeDots</span> <span className="text-slate-400">= ({ "{ " }</span><span className="text-white">vision</span> <span className="text-slate-400">{ " }" }) =&gt; {"{"}</span></> },
+        { num: '02', content: <><span className="pl-4 text-brand-300">const</span> <span className="text-white">build</span> <span className="text-slate-400">=</span> <span className="text-purple-400">async</span> <span className="text-slate-400">(</span><span className="text-white">idea</span><span className="text-slate-400">) =&gt; {"{"}</span></> },
+        { num: '03', content: <><span className="pl-8 text-brand-300">const</span> <span className="text-white">app</span> <span className="text-slate-400">=</span> <span className="text-brand-200">integrate</span><span className="text-slate-400">(</span><span className="text-brand-200">develop</span><span className="text-slate-400">(</span><span className="text-brand-200">architect</span><span className="text-slate-400">(</span><span className="text-white">idea</span><span className="text-slate-400">)));</span></> },
+        { num: '04', content: <><span className="pl-8 text-brand-300">return</span> <span className="text-brand-200">deploy</span><span className="text-slate-400">(</span><span className="text-white">app</span><span className="text-slate-400">, { "{ " }</span><span className="text-slate-400">cloud:</span> <span className="text-orange-300">&apos;AWS&apos;</span> <span className="text-slate-400">{ " }" });</span></> },
+        { num: '05', content: <><span className="pl-4 text-slate-400">{"}"};</span></> },
+        { num: '06', content: <><span className="pl-4 text-slate-400"></span></> },
+        { num: '07', content: <><span className="pl-4 text-brand-300">if</span> <span className="text-slate-400">(</span><span className="text-white">vision</span><span className="text-slate-400">?.</span><span className="text-white">marketFit</span><span className="text-slate-400">) {"{"}</span></> },
+        { num: '08', content: <><span className="pl-8 text-brand-200">build</span><span className="text-slate-400">(</span><span className="text-white">vision</span><span className="text-slate-400">).</span><span className="text-brand-200">then</span><span className="text-slate-400">(</span><span className="text-brand-200">monitor</span><span className="text-slate-400">).</span><span className="text-brand-200">catch</span><span className="text-slate-400">(</span><span className="text-brand-200">iterate</span><span className="text-slate-400">);</span></> },
+        { num: '09', content: <><span className="pl-4 text-slate-400">{"}"}</span></> },
+        { num: '10', content: <><span className="pl-4 text-brand-300">return</span> <span className="text-orange-300">&quot;Build. Scale. Evolve.&quot;</span><span className="text-slate-400">;</span></> },
+        { num: '11', content: <><span className="text-slate-400">{"}"}</span></> },
     ];
 
     return (
@@ -27,10 +30,10 @@ export default function HeroSection() {
                     className="z-10 text-center lg:text-left"
                 >
                     <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-slate-800 tracking-normal leading-[1.2] md:leading-[1.2] mb-10">
-                        We build technology that powers <span className="font-medium ">startups, growing businesses, and enterprises.</span>
+                        We build technology that powers <span className="font-medium ">enterprises, growing businesses, and startups.</span>
                     </h1>
                     <p className="text-slate-600 text-lg md:text-xl font-light leading-relaxed mb-10 max-w-xl mx-auto lg:ml-0">
-                        3Dots is a product engineering company helping startups and businesses build scalable software, launch MVPs fast, automate workflows with AI, and grow through technology, community, and strategic execution.
+                        3Dots is a software engineering company that empowers enterprises, growing businesses, and startups to build scalable software, accelerate MVP launches, and drive growth through AI and technology.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                         <Link href="/contact" className="bg-brand text-white px-8 py-3.5 rounded-full text-[15px] font-medium hover:bg-brand-dark transition-all shadow-lg flex items-center justify-center gap-2">
