@@ -13,31 +13,31 @@ model User {
   email     String?  @unique
   phone     String?  @unique
   password  String?
-  role      String   @default("ADMIN")
+  role      String   @default("Admin")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  posts     Post[]
 }
 
 model Post {
-  id          String    @id @default(cuid())
-  slug        String    @unique
-  title       String
-  excerpt     String
-  content     String
-  image       String?
-  category    String
-  readTime    String
-  published   Boolean   @default(false)
-  date        DateTime  @default(now())
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  authorImage String?
-  authorName  String    @default("Admin")
-  authorRole  String    @default("Editor")
-  dislikes    Int       @default(0)
-  likes       Int       @default(0)
-  tags        String[]  @default([])
-  comments    Comment[]
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  title     String
+  excerpt   String
+  content   String
+  image     String?
+  category  String
+  readTime  String
+  published Boolean   @default(false)
+  date      DateTime  @default(now())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  authorId  String?
+  author    User?     @relation(fields: [authorId], references: [id])
+  dislikes  Int       @default(0)
+  likes     Int       @default(0)
+  tags      String[]  @default([])
+  comments  Comment[]
 }
 
 model Comment {
@@ -51,9 +51,14 @@ model Comment {
 
 model Job {
   id           String           @id @default(cuid())
+  slug         String           @unique @default(cuid())
   title        String
   tag          String
+  type         String           @default("Full-Time")
+  location     String           @default("Remote / Hybrid")
+  about        String?
   description  String
+  sections     Json?
   active       Boolean          @default(true)
   createdAt    DateTime         @default(now())
   updatedAt    DateTime         @updatedAt
@@ -85,15 +90,15 @@ model ContactInquiry {
 }
 
 model LaunchpadApplication {
-  id          String   @id @default(cuid())
-  fullName    String
-  email       String
-  projectName String
-  description String
-  budgetRange String?
-  timeline    String?
-  status      String   @default("NEW")
-  createdAt   DateTime @default(now())
+  id           String   @id @default(cuid())
+  fullName     String
+  email        String
+  startupName  String
+  description  String
+  mobileNumber String?
+  category     String?
+  status       String   @default("NEW")
+  createdAt    DateTime @default(now())
 }
 
 model Service {

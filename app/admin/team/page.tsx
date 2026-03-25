@@ -2,10 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { Plus, Twitter, Linkedin, MoreVertical } from "lucide-react";
+import Pagination from "../components/Pagination";
 
 export default function TeamCMSPage() {
   const [team, setTeam] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 12;
 
   useEffect(() => {
     fetch("/api/team-cms")
@@ -36,7 +40,13 @@ export default function TeamCMSPage() {
         ) : team.length === 0 ? (
           <div className="col-span-full py-20 text-center text-slate-400 font-light italic">No members added yet.</div>
         ) : (
-          team.map((member) => (
+          <>
+            {(() => {
+              const totalPages = Math.ceil(team.length / ITEMS_PER_PAGE);
+              const paginatedTeam = team.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+              return (
+                <>
+                  {paginatedTeam.map((member) => (
             <div key={member.id} className="bg-white p-6 rounded-4xl border border-slate-100 shadow-sm hover:shadow-md transition-all group relative text-center">
               <div className="absolute top-4 right-4">
                 <button className="p-2 text-slate-300 hover:text-slate-600 transition-colors"><MoreVertical className="w-4 h-4" /></button>
@@ -57,8 +67,15 @@ export default function TeamCMSPage() {
                 </button>
               </div>
             </div>
-          ))
-        )}
+          ))}
+          <div className="col-span-full">
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+          </div>
+        </>
+      );
+    })()}
+  </>
+)}
       </div>
     </div>
   );

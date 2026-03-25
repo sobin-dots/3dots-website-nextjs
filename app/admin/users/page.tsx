@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Plus, Edit2, Trash2, Search, X, Loader2 } from "lucide-react";
+import Pagination from "../components/Pagination";
 
 interface User {
   id: string;
@@ -17,6 +18,9 @@ export default function UserManagementPage() {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<User | null>(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 8;
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -163,7 +167,7 @@ export default function UserManagementPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
-              {users.map((user) => (
+              {users.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((user) => (
                 <tr key={user.id} className="hover:bg-slate-50 transition-colors group">
                   <td className="px-8 py-6">
                     <div className="flex items-center gap-3">
@@ -208,6 +212,11 @@ export default function UserManagementPage() {
               ))}
             </tbody>
           </table>
+        )}
+        {users.length > 0 && !loading && (
+          <div className="p-4 border-t border-slate-100">
+            <Pagination currentPage={currentPage} totalPages={Math.ceil(users.length / ITEMS_PER_PAGE)} onPageChange={setCurrentPage} />
+          </div>
         )}
       </div>
 

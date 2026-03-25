@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowRight, Rocket, X, Send, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -10,14 +10,44 @@ export default function LaunchpadHero() {
     const [formData, setFormData] = useState({ 
         fullName: "", 
         email: "", 
-        projectName: "", 
+        startupName: "", 
         description: "",
-        budgetRange: "",
-        timeline: ""
+        mobileNumber: "",
+        category: ""
     });
+    
+    // Simple math captcha state
+    const [captcha, setCaptcha] = useState({ num1: 0, num2: 0, userSum: "" });
+    const [captchaError, setCaptchaError] = useState(false);
+
+    const generateCaptcha = () => {
+        setCaptcha({ 
+            num1: Math.floor(Math.random() * 10) + 1, 
+            num2: Math.floor(Math.random() * 10) + 1, 
+            userSum: "" 
+        });
+        setCaptchaError(false);
+    };
+
+    useEffect(() => {
+        let isMounted = true;
+        Promise.resolve().then(() => {
+            if (isMounted) generateCaptcha();
+        });
+        return () => { isMounted = false; };
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Validate Captcha
+        const expectedSum = captcha.num1 + captcha.num2;
+        if (parseInt(captcha.userSum, 10) !== expectedSum) {
+            setCaptchaError(true);
+            generateCaptcha();
+            return;
+        }
+
         setStatus("submitting");
 
         try {
@@ -35,11 +65,12 @@ export default function LaunchpadHero() {
                     setFormData({ 
                         fullName: "", 
                         email: "", 
-                        projectName: "", 
+                        startupName: "", 
                         description: "",
-                        budgetRange: "",
-                        timeline: ""
+                        mobileNumber: "",
+                        category: ""
                     });
+                    generateCaptcha();
                 }, 3000);
             } else {
                 setStatus("error");
@@ -53,7 +84,7 @@ export default function LaunchpadHero() {
         <section className="relative w-full bg-white pt-28 pb-8 md:pt-32 md:pb-10 border-b border-slate-100 overflow-hidden">
             <div className="absolute inset-0 z-0 bg-white">
                 <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
-                <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-slate-50 to-transparent z-10"></div>
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-slate-50 to-transparent z-10"></div>
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand/5 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/4"></div>
             </div>
 
@@ -122,7 +153,7 @@ export default function LaunchpadHero() {
                             initial={{ opacity: 0, scale: 0.9, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            className="bg-white w-full max-w-xl rounded-[2.5rem] shadow-2xl relative z-10 overflow-hidden border border-slate-100"
+                            className="bg-white w-full max-w-xl rounded-4xl shadow-2xl relative z-10 overflow-hidden border border-slate-100"
                         >
                             <div className="p-10">
                                 <div className="flex justify-between items-center mb-8">
@@ -169,37 +200,42 @@ export default function LaunchpadHero() {
                                             </div>
                                         </div>
                                         <div className="space-y-1.5">
-                                            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">Project Name</label>
+                                            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">Startup Name</label>
                                             <input 
                                                 required
-                                                value={formData.projectName}
-                                                onChange={(e) => setFormData({...formData, projectName: e.target.value})}
+                                                value={formData.startupName}
+                                                onChange={(e) => setFormData({...formData, startupName: e.target.value})}
                                                 placeholder="My Startup"
                                                 className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:outline-none focus:border-brand transition-all text-sm"
                                             />
                                         </div>
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-1.5">
-                                                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">Budget Range</label>
-                                                <select 
-                                                    value={formData.budgetRange}
-                                                    onChange={(e) => setFormData({...formData, budgetRange: e.target.value})}
-                                                    className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:outline-none focus:border-brand transition-all text-sm appearance-none"
-                                                >
-                                                    <option value="">Select Budget</option>
-                                                    <option value="<$5k">&lt;$5k</option>
-                                                    <option value="$5k-$15k">$5k-$15k</option>
-                                                    <option value="$15k+">$15k+</option>
-                                                </select>
-                                            </div>
-                                            <div className="space-y-1.5">
-                                                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">Timeline</label>
+                                                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">Mobile Number</label>
                                                 <input 
-                                                    value={formData.timeline}
-                                                    onChange={(e) => setFormData({...formData, timeline: e.target.value})}
-                                                    placeholder="e.g. 1 month"
+                                                    value={formData.mobileNumber}
+                                                    onChange={(e) => setFormData({...formData, mobileNumber: e.target.value})}
+                                                    placeholder="+1 234 567 890"
                                                     className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:outline-none focus:border-brand transition-all text-sm"
                                                 />
+                                            </div>
+                                            <div className="space-y-1.5">
+                                                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">Category / Domain</label>
+                                                <select 
+                                                    value={formData.category}
+                                                    onChange={(e) => setFormData({...formData, category: e.target.value})}
+                                                    className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:outline-none focus:border-brand transition-all text-sm appearance-none"
+                                                >
+                                                    <option value="">Select Domain</option>
+                                                    <option value="Fintech">Fintech</option>
+                                                    <option value="Healthtech">Healthtech</option>
+                                                    <option value="SaaS">SaaS</option>
+                                                    <option value="E-commerce">E-commerce</option>
+                                                    <option value="EdTech">EdTech</option>
+                                                    <option value="Web3/Crypto">Web3 / Crypto</option>
+                                                    <option value="AI/ML">AI / ML</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div className="space-y-1.5">
@@ -212,6 +248,21 @@ export default function LaunchpadHero() {
                                                 placeholder="What are you building?"
                                                 className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:outline-none focus:border-brand transition-all text-sm resize-none"
                                             />
+                                        </div>
+
+                                        <div className="space-y-1.5 pt-2">
+                                            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1 flex items-center gap-2">
+                                                Verify you are human <span className="text-brand">What is {captcha.num1} + {captcha.num2}?</span>
+                                            </label>
+                                            <input 
+                                                required
+                                                type="number"
+                                                value={captcha.userSum}
+                                                onChange={(e) => setCaptcha({...captcha, userSum: e.target.value})}
+                                                placeholder="Enter sum"
+                                                className={`w-full bg-slate-50 border ${captchaError ? 'border-red-400 focus:border-red-500' : 'border-slate-100 focus:border-brand'} rounded-2xl px-5 py-4 focus:outline-none transition-all text-sm`}
+                                            />
+                                            {captchaError && <p className="text-[10px] text-red-500 pl-1 mt-1 font-medium">Incorrect sum. Please try again.</p>}
                                         </div>
                                         <button 
                                             disabled={status === "submitting"}

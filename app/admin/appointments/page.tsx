@@ -3,10 +3,14 @@
 
 import { useState, useEffect } from "react";
 import { Calendar, User, Clock, CheckCircle, XCircle } from "lucide-react";
+import Pagination from "../components/Pagination";
 
 export default function AppointmentsAdminPage() {
   const [appointments, setAppointments] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
 
   useEffect(() => {
     fetch("/api/appointments")
@@ -32,7 +36,13 @@ export default function AppointmentsAdminPage() {
         ) : appointments.length === 0 ? (
           <div className="py-20 text-center text-slate-400 font-light italic text-sm">No scheduled bookings found.</div>
         ) : (
-          appointments.map((apt) => (
+          <>
+            {(() => {
+              const totalPages = Math.ceil(appointments.length / ITEMS_PER_PAGE);
+              const paginatedAppointments = appointments.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+              return (
+                <>
+                  {paginatedAppointments.map((apt) => (
             <div key={apt.id} className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 hover:shadow-md transition-all">
               <div className="flex items-center gap-6">
                 <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center shrink-0">
@@ -59,8 +69,15 @@ export default function AppointmentsAdminPage() {
                 </button>
               </div>
             </div>
-          ))
-        )}
+          ))}
+          <div className="pt-2">
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+          </div>
+        </>
+      );
+    })()}
+  </>
+)}
       </div>
     </div>
   );

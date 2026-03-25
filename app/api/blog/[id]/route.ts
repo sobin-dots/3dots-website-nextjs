@@ -10,6 +10,11 @@ export async function GET(
     const { id } = await params;
     const post = await prisma.post.findUnique({
       where: { id },
+      include: {
+        author: {
+          select: { name: true, email: true, role: true }
+        }
+      }
     });
     if (!post) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });

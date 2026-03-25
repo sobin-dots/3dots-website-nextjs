@@ -161,9 +161,9 @@ function BlogGridContent() {
                                             <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
                                                 <div className="flex items-center gap-2">
                                                     <div className="w-6 h-6 rounded-full bg-brand/10 flex items-center justify-center text-[10px] font-bold text-brand">
-                                                        {post.authorName?.charAt(0) || "A"}
+                                                        {post.author?.name?.charAt(0) || "3"}
                                                     </div>
-                                                    <span className="text-xs font-medium text-slate-600">{post.authorName || "3Dots Team"}</span>
+                                                    <span className="text-xs font-medium text-slate-600">{post.author?.name || "3Dots Team"}</span>
                                                 </div>
                                                 <div className="text-xs font-medium text-slate-400 group-hover:text-brand transition-colors flex items-center gap-1">
                                                     Read <ArrowRight className="w-3 h-3 ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />

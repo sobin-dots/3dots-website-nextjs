@@ -11,9 +11,6 @@ export const blogPostSchema = z.object({
   readTime: z.string().min(1, "Read time is required"),
   published: z.boolean().default(false),
   date: z.string().or(z.date()).optional(),
-  authorName: z.string().optional(),
-  authorRole: z.string().optional(),
-  authorImage: z.string().optional().nullable(),
   tags: z.array(z.string()).optional(),
 });
 
@@ -29,9 +26,17 @@ export type CommentInput = z.infer<typeof commentSchema>;
 
 // Career Validation
 export const jobSchema = z.object({
+  slug: z.string().min(2, "Slug is required").optional(),
   title: z.string().min(3, "Title is required"),
   tag: z.string().min(2, "Tag is required (e.g. ENGINEERING • FULL-TIME)"),
+  type: z.string().default("Full-Time"),
+  location: z.string().default("Remote / Hybrid"),
+  about: z.string().optional().nullable(),
   description: z.string().min(20, "Description is required"),
+  sections: z.array(z.object({
+    title: z.string(),
+    items: z.array(z.string())
+  })).optional(),
   active: z.boolean().default(true),
 });
 
@@ -62,10 +67,10 @@ export type ContactInquiryInput = z.infer<typeof contactInquirySchema>;
 export const launchpadApplicationSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
   email: z.string().email("Invalid email address"),
-  projectName: z.string().min(2, "Project name is required"),
+  startupName: z.string().min(2, "Startup name is required"),
   description: z.string().min(20, "Project description is required"),
-  budgetRange: z.string().optional().nullable(),
-  timeline: z.string().optional().nullable(),
+  mobileNumber: z.string().optional().nullable(),
+  category: z.string().optional().nullable(),
 });
 
 export type LaunchpadApplicationInput = z.infer<typeof launchpadApplicationSchema>;

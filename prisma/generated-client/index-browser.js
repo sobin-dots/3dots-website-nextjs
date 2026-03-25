@@ -144,9 +144,7 @@ exports.Prisma.PostScalarFieldEnum = {
   date: 'date',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  authorImage: 'authorImage',
-  authorName: 'authorName',
-  authorRole: 'authorRole',
+  authorId: 'authorId',
   dislikes: 'dislikes',
   likes: 'likes',
   tags: 'tags'
@@ -162,9 +160,14 @@ exports.Prisma.CommentScalarFieldEnum = {
 
 exports.Prisma.JobScalarFieldEnum = {
   id: 'id',
+  slug: 'slug',
   title: 'title',
   tag: 'tag',
+  type: 'type',
+  location: 'location',
+  about: 'about',
   description: 'description',
+  sections: 'sections',
   active: 'active',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -197,10 +200,10 @@ exports.Prisma.LaunchpadApplicationScalarFieldEnum = {
   id: 'id',
   fullName: 'fullName',
   email: 'email',
-  projectName: 'projectName',
+  startupName: 'startupName',
   description: 'description',
-  budgetRange: 'budgetRange',
-  timeline: 'timeline',
+  mobileNumber: 'mobileNumber',
+  category: 'category',
   status: 'status',
   createdAt: 'createdAt'
 };

@@ -2,10 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { Search, Plus, Boxes, Zap, ArrowRight } from "lucide-react";
+import Pagination from "../components/Pagination";
 
 export default function ServicesCMSPage() {
   const [services, setServices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 8;
 
   useEffect(() => {
     fetch("/api/services-cms")
@@ -36,8 +40,9 @@ export default function ServicesCMSPage() {
         ) : services.length === 0 ? (
           <div className="col-span-full py-20 text-center text-slate-400 font-light">No services listed yet.</div>
         ) : (
-          services.map((service) => (
-            <div key={service.id} className="bg-white p-8 rounded-4xl border border-slate-100 shadow-sm hover:shadow-md transition-all group flex gap-8">
+          <>
+            {services.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((service) => (
+              <div key={service.id} className="bg-white p-8 rounded-4xl border border-slate-100 shadow-sm hover:shadow-md transition-all group flex gap-8">
               <div className="w-20 h-20 bg-slate-50 rounded-3xl flex items-center justify-center shrink-0 group-hover:bg-brand/5 transition-colors">
                 <Boxes className="w-10 h-10 text-slate-300 group-hover:text-brand" />
               </div>
@@ -59,9 +64,13 @@ export default function ServicesCMSPage() {
                 </div>
               </div>
             </div>
-          ))
-        )}
-      </div>
+          ))}
+          <div className="col-span-full">
+            <Pagination currentPage={currentPage} totalPages={Math.ceil(services.length / ITEMS_PER_PAGE)} onPageChange={setCurrentPage} />
+          </div>
+        </>
+      )}
+    </div>
     </div>
   );
 }

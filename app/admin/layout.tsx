@@ -1,6 +1,6 @@
 "use client";
 
-import { LayoutDashboard, FileText, Briefcase, MessageSquare, Rocket, Settings, Users, Calendar, LogOut, Shield } from "lucide-react";
+import { LayoutDashboard, FileText, Briefcase, MessageSquare, Rocket, Settings, Users, Calendar, LogOut, Shield, FileBadge } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
@@ -11,6 +11,7 @@ const navigation = [
   { name: "Careers", href: "/admin/careers", icon: Briefcase, roles: ["Admin", "Content Team"] },
   { name: "Inquiries", href: "/admin/inquiries", icon: MessageSquare, roles: ["Admin", "Lead Management"] },
   { name: "Launchpad", href: "/admin/launchpad", icon: Rocket, roles: ["Admin", "Lead Management"] },
+  { name: "Applications", href: "/admin/applications", icon: FileBadge, roles: ["Admin", "Content Team", "Lead Management"] },
   { name: "Team", href: "/admin/team", icon: Users, roles: ["Admin", "Content Team"] },
   { name: "Users", href: "/admin/users", icon: Shield, roles: ["Admin"] },
   { name: "Appointments", href: "/admin/appointments", icon: Calendar, roles: ["Admin", "Lead Management"] },

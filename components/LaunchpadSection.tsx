@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 export default function LaunchpadSection() {
     return (
         <section id="launchpad" className="py-8 px-6 bg-brand text-white text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-[url('/images/startup-bg.png')] opacity-30 mix-blend-overlay bg-cover bg-center transition-all duration-1000 group-hover:scale-110"></div>
+            <div className="absolute inset-0  opacity-30 mix-blend-overlay bg-cover bg-center transition-all duration-1000 group-hover:scale-110"></div>
             <motion.div 
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}

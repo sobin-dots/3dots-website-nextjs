@@ -1,6 +1,6 @@
 "use client";
 
-import { Twitter, Linkedin, Instagram, Youtube, Mail, MapPin, Phone, ArrowRight } from "lucide-react";
+import { Linkedin, Instagram, Youtube, Mail, MapPin, Phone, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -91,10 +91,16 @@ export default function Footer() {
                                 We handle all the software development domain of any company. From Startup Launch Pad to enterprise Workflow Automation, we are your strategic technology partner.
                             </p>
                             <div className="flex gap-4">
-                                {[Linkedin, Twitter, Instagram, Youtube].map((Icon, i) => (
+                                {[
+                                    { Icon: Linkedin, href: "https://www.linkedin.com/company/3dotstechcollective/" },
+                                    { Icon: Instagram, href: "https://www.instagram.com/3dotstechcollective?igsh=MTdjZGZ5YjR2NmU3aA%3D%3D&utm_source=qr" },
+                                    { Icon: Youtube, href: "https://www.youtube.com/@3dotstechcollective" }
+                                ].map(({ Icon, href }, i) => (
                                     <Link 
                                         key={i} 
-                                        href="#" 
+                                        href={href} 
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center hover:bg-brand hover:border-brand hover:text-white transition-all duration-300"
                                     >
                                         <Icon className="w-4 h-4" />

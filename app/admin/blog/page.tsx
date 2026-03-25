@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Plus, Edit2, Trash2, Search, ExternalLink, Filter, Calendar, User, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import Pagination from "../components/Pagination";
 import { blogCategories } from "../../blog/data";
 
 interface Post {
@@ -27,6 +28,9 @@ export default function BlogAdminPage() {
   const [statusFilter, setStatusFilter] = useState("All");
   const [authorFilter, setAuthorFilter] = useState("All");
   const [dateOrder, setDateOrder] = useState<"desc" | "asc">("desc");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
 
   useEffect(() => {
     fetch("/api/blog")
@@ -92,7 +96,7 @@ export default function BlogAdminPage() {
               type="text" 
               placeholder="Search posts..." 
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
               className="w-full pl-11 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-brand text-sm transition-all"
             />
           </div>
@@ -102,7 +106,7 @@ export default function BlogAdminPage() {
             <div className="relative group">
               <select 
                 value={categoryFilter}
-                onChange={(e) => setCategoryFilter(e.target.value)}
+                onChange={(e) => { setCategoryFilter(e.target.value); setCurrentPage(1); }}
                 className="appearance-none bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-10 py-2 text-sm focus:outline-none focus:border-brand transition-all cursor-pointer"
               >
                 <option value="All">All Categories</option>
@@ -177,7 +181,7 @@ export default function BlogAdminPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
-              {filteredPosts.map((post) => (
+              {filteredPosts.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((post) => (
                 <tr key={post.id} className="hover:bg-slate-50 transition-colors group">
                   <td className="px-8 py-6">
                     <div className="max-w-md">
@@ -222,6 +226,11 @@ export default function BlogAdminPage() {
               ))}
             </tbody>
           </table>
+        )}
+        {filteredPosts.length > 0 && !loading && (
+          <div className="p-4 border-t border-slate-100">
+            <Pagination currentPage={currentPage} totalPages={Math.ceil(filteredPosts.length / ITEMS_PER_PAGE)} onPageChange={setCurrentPage} />
+          </div>
         )}
       </div>
     </div>

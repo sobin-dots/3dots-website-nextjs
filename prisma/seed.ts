@@ -13,35 +13,95 @@ const prisma = new PrismaClient({ adapter });
 async function main() {
   console.log("Seeding database...");
 
-  // Seed Jobs (Career)
+  // 1. Seed Admin User First (Critical for Relations)
+  const adminEmail = "admin@3dots.co";
+  const adminUser = await prisma.user.upsert({
+    where: { email: adminEmail },
+    update: {},
+    create: {
+      email: adminEmail,
+      password: "admin_password_123", // In a real app, hash this!
+      name: "3Dots Administrator",
+      role: "Admin",
+    },
+  });
+
+  // 2. Seed Jobs (Career)
   const jobs = [
     {
+      slug: "3d-artist",
+      title: "3D Artist",
+      tag: "CREATIVE • FULL-TIME",
+      type: "Full-Time",
+      location: "Remote / Hybrid",
+      description: "We are looking for a talented 3D Artist to join our creative team. Bring creative concepts to life through detailed modeling, texturing, and lighting.",
+      about: "We are looking for a talented 3D Artist to join our creative team. As a 3D Artist, you'll be responsible for creating high-quality assets and environments, bringing creative concepts to life through detailed modeling, texturing, and lighting. You'll work on diverse projects ranging from product visualization to character development, collaborating with our accomplished team of artists and designers.",
+      sections: [
+        {
+          title: "Responsibilities",
+          items: [
+            "Create high-quality 3D models, environments, and assets for various projects.",
+            "Develop and maintain proper UV layouts and texture maps.",
+            "Set up materials and shaders for realistic rendering.",
+            "Create and optimize topology for production use.",
+            "Implement proper lighting setups for different scenarios.",
+            "Ensure models meet technical specifications and poly-count requirements.",
+            "Collaborate with art directors and other artists to maintain visual consistency.",
+            "Participate in review sessions and provide constructive feedback.",
+            "Document workflows and maintain organized scene files."
+          ]
+        },
+        {
+          title: "Requirements",
+          items: [
+            "2-4 years of professional 3D modeling and texturing experience.",
+            "Strong portfolio demonstrating variety in organic and hard-surface modeling.",
+            "Expert knowledge of Maya, ZBrush, or similar 3D modeling software.",
+            "Proficiency in texturing tools like Substance Painter/Designer.",
+            "Strong understanding of PBR materials and texturing workflows.",
+            "Experience with UV unwrapping and topology optimization.",
+            "Knowledge of current rendering engines (V-Ray, Arnold, or similar).",
+            "Understanding of composition and color theory."
+          ]
+        }
+      ],
+      active: true,
+    },
+    {
+      slug: "senior-ai-engineer",
       title: "Senior AI Engineer",
-      tag: "Engineering",
-      description: "We are looking for a Senior AI Engineer to join our team in building cutting-edge AI-driven solutions. You will work on Large Language Models (LLMs), agentic systems, and high-scale automation pipelines. Expertise in Python, PyTorch, and cloud infrastructure is essential.",
+      tag: "ENGINEERING • FULL-TIME",
+      type: "Full-Time",
+      location: "Remote",
+      description: "We are looking for a Senior AI Engineer to join our team in building cutting-edge AI-driven solutions.",
+      about: "We are looking for a Senior AI Engineer to join our team in building cutting-edge AI-driven solutions. You will work on Large Language Models (LLMs), agentic systems, and high-scale automation pipelines. Expertise in Python, PyTorch, and cloud infrastructure is essential.",
+      sections: [],
       active: true,
     },
     {
+      slug: "full-stack-developer",
       title: "Full Stack Developer",
-      tag: "Engineering",
-      description: "Join our core engineering team to build scalable web applications using Next.js, TypeScript, and Prisma. You will be responsible for end-to-end features, from UI/UX implementation to database architecture and deployment.",
-      active: true,
-    },
-    {
-      title: "Product Designer",
-      tag: "Design",
-      description: "We need a visionary Product Designer to craft seamless, user-centric experiences for the startups we build. You should have a strong portfolio in SaaS design, design systems, and cinematic web aesthetics.",
+      tag: "ENGINEERING • FULL-TIME",
+      type: "Full-Time",
+      location: "Hybrid",
+      description: "Join our core engineering team to build scalable web applications using Next.js, TypeScript, and Prisma.",
+      about: "Join our core engineering team to build scalable web applications using Next.js, TypeScript, and Prisma. You will be responsible for end-to-end features, from UI/UX implementation to database architecture and deployment.",
+      sections: [],
       active: true,
     },
   ];
 
+  // Try to clean up jobs ONLY IF no applications are linked, or provide it without wiping
+  // In a seed script, upserting is safer than deleting if you have relations
   for (const job of jobs) {
-    await prisma.job.create({
-      data: job,
+    await prisma.job.upsert({
+        where: { slug: job.slug },
+        update: job,
+        create: job
     });
   }
 
-  // Seed Posts (Blog)
+  // 3. Seed Posts (Blog) with Relation
   const posts = [
     {
       slug: "scaling-startups-with-ai-automation",
@@ -52,8 +112,7 @@ async function main() {
       readTime: "5 min",
       published: true,
       tags: ["AI", "Automation", "Startups", "Growth"],
-      authorName: "Anas Ahmed",
-      authorRole: "Founder & CTO",
+      authorId: adminUser.id,
     },
     {
       slug: "modern-product-engineering-excellence",
@@ -64,31 +123,17 @@ async function main() {
       readTime: "8 min",
       published: true,
       tags: ["Architecture", "Next.js", "Scalability"],
-      authorName: "Sarah Chen",
-      authorRole: "Senior Engineer",
+      authorId: adminUser.id,
     },
   ];
 
   for (const post of posts) {
     await prisma.post.upsert({
       where: { slug: post.slug },
-      update: {},
+      update: { authorId: adminUser.id },
       create: post,
     });
   }
-
-  // Seed Admin User
-  const adminEmail = "admin@3dots.co";
-  await prisma.user.upsert({
-    where: { email: adminEmail },
-    update: {},
-    create: {
-      email: adminEmail,
-      password: "admin_password_123", // In a real app, hash this!
-      name: "3Dots Administrator",
-      role: "Admin",
-    },
-  });
 
   console.log("Seeding complete!");
 }

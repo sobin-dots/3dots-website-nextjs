@@ -34,6 +34,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = await prisma.post.findUnique({
     where: { slug },
     include: {
+      author: {
+        select: { name: true, email: true, role: true }
+      },
       comments: {
         orderBy: {
           createdAt: "desc"
@@ -67,7 +70,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     "datePublished": post.date.toISOString(),
     "author": {
       "@type": "Person",
-      "name": post.authorName || "3Dots Team"
+      "name": post.author?.name || "3Dots Team"
     },
     "keywords": post.tags?.join(", ") || ""
   };
@@ -104,9 +107,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     category: post.category,
     readTime: post.readTime,
     image: post.image || "/images/blog/default.jpg",
-    authorName: post.authorName,
-    authorRole: post.authorRole,
-    authorImage: post.authorImage || undefined,
+    authorName: post.author?.name || "Admin",
+    authorRole: post.author?.role || "Editor",
+    authorImage: undefined,
     tags: post.tags,
     likes: post.likes,
     dislikes: post.dislikes,
