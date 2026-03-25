@@ -101,7 +101,7 @@ export default function LaunchpadHero() {
                             <Rocket className="w-3 h-3" /> The 3Dots Signature Program
                         </div>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-slate-800 tracking-tight leading-[1.1] mb-6">
-                            Turn Your Idea Into a Working <span className="font-bold text-brand">  MVP in Just 15 Days.</span>
+                            Turn Your Idea Into a Working <span className="font-bold ">  MVP in Just 15 Days.</span>
                         </h1>
                         
                         <p className="text-slate-500 text-base md:text-lg font-light leading-relaxed mb-8 max-w-2xl">
