@@ -80,7 +80,7 @@ export default function Footer() {
                         <div className="lg:col-span-2 space-y-8">
                             <Link href="/" className="inline-block">
                                 <Image
-                                    src="/3dots-logo.png"
+                                    src="/3dots-logo-1.png"
                                     alt="3dots Logo"
                                     width={140}
                                     height={44}
