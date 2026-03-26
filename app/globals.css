@@ -19,6 +19,7 @@
 
   --animate-marquee: marquee 25s linear infinite;
   --animate-glare: glare 1s ease-in-out forwards;
+  --animate-spin-slow: spin 8s linear infinite;
 
   @keyframes marquee {
     0% {

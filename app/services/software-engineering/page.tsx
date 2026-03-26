@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ProcessSection from "./components/ProcessSection";
 import { motion } from "framer-motion";
 import { 
     Code2, 
@@ -125,6 +126,9 @@ export default function SoftwareEngineeringPage() {
                     ))}
                 </div>
             </section>
+            
+            {/* The Process - Agile Methodology */}
+            <ProcessSection />
 
             {/* Simple Footer Style CTA */}
             <section className="py-24 px-6 bg-white">
