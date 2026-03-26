@@ -70,12 +70,13 @@ model Job {
   sections     Json?
   slug         String           @unique @default(cuid())
   type         String           @default("Full-Time")
+  howToApply   String?
   applications JobApplication[]
 }
 
 model JobApplication {
   id             String   @id @default(cuid())
-  jobId          String
+  jobId          String?
   fullName       String
   email          String
   phone          String?
@@ -84,7 +85,8 @@ model JobApplication {
   additionalInfo String?
   status         String   @default("PENDING")
   createdAt      DateTime @default(now())
-  job            Job      @relation(fields: [jobId], references: [id])
+  position       String?
+  job            Job?     @relation(fields: [jobId], references: [id])
 }
 
 model ContactInquiry {

@@ -7,6 +7,7 @@ import Link from "next/link";
 
 interface JobApplication {
   id: string;
+  jobId: string | null;
   fullName: string;
   email: string;
   phone: string | null;
@@ -14,6 +15,7 @@ interface JobApplication {
   coverLetter: string | null;
   additionalInfo: string | null;
   status: string;
+  position: string | null;
   createdAt: string;
   job?: { id: string; title: string; tag: string; location: string; type: string };
 }
@@ -120,8 +122,8 @@ export default function ApplicationDetailPage() {
               {app.fullName}
             </h1>
             <div className="flex flex-wrap items-center gap-3 mt-3">
-              <p className="text-xs text-brand font-bold uppercase tracking-widest flex items-center gap-1.5 bg-brand/5 px-3 py-1.5 rounded-lg border border-brand/10">
-                <Briefcase className="w-3.5 h-3.5" /> {app.job?.title || "Unknown Job"}
+              <p className={`text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5 px-3 py-1.5 rounded-lg border ${!app.jobId ? "bg-amber-50 text-amber-600 border-amber-100" : "bg-brand/5 text-brand border-brand/10"}`}>
+                <Briefcase className="w-3.5 h-3.5" /> {app.job?.title || app.position || "General Application"}
               </p>
               <p className="text-xs font-medium text-slate-500 flex items-center gap-1.5">
                 <CalendarIcon className="w-3.5 h-3.5" /> Applied on {new Date(app.createdAt).toLocaleDateString()}

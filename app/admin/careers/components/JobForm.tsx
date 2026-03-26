@@ -21,6 +21,7 @@ export default function JobForm({
     location: job?.location || "Remote / Hybrid",
     description: job?.description || "",
     about: job?.about || "",
+    howToApply: job?.howToApply || "",
     active: job?.active !== undefined ? job.active : true,
     sections: job?.sections || [
       { title: "Responsibilities", items: [""] },
@@ -199,6 +200,17 @@ export default function JobForm({
             onChange={(e) => setFormData({ ...formData, about: e.target.value })}
             className="w-full bg-[#F4F6FB] border border-slate-200 rounded-xl px-5 py-3 focus:outline-none focus:border-brand text-slate-800 resize-none"
             placeholder="Detailed overview for the job posting..."
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-slate-700">How to Apply (Custom Instructions)</label>
+          <textarea
+            rows={4}
+            value={formData.howToApply}
+            onChange={(e) => setFormData({ ...formData, howToApply: e.target.value })}
+            className="w-full bg-[#F4F6FB] border border-slate-200 rounded-xl px-5 py-3 focus:outline-none focus:border-brand text-slate-800 resize-none"
+            placeholder="Step-by-step instructions on how to apply for this role..."
           />
         </div>
 

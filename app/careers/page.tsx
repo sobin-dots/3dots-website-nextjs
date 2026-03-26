@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import HeroSection from "./components/HeroSection";
 import CultureSection from "./components/CultureSection";
 import PositionsSection from "./components/PositionsSection";
+import GeneralApplicationSection from "./components/GeneralApplicationSection";
 import PerksShowcase from "@/components/PerksShowcase";
 
 export default function CareersPage() {
@@ -16,6 +17,7 @@ export default function CareersPage() {
             <PerksShowcase />
 
             <PositionsSection />
+            <GeneralApplicationSection />
 
             <Footer />
         </main>

@@ -45,19 +45,21 @@ export const jobSchema = z.object({
     title: z.string(),
     items: z.array(z.string())
   })).optional(),
+  howToApply: z.string().optional().nullable(),
   active: z.boolean().default(true),
 });
 
 export type JobInput = z.infer<typeof jobSchema>;
 
 export const jobApplicationSchema = z.object({
-  jobId: z.string(),
+  jobId: z.string().optional().nullable(),
   fullName: z.string().min(2, "Full name is required"),
   email: z.string().email("Invalid email address"),
   phone: z.string().optional().nullable(),
   resumeUrl: z.string().url("Invalid resume URL"),
   coverLetter: z.string().optional().nullable(),
   additionalInfo: z.string().optional().nullable(),
+  position: z.string().optional().nullable(),
 });
 
 export type JobApplicationInput = z.infer<typeof jobApplicationSchema>;

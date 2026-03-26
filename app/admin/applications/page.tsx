@@ -7,7 +7,7 @@ import Pagination from "../components/Pagination";
 
 interface JobApplication {
   id: string;
-  jobId: string;
+  jobId: string | null;
   fullName: string;
   email: string;
   phone: string | null;
@@ -15,6 +15,7 @@ interface JobApplication {
   coverLetter: string | null;
   additionalInfo: string | null;
   status: string;
+  position: string | null;
   createdAt: string;
   job?: { id: string; title: string };
 }
@@ -207,8 +208,8 @@ export default function ApplicationsAdminPage() {
                           </div>
                         </td>
                         <td className="px-8 py-6">
-                            <span className="text-xs text-brand font-medium flex items-center gap-1.5 bg-brand/5 px-2.5 py-1 rounded w-fit">
-                              <Briefcase className="w-3 h-3" /> {item.job?.title || "Unknown Job"}
+                            <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded w-fit flex items-center gap-1.5 ${!item.jobId ? 'bg-amber-50 text-amber-600 border border-amber-100' : 'bg-brand/5 text-brand'}`}>
+                              <Briefcase className="w-3 h-3" /> {item.job?.title || item.position || "General Application"}
                             </span>
                         </td>
                         <td className="px-8 py-6">
@@ -260,8 +261,8 @@ export default function ApplicationsAdminPage() {
                         <div>
                           <h3 className="font-semibold text-slate-800 text-lg">{item.fullName}</h3>
                           <div className="flex items-center gap-4 mt-1">
-                            <p className="text-xs text-brand font-medium flex items-center gap-1.5 focus:outline-none bg-brand/5 px-2 py-0.5 rounded flex-wrap">
-                              <Briefcase className="w-3 h-3" /> {item.job?.title || "Unknown Job"}
+                            <p className={`text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded flex items-center gap-1.5 focus:outline-none flex-wrap ${!item.jobId ? 'bg-amber-50 text-amber-600 border border-amber-100' : 'bg-brand/5 text-brand'}`}>
+                              <Briefcase className="w-3 h-3" /> {item.job?.title || item.position || "General Application"}
                             </p>
                             <p className="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5">
                               <CalendarIcon className="w-3 h-3" /> {new Date(item.createdAt).toLocaleString()}

@@ -261,9 +261,15 @@ export default function JobDetailPage() {
                                 className="pt-8 border-t border-slate-200"
                             >
                                 <h3 className="text-2xl font-semibold text-slate-800 tracking-tight mb-6">How to Apply</h3>
-                                <p className="text-slate-600 font-light leading-relaxed text-[16px] mb-6">
-                                    Please send your resume, portfolio link, and breakdown of your best work to <a href="mailto:careers@picstol.com" className="font-semibold text-brand hover:underline">careers@picstol.com</a>. Your portfolio should demonstrate your modeling, texturing, and lighting capabilities across various styles and subjects. Include wireframes and process breakdowns where possible.
-                                </p>
+                                {jobData.howToApply ? (
+                                    <div className="text-slate-600 font-light leading-relaxed text-[16px] mb-6 whitespace-pre-wrap">
+                                        {jobData.howToApply}
+                                    </div>
+                                ) : (
+                                    <p className="text-slate-600 font-light leading-relaxed text-[16px] mb-6">
+                                        Please send your resume, portfolio link, and breakdown of your best work to <a href="mailto:careers@picstol.com" className="font-semibold text-brand hover:underline">careers@picstol.com</a>. Your portfolio should demonstrate your modeling, texturing, and lighting capabilities across various styles and subjects. Include wireframes and process breakdowns where possible.
+                                    </p>
+                                )}
                                 <div className="p-6 bg-brand/5 rounded-2xl border border-brand/10">
                                     <p className="text-brand-dark font-medium text-sm">
                                         Note: Portfolio submission with technical breakdowns is required for consideration.
@@ -310,7 +316,7 @@ export default function JobDetailPage() {
             {/* Application Modal */}
             <AnimatePresence>
                 {isModalOpen && (
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+                    <div className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-6">
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
