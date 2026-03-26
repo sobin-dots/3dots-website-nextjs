@@ -158,6 +158,14 @@ exports.Prisma.CommentScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.BlogCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.JobScalarFieldEnum = {
   id: 'id',
   slug: 'slug',
@@ -287,6 +295,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Post: 'Post',
   Comment: 'Comment',
+  BlogCategory: 'BlogCategory',
   Job: 'Job',
   JobApplication: 'JobApplication',
   ContactInquiry: 'ContactInquiry',

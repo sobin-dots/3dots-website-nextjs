@@ -4,6 +4,7 @@
 import { useState, useEffect, use } from "react";
 import { ChevronLeft, Save, Image as ImageIcon, Loader2, AlertCircle, Upload, X, User, Tag, Plus } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import RichTextEditor from "@/components/RichTextEditor";
 
@@ -17,7 +18,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
     slug: "",
     excerpt: "",
     content: "",
-    category: "Engineering",
+    category: "",
     readTime: "5 min read",
     image: "/images/blog/default.jpg",
     published: false,
@@ -26,17 +27,18 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
     tags: [] as string[],
   });
 
+  const [categories, setCategories] = useState<any[]>([]);
   const [tagInput, setTagInput] = useState("");
 
   const addTag = () => {
-    if (tagInput.trim() && !formData.tags.includes(tagInput.trim())) {
-      setFormData({ ...formData, tags: [...formData.tags, tagInput.trim()] });
+    if (tagInput.trim() && !formData.tags?.includes(tagInput.trim())) {
+      setFormData({ ...formData, tags: [...(formData.tags || []), tagInput.trim()] });
       setTagInput("");
     }
   };
 
   const removeTag = (tagToRemove: string) => {
-    setFormData({ ...formData, tags: formData.tags.filter(t => t !== tagToRemove) });
+    setFormData({ ...formData, tags: formData.tags?.filter(t => t !== tagToRemove) || [] });
   };
 
   const [uploading, setUploading] = useState(false);
@@ -66,6 +68,16 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
   };
 
   useEffect(() => {
+    // Fetch Categories
+    fetch("/api/blog/categories")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setCategories(data);
+        }
+      });
+
+    // Fetch Post
     fetch(`/api/blog/${id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -119,7 +131,9 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
   };
 
   if (fetching) {
-    return <div className="p-20 text-center text-slate-400 font-light">Loading post data...</div>;
+    return <div className="p-20 text-center text-slate-400 font-light flex items-center justify-center gap-3">
+        <Loader2 className="w-5 h-5 animate-spin" /> Loading post data...
+    </div>;
   }
 
   return (
@@ -202,11 +216,10 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand appearance-none cursor-pointer text-sm"
               >
-                <option>Engineering</option>
-                <option>Design</option>
-                <option>Product Strategy</option>
-                <option>Founder Insights</option>
-                <option>Ecosystem</option>
+                {categories.length === 0 && <option value="">Loading categories...</option>}
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.name}>{cat.name}</option>
+                ))}
               </select>
             </div>
 
@@ -226,7 +239,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
               
               {formData.image && (
                 <div className="relative group aspect-video rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 mb-3">
-                  <img src={formData.image} alt="Preview" className="w-full h-full object-cover" />
+                  <Image src={formData.image} alt="Preview" fill className="object-cover" />
                   <button 
                     type="button"
                     onClick={() => setFormData({ ...formData, image: "" })}
@@ -268,14 +281,14 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
               <input
                 type="text"
                 placeholder="Author Name"
-                value={formData.authorName}
+                value={formData.authorName || ""}
                 onChange={(e) => setFormData({ ...formData, authorName: e.target.value })}
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand text-sm mb-2"
               />
               <input
                 type="text"
                 placeholder="Author Role"
-                value={formData.authorRole}
+                value={formData.authorRole || ""}
                 onChange={(e) => setFormData({ ...formData, authorRole: e.target.value })}
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand text-sm"
               />

@@ -77,13 +77,13 @@ export default function Footer() {
                 <div className="max-w-[1400px] mx-auto px-6">
                     {/* Main Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
-                        <div className="lg:col-span-2 space-y-8">
-                            <Link href="/" className="inline-block">
+                        <div className="lg:col-span-2 space-y-2">
+                            <Link href="/" className="inline-block -mt-1.5">
                                 <Image
-                                    src="/3dots-logo-1.png"
+                                    src="/3dots-logo.png"
                                     alt="3dots Logo"
                                     width={140}
-                                    height={44}
+                                    height={11}
                                     className="w-32 md:w-36 h-auto brightness-0 invert opacity-90"
                                 />
                             </Link>

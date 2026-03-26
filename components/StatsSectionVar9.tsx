@@ -36,8 +36,8 @@ const stats = [
 
 export default function StatsSectionVar9() {
     return (
-        <section className="py-32 px-6 bg-[#f8fafb]">
-            <div className="max-w-[1240px] mx-auto text-center mb-24">
+        <section className="py-32 px-6 bg-[#f8fafb] max-w-[1240px] mx-auto">
+            <div className="max-w-3xl mx-auto text-center mb-24">
                 <motion.h2 
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export default function StatsSectionVar9() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
                     viewport={{ once: true }}
-                    className="text-slate-400 font-light text-lg  max-w-xl mx-auto opacity-70"
+                    className="text-slate-400 font-light text-lg   mx-auto opacity-70"
                 >
                     Scaling your vision with a world-class engineering team and proven processes.
                 </motion.p>

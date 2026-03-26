@@ -28,7 +28,7 @@ export default function EcosystemSection() {
                         <h2 className="text-5xl md:text-[64px] font-normal text-slate-800 tracking-tight leading-[1.1] mb-2">
                             Connected 
                         </h2>
-                        <h2 className="text-5xl md:text-[64px] font-bold tracking-tight text-brand mb-8 leading-[1.1]">
+                        <h2 className="text-5xl md:text-[64px] font-bold tracking-tight  mb-8 leading-[1.1]">
                             Community
                         </h2>
                         <p className="text-lg text-slate-500 font-light leading-relaxed mb-12 max-w-sm">
@@ -177,7 +177,7 @@ export default function EcosystemSection() {
                             className="absolute top-[82%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-20 w-[240px] md:w-[280px]"
                         >
                             <div className="bg-white/95 backdrop-blur-md rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center shadow-xl shadow-slate-200/50 border border-slate-100/50 hover:-translate-y-2 transition-transform duration-400">
-                                <Image src="/3dots-logo.png" alt="3dots" width={100} height={32} className="h-[32px] w-auto object-contain mb-8" />
+                                <Image src="/3dots-logo-1.png" alt="3dots" width={400} height={40} className="h-[40px] w-auto object-contain mb-8" />
                                 <p className="text-slate-400 text-[10px] font-light tracking-widest mb-8 uppercase">Founders & strategists</p>
                                 <div className="flex -space-x-3">
                                     {[32, 33, 34, 35].map((id, i) => (

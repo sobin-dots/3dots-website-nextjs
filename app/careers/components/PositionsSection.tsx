@@ -25,7 +25,7 @@ export default function PositionsSection() {
     }, []);
 
     return (
-        <section className="py-32 px-6 bg-[#F4F6FB] relative overflow-hidden">
+        <section className="py-32 px-6 bg-[#F4F6FB] relative overflow-hidden" id="career-positions">
             {/* Subtle background glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand/5 rounded-full blur-[120px] pointer-events-none"></div>
 

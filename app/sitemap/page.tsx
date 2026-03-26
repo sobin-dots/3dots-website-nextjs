@@ -45,14 +45,6 @@ export default function SitemapPage() {
                 { name: "Strategy Consultation", href: "/contact", desc: "Book a call with our technical leadership team." }
             ]
         },
-        {
-            title: "Legal",
-            icon: <Shield className="w-5 h-5" />,
-            links: [
-                { name: "Privacy Policy", href: "/privacy", desc: "How we handle and protect your data." },
-                { name: "Terms of Service", href: "/terms", desc: "The agreements of working with 3Dots." }
-            ]
-        }
     ];
 
     return (

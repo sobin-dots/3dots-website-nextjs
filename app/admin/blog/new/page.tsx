@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronLeft, Save, Image as ImageIcon, Loader2, AlertCircle, Upload, X, User, Tag, Plus } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import RichTextEditor from "@/components/RichTextEditor";
 
@@ -15,7 +16,7 @@ export default function NewBlogPostPage() {
     slug: "",
     excerpt: "",
     content: "",
-    category: "Engineering",
+    category: "",
     readTime: "5 min read",
     image: "/images/blog/default.jpg",
     published: false,
@@ -23,6 +24,21 @@ export default function NewBlogPostPage() {
     authorRole: "Editor",
     tags: [] as string[],
   });
+
+  const [categories, setCategories] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("/api/blog/categories")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setCategories(data);
+          if (data.length > 0) {
+            setFormData(prev => ({ ...prev, category: data[0].name }));
+          }
+        }
+      });
+  }, []);
 
   const [tagInput, setTagInput] = useState("");
 
@@ -183,17 +199,16 @@ export default function NewBlogPostPage() {
           <div className="bg-white p-8 rounded-4xl border border-slate-100 shadow-sm space-y-6">
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-700">Category</label>
-              <select
-                value={formData.category}
-                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand appearance-none cursor-pointer text-sm"
-              >
-                <option>Engineering</option>
-                <option>Design</option>
-                <option>Product Strategy</option>
-                <option>Founder Insights</option>
-                <option>Ecosystem</option>
-              </select>
+                <select
+                  value={formData.category}
+                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand appearance-none cursor-pointer text-sm"
+                >
+                  {categories.length === 0 && <option value="">Loading categories...</option>}
+                  {categories.map((cat) => (
+                    <option key={cat.id} value={cat.name}>{cat.name}</option>
+                  ))}
+                </select>
             </div>
 
             <div className="space-y-2">
@@ -212,7 +227,7 @@ export default function NewBlogPostPage() {
               
               {formData.image && (
                 <div className="relative group aspect-video rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 mb-3">
-                  <img src={formData.image} alt="Preview" className="w-full h-full object-cover" />
+                  <Image src={formData.image} alt="Preview" fill className="object-cover" />
                   <button 
                     type="button"
                     onClick={() => setFormData({ ...formData, image: "" })}

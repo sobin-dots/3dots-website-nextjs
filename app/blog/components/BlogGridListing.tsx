@@ -7,11 +7,9 @@ import { ArrowRight, Clock, Tag, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { blogCategories } from "../data";
 
 function BlogGridContent() {
-    const categories = ["All", ...blogCategories];
-    
+    const [categories, setCategories] = useState<string[]>(["All"]);
     const [blogPosts, setBlogPosts] = useState<any[]>([]);
     const [visibleCount, setVisibleCount] = useState(6);
     const [isLoading, setIsLoading] = useState(true);
@@ -23,6 +21,16 @@ function BlogGridContent() {
     const activeTag = searchParams.get('tag');
 
     useEffect(() => {
+        // Fetch Categories
+        fetch("/api/blog/categories")
+            .then(res => res.json())
+            .then(data => {
+                if (Array.isArray(data)) {
+                    setCategories(["All", ...data.map((cat: any) => cat.name)]);
+                }
+            });
+
+        // Fetch Posts
         fetch("/api/blog")
             .then(res => res.json())
             .then(data => {

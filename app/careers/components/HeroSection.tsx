@@ -39,7 +39,10 @@ export default function HeroSection() {
                         <span className="bg-brand text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-sm mb-3">Hiring Now</span>
                         <h3 className="text-sm font-medium text-slate-800 mb-2 leading-snug">Open Positions</h3>
                         <p className="text-xs font-light text-slate-500 mb-4 line-clamp-2">Ownership, speed, and fun. Come build with an elite squad of engineers and designers.</p>
-                        <button className="text-brand text-xs font-medium flex items-center gap-1 hover:gap-2 transition-all">
+                        <button 
+                            onClick={() => document.getElementById('career-positions')?.scrollIntoView({ behavior: 'smooth' })}
+                            className="text-brand text-xs font-medium flex items-center gap-1 hover:gap-2 transition-all outline-none"
+                        >
                             View Roles <ArrowRight className="w-3 h-3" />
                         </button>
                     </motion.div>

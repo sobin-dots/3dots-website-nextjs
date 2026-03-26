@@ -1,11 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Plus, Edit2, Trash2, Search, ExternalLink, Filter, Calendar, User, ChevronDown } from "lucide-react";
+import { Plus, Edit2, Trash2, Search, ExternalLink, Filter, Calendar, User, ChevronDown, Tag } from "lucide-react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import Pagination from "../components/Pagination";
-import { blogCategories } from "../../blog/data";
 
 interface Post {
   id: string;
@@ -20,6 +19,7 @@ interface Post {
 export default function BlogAdminPage() {
   const { data: session } = useSession();
   const [posts, setPosts] = useState<Post[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   
   // Filter States
@@ -33,11 +33,21 @@ export default function BlogAdminPage() {
   const ITEMS_PER_PAGE = 10;
 
   useEffect(() => {
+    // Fetch Posts
     fetch("/api/blog")
       .then((res) => res.json())
       .then((data) => {
         setPosts(Array.isArray(data) ? data : []);
         setLoading(false);
+      });
+
+    // Fetch Categories
+    fetch("/api/blog/categories")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setCategories(data.map((cat: any) => cat.name));
+        }
       });
   }, []);
 
@@ -79,12 +89,20 @@ export default function BlogAdminPage() {
             Create, edit, and manage your editorial content.
           </p>
         </div>
-        <Link 
-          href="/admin/blog/new" 
-          className="bg-brand text-white px-6 py-3 rounded-full text-sm font-medium flex items-center justify-center gap-2 hover:bg-brand-dark transition-all shadow-lg shadow-brand/20"
-        >
-          <Plus className="w-4 h-4" /> New Post
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link 
+            href="/admin/blog/categories" 
+            className="bg-white border border-slate-200 text-slate-600 px-6 py-3 rounded-full text-sm font-medium flex items-center justify-center gap-2 hover:bg-slate-50 transition-all shadow-sm"
+          >
+            <Tag className="w-4 h-4" /> Categories
+          </Link>
+          <Link 
+            href="/admin/blog/new" 
+            className="bg-brand text-white px-6 py-3 rounded-full text-sm font-medium flex items-center justify-center gap-2 hover:bg-brand-dark transition-all shadow-lg shadow-brand/20"
+          >
+            <Plus className="w-4 h-4" /> New Post
+          </Link>
+        </div>
       </div>
 
       {/* Toolbar & Filters */}
@@ -110,7 +128,7 @@ export default function BlogAdminPage() {
                 className="appearance-none bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-10 py-2 text-sm focus:outline-none focus:border-brand transition-all cursor-pointer"
               >
                 <option value="All">All Categories</option>
-                {blogCategories.map(cat => (
+                {categories.map(cat => (
                   <option key={cat} value={cat}>{cat}</option>
                 ))}
               </select>

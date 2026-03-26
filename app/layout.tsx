@@ -9,6 +9,9 @@ const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 export const metadata: Metadata = {
   title: '3dots | Your Virtual CTO',
   description: 'We handle all the software development domain of any company. Software Development, Startup Launch Pad, Workflow Automation.',
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({

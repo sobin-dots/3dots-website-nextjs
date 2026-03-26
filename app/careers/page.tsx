@@ -3,18 +3,19 @@ import Footer from "@/components/Footer";
 import HeroSection from "./components/HeroSection";
 import CultureSection from "./components/CultureSection";
 import PositionsSection from "./components/PositionsSection";
+import PerksShowcase from "@/components/PerksShowcase";
 
 export default function CareersPage() {
     return (
-         <main className="min-h-screen  overflow-hidden text-slate-800 pb-0 bg-[#F4F6FB]">
+         <main className="min-h-screen overflow-hidden text-slate-800 pb-0 bg-[#F4F6FB]">
             <Navbar />
 
             <HeroSection />
-
             <CultureSection />
 
-            <PositionsSection />
+            <PerksShowcase />
 
+            <PositionsSection />
 
             <Footer />
         </main>

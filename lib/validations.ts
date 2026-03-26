@@ -16,6 +16,14 @@ export const blogPostSchema = z.object({
 
 export type BlogPostInput = z.infer<typeof blogPostSchema>;
 
+// Blog Category Validation
+export const blogCategorySchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  slug: z.string().min(2, "Slug must be at least 2 characters").regex(/^[a-z0-9-]+$/, "Slug must be lowercase alphanumeric with hyphens"),
+});
+
+export type BlogCategoryInput = z.infer<typeof blogCategorySchema>;
+
 export const commentSchema = z.object({
   postId: z.string(),
   author: z.string().min(2, "Name is required"),

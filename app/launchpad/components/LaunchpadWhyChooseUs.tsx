@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function LaunchpadWhyChooseUs() {
     return (
         <section className="py-24 px-6 bg-slate-800 text-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-brand rounded-full mix-blend-screen opacity-20 blur-[100px]"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 rounded-full mix-blend-screen opacity-20 blur-[100px]"></div>
             <div className="max-w-[1400px] mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
@@ -15,7 +15,7 @@ export default function LaunchpadWhyChooseUs() {
                     viewport={{ once: true }}
                 >
                     <h2 className="text-4xl md:text-5xl font-light tracking-tight mb-8">
-                        Why Should You <br /><span className="font-medium text-brand mt-2 block">Choose Us?</span>
+                        Why Should You <br /><span className="font-medium  mt-2 block">Choose Us?</span>
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                         {[

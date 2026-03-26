@@ -39,7 +39,7 @@ const services: ServiceItem[] = [
 export default function ServicesSectionVar6() {
     return (
         <section className="py-24 px-6 max-w-[1240px] mx-auto bg-white">
-            <div className="text-center mb-20 max-w-2xl mx-auto flex flex-col items-center">
+            <div className="text-center mb-20 max-w-3xl mx-auto flex flex-col items-center">
                 
                 <h2 className="text-4xl md:text-5xl font-light tracking-tight text-slate-800 mb-6">
                     Engineering <span className="font-semibold  ">Excellence.</span>
