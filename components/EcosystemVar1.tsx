@@ -24,7 +24,7 @@ export default function EcosystemVar1() {
                     </div>
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-slate-800 tracking-normal leading-[1.3] md:leading-[1.3] mb-8">
                         Beyond Software — <br />
-                        <span className="font-medium text-secondary">Building an Ecosystem</span>
+                        <span className="font-medium ">Building an Ecosystem</span>
                     </h2>
                     <p className="text-slate-600 font-light text-lg mb-6 leading-relaxed max-w-lg">
                         3Dots is not just a software company. We are building a community-driven ecosystem that supports builders at every stage.

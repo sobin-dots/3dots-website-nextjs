@@ -21,7 +21,6 @@ export default function Footer() {
             title: "Quick Links",
             links: [
                 { name: "Startup Launchpad", href: "/launchpad" },
-                { name: "Download Our Profile", href: "/3dots-profile.pdf" },
                 { name: "Careers", href: "/careers" },
             ]
         },

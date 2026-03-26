@@ -52,11 +52,11 @@ export default function ProcessSection() {
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-y-24 lg:gap-0 lg:flex lg:justify-between items-center relative z-10 w-full px-4">
                         {steps.map((step, idx) => {
-                            const isOdd = idx % 2 !== 0; // Above or below for alternate items
+                            const isTop = idx % 2 === 0; // Above or below for alternate items
                             return (
                                 <motion.div 
                                     key={idx}
-                                    initial={{ opacity: 0, y: isOdd ? 40 : -40 }}
+                                    initial={{ opacity: 0, y: isTop ? -40 : 40 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 1, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                                     className="flex flex-col items-center relative lg:w-[20%]"
@@ -64,7 +64,7 @@ export default function ProcessSection() {
                                     {/* Content (Desktop: Alternating Above/Below) */}
                                     <div className={`
                                         lg:absolute flex flex-col items-center lg:items-start text-center lg:text-left w-full
-                                        ${isOdd ? 'lg:top-[-160px]' : 'lg:bottom-[-160px]'}
+                                        ${isTop ? 'lg:top-[-160px]' : 'lg:bottom-[-160px]'}
                                     `}>
                                         <div className="flex items-center gap-2 mb-3">
                                             <span className="text-[10px] font-black text-brand tracking-widest uppercase opacity-40">{step.num}</span>
@@ -88,8 +88,8 @@ export default function ProcessSection() {
                                         
                                         {/* Vertical connector line (Desktop only) */}
                                         <div className={`
-                                            hidden lg:block absolute w-[1px] bg-brand/20 h-24 pointer-events-none
-                                            ${isOdd ? 'bottom-16' : 'top-16'}
+                                            hidden lg:block absolute w-px bg-brand/20 h-24 pointer-events-none
+                                            ${isTop ? 'bottom-16' : 'top-16'}
                                         `} />
                                     </div>
                                 </motion.div>
@@ -105,9 +105,9 @@ export default function ProcessSection() {
                     className="mt-40 flex justify-center"
                 >
                     <span className="text-[10px] text-slate-400 font-medium uppercase tracking-[0.3em] flex items-center gap-4">
-                        <div className="w-6 h-[1px] bg-slate-200" />
+                        <div className="w-6 h-px bg-slate-200" />
                         Continuous Improvement Cycle
-                        <div className="w-6 h-[1px] bg-slate-200" />
+                        <div className="w-6 h-px bg-slate-200" />
                     </span>
                 </motion.div>
             </div>
