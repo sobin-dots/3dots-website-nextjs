@@ -144,10 +144,10 @@ exports.Prisma.PostScalarFieldEnum = {
   date: 'date',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  authorId: 'authorId',
   dislikes: 'dislikes',
   likes: 'likes',
-  tags: 'tags'
+  tags: 'tags',
+  authorId: 'authorId'
 };
 
 exports.Prisma.CommentScalarFieldEnum = {
@@ -168,17 +168,17 @@ exports.Prisma.BlogCategoryScalarFieldEnum = {
 
 exports.Prisma.JobScalarFieldEnum = {
   id: 'id',
-  slug: 'slug',
   title: 'title',
   tag: 'tag',
-  type: 'type',
-  location: 'location',
-  about: 'about',
   description: 'description',
-  sections: 'sections',
   active: 'active',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  about: 'about',
+  location: 'location',
+  sections: 'sections',
+  slug: 'slug',
+  type: 'type'
 };
 
 exports.Prisma.JobApplicationScalarFieldEnum = {
@@ -208,12 +208,12 @@ exports.Prisma.LaunchpadApplicationScalarFieldEnum = {
   id: 'id',
   fullName: 'fullName',
   email: 'email',
-  startupName: 'startupName',
   description: 'description',
-  mobileNumber: 'mobileNumber',
-  category: 'category',
   status: 'status',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  category: 'category',
+  mobileNumber: 'mobileNumber',
+  startupName: 'startupName'
 };
 
 exports.Prisma.ServiceScalarFieldEnum = {
@@ -264,6 +264,13 @@ exports.Prisma.AppointmentScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.NewsletterSubscriberScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  status: 'status',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -303,7 +310,8 @@ exports.Prisma.ModelName = {
   Service: 'Service',
   TeamMember: 'TeamMember',
   Expert: 'Expert',
-  Appointment: 'Appointment'
+  Appointment: 'Appointment',
+  NewsletterSubscriber: 'NewsletterSubscriber'
 };
 
 /**

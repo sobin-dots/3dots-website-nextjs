@@ -5,12 +5,14 @@ import { blogCategorySchema } from "@/lib/validations";
 
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const session = await auth();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const { id } = await params;
 
   try {
     const json = await req.json();
@@ -26,7 +28,7 @@ export async function PUT(
     const existing = await prisma.blogCategory.findFirst({
       where: {
         OR: [{ name }, { slug }],
-        NOT: { id: params.id },
+        NOT: { id },
       },
     });
 
@@ -37,7 +39,7 @@ export async function PUT(
     }
 
     const category = await prisma.blogCategory.update({
-      where: { id: params.id },
+      where: { id },
       data: { name, slug },
     });
     return NextResponse.json(category);
@@ -49,16 +51,18 @@ export async function PUT(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const session = await auth();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const { id } = await params;
+
   try {
     await prisma.blogCategory.delete({
-      where: { id: params.id },
+      where: { id },
     });
     return NextResponse.json({ message: "Category deleted" });
   } catch {
