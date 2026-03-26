@@ -11,7 +11,8 @@ export async function GET() {
       orderBy: { createdAt: "desc" },
     });
     return NextResponse.json(jobs);
-  } catch (_error) {
+  } catch (error) {
+    console.error("GET Careers Error:", error);
     return NextResponse.json({ error: "Failed to fetch jobs" }, { status: 500 });
   }
 }
@@ -42,7 +43,17 @@ export async function POST(req: Request) {
       data: result.data,
     });
     return NextResponse.json(job);
-  } catch (_error) {
-    return NextResponse.json({ error: "Failed to create job" }, { status: 500 });
+  } catch (error: any) {
+    console.error("DEBUG JOB POST ERROR:", error);
+    // Log Prisma error code if it exists
+    if (error.code) {
+      console.error("Prisma Error Code:", error.code);
+      console.error("Prisma Meta:", error.meta);
+    }
+    return NextResponse.json({ 
+      error: "Failed to create job", 
+      details: error.message || String(error),
+      code: error.code
+    }, { status: 500 });
   }
 }

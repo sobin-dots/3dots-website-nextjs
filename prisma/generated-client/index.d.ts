@@ -6569,6 +6569,7 @@ export namespace Prisma {
     location: string | null
     slug: string | null
     type: string | null
+    howToApply: string | null
   }
 
   export type JobMaxAggregateOutputType = {
@@ -6583,6 +6584,7 @@ export namespace Prisma {
     location: string | null
     slug: string | null
     type: string | null
+    howToApply: string | null
   }
 
   export type JobCountAggregateOutputType = {
@@ -6598,6 +6600,7 @@ export namespace Prisma {
     sections: number
     slug: number
     type: number
+    howToApply: number
     _all: number
   }
 
@@ -6614,6 +6617,7 @@ export namespace Prisma {
     location?: true
     slug?: true
     type?: true
+    howToApply?: true
   }
 
   export type JobMaxAggregateInputType = {
@@ -6628,6 +6632,7 @@ export namespace Prisma {
     location?: true
     slug?: true
     type?: true
+    howToApply?: true
   }
 
   export type JobCountAggregateInputType = {
@@ -6643,6 +6648,7 @@ export namespace Prisma {
     sections?: true
     slug?: true
     type?: true
+    howToApply?: true
     _all?: true
   }
 
@@ -6731,6 +6737,7 @@ export namespace Prisma {
     sections: JsonValue | null
     slug: string
     type: string
+    howToApply: string | null
     _count: JobCountAggregateOutputType | null
     _min: JobMinAggregateOutputType | null
     _max: JobMaxAggregateOutputType | null
@@ -6763,6 +6770,7 @@ export namespace Prisma {
     sections?: boolean
     slug?: boolean
     type?: boolean
+    howToApply?: boolean
     applications?: boolean | Job$applicationsArgs<ExtArgs>
     _count?: boolean | JobCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["job"]>
@@ -6780,6 +6788,7 @@ export namespace Prisma {
     sections?: boolean
     slug?: boolean
     type?: boolean
+    howToApply?: boolean
   }, ExtArgs["result"]["job"]>
 
   export type JobSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6795,6 +6804,7 @@ export namespace Prisma {
     sections?: boolean
     slug?: boolean
     type?: boolean
+    howToApply?: boolean
   }, ExtArgs["result"]["job"]>
 
   export type JobSelectScalar = {
@@ -6810,9 +6820,10 @@ export namespace Prisma {
     sections?: boolean
     slug?: boolean
     type?: boolean
+    howToApply?: boolean
   }
 
-  export type JobOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "tag" | "description" | "active" | "createdAt" | "updatedAt" | "about" | "location" | "sections" | "slug" | "type", ExtArgs["result"]["job"]>
+  export type JobOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "tag" | "description" | "active" | "createdAt" | "updatedAt" | "about" | "location" | "sections" | "slug" | "type" | "howToApply", ExtArgs["result"]["job"]>
   export type JobInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     applications?: boolean | Job$applicationsArgs<ExtArgs>
     _count?: boolean | JobCountOutputTypeDefaultArgs<ExtArgs>
@@ -6838,6 +6849,7 @@ export namespace Prisma {
       sections: Prisma.JsonValue | null
       slug: string
       type: string
+      howToApply: string | null
     }, ExtArgs["result"]["job"]>
     composites: {}
   }
@@ -7274,6 +7286,7 @@ export namespace Prisma {
     readonly sections: FieldRef<"Job", 'Json'>
     readonly slug: FieldRef<"Job", 'String'>
     readonly type: FieldRef<"Job", 'String'>
+    readonly howToApply: FieldRef<"Job", 'String'>
   }
     
 
@@ -7730,6 +7743,7 @@ export namespace Prisma {
     additionalInfo: string | null
     status: string | null
     createdAt: Date | null
+    position: string | null
   }
 
   export type JobApplicationMaxAggregateOutputType = {
@@ -7743,6 +7757,7 @@ export namespace Prisma {
     additionalInfo: string | null
     status: string | null
     createdAt: Date | null
+    position: string | null
   }
 
   export type JobApplicationCountAggregateOutputType = {
@@ -7756,6 +7771,7 @@ export namespace Prisma {
     additionalInfo: number
     status: number
     createdAt: number
+    position: number
     _all: number
   }
 
@@ -7771,6 +7787,7 @@ export namespace Prisma {
     additionalInfo?: true
     status?: true
     createdAt?: true
+    position?: true
   }
 
   export type JobApplicationMaxAggregateInputType = {
@@ -7784,6 +7801,7 @@ export namespace Prisma {
     additionalInfo?: true
     status?: true
     createdAt?: true
+    position?: true
   }
 
   export type JobApplicationCountAggregateInputType = {
@@ -7797,6 +7815,7 @@ export namespace Prisma {
     additionalInfo?: true
     status?: true
     createdAt?: true
+    position?: true
     _all?: true
   }
 
@@ -7874,7 +7893,7 @@ export namespace Prisma {
 
   export type JobApplicationGroupByOutputType = {
     id: string
-    jobId: string
+    jobId: string | null
     fullName: string
     email: string
     phone: string | null
@@ -7883,6 +7902,7 @@ export namespace Prisma {
     additionalInfo: string | null
     status: string
     createdAt: Date
+    position: string | null
     _count: JobApplicationCountAggregateOutputType | null
     _min: JobApplicationMinAggregateOutputType | null
     _max: JobApplicationMaxAggregateOutputType | null
@@ -7913,7 +7933,8 @@ export namespace Prisma {
     additionalInfo?: boolean
     status?: boolean
     createdAt?: boolean
-    job?: boolean | JobDefaultArgs<ExtArgs>
+    position?: boolean
+    job?: boolean | JobApplication$jobArgs<ExtArgs>
   }, ExtArgs["result"]["jobApplication"]>
 
   export type JobApplicationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7927,7 +7948,8 @@ export namespace Prisma {
     additionalInfo?: boolean
     status?: boolean
     createdAt?: boolean
-    job?: boolean | JobDefaultArgs<ExtArgs>
+    position?: boolean
+    job?: boolean | JobApplication$jobArgs<ExtArgs>
   }, ExtArgs["result"]["jobApplication"]>
 
   export type JobApplicationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7941,7 +7963,8 @@ export namespace Prisma {
     additionalInfo?: boolean
     status?: boolean
     createdAt?: boolean
-    job?: boolean | JobDefaultArgs<ExtArgs>
+    position?: boolean
+    job?: boolean | JobApplication$jobArgs<ExtArgs>
   }, ExtArgs["result"]["jobApplication"]>
 
   export type JobApplicationSelectScalar = {
@@ -7955,27 +7978,28 @@ export namespace Prisma {
     additionalInfo?: boolean
     status?: boolean
     createdAt?: boolean
+    position?: boolean
   }
 
-  export type JobApplicationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "jobId" | "fullName" | "email" | "phone" | "resumeUrl" | "coverLetter" | "additionalInfo" | "status" | "createdAt", ExtArgs["result"]["jobApplication"]>
+  export type JobApplicationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "jobId" | "fullName" | "email" | "phone" | "resumeUrl" | "coverLetter" | "additionalInfo" | "status" | "createdAt" | "position", ExtArgs["result"]["jobApplication"]>
   export type JobApplicationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    job?: boolean | JobDefaultArgs<ExtArgs>
+    job?: boolean | JobApplication$jobArgs<ExtArgs>
   }
   export type JobApplicationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    job?: boolean | JobDefaultArgs<ExtArgs>
+    job?: boolean | JobApplication$jobArgs<ExtArgs>
   }
   export type JobApplicationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    job?: boolean | JobDefaultArgs<ExtArgs>
+    job?: boolean | JobApplication$jobArgs<ExtArgs>
   }
 
   export type $JobApplicationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "JobApplication"
     objects: {
-      job: Prisma.$JobPayload<ExtArgs>
+      job: Prisma.$JobPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      jobId: string
+      jobId: string | null
       fullName: string
       email: string
       phone: string | null
@@ -7984,6 +8008,7 @@ export namespace Prisma {
       additionalInfo: string | null
       status: string
       createdAt: Date
+      position: string | null
     }, ExtArgs["result"]["jobApplication"]>
     composites: {}
   }
@@ -8378,7 +8403,7 @@ export namespace Prisma {
    */
   export interface Prisma__JobApplicationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    job<T extends JobDefaultArgs<ExtArgs> = {}>(args?: Subset<T, JobDefaultArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    job<T extends JobApplication$jobArgs<ExtArgs> = {}>(args?: Subset<T, JobApplication$jobArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8418,6 +8443,7 @@ export namespace Prisma {
     readonly additionalInfo: FieldRef<"JobApplication", 'String'>
     readonly status: FieldRef<"JobApplication", 'String'>
     readonly createdAt: FieldRef<"JobApplication", 'DateTime'>
+    readonly position: FieldRef<"JobApplication", 'String'>
   }
     
 
@@ -8816,6 +8842,25 @@ export namespace Prisma {
      * Limit how many JobApplications to delete.
      */
     limit?: number
+  }
+
+  /**
+   * JobApplication.job
+   */
+  export type JobApplication$jobArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobInclude<ExtArgs> | null
+    where?: JobWhereInput
   }
 
   /**
@@ -16354,7 +16399,8 @@ export namespace Prisma {
     location: 'location',
     sections: 'sections',
     slug: 'slug',
-    type: 'type'
+    type: 'type',
+    howToApply: 'howToApply'
   };
 
   export type JobScalarFieldEnum = (typeof JobScalarFieldEnum)[keyof typeof JobScalarFieldEnum]
@@ -16370,7 +16416,8 @@ export namespace Prisma {
     coverLetter: 'coverLetter',
     additionalInfo: 'additionalInfo',
     status: 'status',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    position: 'position'
   };
 
   export type JobApplicationScalarFieldEnum = (typeof JobApplicationScalarFieldEnum)[keyof typeof JobApplicationScalarFieldEnum]
@@ -16908,6 +16955,7 @@ export namespace Prisma {
     sections?: JsonNullableFilter<"Job">
     slug?: StringFilter<"Job"> | string
     type?: StringFilter<"Job"> | string
+    howToApply?: StringNullableFilter<"Job"> | string | null
     applications?: JobApplicationListRelationFilter
   }
 
@@ -16924,6 +16972,7 @@ export namespace Prisma {
     sections?: SortOrderInput | SortOrder
     slug?: SortOrder
     type?: SortOrder
+    howToApply?: SortOrderInput | SortOrder
     applications?: JobApplicationOrderByRelationAggregateInput
   }
 
@@ -16943,6 +16992,7 @@ export namespace Prisma {
     location?: StringFilter<"Job"> | string
     sections?: JsonNullableFilter<"Job">
     type?: StringFilter<"Job"> | string
+    howToApply?: StringNullableFilter<"Job"> | string | null
     applications?: JobApplicationListRelationFilter
   }, "id" | "slug">
 
@@ -16959,6 +17009,7 @@ export namespace Prisma {
     sections?: SortOrderInput | SortOrder
     slug?: SortOrder
     type?: SortOrder
+    howToApply?: SortOrderInput | SortOrder
     _count?: JobCountOrderByAggregateInput
     _max?: JobMaxOrderByAggregateInput
     _min?: JobMinOrderByAggregateInput
@@ -16980,6 +17031,7 @@ export namespace Prisma {
     sections?: JsonNullableWithAggregatesFilter<"Job">
     slug?: StringWithAggregatesFilter<"Job"> | string
     type?: StringWithAggregatesFilter<"Job"> | string
+    howToApply?: StringNullableWithAggregatesFilter<"Job"> | string | null
   }
 
   export type JobApplicationWhereInput = {
@@ -16987,7 +17039,7 @@ export namespace Prisma {
     OR?: JobApplicationWhereInput[]
     NOT?: JobApplicationWhereInput | JobApplicationWhereInput[]
     id?: StringFilter<"JobApplication"> | string
-    jobId?: StringFilter<"JobApplication"> | string
+    jobId?: StringNullableFilter<"JobApplication"> | string | null
     fullName?: StringFilter<"JobApplication"> | string
     email?: StringFilter<"JobApplication"> | string
     phone?: StringNullableFilter<"JobApplication"> | string | null
@@ -16996,12 +17048,13 @@ export namespace Prisma {
     additionalInfo?: StringNullableFilter<"JobApplication"> | string | null
     status?: StringFilter<"JobApplication"> | string
     createdAt?: DateTimeFilter<"JobApplication"> | Date | string
-    job?: XOR<JobScalarRelationFilter, JobWhereInput>
+    position?: StringNullableFilter<"JobApplication"> | string | null
+    job?: XOR<JobNullableScalarRelationFilter, JobWhereInput> | null
   }
 
   export type JobApplicationOrderByWithRelationInput = {
     id?: SortOrder
-    jobId?: SortOrder
+    jobId?: SortOrderInput | SortOrder
     fullName?: SortOrder
     email?: SortOrder
     phone?: SortOrderInput | SortOrder
@@ -17010,6 +17063,7 @@ export namespace Prisma {
     additionalInfo?: SortOrderInput | SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    position?: SortOrderInput | SortOrder
     job?: JobOrderByWithRelationInput
   }
 
@@ -17018,7 +17072,7 @@ export namespace Prisma {
     AND?: JobApplicationWhereInput | JobApplicationWhereInput[]
     OR?: JobApplicationWhereInput[]
     NOT?: JobApplicationWhereInput | JobApplicationWhereInput[]
-    jobId?: StringFilter<"JobApplication"> | string
+    jobId?: StringNullableFilter<"JobApplication"> | string | null
     fullName?: StringFilter<"JobApplication"> | string
     email?: StringFilter<"JobApplication"> | string
     phone?: StringNullableFilter<"JobApplication"> | string | null
@@ -17027,12 +17081,13 @@ export namespace Prisma {
     additionalInfo?: StringNullableFilter<"JobApplication"> | string | null
     status?: StringFilter<"JobApplication"> | string
     createdAt?: DateTimeFilter<"JobApplication"> | Date | string
-    job?: XOR<JobScalarRelationFilter, JobWhereInput>
+    position?: StringNullableFilter<"JobApplication"> | string | null
+    job?: XOR<JobNullableScalarRelationFilter, JobWhereInput> | null
   }, "id">
 
   export type JobApplicationOrderByWithAggregationInput = {
     id?: SortOrder
-    jobId?: SortOrder
+    jobId?: SortOrderInput | SortOrder
     fullName?: SortOrder
     email?: SortOrder
     phone?: SortOrderInput | SortOrder
@@ -17041,6 +17096,7 @@ export namespace Prisma {
     additionalInfo?: SortOrderInput | SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    position?: SortOrderInput | SortOrder
     _count?: JobApplicationCountOrderByAggregateInput
     _max?: JobApplicationMaxOrderByAggregateInput
     _min?: JobApplicationMinOrderByAggregateInput
@@ -17051,7 +17107,7 @@ export namespace Prisma {
     OR?: JobApplicationScalarWhereWithAggregatesInput[]
     NOT?: JobApplicationScalarWhereWithAggregatesInput | JobApplicationScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"JobApplication"> | string
-    jobId?: StringWithAggregatesFilter<"JobApplication"> | string
+    jobId?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
     fullName?: StringWithAggregatesFilter<"JobApplication"> | string
     email?: StringWithAggregatesFilter<"JobApplication"> | string
     phone?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
@@ -17060,6 +17116,7 @@ export namespace Prisma {
     additionalInfo?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
     status?: StringWithAggregatesFilter<"JobApplication"> | string
     createdAt?: DateTimeWithAggregatesFilter<"JobApplication"> | Date | string
+    position?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
   }
 
   export type ContactInquiryWhereInput = {
@@ -17880,6 +17937,7 @@ export namespace Prisma {
     sections?: NullableJsonNullValueInput | InputJsonValue
     slug?: string
     type?: string
+    howToApply?: string | null
     applications?: JobApplicationCreateNestedManyWithoutJobInput
   }
 
@@ -17896,6 +17954,7 @@ export namespace Prisma {
     sections?: NullableJsonNullValueInput | InputJsonValue
     slug?: string
     type?: string
+    howToApply?: string | null
     applications?: JobApplicationUncheckedCreateNestedManyWithoutJobInput
   }
 
@@ -17912,6 +17971,7 @@ export namespace Prisma {
     sections?: NullableJsonNullValueInput | InputJsonValue
     slug?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    howToApply?: NullableStringFieldUpdateOperationsInput | string | null
     applications?: JobApplicationUpdateManyWithoutJobNestedInput
   }
 
@@ -17928,6 +17988,7 @@ export namespace Prisma {
     sections?: NullableJsonNullValueInput | InputJsonValue
     slug?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    howToApply?: NullableStringFieldUpdateOperationsInput | string | null
     applications?: JobApplicationUncheckedUpdateManyWithoutJobNestedInput
   }
 
@@ -17944,6 +18005,7 @@ export namespace Prisma {
     sections?: NullableJsonNullValueInput | InputJsonValue
     slug?: string
     type?: string
+    howToApply?: string | null
   }
 
   export type JobUpdateManyMutationInput = {
@@ -17959,6 +18021,7 @@ export namespace Prisma {
     sections?: NullableJsonNullValueInput | InputJsonValue
     slug?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    howToApply?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobUncheckedUpdateManyInput = {
@@ -17974,6 +18037,7 @@ export namespace Prisma {
     sections?: NullableJsonNullValueInput | InputJsonValue
     slug?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    howToApply?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationCreateInput = {
@@ -17986,12 +18050,13 @@ export namespace Prisma {
     additionalInfo?: string | null
     status?: string
     createdAt?: Date | string
-    job: JobCreateNestedOneWithoutApplicationsInput
+    position?: string | null
+    job?: JobCreateNestedOneWithoutApplicationsInput
   }
 
   export type JobApplicationUncheckedCreateInput = {
     id?: string
-    jobId: string
+    jobId?: string | null
     fullName: string
     email: string
     phone?: string | null
@@ -18000,6 +18065,7 @@ export namespace Prisma {
     additionalInfo?: string | null
     status?: string
     createdAt?: Date | string
+    position?: string | null
   }
 
   export type JobApplicationUpdateInput = {
@@ -18012,12 +18078,13 @@ export namespace Prisma {
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    job?: JobUpdateOneRequiredWithoutApplicationsNestedInput
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    job?: JobUpdateOneWithoutApplicationsNestedInput
   }
 
   export type JobApplicationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    jobId?: StringFieldUpdateOperationsInput | string
+    jobId?: NullableStringFieldUpdateOperationsInput | string | null
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18026,11 +18093,12 @@ export namespace Prisma {
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    position?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationCreateManyInput = {
     id?: string
-    jobId: string
+    jobId?: string | null
     fullName: string
     email: string
     phone?: string | null
@@ -18039,6 +18107,7 @@ export namespace Prisma {
     additionalInfo?: string | null
     status?: string
     createdAt?: Date | string
+    position?: string | null
   }
 
   export type JobApplicationUpdateManyMutationInput = {
@@ -18051,11 +18120,12 @@ export namespace Prisma {
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    position?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    jobId?: StringFieldUpdateOperationsInput | string
+    jobId?: NullableStringFieldUpdateOperationsInput | string | null
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18064,6 +18134,7 @@ export namespace Prisma {
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    position?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContactInquiryCreateInput = {
@@ -18974,6 +19045,7 @@ export namespace Prisma {
     sections?: SortOrder
     slug?: SortOrder
     type?: SortOrder
+    howToApply?: SortOrder
   }
 
   export type JobMaxOrderByAggregateInput = {
@@ -18988,6 +19060,7 @@ export namespace Prisma {
     location?: SortOrder
     slug?: SortOrder
     type?: SortOrder
+    howToApply?: SortOrder
   }
 
   export type JobMinOrderByAggregateInput = {
@@ -19002,6 +19075,7 @@ export namespace Prisma {
     location?: SortOrder
     slug?: SortOrder
     type?: SortOrder
+    howToApply?: SortOrder
   }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -19030,9 +19104,9 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
-  export type JobScalarRelationFilter = {
-    is?: JobWhereInput
-    isNot?: JobWhereInput
+  export type JobNullableScalarRelationFilter = {
+    is?: JobWhereInput | null
+    isNot?: JobWhereInput | null
   }
 
   export type JobApplicationCountOrderByAggregateInput = {
@@ -19046,6 +19120,7 @@ export namespace Prisma {
     additionalInfo?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    position?: SortOrder
   }
 
   export type JobApplicationMaxOrderByAggregateInput = {
@@ -19059,6 +19134,7 @@ export namespace Prisma {
     additionalInfo?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    position?: SortOrder
   }
 
   export type JobApplicationMinOrderByAggregateInput = {
@@ -19072,6 +19148,7 @@ export namespace Prisma {
     additionalInfo?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    position?: SortOrder
   }
 
   export type ContactInquiryCountOrderByAggregateInput = {
@@ -19517,10 +19594,12 @@ export namespace Prisma {
     connect?: JobWhereUniqueInput
   }
 
-  export type JobUpdateOneRequiredWithoutApplicationsNestedInput = {
+  export type JobUpdateOneWithoutApplicationsNestedInput = {
     create?: XOR<JobCreateWithoutApplicationsInput, JobUncheckedCreateWithoutApplicationsInput>
     connectOrCreate?: JobCreateOrConnectWithoutApplicationsInput
     upsert?: JobUpsertWithoutApplicationsInput
+    disconnect?: JobWhereInput | boolean
+    delete?: JobWhereInput | boolean
     connect?: JobWhereUniqueInput
     update?: XOR<XOR<JobUpdateToOneWithWhereWithoutApplicationsInput, JobUpdateWithoutApplicationsInput>, JobUncheckedUpdateWithoutApplicationsInput>
   }
@@ -20061,6 +20140,7 @@ export namespace Prisma {
     additionalInfo?: string | null
     status?: string
     createdAt?: Date | string
+    position?: string | null
   }
 
   export type JobApplicationUncheckedCreateWithoutJobInput = {
@@ -20073,6 +20153,7 @@ export namespace Prisma {
     additionalInfo?: string | null
     status?: string
     createdAt?: Date | string
+    position?: string | null
   }
 
   export type JobApplicationCreateOrConnectWithoutJobInput = {
@@ -20106,7 +20187,7 @@ export namespace Prisma {
     OR?: JobApplicationScalarWhereInput[]
     NOT?: JobApplicationScalarWhereInput | JobApplicationScalarWhereInput[]
     id?: StringFilter<"JobApplication"> | string
-    jobId?: StringFilter<"JobApplication"> | string
+    jobId?: StringNullableFilter<"JobApplication"> | string | null
     fullName?: StringFilter<"JobApplication"> | string
     email?: StringFilter<"JobApplication"> | string
     phone?: StringNullableFilter<"JobApplication"> | string | null
@@ -20115,6 +20196,7 @@ export namespace Prisma {
     additionalInfo?: StringNullableFilter<"JobApplication"> | string | null
     status?: StringFilter<"JobApplication"> | string
     createdAt?: DateTimeFilter<"JobApplication"> | Date | string
+    position?: StringNullableFilter<"JobApplication"> | string | null
   }
 
   export type JobCreateWithoutApplicationsInput = {
@@ -20130,6 +20212,7 @@ export namespace Prisma {
     sections?: NullableJsonNullValueInput | InputJsonValue
     slug?: string
     type?: string
+    howToApply?: string | null
   }
 
   export type JobUncheckedCreateWithoutApplicationsInput = {
@@ -20145,6 +20228,7 @@ export namespace Prisma {
     sections?: NullableJsonNullValueInput | InputJsonValue
     slug?: string
     type?: string
+    howToApply?: string | null
   }
 
   export type JobCreateOrConnectWithoutApplicationsInput = {
@@ -20176,6 +20260,7 @@ export namespace Prisma {
     sections?: NullableJsonNullValueInput | InputJsonValue
     slug?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    howToApply?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobUncheckedUpdateWithoutApplicationsInput = {
@@ -20191,6 +20276,7 @@ export namespace Prisma {
     sections?: NullableJsonNullValueInput | InputJsonValue
     slug?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    howToApply?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AppointmentCreateWithoutExpertInput = {
@@ -20427,6 +20513,7 @@ export namespace Prisma {
     additionalInfo?: string | null
     status?: string
     createdAt?: Date | string
+    position?: string | null
   }
 
   export type JobApplicationUpdateWithoutJobInput = {
@@ -20439,6 +20526,7 @@ export namespace Prisma {
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    position?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationUncheckedUpdateWithoutJobInput = {
@@ -20451,6 +20539,7 @@ export namespace Prisma {
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    position?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationUncheckedUpdateManyWithoutJobInput = {
@@ -20463,6 +20552,7 @@ export namespace Prisma {
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    position?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AppointmentCreateManyExpertInput = {

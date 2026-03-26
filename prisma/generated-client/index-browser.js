@@ -178,7 +178,8 @@ exports.Prisma.JobScalarFieldEnum = {
   location: 'location',
   sections: 'sections',
   slug: 'slug',
-  type: 'type'
+  type: 'type',
+  howToApply: 'howToApply'
 };
 
 exports.Prisma.JobApplicationScalarFieldEnum = {
@@ -191,7 +192,8 @@ exports.Prisma.JobApplicationScalarFieldEnum = {
   coverLetter: 'coverLetter',
   additionalInfo: 'additionalInfo',
   status: 'status',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  position: 'position'
 };
 
 exports.Prisma.ContactInquiryScalarFieldEnum = {

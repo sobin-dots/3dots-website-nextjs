@@ -47,8 +47,18 @@ export async function PUT(
       data: result.data,
     });
     return NextResponse.json(job);
-  } catch (error) {
-    return NextResponse.json({ error: "Failed to update job" }, { status: 500 });
+  } catch (error: any) {
+    console.error("DEBUG JOB PUT ERROR:", error);
+    // Log Prisma error code if it exists
+    if (error.code) {
+      console.error("Prisma Error Code:", error.code);
+      console.error("Prisma Meta:", error.meta);
+    }
+    return NextResponse.json({ 
+      error: "Failed to update job", 
+      details: error.message || String(error),
+      code: error.code
+    }, { status: 500 });
   }
 }
 

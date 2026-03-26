@@ -53,10 +53,14 @@ export default function JobForm({
         body: JSON.stringify(payload),
       });
 
-      if (!res.ok) throw new Error("Failed to save job");
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.details || errorData.error || "Failed to save job");
+      }
       onSave();
-    } catch (err) {
-      alert("Error saving job");
+    } catch (err: any) {
+      console.error("Save error:", err);
+      alert(`Error saving job: ${err.message}`);
     } finally {
       setLoading(false);
     }
