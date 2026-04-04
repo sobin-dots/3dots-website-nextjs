@@ -20,12 +20,8 @@ export default function Partners() {
                                 <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-slate-400 mt-2">Educational Partner</span>
                             </div>
                             <div className="flex flex-col items-center gap-4 group">
-                                <Image src="/picstol-logo.png" alt="Picstol" width={180} height={50} className="h-10 md:h-11 w-auto object-contain transition-transform duration-500 group-hover:scale-105" />
+                                <Image src="/picstol-logo.png" alt="Picstol" width={160} height={40} className="h-8 md:h-9 w-auto object-contain transition-transform duration-500 group-hover:scale-105" />
                                 <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-slate-400 mt-2">Media Partner</span>
-                            </div>
-                            <div className="flex flex-col items-center gap-4 group">
-                                <Image src="/bonafai-logo.png" alt="Bonafai" width={160} height={40} className="h-8 md:h-9 w-auto object-contain transition-transform duration-500 group-hover:scale-105" />
-                                <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-slate-400 mt-2">Branding Partner</span>
                             </div>
                             <div className="flex flex-col items-center gap-4 group">
                                 <Image src="/wizi-digital-logo.png" alt="wizi Digital" width={160} height={40} className="h-8 md:h-9 w-auto object-contain transition-transform duration-500 group-hover:scale-105" />
