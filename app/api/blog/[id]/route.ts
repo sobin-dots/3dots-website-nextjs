@@ -37,16 +37,33 @@ export async function PUT(
   try {
     const { id } = await params;
     const data = await req.json();
+
+    // ✅ Strip fields Prisma doesn't accept in update
+    const {
+      id: _id,
+      author,
+      comments,
+      createdAt,
+      updatedAt,
+      authorId,
+      ...updateData
+    } = data;
+
     const post = await prisma.post.update({
       where: { id },
       data: {
-        ...data,
-        date: data.date ? new Date(data.date) : undefined,
+        ...updateData,
+        date: updateData.date ? new Date(updateData.date) : undefined,
       },
     });
+
     return NextResponse.json(post);
   } catch (error) {
-    return NextResponse.json({ error: "Failed to update post" }, { status: 500 });
+    console.error("❌ Blog update error:", error); // ✅ always log
+    return NextResponse.json({ 
+      error: "Failed to update post",
+      msg: error
+    }, { status: 500 });
   }
 }
 
