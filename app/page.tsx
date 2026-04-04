@@ -11,6 +11,7 @@ import EcosystemVar1 from "@/components/EcosystemVar1";
 import NewsletterSection from "@/components/NewsletterSection";
 import Footer from "@/components/Footer";
 import AboutSectionVar2 from "@/components/AboutSectionVar2";
+import Partners from "@/components/Partners";
 
 export default function Home() {
   return (
@@ -43,7 +44,7 @@ export default function Home() {
 
       <NewsletterSection />
  
-
+      <Partners />
       <Footer />
     </main>
   );
