@@ -6,6 +6,7 @@ import MissionVisionSection from "./components/MissionVisionSection";
 import ValuesSection from "./components/ValuesSection";
 import LaunchpadSection from "@/components/LaunchpadSection";
 import EcosystemSection from "./components/EcosystemSection";
+import Partners from "@/components/Partners";
 
 export default function AboutPage() {
     return (
@@ -24,6 +25,8 @@ export default function AboutPage() {
 
             {/* <CtaSection /> */}
             <LaunchpadSection />
+
+            <Partners />
 
             <Footer />
         </main>
