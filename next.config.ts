@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "ignite.ie",
       },
+      {
+        protocol: "https",
+        hostname: "3dots.co",
+      }
     ],
   },
 };
