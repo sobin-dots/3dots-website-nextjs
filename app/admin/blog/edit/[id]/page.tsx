@@ -239,7 +239,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
               
               {formData.image && (
                 <div className="relative group aspect-video rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 mb-3">
-                  <Image src={formData.image} alt="Preview" fill className="object-cover" />
+                  <Image src={formData.image} alt="Preview" fill className="object-cover" unoptimized={true} />
                   <button 
                     type="button"
                     onClick={() => setFormData({ ...formData, image: "" })}

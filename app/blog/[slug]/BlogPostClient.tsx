@@ -246,6 +246,7 @@ export default function BlogPostClient({
               fill
               className="object-cover transition-transform duration-1000 group-hover:scale-105"
               priority
+              unoptimized={true}
             />
           </div>
         </motion.div>
@@ -448,7 +449,7 @@ export default function BlogPostClient({
                   {recentPosts.map((post) => (
                     <Link key={post.id} href={`/blog/${post.slug}`} className="group flex gap-4">
                       <div className="relative w-20 h-20 rounded-2xl overflow-hidden shrink-0 bg-slate-100">
-                        <Image src={post.image} alt={post.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <Image src={post.image} alt={post.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" unoptimized={true} />
                       </div>
                       <div className="flex flex-col justify-center">
                         <h4 className="text-sm font-medium text-slate-800 line-clamp-2 leading-snug group-hover:text-brand transition-colors mb-1">
