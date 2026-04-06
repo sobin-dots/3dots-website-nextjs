@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     // Create unique filename
     const extension = file.name.split(".").pop();
     const filename = `${uuidv4()}.${extension}`;
-    const uploadDir = join(process.cwd(), "public", "uploads");
+    const uploadDir = process.env.UPLOAD_DIR || join(process.cwd(), "public", "uploads");
     
     // Ensure directory exists
     try {
