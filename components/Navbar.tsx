@@ -27,7 +27,7 @@ export default function Navbar() {
                     <div className="text-3xl font-light tracking-tighter text-slate-800 relative z-50">
                         <Link href="/">
                             <Image
-                                src="/3dots-logo-1.png"
+                                src="/3dots-logo-1.png?v=2"
                                 alt="3dots Logo"
                                 width={128}
                                 height={40}
