@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { notFound } from "next/navigation";
 import BlogPostClient from "./BlogPostClient";
 import { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
-import { blogCategories } from "../data";
+
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -32,11 +33,25 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const { slug } = await params;
   
   const post = await prisma.post.findUnique({
-    where: { slug },
+    where: { 
+        slug,
+        status: "PUBLISHED"
+    },
+
+
     include: {
       author: {
-        select: { name: true, email: true, role: true }
+        select: { 
+          name: true, 
+          email: true, 
+          role: true,
+          image: true,
+          designation: true,
+          about: true,
+          socials: true
+        }
       },
+
       comments: {
         orderBy: {
           createdAt: "desc"
@@ -51,12 +66,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   // Fetch adjacent posts for navigation
   const prevPost = await prisma.post.findFirst({
-    where: { date: { lt: post.date } },
+    where: { 
+        date: { lt: post.date },
+        status: "PUBLISHED"
+    },
+
+
     orderBy: { date: "desc" }
   });
 
   const nextPost = await prisma.post.findFirst({
-    where: { date: { gt: post.date } },
+    where: { 
+        date: { gt: post.date },
+        status: "PUBLISHED"
+    },
+
+
     orderBy: { date: "asc" }
   });
 
@@ -75,21 +100,29 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     "keywords": post.tags?.join(", ") || ""
   };
 
-  const [recentPosts, allPosts] = await Promise.all([
+  const [recentPosts, allPosts, dbCategories] = await Promise.all([
     prisma.post.findMany({
-      where: { NOT: { id: post.id }, published: true },
+      where: { 
+        NOT: { id: post.id }, 
+        status: "PUBLISHED"
+      },
       orderBy: { date: 'desc' },
       take: 5,
     }),
     prisma.post.findMany({
-      where: { published: true },
+      where: { status: "PUBLISHED" },
       select: { category: true, tags: true }
+    }),
+    prisma.blogCategory.findMany({
+      select: { name: true }
     })
   ]);
 
+
   const categoryMap = new Map<string, number>();
-  // Initialize with all categories from our official list
-  blogCategories.forEach(cat => categoryMap.set(cat, 0));
+  // Initialize with database categories
+  dbCategories.forEach((cat:any) => categoryMap.set(cat.name, 0));
+
   
   allPosts.forEach((p: { category: string, tags: string[] }) => {
     categoryMap.set(p.category, (categoryMap.get(p.category) || 0) + 1);
@@ -109,8 +142,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     image: post.image || "/images/blog/default.jpg",
     authorName: post.author?.name || "Admin",
     authorRole: post.author?.role || "Editor",
-    authorImage: undefined,
+    authorDesignation: post.author?.designation,
+    authorImage: post.author?.image || "/images/blog/default-author.jpg",
+    authorAbout: post.author?.about,
+    authorSocials: post.author?.socials,
     tags: post.tags,
+
     likes: post.likes,
     dislikes: post.dislikes,
     date: post.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),

@@ -5,6 +5,8 @@ import { Plus, Edit2, Trash2, Search, ExternalLink, Filter, Calendar, User, Chev
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import Pagination from "../components/Pagination";
+import { isManager, blogStatuses } from "@/lib/rbac";
+
 
 interface Post {
   id: string;
@@ -12,9 +14,13 @@ interface Post {
   slug: string;
   category: string;
   authorName: string | null;
+  authorRole: string | null;
   published: boolean;
+  status: string;
+  reviewComment: string | null;
   date: string;
 }
+
 
 export default function BlogAdminPage() {
   const { data: session } = useSession();
@@ -57,8 +63,8 @@ export default function BlogAdminPage() {
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                          post.slug.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = categoryFilter === "All" || post.category === categoryFilter;
-    const matchesStatus = statusFilter === "All" || 
-                         (statusFilter === "Live" ? post.published : !post.published);
+    const matchesStatus = statusFilter === "All" || post.status === statusFilter;
+
     const matchesAuthor = authorFilter === "All" || 
                          (authorFilter === "My Posts" ? (post.authorName === session?.user?.name) : post.authorName === authorFilter);
     
@@ -144,9 +150,11 @@ export default function BlogAdminPage() {
                 className="appearance-none bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-10 py-2 text-sm focus:outline-none focus:border-brand transition-all cursor-pointer"
               >
                 <option value="All">All Status</option>
-                <option value="Live">Live</option>
-                <option value="Draft">Draft</option>
+                {blogStatuses.map(status => (
+                    <option key={status.value} value={status.value}>{status.label}</option>
+                ))}
               </select>
+
               <div className="absolute left-3.5 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-slate-400"></div>
               <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
             </div>
@@ -220,15 +228,26 @@ export default function BlogAdminPage() {
                     {new Date(post.date).toLocaleDateString()}
                   </td>
                   <td className="px-8 py-6">
-                    <span className={`inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider ${
-                      post.published ? "text-emerald-500" : "text-amber-500"
-                    }`}>
-                      <span className={`w-1.5 h-1.5 rounded-full ${post.published ? "bg-emerald-500" : "bg-amber-500"}`}></span>
-                      {post.published ? "Live" : "Draft"}
-                    </span>
+                    {(() => {
+                        const status = blogStatuses.find(s => s.value === post.status) || blogStatuses[0];
+                        return (
+                            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${status.color}`}>
+                                {status.label}
+                            </span>
+                        );
+                    })()}
                   </td>
+
                   <td className="px-8 py-6 text-right">
                     <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      {isManager(session?.user?.role) && post.status === "PENDING_REVIEW" && (
+                         <Link 
+                            href={`/admin/blog/review/${post.id}`} 
+                            className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-brand text-white rounded-lg hover:bg-brand-dark transition-all"
+                         >
+                            Review
+                         </Link>
+                      )}
                       <Link href={`/blog/${post.slug}`} target="_blank" className="p-2 text-slate-400 hover:text-brand transition-colors">
                         <ExternalLink className="w-4 h-4" />
                       </Link>
@@ -239,6 +258,7 @@ export default function BlogAdminPage() {
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
+
                   </td>
                 </tr>
               ))}

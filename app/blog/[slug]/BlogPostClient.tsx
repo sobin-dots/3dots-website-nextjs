@@ -3,7 +3,8 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import { ArrowLeft, Clock, Tag, ArrowRight, Share2, ThumbsUp, ThumbsDown, MessageSquare, Linkedin, Twitter, Facebook } from "lucide-react";
+import { ArrowLeft, Clock, Tag, ArrowRight, Share2, ThumbsUp, ThumbsDown, MessageSquare, Linkedin, Twitter, Facebook, Instagram, Globe } from "lucide-react";
+
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -20,8 +21,12 @@ type BlogPost = {
   content: string;
   authorName: string;
   authorRole: string;
+  authorDesignation?: string;
   authorImage?: string;
+  authorAbout?: string;
+  authorSocials?: any;
   tags: string[];
+
   likes: number;
   dislikes: number;
   comments?: Comment[];
@@ -168,7 +173,18 @@ export default function BlogPostClient({
     { name: 'Twitter', icon: Twitter, url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post.title)}`, color: 'hover:text-[#1DA1F2]' },
     { name: 'Facebook', icon: Facebook, url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, color: 'hover:text-[#4267B2]' },
   ];
+
+  const authorSocials = post.authorSocials || {};
+  const authorSocialLinks = [
+    { name: 'LinkedIn', icon: Linkedin, url: authorSocials.linkedin, color: 'hover:text-[#0077b5]' },
+    { name: 'Instagram', icon: Instagram, url: authorSocials.instagram, color: 'hover:text-[#E4405F]' },
+    { name: 'Twitter', icon: Twitter, url: authorSocials.twitter, color: 'hover:text-[#1DA1F2]' },
+    { name: 'Facebook', icon: Facebook, url: authorSocials.facebook, color: 'hover:text-[#4267B2]' },
+    { name: 'Website', icon: Globe, url: authorSocials.website, color: 'hover:text-brand' },
+  ].filter(link => link.url);
+
   return (
+
     <main className="min-h-screen bg-white text-slate-800 pb-0">
       <Navbar />
 
@@ -220,8 +236,9 @@ export default function BlogPostClient({
                 </div>
                 <div>
                   <p className="text-sm font-medium text-slate-900 leading-tight">{post.authorName || "3Dots Team"}</p>
-                  <p className="text-[11px] text-slate-400 font-light">{post.authorRole || "Editorial"}</p>
+                  <p className="text-[11px] text-slate-400 font-light">{post.authorDesignation || post.authorRole || "Editorial"}</p>
                 </div>
+
               </div>
               <div className="h-8 w-px bg-slate-100"></div>
               <div className="flex flex-col text-left">
@@ -315,19 +332,20 @@ export default function BlogPostClient({
                     )}
                   </div>
                   <div className="flex-1">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-brand mb-2">{post.authorRole || "Editorial"}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-brand mb-2">{post.authorDesignation || "Editorial Member"}</p>
                     <h4 className="text-2xl font-light text-slate-900 mb-2">{post.authorName || "3Dots Team"}</h4>
                     <p className="text-slate-500 font-light leading-relaxed mb-6">
-                      Passionate about {post.category.toLowerCase()} and building the future of technology with 3Dots. Sharing insights from years of experience in product development.
+                      {post.authorAbout || `Passionate about ${post.category.toLowerCase()} and building the future of technology with 3Dots. Sharing insights from years of experience in product development.`}
                     </p>
                     <div className="flex items-center justify-center md:justify-start gap-4">
-                       {socialLinks.map(link => (
+                       {authorSocialLinks.map(link => (
                         <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className={`text-slate-400 transition-colors ${link.color}`}>
                           <link.icon className="w-5 h-5" />
                         </a>
                       ))}
                     </div>
                   </div>
+
               </div>
 
               {/* Comment Section */}

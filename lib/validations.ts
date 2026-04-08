@@ -10,8 +10,11 @@ export const blogPostSchema = z.object({
   category: z.string().min(2, "Category is required"),
   readTime: z.string().min(1, "Read time is required"),
   published: z.boolean().default(false),
+  status: z.enum(["DRAFT", "PENDING_REVIEW", "CHANGES_REQUESTED", "REJECTED", "PUBLISHED"]).default("DRAFT"),
+  reviewComment: z.string().optional().nullable(),
   date: z.string().or(z.date()).optional(),
   tags: z.array(z.string()).optional(),
+
 });
 
 export type BlogPostInput = z.infer<typeof blogPostSchema>;
@@ -129,9 +132,32 @@ export type AppointmentInput = z.infer<typeof appointmentSchema>;
 export const userSchema = z.object({
   name: z.string().min(2, "Name is required").optional().nullable(),
   email: z.string().email("Invalid email address"),
+  employeeId: z.string().optional().nullable(),
   phone: z.string().optional().nullable(),
+
   password: z.string().min(6, "Password must be at least 6 characters").optional().or(z.literal("")),
-  role: z.string().min(2, "Role is required"),
+  role: z.enum([
+    "Admin", 
+    "Hr manager", 
+    "Content Manager", 
+    "Tech Manager", 
+    "Ops manager", 
+    "Content Team", 
+    "Dev Team", 
+    "Branding Team"
+  ]),
+
+  image: z.string().optional().nullable(),
+  about: z.string().max(2000, "About section is too long").refine((val) => {
+    if (!val) return true;
+    const words = val.trim().split(/\s+/).filter(w => w.length > 0).length;
+    return words <= 300;
+  }, "About section must be 300 words or less").optional().nullable(),
+
+  designation: z.string().optional().nullable(),
+  socials: z.record(z.string(), z.string()).optional().nullable(),
 });
+
+
 
 export type UserInput = z.infer<typeof userSchema>;

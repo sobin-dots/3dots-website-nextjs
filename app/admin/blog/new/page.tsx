@@ -6,10 +6,13 @@ import { ChevronLeft, Save, Image as ImageIcon, Loader2, AlertCircle, Upload, X,
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { isManager } from "@/lib/rbac";
 import RichTextEditor from "@/components/RichTextEditor";
 
 export default function NewBlogPostPage() {
   const router = useRouter();
+  const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
@@ -20,10 +23,22 @@ export default function NewBlogPostPage() {
     readTime: "5 min read",
     image: "/images/blog/default.jpg",
     published: false,
-    authorName: "Admin",
-    authorRole: "Editor",
+    status: "DRAFT",
+    authorName: "",
+    authorRole: "",
     tags: [] as string[],
   });
+
+  useEffect(() => {
+    if (session?.user) {
+      setFormData(prev => ({
+        ...prev,
+        authorName: session.user.name || "Admin",
+        authorRole: session.user.role || "Editor"
+      }));
+    }
+  }, [session]);
+
 
   const [categories, setCategories] = useState<any[]>([]);
 
@@ -102,12 +117,22 @@ export default function NewBlogPostPage() {
     setLoading(true);
     setError("");
 
+    const isUserAManager = isManager(session?.user?.role);
+    const finalStatus = isUserAManager 
+      ? (formData.published ? "PUBLISHED" : "DRAFT")
+      : "PENDING_REVIEW";
+
     try {
       const res = await fetch("/api/blog", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          status: finalStatus,
+          published: isUserAManager ? formData.published : false
+        }),
       });
+
 
       const data = await res.json();
 
@@ -319,20 +344,27 @@ export default function NewBlogPostPage() {
               </div>
             </div>
 
-            <div className="pt-6 border-t border-slate-100 flex items-center justify-between">
-              <span className="text-sm font-medium text-slate-700">Publish immediately</span>
-              <button
-                type="button"
-                onClick={() => setFormData({ ...formData, published: !formData.published })}
-                className={`w-12 h-6 rounded-full transition-all relative ${
-                  formData.published ? "bg-brand" : "bg-slate-200"
-                }`}
-              >
-                <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${
-                  formData.published ? "left-7" : "left-1"
-                }`} />
-              </button>
-            </div>
+            {isManager(session?.user?.role) ? (
+              <div className="pt-6 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-sm font-medium text-slate-700">Publish immediately</span>
+                <button
+                  type="button"
+                  onClick={() => setFormData({ ...formData, published: !formData.published })}
+                  className={`w-12 h-6 rounded-full transition-all relative ${
+                    formData.published ? "bg-brand" : "bg-slate-200"
+                  }`}
+                >
+                  <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${
+                    formData.published ? "left-7" : "left-1"
+                  }`} />
+                </button>
+              </div>
+            ) : (
+                <div className="pt-6 border-t border-slate-100 italic text-slate-400 text-xs">
+                    Access Note: Managers will review and publish your post after submission.
+                </div>
+            )}
+
           </div>
 
           <button
@@ -341,8 +373,9 @@ export default function NewBlogPostPage() {
             className="w-full bg-brand text-white py-4 rounded-2xl font-medium flex items-center justify-center gap-2 hover:bg-brand-dark transition-all shadow-xl shadow-brand/20 disabled:opacity-50"
           >
             {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-            {loading ? "Saving..." : "Save Post"}
+            {loading ? "Saving..." : isManager(session?.user?.role) ? "Save Post" : "Submit for Review"}
           </button>
+
         </div>
       </form>
     </div>

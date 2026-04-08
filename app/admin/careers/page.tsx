@@ -1,9 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Plus, Edit2, Trash2, Briefcase, Eye, LayoutGrid, List } from "lucide-react";
+import { Plus, Edit2, Trash2, Briefcase, Eye, LayoutGrid, List, Share2, Check } from "lucide-react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { isManager } from "@/lib/rbac";
 import JobForm from "./components/JobForm";
+
 import Pagination from "../components/Pagination";
 
 interface JobData {
@@ -20,11 +23,14 @@ interface JobData {
 }
 
 export default function CareersAdminPage() {
+  const { data: session } = useSession();
   const [jobs, setJobs] = useState<JobData[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingJob, setEditingJob] = useState<JobData | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [viewMode, setViewMode] = useState<"card" | "table">("table");
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 9;
@@ -62,6 +68,14 @@ export default function CareersAdminPage() {
     setIsFormOpen(false);
     fetchJobs();
   };
+  const handleCopyLink = (jobId: string) => {
+    const url = `${window.location.origin}/careers/${jobId}`;
+    navigator.clipboard.writeText(url);
+    setCopiedId(jobId);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  const isUserManager = isManager(session?.user?.role);
 
   if (isFormOpen) {
     return (
@@ -100,13 +114,16 @@ export default function CareersAdminPage() {
               <LayoutGrid className="w-4 h-4" />
             </button>
           </div>
-          <button 
-            onClick={handleAddNew}
-            className="bg-brand text-white px-6 py-3 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-brand-dark transition-all shadow-lg shadow-brand/20"
-          >
-            <Plus className="w-4 h-4" /> New Position
-          </button>
+          {isUserManager && (
+            <button 
+                onClick={handleAddNew}
+                className="bg-brand text-white px-6 py-3 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-brand-dark transition-all shadow-lg shadow-brand/20"
+            >
+                <Plus className="w-4 h-4" /> New Position
+            </button>
+          )}
         </div>
+
       </div>
 
       <div className={viewMode === "card" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "space-y-4"}>
@@ -160,11 +177,24 @@ export default function CareersAdminPage() {
                           </td>
                           <td className="px-8 py-6 text-right">
                             <div className="flex gap-2 justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                              <button 
+                                onClick={() => handleCopyLink(job.id)} 
+                                className="p-2 text-slate-400 hover:text-brand transition-colors"
+                                title="Copy Share Link"
+                              >
+                                {copiedId === job.id ? <Check className="w-4 h-4 text-emerald-500" /> : <Share2 className="w-4 h-4" />}
+                              </button>
                               <Link href={`/admin/careers/${job.id}`} className="p-2 text-slate-400 hover:text-brand transition-colors"><Eye className="w-4 h-4" /></Link>
-                              <button onClick={() => handleEdit(job)} className="p-2 text-slate-400 hover:text-brand transition-colors"><Edit2 className="w-4 h-4" /></button>
-                              <button onClick={() => handleDelete(job.id)} className="p-2 text-slate-400 hover:text-red-500 transition-colors"><Trash2 className="w-4 h-4" /></button>
+                              
+                              {isUserManager && (
+                                <>
+                                  <button onClick={() => handleEdit(job)} className="p-2 text-slate-400 hover:text-brand transition-colors"><Edit2 className="w-4 h-4" /></button>
+                                  <button onClick={() => handleDelete(job.id)} className="p-2 text-slate-400 hover:text-red-500 transition-colors"><Trash2 className="w-4 h-4" /></button>
+                                </>
+                              )}
                             </div>
                           </td>
+
                         </tr>
                       ))}
                     </tbody>
@@ -180,10 +210,22 @@ export default function CareersAdminPage() {
                         <Briefcase className="w-6 h-6 text-brand" />
                       </div>
                       <div className="flex gap-1">
+                        <button 
+                            onClick={() => handleCopyLink(job.id)} 
+                            className="p-2 text-slate-400 hover:text-brand transition-colors"
+                        >
+                            {copiedId === job.id ? <Check className="w-4 h-4 text-emerald-500" /> : <Share2 className="w-4 h-4" />}
+                        </button>
                         <Link href={`/admin/careers/${job.id}`} className="p-2 text-slate-400 hover:text-brand transition-colors"><Eye className="w-4 h-4" /></Link>
-                        <button onClick={() => handleEdit(job)} className="p-2 text-slate-400 hover:text-brand transition-colors"><Edit2 className="w-4 h-4" /></button>
-                        <button onClick={() => handleDelete(job.id)} className="p-2 text-slate-400 hover:text-red-500 transition-colors"><Trash2 className="w-4 h-4" /></button>
+                        
+                        {isUserManager && (
+                            <>
+                                <button onClick={() => handleEdit(job)} className="p-2 text-slate-400 hover:text-brand transition-colors"><Edit2 className="w-4 h-4" /></button>
+                                <button onClick={() => handleDelete(job.id)} className="p-2 text-slate-400 hover:text-red-500 transition-colors"><Trash2 className="w-4 h-4" /></button>
+                            </>
+                        )}
                       </div>
+
                     </div>
                     <h3 className="text-xl font-semibold text-slate-800 mb-2 leading-tight">{job.title}</h3>
                     <p className="text-brand text-[10px] font-bold tracking-widest uppercase mb-4">{job.tag}</p>

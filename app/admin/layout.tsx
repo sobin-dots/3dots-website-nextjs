@@ -4,20 +4,27 @@ import { LayoutDashboard, FileText, Briefcase, MessageSquare, Rocket, Settings, 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
+import { ADMIN_ROLES, TEAM_ROLES, UserRole } from "@/lib/rbac";
+
+
+const ALL_ROLES = [...ADMIN_ROLES, ...TEAM_ROLES];
+
 
 const navigation = [
-  { name: "Dashboard", href: "/admin", icon: LayoutDashboard, roles: ["Admin", "Content Team", "Lead Management"] },
-  { name: "Blog", href: "/admin/blog", icon: FileText, roles: ["Admin", "Content Team"] },
-  { name: "Careers", href: "/admin/careers", icon: Briefcase, roles: ["Admin", "Content Team"] },
-  { name: "Inquiries", href: "/admin/inquiries", icon: MessageSquare, roles: ["Admin", "Lead Management"] },
-  { name: "Launchpad", href: "/admin/launchpad", icon: Rocket, roles: ["Admin", "Lead Management"] },
-  { name: "Applications", href: "/admin/applications", icon: FileBadge, roles: ["Admin", "Content Team", "Lead Management"] },
-  { name: "Newsletter", href: "/admin/newsletter", icon: Mail, roles: ["Admin", "Content Team"] },
-  { name: "Team", href: "/admin/team", icon: Users, roles: ["Admin", "Content Team"] },
-  { name: "Users", href: "/admin/users", icon: Shield, roles: ["Admin"] },
-  { name: "Appointments", href: "/admin/appointments", icon: Calendar, roles: ["Admin", "Lead Management"] },
-  { name: "Settings", href: "/admin/settings", icon: Settings, roles: ["Admin"] },
+  { name: "Dashboard", href: "/admin", icon: LayoutDashboard, roles: ALL_ROLES },
+  { name: "Blog", href: "/admin/blog", icon: FileText, roles: ALL_ROLES },
+  { name: "Careers", href: "/admin/careers", icon: Briefcase, roles: ALL_ROLES },
+  { name: "Inquiries", href: "/admin/inquiries", icon: MessageSquare, roles: ADMIN_ROLES },
+  { name: "Launchpad", href: "/admin/launchpad", icon: Rocket, roles: ADMIN_ROLES },
+  { name: "Applications", href: "/admin/applications", icon: FileBadge, roles: ADMIN_ROLES },
+  { name: "Newsletter", href: "/admin/newsletter", icon: Mail, roles: ADMIN_ROLES },
+  { name: "Team", href: "/admin/team", icon: Users, roles: ADMIN_ROLES },
+  { name: "Users", href: "/admin/users", icon: Shield, roles: ADMIN_ROLES },
+  { name: "Appointments", href: "/admin/appointments", icon: Calendar, roles: ADMIN_ROLES },
+  { name: "Settings", href: "/admin/settings", icon: Settings, roles: ADMIN_ROLES },
+
 ];
+
 
 export default function AdminLayout({
   children,
@@ -40,7 +47,8 @@ export default function AdminLayout({
     );
   }
 
-  const userRole = session?.user?.role || "Content Team"; // Default to safest restricted role if unknown
+  const userRole = (session?.user?.role as UserRole) || "Content Team";
+ // Default to safest restricted role if unknown
   
   // Filter navigation based on roles
   const filteredNavigation = navigation.filter(item => 

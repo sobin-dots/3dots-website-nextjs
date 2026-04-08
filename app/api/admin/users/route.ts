@@ -16,10 +16,17 @@ export async function GET() {
         id: true,
         name: true,
         email: true,
+        employeeId: true,
         phone: true,
+
         role: true,
+        image: true,
+        designation: true,
+        socials: true,
         createdAt: true,
+
       }
+
     });
     return NextResponse.json(users);
   } catch {

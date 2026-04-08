@@ -8,28 +8,39 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  name      String?
-  email     String?  @unique
-  phone     String?  @unique
-  password  String?
-  role      String   @default("Admin")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  posts     Post[]
+  id         String  @id @default(cuid())
+  name       String?
+  email      String? @unique
+  employeeId String? @unique
+
+  phone       String?  @unique
+  password    String?
+  role        String   @default("Admin")
+  image       String?
+  about       String?
+  designation String?
+  socials     Json?
+  createdAt   DateTime @default(now())
+
+  updatedAt     DateTime       @updatedAt
+  posts         Post[]
+  notifications Notification[]
 }
 
 model Post {
-  id        String    @id @default(cuid())
-  slug      String    @unique
-  title     String
-  excerpt   String
-  content   String
-  image     String?
-  category  String
-  readTime  String
-  published Boolean   @default(false)
-  date      DateTime  @default(now())
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  excerpt       String
+  content       String
+  image         String?
+  category      String
+  readTime      String
+  published     Boolean  @default(false)
+  status        String   @default("DRAFT")
+  reviewComment String?
+  date          DateTime @default(now())
+
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   dislikes  Int       @default(0)
@@ -166,4 +177,15 @@ model NewsletterSubscriber {
   email     String   @unique
   status    String   @default("ACTIVE")
   createdAt DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  type      String   @default("INFO")
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

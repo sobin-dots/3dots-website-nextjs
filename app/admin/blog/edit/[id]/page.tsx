@@ -2,15 +2,22 @@
 "use client";
 
 import { useState, useEffect, use } from "react";
-import { ChevronLeft, Save, Image as ImageIcon, Loader2, AlertCircle, Upload, X, User, Tag, Plus } from "lucide-react";
+import { ChevronLeft, Save, Image as ImageIcon, Loader2, AlertCircle, Upload, X, User, Tag, Plus, MessageSquare } from "lucide-react";
+
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+
+import { isManager } from "@/lib/rbac";
 import RichTextEditor from "@/components/RichTextEditor";
+
 
 export default function EditBlogPostPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const router = useRouter();
+  const { data: session } = useSession();
+
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true);
   const [formData, setFormData] = useState({
@@ -25,7 +32,9 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
     authorName: "Admin",
     authorRole: "Editor",
     tags: [] as string[],
+    reviewComment: "" as string | null,
   });
+
 
   const [categories, setCategories] = useState<any[]>([]);
   const [tagInput, setTagInput] = useState("");
@@ -109,12 +118,23 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
     setLoading(true);
     setError("");
 
+    const isUserAManager = isManager(session?.user?.role);
+    // If team member edits, it goes back to review
+    const finalStatus = isUserAManager 
+      ? (formData.published ? "PUBLISHED" : "DRAFT")
+      : "PENDING_REVIEW";
+
     try {
       const res = await fetch(`/api/blog/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          status: finalStatus,
+          published: isUserAManager ? formData.published : false
+        }),
       });
+
 
       const data = await res.json();
 
@@ -155,7 +175,17 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Editor */}
         <div className="lg:col-span-2 space-y-6">
+          {formData.reviewComment && (
+             <div className="bg-amber-50 border border-amber-100 rounded-3xl p-6 flex items-start gap-4 text-amber-800 animate-in fade-in slide-in-from-top-4">
+                <MessageSquare className="w-5 h-5 mt-0.5 shrink-0 text-amber-500" />
+                <div>
+                   <p className="text-[10px] font-bold uppercase tracking-widest text-amber-500 mb-1">Editor Feedback</p>
+                   <p className="text-sm font-light italic">{formData.reviewComment}</p>
+                </div>
+             </div>
+          )}
           {error && (
+
             <div className="bg-rose-50 border border-rose-100 rounded-3xl p-6 flex items-center gap-4 text-rose-600 animate-in fade-in slide-in-from-top-4">
               <AlertCircle className="w-6 h-6 shrink-0" />
               <p className="text-sm font-medium">{error}</p>
@@ -331,20 +361,27 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
               </div>
             </div>
 
-            <div className="pt-6 border-t border-slate-100 flex items-center justify-between">
-              <span className="text-sm font-medium text-slate-700">Published</span>
-              <button
-                type="button"
-                onClick={() => setFormData({ ...formData, published: !formData.published })}
-                className={`w-12 h-6 rounded-full transition-all relative ${
-                  formData.published ? "bg-brand" : "bg-slate-200"
-                }`}
-              >
-                <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${
-                  formData.published ? "left-7" : "left-1"
-                }`} />
-              </button>
-            </div>
+            {isManager(session?.user?.role) ? (
+              <div className="pt-6 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-sm font-medium text-slate-700">Published</span>
+                <button
+                  type="button"
+                  onClick={() => setFormData({ ...formData, published: !formData.published })}
+                  className={`w-12 h-6 rounded-full transition-all relative ${
+                    formData.published ? "bg-brand" : "bg-slate-200"
+                  }`}
+                >
+                  <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${
+                    formData.published ? "left-7" : "left-1"
+                  }`} />
+                </button>
+              </div>
+            ) : (
+                <div className="pt-6 border-t border-slate-100 italic text-slate-400 text-xs">
+                    Access Note: Saving changes will resubmit the article for editor review.
+                </div>
+            )}
+
           </div>
 
           <button
@@ -353,8 +390,9 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
             className="w-full bg-brand text-white py-4 rounded-2xl font-medium flex items-center justify-center gap-2 hover:bg-brand-dark transition-all shadow-xl shadow-brand/20 disabled:opacity-50"
           >
             {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-            {loading ? "Saving..." : "Update Post"}
+            {loading ? "Saving..." : isManager(session?.user?.role) ? "Update Post" : "Resubmit for Review"}
           </button>
+
         </div>
       </form>
     </div>

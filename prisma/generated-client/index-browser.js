@@ -124,9 +124,14 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
+  employeeId: 'employeeId',
   phone: 'phone',
   password: 'password',
   role: 'role',
+  image: 'image',
+  about: 'about',
+  designation: 'designation',
+  socials: 'socials',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -141,6 +146,8 @@ exports.Prisma.PostScalarFieldEnum = {
   category: 'category',
   readTime: 'readTime',
   published: 'published',
+  status: 'status',
+  reviewComment: 'reviewComment',
   date: 'date',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -273,6 +280,16 @@ exports.Prisma.NewsletterSubscriberScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  message: 'message',
+  type: 'type',
+  read: 'read',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -288,15 +305,15 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 
@@ -313,7 +330,8 @@ exports.Prisma.ModelName = {
   TeamMember: 'TeamMember',
   Expert: 'Expert',
   Appointment: 'Appointment',
-  NewsletterSubscriber: 'NewsletterSubscriber'
+  NewsletterSubscriber: 'NewsletterSubscriber',
+  Notification: 'Notification'
 };
 
 /**

@@ -11,18 +11,74 @@ const adapter = new PrismaPg(pool as any);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  console.log("Seeding database...");
+  console.log("Seeding database with updated RBAC roles and workflows...");
 
-  // 1. Seed Admin User First (Critical for Relations)
+  // 1. Seed Admin & Managers
   const adminEmail = "admin@3dots.co";
+  const hrEmail = "hr@3dots.co";
+  const contentManagerEmail = "editor@3dots.co";
+  const teamMemberEmail = "worker@3dots.co";
+
   const adminUser = await prisma.user.upsert({
     where: { email: adminEmail },
-    update: {},
+    update: {
+        role: "Admin",
+        employeeId: "ADM-001"
+    },
     create: {
       email: adminEmail,
-      password: "admin_password_123", // In a real app, hash this!
+      password: "admin_password_123",
       name: "3Dots Administrator",
       role: "Admin",
+      employeeId: "ADM-001",
+      designation: "Principal Architect",
+      about: "Lead administrator and architect of the 3Dots master platform.",
+      socials: {
+        linkedin: "https://linkedin.com/company/3dots",
+        twitter: "https://twitter.com/3dots_co"
+      }
+    },
+  });
+
+  await prisma.user.upsert({
+    where: { email: hrEmail },
+    update: { role: "Hr manager", employeeId: "HR-001" },
+    create: {
+      email: hrEmail,
+      password: "hr_password_123",
+      name: "Sarah Jenkins",
+      role: "Hr manager",
+      employeeId: "HR-001",
+      designation: "Head of People",
+      about: "Managing talent and culture at 3Dots.",
+    },
+  });
+
+  const contentManager = await prisma.user.upsert({
+    where: { email: contentManagerEmail },
+    update: { role: "Content Manager", employeeId: "CM-001" },
+    create: {
+      email: contentManagerEmail,
+      password: "editor_password_123",
+      name: "Mark Thompson",
+      role: "Content Manager",
+      employeeId: "CM-001",
+      designation: "Editorial Director",
+      about: "Overseeing all content strategy and publishing.",
+    },
+  });
+
+  const teamMember = await prisma.user.upsert({
+    where: { email: teamMemberEmail },
+    update: { role: "Content Team", employeeId: "CT-001" },
+    create: {
+      email: teamMemberEmail,
+      password: "team_password_123",
+      name: "Alex Rivera",
+      role: "Content Team",
+      employeeId: "CT-001",
+      designation: "Junior Copywriter",
+      about: "Creative writer focusing on AI trends.",
     },
   });
 
@@ -34,37 +90,8 @@ async function main() {
       tag: "CREATIVE • FULL-TIME",
       type: "Full-Time",
       location: "Remote / Hybrid",
-      description: "We are looking for a talented 3D Artist to join our creative team. Bring creative concepts to life through detailed modeling, texturing, and lighting.",
-      about: "We are looking for a talented 3D Artist to join our creative team. As a 3D Artist, you'll be responsible for creating high-quality assets and environments, bringing creative concepts to life through detailed modeling, texturing, and lighting. You'll work on diverse projects ranging from product visualization to character development, collaborating with our accomplished team of artists and designers.",
-      sections: [
-        {
-          title: "Responsibilities",
-          items: [
-            "Create high-quality 3D models, environments, and assets for various projects.",
-            "Develop and maintain proper UV layouts and texture maps.",
-            "Set up materials and shaders for realistic rendering.",
-            "Create and optimize topology for production use.",
-            "Implement proper lighting setups for different scenarios.",
-            "Ensure models meet technical specifications and poly-count requirements.",
-            "Collaborate with art directors and other artists to maintain visual consistency.",
-            "Participate in review sessions and provide constructive feedback.",
-            "Document workflows and maintain organized scene files."
-          ]
-        },
-        {
-          title: "Requirements",
-          items: [
-            "2-4 years of professional 3D modeling and texturing experience.",
-            "Strong portfolio demonstrating variety in organic and hard-surface modeling.",
-            "Expert knowledge of Maya, ZBrush, or similar 3D modeling software.",
-            "Proficiency in texturing tools like Substance Painter/Designer.",
-            "Strong understanding of PBR materials and texturing workflows.",
-            "Experience with UV unwrapping and topology optimization.",
-            "Knowledge of current rendering engines (V-Ray, Arnold, or similar).",
-            "Understanding of composition and color theory."
-          ]
-        }
-      ],
+      description: "We are looking for a talented 3D Artist to join our creative team.",
+      about: "As a 3D Artist, you'll be responsible for creating high-quality assets and environments...",
       active: true,
     },
     {
@@ -73,69 +100,91 @@ async function main() {
       tag: "ENGINEERING • FULL-TIME",
       type: "Full-Time",
       location: "Remote",
-      description: "We are looking for a Senior AI Engineer to join our team in building cutting-edge AI-driven solutions.",
-      about: "We are looking for a Senior AI Engineer to join our team in building cutting-edge AI-driven solutions. You will work on Large Language Models (LLMs), agentic systems, and high-scale automation pipelines. Expertise in Python, PyTorch, and cloud infrastructure is essential.",
-      sections: [],
+      description: "We are looking for a Senior AI Engineer to build cutting-edge AI-driven solutions.",
+      about: "Expertise in Python, PyTorch, and LLMs is required.",
       active: true,
-    },
-    {
-      slug: "full-stack-developer",
-      title: "Full Stack Developer",
-      tag: "ENGINEERING • FULL-TIME",
-      type: "Full-Time",
-      location: "Hybrid",
-      description: "Join our core engineering team to build scalable web applications using Next.js, TypeScript, and Prisma.",
-      about: "Join our core engineering team to build scalable web applications using Next.js, TypeScript, and Prisma. You will be responsible for end-to-end features, from UI/UX implementation to database architecture and deployment.",
-      sections: [],
-      active: true,
-    },
+    }
   ];
 
-  // Try to clean up jobs ONLY IF no applications are linked, or provide it without wiping
-  // In a seed script, upserting is safer than deleting if you have relations
   for (const job of jobs) {
     await prisma.job.upsert({
         where: { slug: job.slug },
         update: job,
-        create: job
+        create: job as any
     });
   }
 
-  // 3. Seed Posts (Blog) with Relation
+  // 3. Seed Blog Categories
+  const categories = [
+    { name: "AI & Innovation", slug: "ai-innovation" },
+    { name: "Technology", slug: "technology" },
+    { name: "Engineering", slug: "engineering" },
+    { name: "Creative", slug: "creative" },
+    { name: "Company", slug: "company" },
+  ];
+
+  for (const cat of categories) {
+    await prisma.blogCategory.upsert({
+        where: { slug: cat.slug },
+        update: cat,
+        create: cat
+    });
+  }
+
+  // 4. Seed Posts (Blog) with Status Workflow
+
   const posts = [
     {
       slug: "scaling-startups-with-ai-automation",
       title: "Scaling Startups with AI Automation",
-      excerpt: "Explore how AI-powered workflows can accelerate growth and reduce operational costs for early-stage startups.",
-      content: "<p>Artificial Intelligence is no longer just a buzzword; it's the engine driving modern startup growth. From automated customer support to intelligent lead qualification, AI is enabling small teams to achieve massive scale.</p><h2>Why Automation Matters</h2><p>For high-growth tech firms, speed is everything. By automating repetitive tasks, founders can focus on strategic innovation instead of manual maintenance.</p>",
+      excerpt: "Explore how AI-powered workflows can accelerate growth.",
+      content: "<p>Artificial Intelligence is the engine driving modern startup growth...</p>",
       category: "AI & Innovation",
       readTime: "5 min",
       published: true,
-      tags: ["AI", "Automation", "Startups", "Growth"],
+      status: "PUBLISHED",
+      tags: ["AI", "Automation"],
       authorId: adminUser.id,
     },
     {
-      slug: "modern-product-engineering-excellence",
-      title: "The Pillars of Modern Product Engineering",
-      excerpt: "Technical rigor combined with creative execution is the secret to building world-class digital products.",
-      content: "<p>Engineering excellence is not just about writing clean code; it's about building scalable architecture that lasts. In this post, we dive deep into the 3Dots engineering philosophy.</p><h2>Clean Code vs. Fast Delivery</h2><p>We believe you can have both. By using robust frameworks like Next.js and Prisma, we maintain speed without sacrificing quality.</p>",
-      category: "Engineering",
-      readTime: "8 min",
-      published: true,
-      tags: ["Architecture", "Next.js", "Scalability"],
-      authorId: adminUser.id,
+      slug: "future-of-agentic-workflows",
+      title: "The Future of Agentic Workflows",
+      excerpt: "Why autonomous agents are the next frontier.",
+      content: "<p>Agents that can plan and execute are changing software development...</p>",
+      category: "Technology",
+      readTime: "10 min",
+      published: false,
+      status: "PENDING_REVIEW",
+      tags: ["AI Agents", "Workflows"],
+      authorId: teamMember.id,
     },
+    {
+        slug: "design-systems-at-scale",
+        title: "Design Systems at Scale",
+        excerpt: "Building consistent UIs across large organizations.",
+        content: "<p>Design systems are the bridge between design and engineering...</p>",
+        category: "Creative",
+        readTime: "7 min",
+        published: false,
+        status: "DRAFT",
+        tags: ["Design", "Systems"],
+        authorId: contentManager.id,
+      },
   ];
 
   for (const post of posts) {
     await prisma.post.upsert({
       where: { slug: post.slug },
-      update: { authorId: adminUser.id },
-      create: post,
+      update: { 
+          status: post.status,
+          published: post.published,
+          authorId: post.authorId 
+      },
+      create: post as any,
     });
   }
 
-  console.log("Seeding complete!");
+  console.log("Seeding complete! 🚀");
 }
 
 main()

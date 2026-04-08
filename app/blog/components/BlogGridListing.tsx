@@ -31,7 +31,8 @@ function BlogGridContent() {
             });
 
         // Fetch Posts
-        fetch("/api/blog")
+        fetch("/api/blog/public")
+
             .then(res => res.json())
             .then(data => {
                 setBlogPosts(Array.isArray(data) ? data : []);
