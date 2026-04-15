@@ -143,6 +143,7 @@ exports.Prisma.PostScalarFieldEnum = {
   excerpt: 'excerpt',
   content: 'content',
   image: 'image',
+  thumbnail: 'thumbnail',
   category: 'category',
   readTime: 'readTime',
   published: 'published',

@@ -7,6 +7,7 @@ export const blogPostSchema = z.object({
   excerpt: z.string().min(10, "Excerpt must be at least 10 characters"),
   content: z.string().min(20, "Content must be at least 20 characters"),
   image: z.string().optional().nullable(),
+  thumbnail: z.string().optional().nullable(),
   category: z.string().min(2, "Category is required"),
   readTime: z.string().min(1, "Read time is required"),
   published: z.boolean().default(false),

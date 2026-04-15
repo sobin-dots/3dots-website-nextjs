@@ -1,6 +1,6 @@
 "use client";
 
-import { LayoutDashboard, FileText, Briefcase, MessageSquare, Rocket, Settings, Users, Calendar, LogOut, Shield, FileBadge, Mail } from "lucide-react";
+import { LayoutDashboard, FileText, Briefcase, MessageSquare, Rocket, Settings, Users, Calendar, LogOut, Shield, FileBadge, Mail, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
@@ -21,7 +21,7 @@ const navigation = [
   { name: "Team", href: "/admin/team", icon: Users, roles: ADMIN_ROLES },
   { name: "Users", href: "/admin/users", icon: Shield, roles: ADMIN_ROLES },
   { name: "Appointments", href: "/admin/appointments", icon: Calendar, roles: ADMIN_ROLES },
-  { name: "Settings", href: "/admin/settings", icon: Settings, roles: ADMIN_ROLES },
+  { name: "Profile", href: "/admin/settings", icon: User, roles: ALL_ROLES },
 
 ];
 

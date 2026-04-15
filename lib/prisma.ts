@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// Recalibrating Prisma Client with new schema fields
 import { PrismaClient } from "../prisma/generated-client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import pg from "pg";

@@ -8,49 +8,45 @@ datasource db {
 }
 
 model User {
-  id          String   @id @default(cuid())
-  name        String?
-  email       String?  @unique
-  employeeId  String?  @unique
-
-  phone       String?  @unique
-  password    String?
-  role        String   @default("Admin")
-  image       String?
-  about       String?
-  designation String?
-  socials     Json?
-  createdAt   DateTime @default(now())
-
-  updatedAt   DateTime @updatedAt
-  posts       Post[]
+  id            String         @id @default(cuid())
+  name          String?
+  email         String?        @unique
+  phone         String?        @unique
+  password      String?
+  role          String         @default("Admin")
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  about         String?
+  designation   String?
+  image         String?
+  socials       Json?
+  employeeId    String?        @unique
   notifications Notification[]
+  posts         Post[]
 }
 
-
-
 model Post {
-  id        String    @id @default(cuid())
-  slug      String    @unique
-  title     String
-  excerpt   String
-  content   String
-  image     String?
-  category  String
-  readTime  String
-  published Boolean   @default(false)
-  status    String    @default("DRAFT")
+  id            String    @id @default(cuid())
+  slug          String    @unique
+  title         String
+  excerpt       String
+  content       String
+  image         String?
+  category      String
+  readTime      String
+  published     Boolean   @default(false)
+  date          DateTime  @default(now())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  dislikes      Int       @default(0)
+  likes         Int       @default(0)
+  tags          String[]  @default([])
+  authorId      String?
   reviewComment String?
-  date      DateTime  @default(now())
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  dislikes  Int       @default(0)
-  likes     Int       @default(0)
-  tags      String[]  @default([])
-  authorId  String?
-  comments  Comment[]
-  author    User?     @relation(fields: [authorId], references: [id])
+  status        String    @default("DRAFT")
+  thumbnail     String?
+  comments      Comment[]
+  author        User?     @relation(fields: [authorId], references: [id])
 }
 
 model Comment {

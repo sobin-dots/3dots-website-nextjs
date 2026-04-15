@@ -130,13 +130,13 @@ function BlogGridContent() {
                                 >
                                     <Link href={`/blog/${post.slug}`} className="flex flex-col h-full grow">
                                         <div className="relative w-full aspect-4/3 rounded-4xl overflow-hidden mb-6 bg-slate-100">
-                                            <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
+                                            <div className="absolute bottom-4 left-4 z-10 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
                                                 <Tag className="w-3 h-3 text-brand" />
                                                 <span className="text-[10px] font-bold uppercase tracking-widest text-slate-800">{post.category}</span>
                                             </div>
                                             
                                             <Image
-                                                src={post.image} 
+                                                src={post.thumbnail || post.image} 
                                                 alt={post.title} 
                                                 fill
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -147,7 +147,7 @@ function BlogGridContent() {
 
                                         <div className="flex flex-col grow">
                                             <div className="flex items-center gap-4 text-xs font-medium text-slate-400 mb-3">
-                                                <span>{post.date || new Date(post.createdAt).toLocaleDateString()}</span>
+                                                <span>{new Date(post.date || post.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
                                                 <span className="w-1 h-1 rounded-full bg-slate-300"></span>
                                                 <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {post.readTime}</span>
                                             </div>

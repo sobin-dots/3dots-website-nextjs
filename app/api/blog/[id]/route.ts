@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
+import { blogPostSchema } from "@/lib/validations";
 
 export async function GET(
   req: Request,
@@ -37,25 +38,40 @@ export async function PUT(
 
   try {
     const { id } = await params;
-    const data = await req.json();
+    const json = await req.json();
+    
+    const result = blogPostSchema.partial().safeParse(json);
+    if (!result.success) {
+      console.error("DEBUG: Zod Validation Error:", result.error.flatten());
+      return NextResponse.json({ error: result.error.flatten() }, { status: 400 });
+    }
 
-    // ✅ Strip fields Prisma doesn't accept in update
-    const {
-      id: _id,
-      author,
-      comments,
-      createdAt,
-      updatedAt,
-      authorId,
-      ...updateData
-    } = data;
+    const { 
+      title, slug, excerpt, content, image, thumbnail, 
+      category, readTime, published, status, reviewComment, tags
+    } = result.data;
+
+    // Construct valid update payload
+    const updatePayload: any = {};
+    if (title !== undefined) updatePayload.title = title;
+    if (slug !== undefined) updatePayload.slug = slug;
+    if (excerpt !== undefined) updatePayload.excerpt = excerpt;
+    if (content !== undefined) updatePayload.content = content;
+    if (image !== undefined) updatePayload.image = image;
+    if (thumbnail !== undefined) updatePayload.thumbnail = thumbnail;
+    if (category !== undefined) updatePayload.category = category;
+    if (readTime !== undefined) updatePayload.readTime = readTime;
+    if (published !== undefined) updatePayload.published = published;
+    if (status !== undefined) updatePayload.status = status;
+    if (reviewComment !== undefined) updatePayload.reviewComment = reviewComment;
+    if (tags !== undefined) updatePayload.tags = { set: tags };
+
+    console.log("DEBUG: Target ID:", id);
+    console.log("DEBUG: Final updatePayload:", JSON.stringify(updatePayload, null, 2));
 
     const post = await prisma.post.update({
       where: { id },
-      data: {
-        ...updateData,
-        date: updateData.date ? new Date(updateData.date) : undefined,
-      },
+      data: updatePayload,
       include: { author: true }
     });
 

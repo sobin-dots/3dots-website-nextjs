@@ -3413,6 +3413,7 @@ export namespace Prisma {
     excerpt: string | null
     content: string | null
     image: string | null
+    thumbnail: string | null
     category: string | null
     readTime: string | null
     published: boolean | null
@@ -3433,6 +3434,7 @@ export namespace Prisma {
     excerpt: string | null
     content: string | null
     image: string | null
+    thumbnail: string | null
     category: string | null
     readTime: string | null
     published: boolean | null
@@ -3453,6 +3455,7 @@ export namespace Prisma {
     excerpt: number
     content: number
     image: number
+    thumbnail: number
     category: number
     readTime: number
     published: number
@@ -3486,6 +3489,7 @@ export namespace Prisma {
     excerpt?: true
     content?: true
     image?: true
+    thumbnail?: true
     category?: true
     readTime?: true
     published?: true
@@ -3506,6 +3510,7 @@ export namespace Prisma {
     excerpt?: true
     content?: true
     image?: true
+    thumbnail?: true
     category?: true
     readTime?: true
     published?: true
@@ -3526,6 +3531,7 @@ export namespace Prisma {
     excerpt?: true
     content?: true
     image?: true
+    thumbnail?: true
     category?: true
     readTime?: true
     published?: true
@@ -3634,6 +3640,7 @@ export namespace Prisma {
     excerpt: string
     content: string
     image: string | null
+    thumbnail: string | null
     category: string
     readTime: string
     published: boolean
@@ -3674,6 +3681,7 @@ export namespace Prisma {
     excerpt?: boolean
     content?: boolean
     image?: boolean
+    thumbnail?: boolean
     category?: boolean
     readTime?: boolean
     published?: boolean
@@ -3698,6 +3706,7 @@ export namespace Prisma {
     excerpt?: boolean
     content?: boolean
     image?: boolean
+    thumbnail?: boolean
     category?: boolean
     readTime?: boolean
     published?: boolean
@@ -3720,6 +3729,7 @@ export namespace Prisma {
     excerpt?: boolean
     content?: boolean
     image?: boolean
+    thumbnail?: boolean
     category?: boolean
     readTime?: boolean
     published?: boolean
@@ -3742,6 +3752,7 @@ export namespace Prisma {
     excerpt?: boolean
     content?: boolean
     image?: boolean
+    thumbnail?: boolean
     category?: boolean
     readTime?: boolean
     published?: boolean
@@ -3756,7 +3767,7 @@ export namespace Prisma {
     authorId?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "excerpt" | "content" | "image" | "category" | "readTime" | "published" | "status" | "reviewComment" | "date" | "createdAt" | "updatedAt" | "dislikes" | "likes" | "tags" | "authorId", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "excerpt" | "content" | "image" | "thumbnail" | "category" | "readTime" | "published" | "status" | "reviewComment" | "date" | "createdAt" | "updatedAt" | "dislikes" | "likes" | "tags" | "authorId", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | Post$commentsArgs<ExtArgs>
     author?: boolean | Post$authorArgs<ExtArgs>
@@ -3782,6 +3793,7 @@ export namespace Prisma {
       excerpt: string
       content: string
       image: string | null
+      thumbnail: string | null
       category: string
       readTime: string
       published: boolean
@@ -4225,6 +4237,7 @@ export namespace Prisma {
     readonly excerpt: FieldRef<"Post", 'String'>
     readonly content: FieldRef<"Post", 'String'>
     readonly image: FieldRef<"Post", 'String'>
+    readonly thumbnail: FieldRef<"Post", 'String'>
     readonly category: FieldRef<"Post", 'String'>
     readonly readTime: FieldRef<"Post", 'String'>
     readonly published: FieldRef<"Post", 'Boolean'>
@@ -17659,6 +17672,7 @@ export namespace Prisma {
     excerpt: 'excerpt',
     content: 'content',
     image: 'image',
+    thumbnail: 'thumbnail',
     category: 'category',
     readTime: 'readTime',
     published: 'published',
@@ -18079,6 +18093,7 @@ export namespace Prisma {
     excerpt?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
     image?: StringNullableFilter<"Post"> | string | null
+    thumbnail?: StringNullableFilter<"Post"> | string | null
     category?: StringFilter<"Post"> | string
     readTime?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
@@ -18102,6 +18117,7 @@ export namespace Prisma {
     excerpt?: SortOrder
     content?: SortOrder
     image?: SortOrderInput | SortOrder
+    thumbnail?: SortOrderInput | SortOrder
     category?: SortOrder
     readTime?: SortOrder
     published?: SortOrder
@@ -18128,6 +18144,7 @@ export namespace Prisma {
     excerpt?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
     image?: StringNullableFilter<"Post"> | string | null
+    thumbnail?: StringNullableFilter<"Post"> | string | null
     category?: StringFilter<"Post"> | string
     readTime?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
@@ -18151,6 +18168,7 @@ export namespace Prisma {
     excerpt?: SortOrder
     content?: SortOrder
     image?: SortOrderInput | SortOrder
+    thumbnail?: SortOrderInput | SortOrder
     category?: SortOrder
     readTime?: SortOrder
     published?: SortOrder
@@ -18180,6 +18198,7 @@ export namespace Prisma {
     excerpt?: StringWithAggregatesFilter<"Post"> | string
     content?: StringWithAggregatesFilter<"Post"> | string
     image?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    thumbnail?: StringNullableWithAggregatesFilter<"Post"> | string | null
     category?: StringWithAggregatesFilter<"Post"> | string
     readTime?: StringWithAggregatesFilter<"Post"> | string
     published?: BoolWithAggregatesFilter<"Post"> | boolean
@@ -19150,6 +19169,7 @@ export namespace Prisma {
     excerpt: string
     content: string
     image?: string | null
+    thumbnail?: string | null
     category: string
     readTime: string
     published?: boolean
@@ -19172,6 +19192,7 @@ export namespace Prisma {
     excerpt: string
     content: string
     image?: string | null
+    thumbnail?: string | null
     category: string
     readTime: string
     published?: boolean
@@ -19194,6 +19215,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
@@ -19216,6 +19238,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
@@ -19238,6 +19261,7 @@ export namespace Prisma {
     excerpt: string
     content: string
     image?: string | null
+    thumbnail?: string | null
     category: string
     readTime: string
     published?: boolean
@@ -19259,6 +19283,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
@@ -19279,6 +19304,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
@@ -20485,6 +20511,7 @@ export namespace Prisma {
     excerpt?: SortOrder
     content?: SortOrder
     image?: SortOrder
+    thumbnail?: SortOrder
     category?: SortOrder
     readTime?: SortOrder
     published?: SortOrder
@@ -20511,6 +20538,7 @@ export namespace Prisma {
     excerpt?: SortOrder
     content?: SortOrder
     image?: SortOrder
+    thumbnail?: SortOrder
     category?: SortOrder
     readTime?: SortOrder
     published?: SortOrder
@@ -20531,6 +20559,7 @@ export namespace Prisma {
     excerpt?: SortOrder
     content?: SortOrder
     image?: SortOrder
+    thumbnail?: SortOrder
     category?: SortOrder
     readTime?: SortOrder
     published?: SortOrder
@@ -21517,6 +21546,7 @@ export namespace Prisma {
     excerpt: string
     content: string
     image?: string | null
+    thumbnail?: string | null
     category: string
     readTime: string
     published?: boolean
@@ -21538,6 +21568,7 @@ export namespace Prisma {
     excerpt: string
     content: string
     image?: string | null
+    thumbnail?: string | null
     category: string
     readTime: string
     published?: boolean
@@ -21616,6 +21647,7 @@ export namespace Prisma {
     excerpt?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
     image?: StringNullableFilter<"Post"> | string | null
+    thumbnail?: StringNullableFilter<"Post"> | string | null
     category?: StringFilter<"Post"> | string
     readTime?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
@@ -21801,6 +21833,7 @@ export namespace Prisma {
     excerpt: string
     content: string
     image?: string | null
+    thumbnail?: string | null
     category: string
     readTime: string
     published?: boolean
@@ -21822,6 +21855,7 @@ export namespace Prisma {
     excerpt: string
     content: string
     image?: string | null
+    thumbnail?: string | null
     category: string
     readTime: string
     published?: boolean
@@ -21859,6 +21893,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
@@ -21880,6 +21915,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
@@ -22256,6 +22292,7 @@ export namespace Prisma {
     excerpt: string
     content: string
     image?: string | null
+    thumbnail?: string | null
     category: string
     readTime: string
     published?: boolean
@@ -22285,6 +22322,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
@@ -22306,6 +22344,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
@@ -22327,6 +22366,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean

@@ -22,6 +22,7 @@ export default function NewBlogPostPage() {
     category: "",
     readTime: "5 min read",
     image: "/images/blog/default.jpg",
+    thumbnail: "/images/blog/default.jpg",
     published: false,
     status: "DRAFT",
     authorName: "",
@@ -87,10 +88,34 @@ export default function NewBlogPostPage() {
       if (data.url) {
         setFormData((prev) => ({ ...prev, image: data.url }));
       }
-    } catch (error) {
-      console.error("Upload failed", error);
     } finally {
       setUploading(false);
+    }
+  };
+  
+  const [uploadingThumbnail, setUploadingThumbnail] = useState(false);
+
+  const handleThumbnailUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingThumbnail(true);
+    const formDataUpload = new FormData();
+    formDataUpload.append("file", file);
+
+    try {
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formDataUpload,
+      });
+      const data = await res.json();
+      if (data.url) {
+        setFormData((prev) => ({ ...prev, thumbnail: data.url }));
+      }
+    } catch (error) {
+      console.error("Thumbnail upload failed", error);
+    } finally {
+      setUploadingThumbnail(false);
     }
   };
 
@@ -111,11 +136,13 @@ export default function NewBlogPostPage() {
   };
 
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+    setFieldErrors({});
 
     const isUserAManager = isManager(session?.user?.role);
     const finalStatus = isUserAManager 
@@ -139,8 +166,13 @@ export default function NewBlogPostPage() {
       if (res.ok) {
         router.push("/admin/blog");
       } else {
-        const errorMsg = data.details || data.error?.fieldErrors?.slug?.[0] || data.error || "Failed to save post";
-        setError(errorMsg);
+        if (data.error?.fieldErrors) {
+          setFieldErrors(data.error.fieldErrors);
+          setError("Please fix the validation errors below.");
+        } else {
+          const errorMsg = data.details || data.error || "Failed to save post";
+          setError(errorMsg);
+        }
       }
     } catch (err: any) {
       setError(err.message || "An unexpected error occurred");
@@ -183,13 +215,16 @@ export default function NewBlogPostPage() {
                 value={formData.title}
                 onChange={handleTitleChange}
                 placeholder="Enter title..."
-                className="w-full text-2xl font-medium bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand placeholder:text-slate-300 transition-all"
+                className={`w-full text-2xl font-medium bg-slate-50 border ${fieldErrors.title ? "border-rose-300 ring-1 ring-rose-100" : "border-slate-200"} rounded-2xl px-6 py-4 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand placeholder:text-slate-300 transition-all`}
               />
+              {fieldErrors.title && (
+                <p className="text-rose-500 text-xs font-medium pl-1">{fieldErrors.title[0]}</p>
+              )}
             </div>
 
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-700">Slug</label>
-              <div className="flex items-center gap-2 text-slate-400 text-sm font-light bg-slate-50 px-4 py-3 rounded-xl border border-slate-200">
+              <div className={`flex items-center gap-2 text-slate-400 text-sm font-light bg-slate-50 px-4 py-3 rounded-xl border ${fieldErrors.slug ? "border-rose-300 ring-1 ring-rose-100" : "border-slate-200"}`}>
                 <span>/blog/</span>
                 <input
                   type="text"
@@ -199,22 +234,37 @@ export default function NewBlogPostPage() {
                   className="bg-transparent border-none p-0 focus:ring-0 w-full text-slate-600"
                 />
               </div>
+              {fieldErrors.slug && (
+                <p className="text-rose-500 text-xs font-medium pl-1">{fieldErrors.slug[0]}</p>
+              )}
             </div>
 
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-700">Excerpt (Description)</label>
               <RichTextEditor 
                 content={formData.excerpt} 
-                onChange={(excerpt) => setFormData({ ...formData, excerpt })} 
+                onChange={(excerpt) => {
+                  setFormData({ ...formData, excerpt });
+                  if (fieldErrors.excerpt) setFieldErrors(prev => ({ ...prev, excerpt: [] }));
+                }} 
               />
+              {fieldErrors.excerpt && (
+                <p className="text-rose-500 text-xs font-medium pl-1">{fieldErrors.excerpt[0]}</p>
+              )}
             </div>
 
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-700">Content</label>
               <RichTextEditor 
                 content={formData.content} 
-                onChange={(content) => setFormData({ ...formData, content })} 
+                onChange={(content) => {
+                  setFormData({ ...formData, content });
+                  if (fieldErrors.content) setFieldErrors(prev => ({ ...prev, content: [] }));
+                }} 
               />
+              {fieldErrors.content && (
+                <p className="text-rose-500 text-xs font-medium pl-1">{fieldErrors.content[0]}</p>
+              )}
             </div>
           </div>
         </div>
@@ -248,7 +298,47 @@ export default function NewBlogPostPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Featured Image</label>
+              <label className="text-sm font-medium text-slate-700">Thumbnail Image <span className="text-[10px] text-slate-400 font-light">(Listing view)</span></label>
+              
+              {formData.thumbnail && (
+                <div className="relative group aspect-square rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 mb-3 w-32">
+                  <Image src={formData.thumbnail} alt="Thumbnail Preview" fill className="object-cover" unoptimized={true} />
+                  <button 
+                    type="button"
+                    onClick={() => setFormData({ ...formData, thumbnail: "" })}
+                    className="absolute top-2 right-2 p-1 bg-white/90 rounded-full text-rose-500 opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </div>
+              )}
+
+              <div className="flex gap-2">
+                <div className="relative flex-1">
+                  <ImageIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <input
+                    type="text"
+                    value={formData.thumbnail}
+                    onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
+                    className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-brand text-sm"
+                    placeholder="Thumbnail URL..."
+                  />
+                </div>
+                <label className={`flex items-center justify-center p-3 rounded-xl border border-slate-200 transition-all cursor-pointer hover:bg-slate-50 ${uploadingThumbnail ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                  {uploadingThumbnail ? <Loader2 className="w-4 h-4 animate-spin text-slate-400" /> : <Upload className="w-4 h-4 text-slate-600" />}
+                  <input 
+                    type="file" 
+                    className="hidden" 
+                    accept="image/*" 
+                    disabled={uploadingThumbnail}
+                    onChange={handleThumbnailUpload} 
+                  />
+                </label>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-700">Featured Image <span className="text-[10px] text-slate-400 font-light">(Article view)</span></label>
               
               {formData.image && (
                 <div className="relative group aspect-video rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 mb-3">
