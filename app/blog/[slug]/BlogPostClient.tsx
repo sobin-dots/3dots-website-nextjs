@@ -228,7 +228,7 @@ export default function BlogPostClient({
               <div className="flex items-center gap-3 text-left">
                 <div className="w-10 h-10 rounded-full bg-slate-100 overflow-hidden border border-slate-200">
                   {post.authorImage ? (
-                    <Image src={post.authorImage} alt={post.authorName || "Author"} width={40} height={40} className="object-cover" />
+                    <Image src={post.authorImage} alt={post.authorName || "Author"} width={40} height={40} className="object-cover"  unoptimized={true} />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-brand/10 text-brand font-medium">
                       {post.authorName?.charAt(0) || "A"}
@@ -325,7 +325,7 @@ export default function BlogPostClient({
               <div className="p-8 md:p-12 bg-[#fafafc] rounded-[40px] border border-slate-100 mb-20 flex flex-col md:flex-row gap-8 items-center md:items-start text-center md:text-left transition-all hover:shadow-xl hover:shadow-slate-200/50">
                   <div className="w-24 h-24 rounded-3xl overflow-hidden border-4 border-white shadow-xl shrink-0">
                     {post.authorImage ? (
-                      <Image src={post.authorImage} alt={post.authorName || "Author"} width={96} height={96} className="object-cover" />
+                      <Image src={post.authorImage} alt={post.authorName || "Author"} width={96} height={96} className="object-cover"  unoptimized={true} />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-brand/10 text-brand text-2xl font-medium">
                         {post.authorName?.charAt(0) || "A"}

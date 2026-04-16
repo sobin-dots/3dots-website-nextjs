@@ -231,7 +231,7 @@ export default function SettingsAdminPage() {
                     <div className="relative w-32 h-32 mx-auto mb-6 group">
                         <div className="w-full h-full rounded-full bg-slate-50 border-4 border-white shadow-xl overflow-hidden relative">
                             {image ? (
-                                <Image src={image} alt={name} fill className="object-cover" />
+                                <Image src={image} alt={name} fill className="object-cover"  unoptimized={true}/>
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center text-slate-200">
                                     <User className="w-16 h-16" />
