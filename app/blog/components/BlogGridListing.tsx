@@ -156,9 +156,9 @@ function BlogGridContent() {
                                                 {post.title}
                                             </h3>
                                             
-                                            <p className="text-slate-500 font-light text-sm line-clamp-2 mb-4">
-                                                {post.excerpt}
-                                            </p>
+                                            <div className="text-slate-500 font-light text-sm line-clamp-2 mb-4"   dangerouslySetInnerHTML={{ __html: post.excerpt }}>
+                                             
+                                            </div>
 
                                             <div className="flex flex-wrap gap-1.5 mb-6">
                                                 {post.tags?.slice(0, 2).map((tag: string) => (
