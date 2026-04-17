@@ -207,7 +207,7 @@ export default function BlogPostClient({
         </div>
 
         {/* Header */}
-        <header className="max-w-[800px] mx-auto px-6 mb-16 text-center">
+        <header className="max-w-[1200px] mx-auto px-6 mb-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
