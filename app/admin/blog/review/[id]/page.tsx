@@ -176,6 +176,13 @@ export default function BlogReviewPage({ params }: { params: Promise<{ id: strin
            >
               <Eye className="w-4 h-4" /> Full Editor View
            </Link>
+           <Link
+              href={post.status === "PUBLISHED" ? `/blog/${post.slug}` : `/blog/${post.slug}?preview=1`}
+              target="_blank"
+              className="flex items-center justify-center gap-2 w-full p-4 bg-white border border-slate-100 rounded-2xl text-slate-500 hover:text-brand hover:border-brand/20 transition-all shadow-sm"
+           >
+              <Eye className="w-4 h-4" /> Website Preview
+           </Link>
         </div>
       </div>
     </div>

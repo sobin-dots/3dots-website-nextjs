@@ -124,16 +124,16 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
-  employeeId: 'employeeId',
   phone: 'phone',
   password: 'password',
   role: 'role',
-  image: 'image',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   about: 'about',
   designation: 'designation',
+  image: 'image',
   socials: 'socials',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  employeeId: 'employeeId'
 };
 
 exports.Prisma.PostScalarFieldEnum = {
@@ -143,19 +143,19 @@ exports.Prisma.PostScalarFieldEnum = {
   excerpt: 'excerpt',
   content: 'content',
   image: 'image',
-  thumbnail: 'thumbnail',
   category: 'category',
   readTime: 'readTime',
   published: 'published',
-  status: 'status',
-  reviewComment: 'reviewComment',
   date: 'date',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   dislikes: 'dislikes',
   likes: 'likes',
   tags: 'tags',
-  authorId: 'authorId'
+  authorId: 'authorId',
+  reviewComment: 'reviewComment',
+  status: 'status',
+  thumbnail: 'thumbnail'
 };
 
 exports.Prisma.CommentScalarFieldEnum = {
@@ -278,7 +278,44 @@ exports.Prisma.NewsletterSubscriberScalarFieldEnum = {
   id: 'id',
   email: 'email',
   status: 'status',
+  createdAt: 'createdAt',
+  name: 'name'
+};
+
+exports.Prisma.NewsletterGroupScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  color: 'color',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.NewsletterGroupMemberScalarFieldEnum = {
+  groupId: 'groupId',
+  subscriberId: 'subscriberId',
   createdAt: 'createdAt'
+};
+
+exports.Prisma.NewsletterScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  subject: 'subject',
+  preheader: 'preheader',
+  content: 'content',
+  status: 'status',
+  sendToAll: 'sendToAll',
+  sentAt: 'sentAt',
+  recipientCount: 'recipientCount',
+  successCount: 'successCount',
+  failureCount: 'failureCount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.NewsletterTargetGroupScalarFieldEnum = {
+  newsletterId: 'newsletterId',
+  groupId: 'groupId'
 };
 
 exports.Prisma.NotificationScalarFieldEnum = {
@@ -288,6 +325,38 @@ exports.Prisma.NotificationScalarFieldEnum = {
   message: 'message',
   type: 'type',
   read: 'read',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.EmailTemplateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  subject: 'subject',
+  body: 'body',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  description: 'description',
+  isActive: 'isActive'
+};
+
+exports.Prisma.FormEmailMappingScalarFieldEnum = {
+  id: 'id',
+  formKey: 'formKey',
+  templateId: 'templateId',
+  enabled: 'enabled',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EmailLogScalarFieldEnum = {
+  id: 'id',
+  formKey: 'formKey',
+  templateId: 'templateId',
+  to: 'to',
+  subject: 'subject',
+  status: 'status',
+  error: 'error',
+  messageId: 'messageId',
   createdAt: 'createdAt'
 };
 
@@ -332,7 +401,14 @@ exports.Prisma.ModelName = {
   Expert: 'Expert',
   Appointment: 'Appointment',
   NewsletterSubscriber: 'NewsletterSubscriber',
-  Notification: 'Notification'
+  NewsletterGroup: 'NewsletterGroup',
+  NewsletterGroupMember: 'NewsletterGroupMember',
+  Newsletter: 'Newsletter',
+  NewsletterTargetGroup: 'NewsletterTargetGroup',
+  Notification: 'Notification',
+  EmailTemplate: 'EmailTemplate',
+  FormEmailMapping: 'FormEmailMapping',
+  EmailLog: 'EmailLog'
 };
 
 /**

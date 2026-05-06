@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, Mail, Phone, Calendar as CalendarIcon, FileText, CheckCircle, XCircle, Clock, Link as LinkIcon, Briefcase, Download, Trash2 } from "lucide-react";
 import Link from "next/link";
+import ApplicationActions from "@/components/admin/ApplicationActions";
+
 
 interface JobApplication {
   id: string;
@@ -161,6 +163,7 @@ export default function ApplicationDetailPage() {
           )}
 
           {app.additionalInfo && (
+
             <div className="bg-white p-8 rounded-4xl border border-slate-100 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-8 h-8 rounded-xl bg-slate-50 flex items-center justify-center text-slate-600">
@@ -176,6 +179,15 @@ export default function ApplicationDetailPage() {
         </div>
 
         <div className="space-y-6">
+          {/* Communication Actions */}
+          <ApplicationActions
+            applicationId={app.id}
+            applicantEmail={app.email}
+            applicantName={app.fullName}
+            jobTitle={app.job?.title || app.position || "the position"}
+            status={app.status}
+          />
+
           {/* Action Card */}
           <div className="bg-white p-8 rounded-4xl border border-slate-100 shadow-sm">
             <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-6">Application Actions</h3>

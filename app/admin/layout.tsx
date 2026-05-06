@@ -18,7 +18,9 @@ const navigation = [
   { name: "Launchpad", href: "/admin/launchpad", icon: Rocket, roles: ADMIN_ROLES },
   { name: "Applications", href: "/admin/applications", icon: FileBadge, roles: ADMIN_ROLES },
   { name: "Newsletter", href: "/admin/newsletter", icon: Mail, roles: ADMIN_ROLES },
+  { name: "Email Center", href: "/admin/email-templates", icon: Settings, roles: ADMIN_ROLES },
   { name: "Team", href: "/admin/team", icon: Users, roles: ADMIN_ROLES },
+
   { name: "Users", href: "/admin/users", icon: Shield, roles: ADMIN_ROLES },
   { name: "Appointments", href: "/admin/appointments", icon: Calendar, roles: ADMIN_ROLES },
   { name: "Profile", href: "/admin/settings", icon: User, roles: ALL_ROLES },

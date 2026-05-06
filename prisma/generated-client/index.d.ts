@@ -79,10 +79,45 @@ export type Appointment = $Result.DefaultSelection<Prisma.$AppointmentPayload>
  */
 export type NewsletterSubscriber = $Result.DefaultSelection<Prisma.$NewsletterSubscriberPayload>
 /**
+ * Model NewsletterGroup
+ * 
+ */
+export type NewsletterGroup = $Result.DefaultSelection<Prisma.$NewsletterGroupPayload>
+/**
+ * Model NewsletterGroupMember
+ * 
+ */
+export type NewsletterGroupMember = $Result.DefaultSelection<Prisma.$NewsletterGroupMemberPayload>
+/**
+ * Model Newsletter
+ * 
+ */
+export type Newsletter = $Result.DefaultSelection<Prisma.$NewsletterPayload>
+/**
+ * Model NewsletterTargetGroup
+ * 
+ */
+export type NewsletterTargetGroup = $Result.DefaultSelection<Prisma.$NewsletterTargetGroupPayload>
+/**
  * Model Notification
  * 
  */
 export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
+/**
+ * Model EmailTemplate
+ * 
+ */
+export type EmailTemplate = $Result.DefaultSelection<Prisma.$EmailTemplatePayload>
+/**
+ * Model FormEmailMapping
+ * 
+ */
+export type FormEmailMapping = $Result.DefaultSelection<Prisma.$FormEmailMappingPayload>
+/**
+ * Model EmailLog
+ * 
+ */
+export type EmailLog = $Result.DefaultSelection<Prisma.$EmailLogPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -336,6 +371,46 @@ export class PrismaClient<
   get newsletterSubscriber(): Prisma.NewsletterSubscriberDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.newsletterGroup`: Exposes CRUD operations for the **NewsletterGroup** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more NewsletterGroups
+    * const newsletterGroups = await prisma.newsletterGroup.findMany()
+    * ```
+    */
+  get newsletterGroup(): Prisma.NewsletterGroupDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.newsletterGroupMember`: Exposes CRUD operations for the **NewsletterGroupMember** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more NewsletterGroupMembers
+    * const newsletterGroupMembers = await prisma.newsletterGroupMember.findMany()
+    * ```
+    */
+  get newsletterGroupMember(): Prisma.NewsletterGroupMemberDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.newsletter`: Exposes CRUD operations for the **Newsletter** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Newsletters
+    * const newsletters = await prisma.newsletter.findMany()
+    * ```
+    */
+  get newsletter(): Prisma.NewsletterDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.newsletterTargetGroup`: Exposes CRUD operations for the **NewsletterTargetGroup** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more NewsletterTargetGroups
+    * const newsletterTargetGroups = await prisma.newsletterTargetGroup.findMany()
+    * ```
+    */
+  get newsletterTargetGroup(): Prisma.NewsletterTargetGroupDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.notification`: Exposes CRUD operations for the **Notification** model.
     * Example usage:
     * ```ts
@@ -344,6 +419,36 @@ export class PrismaClient<
     * ```
     */
   get notification(): Prisma.NotificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.emailTemplate`: Exposes CRUD operations for the **EmailTemplate** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmailTemplates
+    * const emailTemplates = await prisma.emailTemplate.findMany()
+    * ```
+    */
+  get emailTemplate(): Prisma.EmailTemplateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.formEmailMapping`: Exposes CRUD operations for the **FormEmailMapping** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FormEmailMappings
+    * const formEmailMappings = await prisma.formEmailMapping.findMany()
+    * ```
+    */
+  get formEmailMapping(): Prisma.FormEmailMappingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.emailLog`: Exposes CRUD operations for the **EmailLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmailLogs
+    * const emailLogs = await prisma.emailLog.findMany()
+    * ```
+    */
+  get emailLog(): Prisma.EmailLogDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -791,7 +896,14 @@ export namespace Prisma {
     Expert: 'Expert',
     Appointment: 'Appointment',
     NewsletterSubscriber: 'NewsletterSubscriber',
-    Notification: 'Notification'
+    NewsletterGroup: 'NewsletterGroup',
+    NewsletterGroupMember: 'NewsletterGroupMember',
+    Newsletter: 'Newsletter',
+    NewsletterTargetGroup: 'NewsletterTargetGroup',
+    Notification: 'Notification',
+    EmailTemplate: 'EmailTemplate',
+    FormEmailMapping: 'FormEmailMapping',
+    EmailLog: 'EmailLog'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -807,7 +919,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "post" | "comment" | "blogCategory" | "job" | "jobApplication" | "contactInquiry" | "launchpadApplication" | "service" | "teamMember" | "expert" | "appointment" | "newsletterSubscriber" | "notification"
+      modelProps: "user" | "post" | "comment" | "blogCategory" | "job" | "jobApplication" | "contactInquiry" | "launchpadApplication" | "service" | "teamMember" | "expert" | "appointment" | "newsletterSubscriber" | "newsletterGroup" | "newsletterGroupMember" | "newsletter" | "newsletterTargetGroup" | "notification" | "emailTemplate" | "formEmailMapping" | "emailLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1773,6 +1885,302 @@ export namespace Prisma {
           }
         }
       }
+      NewsletterGroup: {
+        payload: Prisma.$NewsletterGroupPayload<ExtArgs>
+        fields: Prisma.NewsletterGroupFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NewsletterGroupFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NewsletterGroupFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupPayload>
+          }
+          findFirst: {
+            args: Prisma.NewsletterGroupFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NewsletterGroupFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupPayload>
+          }
+          findMany: {
+            args: Prisma.NewsletterGroupFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupPayload>[]
+          }
+          create: {
+            args: Prisma.NewsletterGroupCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupPayload>
+          }
+          createMany: {
+            args: Prisma.NewsletterGroupCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NewsletterGroupCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupPayload>[]
+          }
+          delete: {
+            args: Prisma.NewsletterGroupDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupPayload>
+          }
+          update: {
+            args: Prisma.NewsletterGroupUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupPayload>
+          }
+          deleteMany: {
+            args: Prisma.NewsletterGroupDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NewsletterGroupUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NewsletterGroupUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupPayload>[]
+          }
+          upsert: {
+            args: Prisma.NewsletterGroupUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupPayload>
+          }
+          aggregate: {
+            args: Prisma.NewsletterGroupAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNewsletterGroup>
+          }
+          groupBy: {
+            args: Prisma.NewsletterGroupGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NewsletterGroupGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NewsletterGroupCountArgs<ExtArgs>
+            result: $Utils.Optional<NewsletterGroupCountAggregateOutputType> | number
+          }
+        }
+      }
+      NewsletterGroupMember: {
+        payload: Prisma.$NewsletterGroupMemberPayload<ExtArgs>
+        fields: Prisma.NewsletterGroupMemberFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NewsletterGroupMemberFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupMemberPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NewsletterGroupMemberFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupMemberPayload>
+          }
+          findFirst: {
+            args: Prisma.NewsletterGroupMemberFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupMemberPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NewsletterGroupMemberFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupMemberPayload>
+          }
+          findMany: {
+            args: Prisma.NewsletterGroupMemberFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupMemberPayload>[]
+          }
+          create: {
+            args: Prisma.NewsletterGroupMemberCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupMemberPayload>
+          }
+          createMany: {
+            args: Prisma.NewsletterGroupMemberCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NewsletterGroupMemberCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupMemberPayload>[]
+          }
+          delete: {
+            args: Prisma.NewsletterGroupMemberDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupMemberPayload>
+          }
+          update: {
+            args: Prisma.NewsletterGroupMemberUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupMemberPayload>
+          }
+          deleteMany: {
+            args: Prisma.NewsletterGroupMemberDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NewsletterGroupMemberUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NewsletterGroupMemberUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupMemberPayload>[]
+          }
+          upsert: {
+            args: Prisma.NewsletterGroupMemberUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterGroupMemberPayload>
+          }
+          aggregate: {
+            args: Prisma.NewsletterGroupMemberAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNewsletterGroupMember>
+          }
+          groupBy: {
+            args: Prisma.NewsletterGroupMemberGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NewsletterGroupMemberGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NewsletterGroupMemberCountArgs<ExtArgs>
+            result: $Utils.Optional<NewsletterGroupMemberCountAggregateOutputType> | number
+          }
+        }
+      }
+      Newsletter: {
+        payload: Prisma.$NewsletterPayload<ExtArgs>
+        fields: Prisma.NewsletterFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NewsletterFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NewsletterFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterPayload>
+          }
+          findFirst: {
+            args: Prisma.NewsletterFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NewsletterFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterPayload>
+          }
+          findMany: {
+            args: Prisma.NewsletterFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterPayload>[]
+          }
+          create: {
+            args: Prisma.NewsletterCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterPayload>
+          }
+          createMany: {
+            args: Prisma.NewsletterCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NewsletterCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterPayload>[]
+          }
+          delete: {
+            args: Prisma.NewsletterDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterPayload>
+          }
+          update: {
+            args: Prisma.NewsletterUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterPayload>
+          }
+          deleteMany: {
+            args: Prisma.NewsletterDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NewsletterUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NewsletterUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterPayload>[]
+          }
+          upsert: {
+            args: Prisma.NewsletterUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterPayload>
+          }
+          aggregate: {
+            args: Prisma.NewsletterAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNewsletter>
+          }
+          groupBy: {
+            args: Prisma.NewsletterGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NewsletterGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NewsletterCountArgs<ExtArgs>
+            result: $Utils.Optional<NewsletterCountAggregateOutputType> | number
+          }
+        }
+      }
+      NewsletterTargetGroup: {
+        payload: Prisma.$NewsletterTargetGroupPayload<ExtArgs>
+        fields: Prisma.NewsletterTargetGroupFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NewsletterTargetGroupFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterTargetGroupPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NewsletterTargetGroupFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterTargetGroupPayload>
+          }
+          findFirst: {
+            args: Prisma.NewsletterTargetGroupFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterTargetGroupPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NewsletterTargetGroupFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterTargetGroupPayload>
+          }
+          findMany: {
+            args: Prisma.NewsletterTargetGroupFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterTargetGroupPayload>[]
+          }
+          create: {
+            args: Prisma.NewsletterTargetGroupCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterTargetGroupPayload>
+          }
+          createMany: {
+            args: Prisma.NewsletterTargetGroupCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NewsletterTargetGroupCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterTargetGroupPayload>[]
+          }
+          delete: {
+            args: Prisma.NewsletterTargetGroupDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterTargetGroupPayload>
+          }
+          update: {
+            args: Prisma.NewsletterTargetGroupUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterTargetGroupPayload>
+          }
+          deleteMany: {
+            args: Prisma.NewsletterTargetGroupDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NewsletterTargetGroupUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NewsletterTargetGroupUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterTargetGroupPayload>[]
+          }
+          upsert: {
+            args: Prisma.NewsletterTargetGroupUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterTargetGroupPayload>
+          }
+          aggregate: {
+            args: Prisma.NewsletterTargetGroupAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNewsletterTargetGroup>
+          }
+          groupBy: {
+            args: Prisma.NewsletterTargetGroupGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NewsletterTargetGroupGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NewsletterTargetGroupCountArgs<ExtArgs>
+            result: $Utils.Optional<NewsletterTargetGroupCountAggregateOutputType> | number
+          }
+        }
+      }
       Notification: {
         payload: Prisma.$NotificationPayload<ExtArgs>
         fields: Prisma.NotificationFieldRefs
@@ -1844,6 +2252,228 @@ export namespace Prisma {
           count: {
             args: Prisma.NotificationCountArgs<ExtArgs>
             result: $Utils.Optional<NotificationCountAggregateOutputType> | number
+          }
+        }
+      }
+      EmailTemplate: {
+        payload: Prisma.$EmailTemplatePayload<ExtArgs>
+        fields: Prisma.EmailTemplateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmailTemplateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailTemplatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmailTemplateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailTemplatePayload>
+          }
+          findFirst: {
+            args: Prisma.EmailTemplateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailTemplatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmailTemplateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailTemplatePayload>
+          }
+          findMany: {
+            args: Prisma.EmailTemplateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailTemplatePayload>[]
+          }
+          create: {
+            args: Prisma.EmailTemplateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailTemplatePayload>
+          }
+          createMany: {
+            args: Prisma.EmailTemplateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmailTemplateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailTemplatePayload>[]
+          }
+          delete: {
+            args: Prisma.EmailTemplateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailTemplatePayload>
+          }
+          update: {
+            args: Prisma.EmailTemplateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailTemplatePayload>
+          }
+          deleteMany: {
+            args: Prisma.EmailTemplateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmailTemplateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmailTemplateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailTemplatePayload>[]
+          }
+          upsert: {
+            args: Prisma.EmailTemplateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailTemplatePayload>
+          }
+          aggregate: {
+            args: Prisma.EmailTemplateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmailTemplate>
+          }
+          groupBy: {
+            args: Prisma.EmailTemplateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmailTemplateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmailTemplateCountArgs<ExtArgs>
+            result: $Utils.Optional<EmailTemplateCountAggregateOutputType> | number
+          }
+        }
+      }
+      FormEmailMapping: {
+        payload: Prisma.$FormEmailMappingPayload<ExtArgs>
+        fields: Prisma.FormEmailMappingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FormEmailMappingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FormEmailMappingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FormEmailMappingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FormEmailMappingPayload>
+          }
+          findFirst: {
+            args: Prisma.FormEmailMappingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FormEmailMappingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FormEmailMappingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FormEmailMappingPayload>
+          }
+          findMany: {
+            args: Prisma.FormEmailMappingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FormEmailMappingPayload>[]
+          }
+          create: {
+            args: Prisma.FormEmailMappingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FormEmailMappingPayload>
+          }
+          createMany: {
+            args: Prisma.FormEmailMappingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FormEmailMappingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FormEmailMappingPayload>[]
+          }
+          delete: {
+            args: Prisma.FormEmailMappingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FormEmailMappingPayload>
+          }
+          update: {
+            args: Prisma.FormEmailMappingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FormEmailMappingPayload>
+          }
+          deleteMany: {
+            args: Prisma.FormEmailMappingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FormEmailMappingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FormEmailMappingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FormEmailMappingPayload>[]
+          }
+          upsert: {
+            args: Prisma.FormEmailMappingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FormEmailMappingPayload>
+          }
+          aggregate: {
+            args: Prisma.FormEmailMappingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFormEmailMapping>
+          }
+          groupBy: {
+            args: Prisma.FormEmailMappingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FormEmailMappingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FormEmailMappingCountArgs<ExtArgs>
+            result: $Utils.Optional<FormEmailMappingCountAggregateOutputType> | number
+          }
+        }
+      }
+      EmailLog: {
+        payload: Prisma.$EmailLogPayload<ExtArgs>
+        fields: Prisma.EmailLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmailLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmailLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailLogPayload>
+          }
+          findFirst: {
+            args: Prisma.EmailLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmailLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailLogPayload>
+          }
+          findMany: {
+            args: Prisma.EmailLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailLogPayload>[]
+          }
+          create: {
+            args: Prisma.EmailLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailLogPayload>
+          }
+          createMany: {
+            args: Prisma.EmailLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmailLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailLogPayload>[]
+          }
+          delete: {
+            args: Prisma.EmailLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailLogPayload>
+          }
+          update: {
+            args: Prisma.EmailLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.EmailLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmailLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmailLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.EmailLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailLogPayload>
+          }
+          aggregate: {
+            args: Prisma.EmailLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmailLog>
+          }
+          groupBy: {
+            args: Prisma.EmailLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmailLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmailLogCountArgs<ExtArgs>
+            result: $Utils.Optional<EmailLogCountAggregateOutputType> | number
           }
         }
       }
@@ -1968,7 +2598,14 @@ export namespace Prisma {
     expert?: ExpertOmit
     appointment?: AppointmentOmit
     newsletterSubscriber?: NewsletterSubscriberOmit
+    newsletterGroup?: NewsletterGroupOmit
+    newsletterGroupMember?: NewsletterGroupMemberOmit
+    newsletter?: NewsletterOmit
+    newsletterTargetGroup?: NewsletterTargetGroupOmit
     notification?: NotificationOmit
+    emailTemplate?: EmailTemplateOmit
+    formEmailMapping?: FormEmailMappingOmit
+    emailLog?: EmailLogOmit
   }
 
   /* Types for Logging */
@@ -2049,13 +2686,13 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    posts: number
     notifications: number
+    posts: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    posts?: boolean | UserCountOutputTypeCountPostsArgs
     notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+    posts?: boolean | UserCountOutputTypeCountPostsArgs
   }
 
   // Custom InputTypes
@@ -2072,15 +2709,15 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PostWhereInput
+  export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: NotificationWhereInput
+  export type UserCountOutputTypeCountPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostWhereInput
   }
 
 
@@ -2178,6 +2815,139 @@ export namespace Prisma {
 
 
   /**
+   * Count Type NewsletterSubscriberCountOutputType
+   */
+
+  export type NewsletterSubscriberCountOutputType = {
+    groups: number
+  }
+
+  export type NewsletterSubscriberCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    groups?: boolean | NewsletterSubscriberCountOutputTypeCountGroupsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * NewsletterSubscriberCountOutputType without action
+   */
+  export type NewsletterSubscriberCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterSubscriberCountOutputType
+     */
+    select?: NewsletterSubscriberCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * NewsletterSubscriberCountOutputType without action
+   */
+  export type NewsletterSubscriberCountOutputTypeCountGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NewsletterGroupMemberWhereInput
+  }
+
+
+  /**
+   * Count Type NewsletterGroupCountOutputType
+   */
+
+  export type NewsletterGroupCountOutputType = {
+    members: number
+    newsletters: number
+  }
+
+  export type NewsletterGroupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    members?: boolean | NewsletterGroupCountOutputTypeCountMembersArgs
+    newsletters?: boolean | NewsletterGroupCountOutputTypeCountNewslettersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * NewsletterGroupCountOutputType without action
+   */
+  export type NewsletterGroupCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupCountOutputType
+     */
+    select?: NewsletterGroupCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * NewsletterGroupCountOutputType without action
+   */
+  export type NewsletterGroupCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NewsletterGroupMemberWhereInput
+  }
+
+  /**
+   * NewsletterGroupCountOutputType without action
+   */
+  export type NewsletterGroupCountOutputTypeCountNewslettersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NewsletterTargetGroupWhereInput
+  }
+
+
+  /**
+   * Count Type NewsletterCountOutputType
+   */
+
+  export type NewsletterCountOutputType = {
+    targetGroups: number
+  }
+
+  export type NewsletterCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    targetGroups?: boolean | NewsletterCountOutputTypeCountTargetGroupsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * NewsletterCountOutputType without action
+   */
+  export type NewsletterCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterCountOutputType
+     */
+    select?: NewsletterCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * NewsletterCountOutputType without action
+   */
+  export type NewsletterCountOutputTypeCountTargetGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NewsletterTargetGroupWhereInput
+  }
+
+
+  /**
+   * Count Type EmailTemplateCountOutputType
+   */
+
+  export type EmailTemplateCountOutputType = {
+    mappings: number
+  }
+
+  export type EmailTemplateCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mappings?: boolean | EmailTemplateCountOutputTypeCountMappingsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EmailTemplateCountOutputType without action
+   */
+  export type EmailTemplateCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailTemplateCountOutputType
+     */
+    select?: EmailTemplateCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EmailTemplateCountOutputType without action
+   */
+  export type EmailTemplateCountOutputTypeCountMappingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FormEmailMappingWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -2195,46 +2965,46 @@ export namespace Prisma {
     id: string | null
     name: string | null
     email: string | null
-    employeeId: string | null
     phone: string | null
     password: string | null
     role: string | null
-    image: string | null
-    about: string | null
-    designation: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    about: string | null
+    designation: string | null
+    image: string | null
+    employeeId: string | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: string | null
     name: string | null
     email: string | null
-    employeeId: string | null
     phone: string | null
     password: string | null
     role: string | null
-    image: string | null
-    about: string | null
-    designation: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    about: string | null
+    designation: string | null
+    image: string | null
+    employeeId: string | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
     name: number
     email: number
-    employeeId: number
     phone: number
     password: number
     role: number
-    image: number
-    about: number
-    designation: number
-    socials: number
     createdAt: number
     updatedAt: number
+    about: number
+    designation: number
+    image: number
+    socials: number
+    employeeId: number
     _all: number
   }
 
@@ -2243,46 +3013,46 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
-    employeeId?: true
     phone?: true
     password?: true
     role?: true
-    image?: true
-    about?: true
-    designation?: true
     createdAt?: true
     updatedAt?: true
+    about?: true
+    designation?: true
+    image?: true
+    employeeId?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
     name?: true
     email?: true
-    employeeId?: true
     phone?: true
     password?: true
     role?: true
-    image?: true
-    about?: true
-    designation?: true
     createdAt?: true
     updatedAt?: true
+    about?: true
+    designation?: true
+    image?: true
+    employeeId?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
     name?: true
     email?: true
-    employeeId?: true
     phone?: true
     password?: true
     role?: true
-    image?: true
-    about?: true
-    designation?: true
-    socials?: true
     createdAt?: true
     updatedAt?: true
+    about?: true
+    designation?: true
+    image?: true
+    socials?: true
+    employeeId?: true
     _all?: true
   }
 
@@ -2362,16 +3132,16 @@ export namespace Prisma {
     id: string
     name: string | null
     email: string | null
-    employeeId: string | null
     phone: string | null
     password: string | null
     role: string
-    image: string | null
-    about: string | null
-    designation: string | null
-    socials: JsonValue | null
     createdAt: Date
     updatedAt: Date
+    about: string | null
+    designation: string | null
+    image: string | null
+    socials: JsonValue | null
+    employeeId: string | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -2395,18 +3165,18 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
-    employeeId?: boolean
     phone?: boolean
     password?: boolean
     role?: boolean
-    image?: boolean
-    about?: boolean
-    designation?: boolean
-    socials?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    posts?: boolean | User$postsArgs<ExtArgs>
+    about?: boolean
+    designation?: boolean
+    image?: boolean
+    socials?: boolean
+    employeeId?: boolean
     notifications?: boolean | User$notificationsArgs<ExtArgs>
+    posts?: boolean | User$postsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2414,54 +3184,54 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
-    employeeId?: boolean
     phone?: boolean
     password?: boolean
     role?: boolean
-    image?: boolean
-    about?: boolean
-    designation?: boolean
-    socials?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    about?: boolean
+    designation?: boolean
+    image?: boolean
+    socials?: boolean
+    employeeId?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     email?: boolean
-    employeeId?: boolean
     phone?: boolean
     password?: boolean
     role?: boolean
-    image?: boolean
-    about?: boolean
-    designation?: boolean
-    socials?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    about?: boolean
+    designation?: boolean
+    image?: boolean
+    socials?: boolean
+    employeeId?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
     name?: boolean
     email?: boolean
-    employeeId?: boolean
     phone?: boolean
     password?: boolean
     role?: boolean
-    image?: boolean
-    about?: boolean
-    designation?: boolean
-    socials?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    about?: boolean
+    designation?: boolean
+    image?: boolean
+    socials?: boolean
+    employeeId?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "employeeId" | "phone" | "password" | "role" | "image" | "about" | "designation" | "socials" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "password" | "role" | "createdAt" | "updatedAt" | "about" | "designation" | "image" | "socials" | "employeeId", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    posts?: boolean | User$postsArgs<ExtArgs>
     notifications?: boolean | User$notificationsArgs<ExtArgs>
+    posts?: boolean | User$postsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2470,23 +3240,23 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      posts: Prisma.$PostPayload<ExtArgs>[]
       notifications: Prisma.$NotificationPayload<ExtArgs>[]
+      posts: Prisma.$PostPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string | null
       email: string | null
-      employeeId: string | null
       phone: string | null
       password: string | null
       role: string
-      image: string | null
-      about: string | null
-      designation: string | null
-      socials: Prisma.JsonValue | null
       createdAt: Date
       updatedAt: Date
+      about: string | null
+      designation: string | null
+      image: string | null
+      socials: Prisma.JsonValue | null
+      employeeId: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2881,8 +3651,8 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     notifications<T extends User$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2915,16 +3685,16 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
-    readonly employeeId: FieldRef<"User", 'String'>
     readonly phone: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'String'>
-    readonly image: FieldRef<"User", 'String'>
-    readonly about: FieldRef<"User", 'String'>
-    readonly designation: FieldRef<"User", 'String'>
-    readonly socials: FieldRef<"User", 'Json'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
+    readonly about: FieldRef<"User", 'String'>
+    readonly designation: FieldRef<"User", 'String'>
+    readonly image: FieldRef<"User", 'String'>
+    readonly socials: FieldRef<"User", 'Json'>
+    readonly employeeId: FieldRef<"User", 'String'>
   }
     
 
@@ -3318,30 +4088,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.posts
-   */
-  export type User$postsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Post
-     */
-    select?: PostSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Post
-     */
-    omit?: PostOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostInclude<ExtArgs> | null
-    where?: PostWhereInput
-    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
-    cursor?: PostWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
-  }
-
-  /**
    * User.notifications
    */
   export type User$notificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3363,6 +4109,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * User.posts
+   */
+  export type User$postsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    where?: PostWhereInput
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    cursor?: PostWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
   }
 
   /**
@@ -3413,18 +4183,18 @@ export namespace Prisma {
     excerpt: string | null
     content: string | null
     image: string | null
-    thumbnail: string | null
     category: string | null
     readTime: string | null
     published: boolean | null
-    status: string | null
-    reviewComment: string | null
     date: Date | null
     createdAt: Date | null
     updatedAt: Date | null
     dislikes: number | null
     likes: number | null
     authorId: string | null
+    reviewComment: string | null
+    status: string | null
+    thumbnail: string | null
   }
 
   export type PostMaxAggregateOutputType = {
@@ -3434,18 +4204,18 @@ export namespace Prisma {
     excerpt: string | null
     content: string | null
     image: string | null
-    thumbnail: string | null
     category: string | null
     readTime: string | null
     published: boolean | null
-    status: string | null
-    reviewComment: string | null
     date: Date | null
     createdAt: Date | null
     updatedAt: Date | null
     dislikes: number | null
     likes: number | null
     authorId: string | null
+    reviewComment: string | null
+    status: string | null
+    thumbnail: string | null
   }
 
   export type PostCountAggregateOutputType = {
@@ -3455,12 +4225,9 @@ export namespace Prisma {
     excerpt: number
     content: number
     image: number
-    thumbnail: number
     category: number
     readTime: number
     published: number
-    status: number
-    reviewComment: number
     date: number
     createdAt: number
     updatedAt: number
@@ -3468,6 +4235,9 @@ export namespace Prisma {
     likes: number
     tags: number
     authorId: number
+    reviewComment: number
+    status: number
+    thumbnail: number
     _all: number
   }
 
@@ -3489,18 +4259,18 @@ export namespace Prisma {
     excerpt?: true
     content?: true
     image?: true
-    thumbnail?: true
     category?: true
     readTime?: true
     published?: true
-    status?: true
-    reviewComment?: true
     date?: true
     createdAt?: true
     updatedAt?: true
     dislikes?: true
     likes?: true
     authorId?: true
+    reviewComment?: true
+    status?: true
+    thumbnail?: true
   }
 
   export type PostMaxAggregateInputType = {
@@ -3510,18 +4280,18 @@ export namespace Prisma {
     excerpt?: true
     content?: true
     image?: true
-    thumbnail?: true
     category?: true
     readTime?: true
     published?: true
-    status?: true
-    reviewComment?: true
     date?: true
     createdAt?: true
     updatedAt?: true
     dislikes?: true
     likes?: true
     authorId?: true
+    reviewComment?: true
+    status?: true
+    thumbnail?: true
   }
 
   export type PostCountAggregateInputType = {
@@ -3531,12 +4301,9 @@ export namespace Prisma {
     excerpt?: true
     content?: true
     image?: true
-    thumbnail?: true
     category?: true
     readTime?: true
     published?: true
-    status?: true
-    reviewComment?: true
     date?: true
     createdAt?: true
     updatedAt?: true
@@ -3544,6 +4311,9 @@ export namespace Prisma {
     likes?: true
     tags?: true
     authorId?: true
+    reviewComment?: true
+    status?: true
+    thumbnail?: true
     _all?: true
   }
 
@@ -3640,12 +4410,9 @@ export namespace Prisma {
     excerpt: string
     content: string
     image: string | null
-    thumbnail: string | null
     category: string
     readTime: string
     published: boolean
-    status: string
-    reviewComment: string | null
     date: Date
     createdAt: Date
     updatedAt: Date
@@ -3653,6 +4420,9 @@ export namespace Prisma {
     likes: number
     tags: string[]
     authorId: string | null
+    reviewComment: string | null
+    status: string
+    thumbnail: string | null
     _count: PostCountAggregateOutputType | null
     _avg: PostAvgAggregateOutputType | null
     _sum: PostSumAggregateOutputType | null
@@ -3681,12 +4451,9 @@ export namespace Prisma {
     excerpt?: boolean
     content?: boolean
     image?: boolean
-    thumbnail?: boolean
     category?: boolean
     readTime?: boolean
     published?: boolean
-    status?: boolean
-    reviewComment?: boolean
     date?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3694,6 +4461,9 @@ export namespace Prisma {
     likes?: boolean
     tags?: boolean
     authorId?: boolean
+    reviewComment?: boolean
+    status?: boolean
+    thumbnail?: boolean
     comments?: boolean | Post$commentsArgs<ExtArgs>
     author?: boolean | Post$authorArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
@@ -3706,12 +4476,9 @@ export namespace Prisma {
     excerpt?: boolean
     content?: boolean
     image?: boolean
-    thumbnail?: boolean
     category?: boolean
     readTime?: boolean
     published?: boolean
-    status?: boolean
-    reviewComment?: boolean
     date?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3719,6 +4486,9 @@ export namespace Prisma {
     likes?: boolean
     tags?: boolean
     authorId?: boolean
+    reviewComment?: boolean
+    status?: boolean
+    thumbnail?: boolean
     author?: boolean | Post$authorArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -3729,12 +4499,9 @@ export namespace Prisma {
     excerpt?: boolean
     content?: boolean
     image?: boolean
-    thumbnail?: boolean
     category?: boolean
     readTime?: boolean
     published?: boolean
-    status?: boolean
-    reviewComment?: boolean
     date?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3742,6 +4509,9 @@ export namespace Prisma {
     likes?: boolean
     tags?: boolean
     authorId?: boolean
+    reviewComment?: boolean
+    status?: boolean
+    thumbnail?: boolean
     author?: boolean | Post$authorArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -3752,12 +4522,9 @@ export namespace Prisma {
     excerpt?: boolean
     content?: boolean
     image?: boolean
-    thumbnail?: boolean
     category?: boolean
     readTime?: boolean
     published?: boolean
-    status?: boolean
-    reviewComment?: boolean
     date?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3765,9 +4532,12 @@ export namespace Prisma {
     likes?: boolean
     tags?: boolean
     authorId?: boolean
+    reviewComment?: boolean
+    status?: boolean
+    thumbnail?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "excerpt" | "content" | "image" | "thumbnail" | "category" | "readTime" | "published" | "status" | "reviewComment" | "date" | "createdAt" | "updatedAt" | "dislikes" | "likes" | "tags" | "authorId", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "excerpt" | "content" | "image" | "category" | "readTime" | "published" | "date" | "createdAt" | "updatedAt" | "dislikes" | "likes" | "tags" | "authorId" | "reviewComment" | "status" | "thumbnail", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | Post$commentsArgs<ExtArgs>
     author?: boolean | Post$authorArgs<ExtArgs>
@@ -3793,12 +4563,9 @@ export namespace Prisma {
       excerpt: string
       content: string
       image: string | null
-      thumbnail: string | null
       category: string
       readTime: string
       published: boolean
-      status: string
-      reviewComment: string | null
       date: Date
       createdAt: Date
       updatedAt: Date
@@ -3806,6 +4573,9 @@ export namespace Prisma {
       likes: number
       tags: string[]
       authorId: string | null
+      reviewComment: string | null
+      status: string
+      thumbnail: string | null
     }, ExtArgs["result"]["post"]>
     composites: {}
   }
@@ -4237,12 +5007,9 @@ export namespace Prisma {
     readonly excerpt: FieldRef<"Post", 'String'>
     readonly content: FieldRef<"Post", 'String'>
     readonly image: FieldRef<"Post", 'String'>
-    readonly thumbnail: FieldRef<"Post", 'String'>
     readonly category: FieldRef<"Post", 'String'>
     readonly readTime: FieldRef<"Post", 'String'>
     readonly published: FieldRef<"Post", 'Boolean'>
-    readonly status: FieldRef<"Post", 'String'>
-    readonly reviewComment: FieldRef<"Post", 'String'>
     readonly date: FieldRef<"Post", 'DateTime'>
     readonly createdAt: FieldRef<"Post", 'DateTime'>
     readonly updatedAt: FieldRef<"Post", 'DateTime'>
@@ -4250,6 +5017,9 @@ export namespace Prisma {
     readonly likes: FieldRef<"Post", 'Int'>
     readonly tags: FieldRef<"Post", 'String[]'>
     readonly authorId: FieldRef<"Post", 'String'>
+    readonly reviewComment: FieldRef<"Post", 'String'>
+    readonly status: FieldRef<"Post", 'String'>
+    readonly thumbnail: FieldRef<"Post", 'String'>
   }
     
 
@@ -15571,6 +16341,7 @@ export namespace Prisma {
     email: string | null
     status: string | null
     createdAt: Date | null
+    name: string | null
   }
 
   export type NewsletterSubscriberMaxAggregateOutputType = {
@@ -15578,6 +16349,7 @@ export namespace Prisma {
     email: string | null
     status: string | null
     createdAt: Date | null
+    name: string | null
   }
 
   export type NewsletterSubscriberCountAggregateOutputType = {
@@ -15585,6 +16357,7 @@ export namespace Prisma {
     email: number
     status: number
     createdAt: number
+    name: number
     _all: number
   }
 
@@ -15594,6 +16367,7 @@ export namespace Prisma {
     email?: true
     status?: true
     createdAt?: true
+    name?: true
   }
 
   export type NewsletterSubscriberMaxAggregateInputType = {
@@ -15601,6 +16375,7 @@ export namespace Prisma {
     email?: true
     status?: true
     createdAt?: true
+    name?: true
   }
 
   export type NewsletterSubscriberCountAggregateInputType = {
@@ -15608,6 +16383,7 @@ export namespace Prisma {
     email?: true
     status?: true
     createdAt?: true
+    name?: true
     _all?: true
   }
 
@@ -15688,6 +16464,7 @@ export namespace Prisma {
     email: string
     status: string
     createdAt: Date
+    name: string | null
     _count: NewsletterSubscriberCountAggregateOutputType | null
     _min: NewsletterSubscriberMinAggregateOutputType | null
     _max: NewsletterSubscriberMaxAggregateOutputType | null
@@ -15712,6 +16489,9 @@ export namespace Prisma {
     email?: boolean
     status?: boolean
     createdAt?: boolean
+    name?: boolean
+    groups?: boolean | NewsletterSubscriber$groupsArgs<ExtArgs>
+    _count?: boolean | NewsletterSubscriberCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["newsletterSubscriber"]>
 
   export type NewsletterSubscriberSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -15719,6 +16499,7 @@ export namespace Prisma {
     email?: boolean
     status?: boolean
     createdAt?: boolean
+    name?: boolean
   }, ExtArgs["result"]["newsletterSubscriber"]>
 
   export type NewsletterSubscriberSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -15726,6 +16507,7 @@ export namespace Prisma {
     email?: boolean
     status?: boolean
     createdAt?: boolean
+    name?: boolean
   }, ExtArgs["result"]["newsletterSubscriber"]>
 
   export type NewsletterSubscriberSelectScalar = {
@@ -15733,18 +16515,28 @@ export namespace Prisma {
     email?: boolean
     status?: boolean
     createdAt?: boolean
+    name?: boolean
   }
 
-  export type NewsletterSubscriberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "status" | "createdAt", ExtArgs["result"]["newsletterSubscriber"]>
+  export type NewsletterSubscriberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "status" | "createdAt" | "name", ExtArgs["result"]["newsletterSubscriber"]>
+  export type NewsletterSubscriberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    groups?: boolean | NewsletterSubscriber$groupsArgs<ExtArgs>
+    _count?: boolean | NewsletterSubscriberCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type NewsletterSubscriberIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type NewsletterSubscriberIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $NewsletterSubscriberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "NewsletterSubscriber"
-    objects: {}
+    objects: {
+      groups: Prisma.$NewsletterGroupMemberPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       email: string
       status: string
       createdAt: Date
+      name: string | null
     }, ExtArgs["result"]["newsletterSubscriber"]>
     composites: {}
   }
@@ -16139,6 +16931,7 @@ export namespace Prisma {
    */
   export interface Prisma__NewsletterSubscriberClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    groups<T extends NewsletterSubscriber$groupsArgs<ExtArgs> = {}>(args?: Subset<T, NewsletterSubscriber$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16172,6 +16965,7 @@ export namespace Prisma {
     readonly email: FieldRef<"NewsletterSubscriber", 'String'>
     readonly status: FieldRef<"NewsletterSubscriber", 'String'>
     readonly createdAt: FieldRef<"NewsletterSubscriber", 'DateTime'>
+    readonly name: FieldRef<"NewsletterSubscriber", 'String'>
   }
     
 
@@ -16188,6 +16982,10 @@ export namespace Prisma {
      * Omit specific fields from the NewsletterSubscriber
      */
     omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterSubscriberInclude<ExtArgs> | null
     /**
      * Filter, which NewsletterSubscriber to fetch.
      */
@@ -16207,6 +17005,10 @@ export namespace Prisma {
      */
     omit?: NewsletterSubscriberOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterSubscriberInclude<ExtArgs> | null
+    /**
      * Filter, which NewsletterSubscriber to fetch.
      */
     where: NewsletterSubscriberWhereUniqueInput
@@ -16224,6 +17026,10 @@ export namespace Prisma {
      * Omit specific fields from the NewsletterSubscriber
      */
     omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterSubscriberInclude<ExtArgs> | null
     /**
      * Filter, which NewsletterSubscriber to fetch.
      */
@@ -16273,6 +17079,10 @@ export namespace Prisma {
      */
     omit?: NewsletterSubscriberOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterSubscriberInclude<ExtArgs> | null
+    /**
      * Filter, which NewsletterSubscriber to fetch.
      */
     where?: NewsletterSubscriberWhereInput
@@ -16320,6 +17130,10 @@ export namespace Prisma {
      * Omit specific fields from the NewsletterSubscriber
      */
     omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterSubscriberInclude<ExtArgs> | null
     /**
      * Filter, which NewsletterSubscribers to fetch.
      */
@@ -16369,6 +17183,10 @@ export namespace Prisma {
      */
     omit?: NewsletterSubscriberOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterSubscriberInclude<ExtArgs> | null
+    /**
      * The data needed to create a NewsletterSubscriber.
      */
     data: XOR<NewsletterSubscriberCreateInput, NewsletterSubscriberUncheckedCreateInput>
@@ -16416,6 +17234,10 @@ export namespace Prisma {
      * Omit specific fields from the NewsletterSubscriber
      */
     omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterSubscriberInclude<ExtArgs> | null
     /**
      * The data needed to update a NewsletterSubscriber.
      */
@@ -16483,6 +17305,10 @@ export namespace Prisma {
      */
     omit?: NewsletterSubscriberOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterSubscriberInclude<ExtArgs> | null
+    /**
      * The filter to search for the NewsletterSubscriber to update in case it exists.
      */
     where: NewsletterSubscriberWhereUniqueInput
@@ -16509,6 +17335,10 @@ export namespace Prisma {
      */
     omit?: NewsletterSubscriberOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterSubscriberInclude<ExtArgs> | null
+    /**
      * Filter which NewsletterSubscriber to delete.
      */
     where: NewsletterSubscriberWhereUniqueInput
@@ -16529,6 +17359,30 @@ export namespace Prisma {
   }
 
   /**
+   * NewsletterSubscriber.groups
+   */
+  export type NewsletterSubscriber$groupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberInclude<ExtArgs> | null
+    where?: NewsletterGroupMemberWhereInput
+    orderBy?: NewsletterGroupMemberOrderByWithRelationInput | NewsletterGroupMemberOrderByWithRelationInput[]
+    cursor?: NewsletterGroupMemberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: NewsletterGroupMemberScalarFieldEnum | NewsletterGroupMemberScalarFieldEnum[]
+  }
+
+  /**
    * NewsletterSubscriber without action
    */
   export type NewsletterSubscriberDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -16540,6 +17394,4424 @@ export namespace Prisma {
      * Omit specific fields from the NewsletterSubscriber
      */
     omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterSubscriberInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model NewsletterGroup
+   */
+
+  export type AggregateNewsletterGroup = {
+    _count: NewsletterGroupCountAggregateOutputType | null
+    _min: NewsletterGroupMinAggregateOutputType | null
+    _max: NewsletterGroupMaxAggregateOutputType | null
+  }
+
+  export type NewsletterGroupMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    color: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NewsletterGroupMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    color: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NewsletterGroupCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    color: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type NewsletterGroupMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    color?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NewsletterGroupMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    color?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NewsletterGroupCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    color?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type NewsletterGroupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NewsletterGroup to aggregate.
+     */
+    where?: NewsletterGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterGroups to fetch.
+     */
+    orderBy?: NewsletterGroupOrderByWithRelationInput | NewsletterGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NewsletterGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned NewsletterGroups
+    **/
+    _count?: true | NewsletterGroupCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NewsletterGroupMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NewsletterGroupMaxAggregateInputType
+  }
+
+  export type GetNewsletterGroupAggregateType<T extends NewsletterGroupAggregateArgs> = {
+        [P in keyof T & keyof AggregateNewsletterGroup]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNewsletterGroup[P]>
+      : GetScalarType<T[P], AggregateNewsletterGroup[P]>
+  }
+
+
+
+
+  export type NewsletterGroupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NewsletterGroupWhereInput
+    orderBy?: NewsletterGroupOrderByWithAggregationInput | NewsletterGroupOrderByWithAggregationInput[]
+    by: NewsletterGroupScalarFieldEnum[] | NewsletterGroupScalarFieldEnum
+    having?: NewsletterGroupScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NewsletterGroupCountAggregateInputType | true
+    _min?: NewsletterGroupMinAggregateInputType
+    _max?: NewsletterGroupMaxAggregateInputType
+  }
+
+  export type NewsletterGroupGroupByOutputType = {
+    id: string
+    name: string
+    description: string | null
+    color: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: NewsletterGroupCountAggregateOutputType | null
+    _min: NewsletterGroupMinAggregateOutputType | null
+    _max: NewsletterGroupMaxAggregateOutputType | null
+  }
+
+  type GetNewsletterGroupGroupByPayload<T extends NewsletterGroupGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NewsletterGroupGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NewsletterGroupGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NewsletterGroupGroupByOutputType[P]>
+            : GetScalarType<T[P], NewsletterGroupGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NewsletterGroupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    color?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    members?: boolean | NewsletterGroup$membersArgs<ExtArgs>
+    newsletters?: boolean | NewsletterGroup$newslettersArgs<ExtArgs>
+    _count?: boolean | NewsletterGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["newsletterGroup"]>
+
+  export type NewsletterGroupSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    color?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["newsletterGroup"]>
+
+  export type NewsletterGroupSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    color?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["newsletterGroup"]>
+
+  export type NewsletterGroupSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    color?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type NewsletterGroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "color" | "createdAt" | "updatedAt", ExtArgs["result"]["newsletterGroup"]>
+  export type NewsletterGroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    members?: boolean | NewsletterGroup$membersArgs<ExtArgs>
+    newsletters?: boolean | NewsletterGroup$newslettersArgs<ExtArgs>
+    _count?: boolean | NewsletterGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type NewsletterGroupIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type NewsletterGroupIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $NewsletterGroupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "NewsletterGroup"
+    objects: {
+      members: Prisma.$NewsletterGroupMemberPayload<ExtArgs>[]
+      newsletters: Prisma.$NewsletterTargetGroupPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      description: string | null
+      color: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["newsletterGroup"]>
+    composites: {}
+  }
+
+  type NewsletterGroupGetPayload<S extends boolean | null | undefined | NewsletterGroupDefaultArgs> = $Result.GetResult<Prisma.$NewsletterGroupPayload, S>
+
+  type NewsletterGroupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NewsletterGroupFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NewsletterGroupCountAggregateInputType | true
+    }
+
+  export interface NewsletterGroupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['NewsletterGroup'], meta: { name: 'NewsletterGroup' } }
+    /**
+     * Find zero or one NewsletterGroup that matches the filter.
+     * @param {NewsletterGroupFindUniqueArgs} args - Arguments to find a NewsletterGroup
+     * @example
+     * // Get one NewsletterGroup
+     * const newsletterGroup = await prisma.newsletterGroup.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NewsletterGroupFindUniqueArgs>(args: SelectSubset<T, NewsletterGroupFindUniqueArgs<ExtArgs>>): Prisma__NewsletterGroupClient<$Result.GetResult<Prisma.$NewsletterGroupPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one NewsletterGroup that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NewsletterGroupFindUniqueOrThrowArgs} args - Arguments to find a NewsletterGroup
+     * @example
+     * // Get one NewsletterGroup
+     * const newsletterGroup = await prisma.newsletterGroup.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NewsletterGroupFindUniqueOrThrowArgs>(args: SelectSubset<T, NewsletterGroupFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NewsletterGroupClient<$Result.GetResult<Prisma.$NewsletterGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NewsletterGroup that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupFindFirstArgs} args - Arguments to find a NewsletterGroup
+     * @example
+     * // Get one NewsletterGroup
+     * const newsletterGroup = await prisma.newsletterGroup.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NewsletterGroupFindFirstArgs>(args?: SelectSubset<T, NewsletterGroupFindFirstArgs<ExtArgs>>): Prisma__NewsletterGroupClient<$Result.GetResult<Prisma.$NewsletterGroupPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NewsletterGroup that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupFindFirstOrThrowArgs} args - Arguments to find a NewsletterGroup
+     * @example
+     * // Get one NewsletterGroup
+     * const newsletterGroup = await prisma.newsletterGroup.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NewsletterGroupFindFirstOrThrowArgs>(args?: SelectSubset<T, NewsletterGroupFindFirstOrThrowArgs<ExtArgs>>): Prisma__NewsletterGroupClient<$Result.GetResult<Prisma.$NewsletterGroupPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more NewsletterGroups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all NewsletterGroups
+     * const newsletterGroups = await prisma.newsletterGroup.findMany()
+     * 
+     * // Get first 10 NewsletterGroups
+     * const newsletterGroups = await prisma.newsletterGroup.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const newsletterGroupWithIdOnly = await prisma.newsletterGroup.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NewsletterGroupFindManyArgs>(args?: SelectSubset<T, NewsletterGroupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a NewsletterGroup.
+     * @param {NewsletterGroupCreateArgs} args - Arguments to create a NewsletterGroup.
+     * @example
+     * // Create one NewsletterGroup
+     * const NewsletterGroup = await prisma.newsletterGroup.create({
+     *   data: {
+     *     // ... data to create a NewsletterGroup
+     *   }
+     * })
+     * 
+     */
+    create<T extends NewsletterGroupCreateArgs>(args: SelectSubset<T, NewsletterGroupCreateArgs<ExtArgs>>): Prisma__NewsletterGroupClient<$Result.GetResult<Prisma.$NewsletterGroupPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many NewsletterGroups.
+     * @param {NewsletterGroupCreateManyArgs} args - Arguments to create many NewsletterGroups.
+     * @example
+     * // Create many NewsletterGroups
+     * const newsletterGroup = await prisma.newsletterGroup.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NewsletterGroupCreateManyArgs>(args?: SelectSubset<T, NewsletterGroupCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many NewsletterGroups and returns the data saved in the database.
+     * @param {NewsletterGroupCreateManyAndReturnArgs} args - Arguments to create many NewsletterGroups.
+     * @example
+     * // Create many NewsletterGroups
+     * const newsletterGroup = await prisma.newsletterGroup.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many NewsletterGroups and only return the `id`
+     * const newsletterGroupWithIdOnly = await prisma.newsletterGroup.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NewsletterGroupCreateManyAndReturnArgs>(args?: SelectSubset<T, NewsletterGroupCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterGroupPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a NewsletterGroup.
+     * @param {NewsletterGroupDeleteArgs} args - Arguments to delete one NewsletterGroup.
+     * @example
+     * // Delete one NewsletterGroup
+     * const NewsletterGroup = await prisma.newsletterGroup.delete({
+     *   where: {
+     *     // ... filter to delete one NewsletterGroup
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NewsletterGroupDeleteArgs>(args: SelectSubset<T, NewsletterGroupDeleteArgs<ExtArgs>>): Prisma__NewsletterGroupClient<$Result.GetResult<Prisma.$NewsletterGroupPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one NewsletterGroup.
+     * @param {NewsletterGroupUpdateArgs} args - Arguments to update one NewsletterGroup.
+     * @example
+     * // Update one NewsletterGroup
+     * const newsletterGroup = await prisma.newsletterGroup.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NewsletterGroupUpdateArgs>(args: SelectSubset<T, NewsletterGroupUpdateArgs<ExtArgs>>): Prisma__NewsletterGroupClient<$Result.GetResult<Prisma.$NewsletterGroupPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more NewsletterGroups.
+     * @param {NewsletterGroupDeleteManyArgs} args - Arguments to filter NewsletterGroups to delete.
+     * @example
+     * // Delete a few NewsletterGroups
+     * const { count } = await prisma.newsletterGroup.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NewsletterGroupDeleteManyArgs>(args?: SelectSubset<T, NewsletterGroupDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NewsletterGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many NewsletterGroups
+     * const newsletterGroup = await prisma.newsletterGroup.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NewsletterGroupUpdateManyArgs>(args: SelectSubset<T, NewsletterGroupUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NewsletterGroups and returns the data updated in the database.
+     * @param {NewsletterGroupUpdateManyAndReturnArgs} args - Arguments to update many NewsletterGroups.
+     * @example
+     * // Update many NewsletterGroups
+     * const newsletterGroup = await prisma.newsletterGroup.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more NewsletterGroups and only return the `id`
+     * const newsletterGroupWithIdOnly = await prisma.newsletterGroup.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NewsletterGroupUpdateManyAndReturnArgs>(args: SelectSubset<T, NewsletterGroupUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterGroupPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one NewsletterGroup.
+     * @param {NewsletterGroupUpsertArgs} args - Arguments to update or create a NewsletterGroup.
+     * @example
+     * // Update or create a NewsletterGroup
+     * const newsletterGroup = await prisma.newsletterGroup.upsert({
+     *   create: {
+     *     // ... data to create a NewsletterGroup
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the NewsletterGroup we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NewsletterGroupUpsertArgs>(args: SelectSubset<T, NewsletterGroupUpsertArgs<ExtArgs>>): Prisma__NewsletterGroupClient<$Result.GetResult<Prisma.$NewsletterGroupPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of NewsletterGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupCountArgs} args - Arguments to filter NewsletterGroups to count.
+     * @example
+     * // Count the number of NewsletterGroups
+     * const count = await prisma.newsletterGroup.count({
+     *   where: {
+     *     // ... the filter for the NewsletterGroups we want to count
+     *   }
+     * })
+    **/
+    count<T extends NewsletterGroupCountArgs>(
+      args?: Subset<T, NewsletterGroupCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NewsletterGroupCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a NewsletterGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NewsletterGroupAggregateArgs>(args: Subset<T, NewsletterGroupAggregateArgs>): Prisma.PrismaPromise<GetNewsletterGroupAggregateType<T>>
+
+    /**
+     * Group by NewsletterGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NewsletterGroupGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NewsletterGroupGroupByArgs['orderBy'] }
+        : { orderBy?: NewsletterGroupGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NewsletterGroupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNewsletterGroupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the NewsletterGroup model
+   */
+  readonly fields: NewsletterGroupFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for NewsletterGroup.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NewsletterGroupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    members<T extends NewsletterGroup$membersArgs<ExtArgs> = {}>(args?: Subset<T, NewsletterGroup$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    newsletters<T extends NewsletterGroup$newslettersArgs<ExtArgs> = {}>(args?: Subset<T, NewsletterGroup$newslettersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterTargetGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the NewsletterGroup model
+   */
+  interface NewsletterGroupFieldRefs {
+    readonly id: FieldRef<"NewsletterGroup", 'String'>
+    readonly name: FieldRef<"NewsletterGroup", 'String'>
+    readonly description: FieldRef<"NewsletterGroup", 'String'>
+    readonly color: FieldRef<"NewsletterGroup", 'String'>
+    readonly createdAt: FieldRef<"NewsletterGroup", 'DateTime'>
+    readonly updatedAt: FieldRef<"NewsletterGroup", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * NewsletterGroup findUnique
+   */
+  export type NewsletterGroupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroup
+     */
+    select?: NewsletterGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroup
+     */
+    omit?: NewsletterGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterGroup to fetch.
+     */
+    where: NewsletterGroupWhereUniqueInput
+  }
+
+  /**
+   * NewsletterGroup findUniqueOrThrow
+   */
+  export type NewsletterGroupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroup
+     */
+    select?: NewsletterGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroup
+     */
+    omit?: NewsletterGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterGroup to fetch.
+     */
+    where: NewsletterGroupWhereUniqueInput
+  }
+
+  /**
+   * NewsletterGroup findFirst
+   */
+  export type NewsletterGroupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroup
+     */
+    select?: NewsletterGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroup
+     */
+    omit?: NewsletterGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterGroup to fetch.
+     */
+    where?: NewsletterGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterGroups to fetch.
+     */
+    orderBy?: NewsletterGroupOrderByWithRelationInput | NewsletterGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NewsletterGroups.
+     */
+    cursor?: NewsletterGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewsletterGroups.
+     */
+    distinct?: NewsletterGroupScalarFieldEnum | NewsletterGroupScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterGroup findFirstOrThrow
+   */
+  export type NewsletterGroupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroup
+     */
+    select?: NewsletterGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroup
+     */
+    omit?: NewsletterGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterGroup to fetch.
+     */
+    where?: NewsletterGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterGroups to fetch.
+     */
+    orderBy?: NewsletterGroupOrderByWithRelationInput | NewsletterGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NewsletterGroups.
+     */
+    cursor?: NewsletterGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewsletterGroups.
+     */
+    distinct?: NewsletterGroupScalarFieldEnum | NewsletterGroupScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterGroup findMany
+   */
+  export type NewsletterGroupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroup
+     */
+    select?: NewsletterGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroup
+     */
+    omit?: NewsletterGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterGroups to fetch.
+     */
+    where?: NewsletterGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterGroups to fetch.
+     */
+    orderBy?: NewsletterGroupOrderByWithRelationInput | NewsletterGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing NewsletterGroups.
+     */
+    cursor?: NewsletterGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewsletterGroups.
+     */
+    distinct?: NewsletterGroupScalarFieldEnum | NewsletterGroupScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterGroup create
+   */
+  export type NewsletterGroupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroup
+     */
+    select?: NewsletterGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroup
+     */
+    omit?: NewsletterGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to create a NewsletterGroup.
+     */
+    data: XOR<NewsletterGroupCreateInput, NewsletterGroupUncheckedCreateInput>
+  }
+
+  /**
+   * NewsletterGroup createMany
+   */
+  export type NewsletterGroupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many NewsletterGroups.
+     */
+    data: NewsletterGroupCreateManyInput | NewsletterGroupCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * NewsletterGroup createManyAndReturn
+   */
+  export type NewsletterGroupCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroup
+     */
+    select?: NewsletterGroupSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroup
+     */
+    omit?: NewsletterGroupOmit<ExtArgs> | null
+    /**
+     * The data used to create many NewsletterGroups.
+     */
+    data: NewsletterGroupCreateManyInput | NewsletterGroupCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * NewsletterGroup update
+   */
+  export type NewsletterGroupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroup
+     */
+    select?: NewsletterGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroup
+     */
+    omit?: NewsletterGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to update a NewsletterGroup.
+     */
+    data: XOR<NewsletterGroupUpdateInput, NewsletterGroupUncheckedUpdateInput>
+    /**
+     * Choose, which NewsletterGroup to update.
+     */
+    where: NewsletterGroupWhereUniqueInput
+  }
+
+  /**
+   * NewsletterGroup updateMany
+   */
+  export type NewsletterGroupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update NewsletterGroups.
+     */
+    data: XOR<NewsletterGroupUpdateManyMutationInput, NewsletterGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which NewsletterGroups to update
+     */
+    where?: NewsletterGroupWhereInput
+    /**
+     * Limit how many NewsletterGroups to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * NewsletterGroup updateManyAndReturn
+   */
+  export type NewsletterGroupUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroup
+     */
+    select?: NewsletterGroupSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroup
+     */
+    omit?: NewsletterGroupOmit<ExtArgs> | null
+    /**
+     * The data used to update NewsletterGroups.
+     */
+    data: XOR<NewsletterGroupUpdateManyMutationInput, NewsletterGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which NewsletterGroups to update
+     */
+    where?: NewsletterGroupWhereInput
+    /**
+     * Limit how many NewsletterGroups to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * NewsletterGroup upsert
+   */
+  export type NewsletterGroupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroup
+     */
+    select?: NewsletterGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroup
+     */
+    omit?: NewsletterGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupInclude<ExtArgs> | null
+    /**
+     * The filter to search for the NewsletterGroup to update in case it exists.
+     */
+    where: NewsletterGroupWhereUniqueInput
+    /**
+     * In case the NewsletterGroup found by the `where` argument doesn't exist, create a new NewsletterGroup with this data.
+     */
+    create: XOR<NewsletterGroupCreateInput, NewsletterGroupUncheckedCreateInput>
+    /**
+     * In case the NewsletterGroup was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NewsletterGroupUpdateInput, NewsletterGroupUncheckedUpdateInput>
+  }
+
+  /**
+   * NewsletterGroup delete
+   */
+  export type NewsletterGroupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroup
+     */
+    select?: NewsletterGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroup
+     */
+    omit?: NewsletterGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupInclude<ExtArgs> | null
+    /**
+     * Filter which NewsletterGroup to delete.
+     */
+    where: NewsletterGroupWhereUniqueInput
+  }
+
+  /**
+   * NewsletterGroup deleteMany
+   */
+  export type NewsletterGroupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NewsletterGroups to delete
+     */
+    where?: NewsletterGroupWhereInput
+    /**
+     * Limit how many NewsletterGroups to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * NewsletterGroup.members
+   */
+  export type NewsletterGroup$membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberInclude<ExtArgs> | null
+    where?: NewsletterGroupMemberWhereInput
+    orderBy?: NewsletterGroupMemberOrderByWithRelationInput | NewsletterGroupMemberOrderByWithRelationInput[]
+    cursor?: NewsletterGroupMemberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: NewsletterGroupMemberScalarFieldEnum | NewsletterGroupMemberScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterGroup.newsletters
+   */
+  export type NewsletterGroup$newslettersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupInclude<ExtArgs> | null
+    where?: NewsletterTargetGroupWhereInput
+    orderBy?: NewsletterTargetGroupOrderByWithRelationInput | NewsletterTargetGroupOrderByWithRelationInput[]
+    cursor?: NewsletterTargetGroupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: NewsletterTargetGroupScalarFieldEnum | NewsletterTargetGroupScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterGroup without action
+   */
+  export type NewsletterGroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroup
+     */
+    select?: NewsletterGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroup
+     */
+    omit?: NewsletterGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model NewsletterGroupMember
+   */
+
+  export type AggregateNewsletterGroupMember = {
+    _count: NewsletterGroupMemberCountAggregateOutputType | null
+    _min: NewsletterGroupMemberMinAggregateOutputType | null
+    _max: NewsletterGroupMemberMaxAggregateOutputType | null
+  }
+
+  export type NewsletterGroupMemberMinAggregateOutputType = {
+    groupId: string | null
+    subscriberId: string | null
+    createdAt: Date | null
+  }
+
+  export type NewsletterGroupMemberMaxAggregateOutputType = {
+    groupId: string | null
+    subscriberId: string | null
+    createdAt: Date | null
+  }
+
+  export type NewsletterGroupMemberCountAggregateOutputType = {
+    groupId: number
+    subscriberId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type NewsletterGroupMemberMinAggregateInputType = {
+    groupId?: true
+    subscriberId?: true
+    createdAt?: true
+  }
+
+  export type NewsletterGroupMemberMaxAggregateInputType = {
+    groupId?: true
+    subscriberId?: true
+    createdAt?: true
+  }
+
+  export type NewsletterGroupMemberCountAggregateInputType = {
+    groupId?: true
+    subscriberId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type NewsletterGroupMemberAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NewsletterGroupMember to aggregate.
+     */
+    where?: NewsletterGroupMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterGroupMembers to fetch.
+     */
+    orderBy?: NewsletterGroupMemberOrderByWithRelationInput | NewsletterGroupMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NewsletterGroupMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterGroupMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterGroupMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned NewsletterGroupMembers
+    **/
+    _count?: true | NewsletterGroupMemberCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NewsletterGroupMemberMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NewsletterGroupMemberMaxAggregateInputType
+  }
+
+  export type GetNewsletterGroupMemberAggregateType<T extends NewsletterGroupMemberAggregateArgs> = {
+        [P in keyof T & keyof AggregateNewsletterGroupMember]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNewsletterGroupMember[P]>
+      : GetScalarType<T[P], AggregateNewsletterGroupMember[P]>
+  }
+
+
+
+
+  export type NewsletterGroupMemberGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NewsletterGroupMemberWhereInput
+    orderBy?: NewsletterGroupMemberOrderByWithAggregationInput | NewsletterGroupMemberOrderByWithAggregationInput[]
+    by: NewsletterGroupMemberScalarFieldEnum[] | NewsletterGroupMemberScalarFieldEnum
+    having?: NewsletterGroupMemberScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NewsletterGroupMemberCountAggregateInputType | true
+    _min?: NewsletterGroupMemberMinAggregateInputType
+    _max?: NewsletterGroupMemberMaxAggregateInputType
+  }
+
+  export type NewsletterGroupMemberGroupByOutputType = {
+    groupId: string
+    subscriberId: string
+    createdAt: Date
+    _count: NewsletterGroupMemberCountAggregateOutputType | null
+    _min: NewsletterGroupMemberMinAggregateOutputType | null
+    _max: NewsletterGroupMemberMaxAggregateOutputType | null
+  }
+
+  type GetNewsletterGroupMemberGroupByPayload<T extends NewsletterGroupMemberGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NewsletterGroupMemberGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NewsletterGroupMemberGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NewsletterGroupMemberGroupByOutputType[P]>
+            : GetScalarType<T[P], NewsletterGroupMemberGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NewsletterGroupMemberSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    groupId?: boolean
+    subscriberId?: boolean
+    createdAt?: boolean
+    group?: boolean | NewsletterGroupDefaultArgs<ExtArgs>
+    subscriber?: boolean | NewsletterSubscriberDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["newsletterGroupMember"]>
+
+  export type NewsletterGroupMemberSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    groupId?: boolean
+    subscriberId?: boolean
+    createdAt?: boolean
+    group?: boolean | NewsletterGroupDefaultArgs<ExtArgs>
+    subscriber?: boolean | NewsletterSubscriberDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["newsletterGroupMember"]>
+
+  export type NewsletterGroupMemberSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    groupId?: boolean
+    subscriberId?: boolean
+    createdAt?: boolean
+    group?: boolean | NewsletterGroupDefaultArgs<ExtArgs>
+    subscriber?: boolean | NewsletterSubscriberDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["newsletterGroupMember"]>
+
+  export type NewsletterGroupMemberSelectScalar = {
+    groupId?: boolean
+    subscriberId?: boolean
+    createdAt?: boolean
+  }
+
+  export type NewsletterGroupMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"groupId" | "subscriberId" | "createdAt", ExtArgs["result"]["newsletterGroupMember"]>
+  export type NewsletterGroupMemberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    group?: boolean | NewsletterGroupDefaultArgs<ExtArgs>
+    subscriber?: boolean | NewsletterSubscriberDefaultArgs<ExtArgs>
+  }
+  export type NewsletterGroupMemberIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    group?: boolean | NewsletterGroupDefaultArgs<ExtArgs>
+    subscriber?: boolean | NewsletterSubscriberDefaultArgs<ExtArgs>
+  }
+  export type NewsletterGroupMemberIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    group?: boolean | NewsletterGroupDefaultArgs<ExtArgs>
+    subscriber?: boolean | NewsletterSubscriberDefaultArgs<ExtArgs>
+  }
+
+  export type $NewsletterGroupMemberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "NewsletterGroupMember"
+    objects: {
+      group: Prisma.$NewsletterGroupPayload<ExtArgs>
+      subscriber: Prisma.$NewsletterSubscriberPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      groupId: string
+      subscriberId: string
+      createdAt: Date
+    }, ExtArgs["result"]["newsletterGroupMember"]>
+    composites: {}
+  }
+
+  type NewsletterGroupMemberGetPayload<S extends boolean | null | undefined | NewsletterGroupMemberDefaultArgs> = $Result.GetResult<Prisma.$NewsletterGroupMemberPayload, S>
+
+  type NewsletterGroupMemberCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NewsletterGroupMemberFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NewsletterGroupMemberCountAggregateInputType | true
+    }
+
+  export interface NewsletterGroupMemberDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['NewsletterGroupMember'], meta: { name: 'NewsletterGroupMember' } }
+    /**
+     * Find zero or one NewsletterGroupMember that matches the filter.
+     * @param {NewsletterGroupMemberFindUniqueArgs} args - Arguments to find a NewsletterGroupMember
+     * @example
+     * // Get one NewsletterGroupMember
+     * const newsletterGroupMember = await prisma.newsletterGroupMember.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NewsletterGroupMemberFindUniqueArgs>(args: SelectSubset<T, NewsletterGroupMemberFindUniqueArgs<ExtArgs>>): Prisma__NewsletterGroupMemberClient<$Result.GetResult<Prisma.$NewsletterGroupMemberPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one NewsletterGroupMember that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NewsletterGroupMemberFindUniqueOrThrowArgs} args - Arguments to find a NewsletterGroupMember
+     * @example
+     * // Get one NewsletterGroupMember
+     * const newsletterGroupMember = await prisma.newsletterGroupMember.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NewsletterGroupMemberFindUniqueOrThrowArgs>(args: SelectSubset<T, NewsletterGroupMemberFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NewsletterGroupMemberClient<$Result.GetResult<Prisma.$NewsletterGroupMemberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NewsletterGroupMember that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupMemberFindFirstArgs} args - Arguments to find a NewsletterGroupMember
+     * @example
+     * // Get one NewsletterGroupMember
+     * const newsletterGroupMember = await prisma.newsletterGroupMember.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NewsletterGroupMemberFindFirstArgs>(args?: SelectSubset<T, NewsletterGroupMemberFindFirstArgs<ExtArgs>>): Prisma__NewsletterGroupMemberClient<$Result.GetResult<Prisma.$NewsletterGroupMemberPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NewsletterGroupMember that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupMemberFindFirstOrThrowArgs} args - Arguments to find a NewsletterGroupMember
+     * @example
+     * // Get one NewsletterGroupMember
+     * const newsletterGroupMember = await prisma.newsletterGroupMember.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NewsletterGroupMemberFindFirstOrThrowArgs>(args?: SelectSubset<T, NewsletterGroupMemberFindFirstOrThrowArgs<ExtArgs>>): Prisma__NewsletterGroupMemberClient<$Result.GetResult<Prisma.$NewsletterGroupMemberPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more NewsletterGroupMembers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupMemberFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all NewsletterGroupMembers
+     * const newsletterGroupMembers = await prisma.newsletterGroupMember.findMany()
+     * 
+     * // Get first 10 NewsletterGroupMembers
+     * const newsletterGroupMembers = await prisma.newsletterGroupMember.findMany({ take: 10 })
+     * 
+     * // Only select the `groupId`
+     * const newsletterGroupMemberWithGroupIdOnly = await prisma.newsletterGroupMember.findMany({ select: { groupId: true } })
+     * 
+     */
+    findMany<T extends NewsletterGroupMemberFindManyArgs>(args?: SelectSubset<T, NewsletterGroupMemberFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a NewsletterGroupMember.
+     * @param {NewsletterGroupMemberCreateArgs} args - Arguments to create a NewsletterGroupMember.
+     * @example
+     * // Create one NewsletterGroupMember
+     * const NewsletterGroupMember = await prisma.newsletterGroupMember.create({
+     *   data: {
+     *     // ... data to create a NewsletterGroupMember
+     *   }
+     * })
+     * 
+     */
+    create<T extends NewsletterGroupMemberCreateArgs>(args: SelectSubset<T, NewsletterGroupMemberCreateArgs<ExtArgs>>): Prisma__NewsletterGroupMemberClient<$Result.GetResult<Prisma.$NewsletterGroupMemberPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many NewsletterGroupMembers.
+     * @param {NewsletterGroupMemberCreateManyArgs} args - Arguments to create many NewsletterGroupMembers.
+     * @example
+     * // Create many NewsletterGroupMembers
+     * const newsletterGroupMember = await prisma.newsletterGroupMember.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NewsletterGroupMemberCreateManyArgs>(args?: SelectSubset<T, NewsletterGroupMemberCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many NewsletterGroupMembers and returns the data saved in the database.
+     * @param {NewsletterGroupMemberCreateManyAndReturnArgs} args - Arguments to create many NewsletterGroupMembers.
+     * @example
+     * // Create many NewsletterGroupMembers
+     * const newsletterGroupMember = await prisma.newsletterGroupMember.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many NewsletterGroupMembers and only return the `groupId`
+     * const newsletterGroupMemberWithGroupIdOnly = await prisma.newsletterGroupMember.createManyAndReturn({
+     *   select: { groupId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NewsletterGroupMemberCreateManyAndReturnArgs>(args?: SelectSubset<T, NewsletterGroupMemberCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterGroupMemberPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a NewsletterGroupMember.
+     * @param {NewsletterGroupMemberDeleteArgs} args - Arguments to delete one NewsletterGroupMember.
+     * @example
+     * // Delete one NewsletterGroupMember
+     * const NewsletterGroupMember = await prisma.newsletterGroupMember.delete({
+     *   where: {
+     *     // ... filter to delete one NewsletterGroupMember
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NewsletterGroupMemberDeleteArgs>(args: SelectSubset<T, NewsletterGroupMemberDeleteArgs<ExtArgs>>): Prisma__NewsletterGroupMemberClient<$Result.GetResult<Prisma.$NewsletterGroupMemberPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one NewsletterGroupMember.
+     * @param {NewsletterGroupMemberUpdateArgs} args - Arguments to update one NewsletterGroupMember.
+     * @example
+     * // Update one NewsletterGroupMember
+     * const newsletterGroupMember = await prisma.newsletterGroupMember.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NewsletterGroupMemberUpdateArgs>(args: SelectSubset<T, NewsletterGroupMemberUpdateArgs<ExtArgs>>): Prisma__NewsletterGroupMemberClient<$Result.GetResult<Prisma.$NewsletterGroupMemberPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more NewsletterGroupMembers.
+     * @param {NewsletterGroupMemberDeleteManyArgs} args - Arguments to filter NewsletterGroupMembers to delete.
+     * @example
+     * // Delete a few NewsletterGroupMembers
+     * const { count } = await prisma.newsletterGroupMember.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NewsletterGroupMemberDeleteManyArgs>(args?: SelectSubset<T, NewsletterGroupMemberDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NewsletterGroupMembers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupMemberUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many NewsletterGroupMembers
+     * const newsletterGroupMember = await prisma.newsletterGroupMember.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NewsletterGroupMemberUpdateManyArgs>(args: SelectSubset<T, NewsletterGroupMemberUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NewsletterGroupMembers and returns the data updated in the database.
+     * @param {NewsletterGroupMemberUpdateManyAndReturnArgs} args - Arguments to update many NewsletterGroupMembers.
+     * @example
+     * // Update many NewsletterGroupMembers
+     * const newsletterGroupMember = await prisma.newsletterGroupMember.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more NewsletterGroupMembers and only return the `groupId`
+     * const newsletterGroupMemberWithGroupIdOnly = await prisma.newsletterGroupMember.updateManyAndReturn({
+     *   select: { groupId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NewsletterGroupMemberUpdateManyAndReturnArgs>(args: SelectSubset<T, NewsletterGroupMemberUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterGroupMemberPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one NewsletterGroupMember.
+     * @param {NewsletterGroupMemberUpsertArgs} args - Arguments to update or create a NewsletterGroupMember.
+     * @example
+     * // Update or create a NewsletterGroupMember
+     * const newsletterGroupMember = await prisma.newsletterGroupMember.upsert({
+     *   create: {
+     *     // ... data to create a NewsletterGroupMember
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the NewsletterGroupMember we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NewsletterGroupMemberUpsertArgs>(args: SelectSubset<T, NewsletterGroupMemberUpsertArgs<ExtArgs>>): Prisma__NewsletterGroupMemberClient<$Result.GetResult<Prisma.$NewsletterGroupMemberPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of NewsletterGroupMembers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupMemberCountArgs} args - Arguments to filter NewsletterGroupMembers to count.
+     * @example
+     * // Count the number of NewsletterGroupMembers
+     * const count = await prisma.newsletterGroupMember.count({
+     *   where: {
+     *     // ... the filter for the NewsletterGroupMembers we want to count
+     *   }
+     * })
+    **/
+    count<T extends NewsletterGroupMemberCountArgs>(
+      args?: Subset<T, NewsletterGroupMemberCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NewsletterGroupMemberCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a NewsletterGroupMember.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupMemberAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NewsletterGroupMemberAggregateArgs>(args: Subset<T, NewsletterGroupMemberAggregateArgs>): Prisma.PrismaPromise<GetNewsletterGroupMemberAggregateType<T>>
+
+    /**
+     * Group by NewsletterGroupMember.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupMemberGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NewsletterGroupMemberGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NewsletterGroupMemberGroupByArgs['orderBy'] }
+        : { orderBy?: NewsletterGroupMemberGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NewsletterGroupMemberGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNewsletterGroupMemberGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the NewsletterGroupMember model
+   */
+  readonly fields: NewsletterGroupMemberFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for NewsletterGroupMember.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NewsletterGroupMemberClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    group<T extends NewsletterGroupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, NewsletterGroupDefaultArgs<ExtArgs>>): Prisma__NewsletterGroupClient<$Result.GetResult<Prisma.$NewsletterGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    subscriber<T extends NewsletterSubscriberDefaultArgs<ExtArgs> = {}>(args?: Subset<T, NewsletterSubscriberDefaultArgs<ExtArgs>>): Prisma__NewsletterSubscriberClient<$Result.GetResult<Prisma.$NewsletterSubscriberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the NewsletterGroupMember model
+   */
+  interface NewsletterGroupMemberFieldRefs {
+    readonly groupId: FieldRef<"NewsletterGroupMember", 'String'>
+    readonly subscriberId: FieldRef<"NewsletterGroupMember", 'String'>
+    readonly createdAt: FieldRef<"NewsletterGroupMember", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * NewsletterGroupMember findUnique
+   */
+  export type NewsletterGroupMemberFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterGroupMember to fetch.
+     */
+    where: NewsletterGroupMemberWhereUniqueInput
+  }
+
+  /**
+   * NewsletterGroupMember findUniqueOrThrow
+   */
+  export type NewsletterGroupMemberFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterGroupMember to fetch.
+     */
+    where: NewsletterGroupMemberWhereUniqueInput
+  }
+
+  /**
+   * NewsletterGroupMember findFirst
+   */
+  export type NewsletterGroupMemberFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterGroupMember to fetch.
+     */
+    where?: NewsletterGroupMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterGroupMembers to fetch.
+     */
+    orderBy?: NewsletterGroupMemberOrderByWithRelationInput | NewsletterGroupMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NewsletterGroupMembers.
+     */
+    cursor?: NewsletterGroupMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterGroupMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterGroupMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewsletterGroupMembers.
+     */
+    distinct?: NewsletterGroupMemberScalarFieldEnum | NewsletterGroupMemberScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterGroupMember findFirstOrThrow
+   */
+  export type NewsletterGroupMemberFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterGroupMember to fetch.
+     */
+    where?: NewsletterGroupMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterGroupMembers to fetch.
+     */
+    orderBy?: NewsletterGroupMemberOrderByWithRelationInput | NewsletterGroupMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NewsletterGroupMembers.
+     */
+    cursor?: NewsletterGroupMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterGroupMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterGroupMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewsletterGroupMembers.
+     */
+    distinct?: NewsletterGroupMemberScalarFieldEnum | NewsletterGroupMemberScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterGroupMember findMany
+   */
+  export type NewsletterGroupMemberFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterGroupMembers to fetch.
+     */
+    where?: NewsletterGroupMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterGroupMembers to fetch.
+     */
+    orderBy?: NewsletterGroupMemberOrderByWithRelationInput | NewsletterGroupMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing NewsletterGroupMembers.
+     */
+    cursor?: NewsletterGroupMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterGroupMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterGroupMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewsletterGroupMembers.
+     */
+    distinct?: NewsletterGroupMemberScalarFieldEnum | NewsletterGroupMemberScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterGroupMember create
+   */
+  export type NewsletterGroupMemberCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberInclude<ExtArgs> | null
+    /**
+     * The data needed to create a NewsletterGroupMember.
+     */
+    data: XOR<NewsletterGroupMemberCreateInput, NewsletterGroupMemberUncheckedCreateInput>
+  }
+
+  /**
+   * NewsletterGroupMember createMany
+   */
+  export type NewsletterGroupMemberCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many NewsletterGroupMembers.
+     */
+    data: NewsletterGroupMemberCreateManyInput | NewsletterGroupMemberCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * NewsletterGroupMember createManyAndReturn
+   */
+  export type NewsletterGroupMemberCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * The data used to create many NewsletterGroupMembers.
+     */
+    data: NewsletterGroupMemberCreateManyInput | NewsletterGroupMemberCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * NewsletterGroupMember update
+   */
+  export type NewsletterGroupMemberUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberInclude<ExtArgs> | null
+    /**
+     * The data needed to update a NewsletterGroupMember.
+     */
+    data: XOR<NewsletterGroupMemberUpdateInput, NewsletterGroupMemberUncheckedUpdateInput>
+    /**
+     * Choose, which NewsletterGroupMember to update.
+     */
+    where: NewsletterGroupMemberWhereUniqueInput
+  }
+
+  /**
+   * NewsletterGroupMember updateMany
+   */
+  export type NewsletterGroupMemberUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update NewsletterGroupMembers.
+     */
+    data: XOR<NewsletterGroupMemberUpdateManyMutationInput, NewsletterGroupMemberUncheckedUpdateManyInput>
+    /**
+     * Filter which NewsletterGroupMembers to update
+     */
+    where?: NewsletterGroupMemberWhereInput
+    /**
+     * Limit how many NewsletterGroupMembers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * NewsletterGroupMember updateManyAndReturn
+   */
+  export type NewsletterGroupMemberUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * The data used to update NewsletterGroupMembers.
+     */
+    data: XOR<NewsletterGroupMemberUpdateManyMutationInput, NewsletterGroupMemberUncheckedUpdateManyInput>
+    /**
+     * Filter which NewsletterGroupMembers to update
+     */
+    where?: NewsletterGroupMemberWhereInput
+    /**
+     * Limit how many NewsletterGroupMembers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * NewsletterGroupMember upsert
+   */
+  export type NewsletterGroupMemberUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberInclude<ExtArgs> | null
+    /**
+     * The filter to search for the NewsletterGroupMember to update in case it exists.
+     */
+    where: NewsletterGroupMemberWhereUniqueInput
+    /**
+     * In case the NewsletterGroupMember found by the `where` argument doesn't exist, create a new NewsletterGroupMember with this data.
+     */
+    create: XOR<NewsletterGroupMemberCreateInput, NewsletterGroupMemberUncheckedCreateInput>
+    /**
+     * In case the NewsletterGroupMember was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NewsletterGroupMemberUpdateInput, NewsletterGroupMemberUncheckedUpdateInput>
+  }
+
+  /**
+   * NewsletterGroupMember delete
+   */
+  export type NewsletterGroupMemberDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter which NewsletterGroupMember to delete.
+     */
+    where: NewsletterGroupMemberWhereUniqueInput
+  }
+
+  /**
+   * NewsletterGroupMember deleteMany
+   */
+  export type NewsletterGroupMemberDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NewsletterGroupMembers to delete
+     */
+    where?: NewsletterGroupMemberWhereInput
+    /**
+     * Limit how many NewsletterGroupMembers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * NewsletterGroupMember without action
+   */
+  export type NewsletterGroupMemberDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterGroupMember
+     */
+    select?: NewsletterGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterGroupMember
+     */
+    omit?: NewsletterGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterGroupMemberInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Newsletter
+   */
+
+  export type AggregateNewsletter = {
+    _count: NewsletterCountAggregateOutputType | null
+    _avg: NewsletterAvgAggregateOutputType | null
+    _sum: NewsletterSumAggregateOutputType | null
+    _min: NewsletterMinAggregateOutputType | null
+    _max: NewsletterMaxAggregateOutputType | null
+  }
+
+  export type NewsletterAvgAggregateOutputType = {
+    recipientCount: number | null
+    successCount: number | null
+    failureCount: number | null
+  }
+
+  export type NewsletterSumAggregateOutputType = {
+    recipientCount: number | null
+    successCount: number | null
+    failureCount: number | null
+  }
+
+  export type NewsletterMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    subject: string | null
+    preheader: string | null
+    content: string | null
+    status: string | null
+    sendToAll: boolean | null
+    sentAt: Date | null
+    recipientCount: number | null
+    successCount: number | null
+    failureCount: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NewsletterMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    subject: string | null
+    preheader: string | null
+    content: string | null
+    status: string | null
+    sendToAll: boolean | null
+    sentAt: Date | null
+    recipientCount: number | null
+    successCount: number | null
+    failureCount: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NewsletterCountAggregateOutputType = {
+    id: number
+    title: number
+    subject: number
+    preheader: number
+    content: number
+    status: number
+    sendToAll: number
+    sentAt: number
+    recipientCount: number
+    successCount: number
+    failureCount: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type NewsletterAvgAggregateInputType = {
+    recipientCount?: true
+    successCount?: true
+    failureCount?: true
+  }
+
+  export type NewsletterSumAggregateInputType = {
+    recipientCount?: true
+    successCount?: true
+    failureCount?: true
+  }
+
+  export type NewsletterMinAggregateInputType = {
+    id?: true
+    title?: true
+    subject?: true
+    preheader?: true
+    content?: true
+    status?: true
+    sendToAll?: true
+    sentAt?: true
+    recipientCount?: true
+    successCount?: true
+    failureCount?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NewsletterMaxAggregateInputType = {
+    id?: true
+    title?: true
+    subject?: true
+    preheader?: true
+    content?: true
+    status?: true
+    sendToAll?: true
+    sentAt?: true
+    recipientCount?: true
+    successCount?: true
+    failureCount?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NewsletterCountAggregateInputType = {
+    id?: true
+    title?: true
+    subject?: true
+    preheader?: true
+    content?: true
+    status?: true
+    sendToAll?: true
+    sentAt?: true
+    recipientCount?: true
+    successCount?: true
+    failureCount?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type NewsletterAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Newsletter to aggregate.
+     */
+    where?: NewsletterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Newsletters to fetch.
+     */
+    orderBy?: NewsletterOrderByWithRelationInput | NewsletterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NewsletterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Newsletters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Newsletters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Newsletters
+    **/
+    _count?: true | NewsletterCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: NewsletterAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: NewsletterSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NewsletterMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NewsletterMaxAggregateInputType
+  }
+
+  export type GetNewsletterAggregateType<T extends NewsletterAggregateArgs> = {
+        [P in keyof T & keyof AggregateNewsletter]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNewsletter[P]>
+      : GetScalarType<T[P], AggregateNewsletter[P]>
+  }
+
+
+
+
+  export type NewsletterGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NewsletterWhereInput
+    orderBy?: NewsletterOrderByWithAggregationInput | NewsletterOrderByWithAggregationInput[]
+    by: NewsletterScalarFieldEnum[] | NewsletterScalarFieldEnum
+    having?: NewsletterScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NewsletterCountAggregateInputType | true
+    _avg?: NewsletterAvgAggregateInputType
+    _sum?: NewsletterSumAggregateInputType
+    _min?: NewsletterMinAggregateInputType
+    _max?: NewsletterMaxAggregateInputType
+  }
+
+  export type NewsletterGroupByOutputType = {
+    id: string
+    title: string
+    subject: string
+    preheader: string | null
+    content: string
+    status: string
+    sendToAll: boolean
+    sentAt: Date | null
+    recipientCount: number
+    successCount: number
+    failureCount: number
+    createdAt: Date
+    updatedAt: Date
+    _count: NewsletterCountAggregateOutputType | null
+    _avg: NewsletterAvgAggregateOutputType | null
+    _sum: NewsletterSumAggregateOutputType | null
+    _min: NewsletterMinAggregateOutputType | null
+    _max: NewsletterMaxAggregateOutputType | null
+  }
+
+  type GetNewsletterGroupByPayload<T extends NewsletterGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NewsletterGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NewsletterGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NewsletterGroupByOutputType[P]>
+            : GetScalarType<T[P], NewsletterGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NewsletterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subject?: boolean
+    preheader?: boolean
+    content?: boolean
+    status?: boolean
+    sendToAll?: boolean
+    sentAt?: boolean
+    recipientCount?: boolean
+    successCount?: boolean
+    failureCount?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    targetGroups?: boolean | Newsletter$targetGroupsArgs<ExtArgs>
+    _count?: boolean | NewsletterCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["newsletter"]>
+
+  export type NewsletterSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subject?: boolean
+    preheader?: boolean
+    content?: boolean
+    status?: boolean
+    sendToAll?: boolean
+    sentAt?: boolean
+    recipientCount?: boolean
+    successCount?: boolean
+    failureCount?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["newsletter"]>
+
+  export type NewsletterSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subject?: boolean
+    preheader?: boolean
+    content?: boolean
+    status?: boolean
+    sendToAll?: boolean
+    sentAt?: boolean
+    recipientCount?: boolean
+    successCount?: boolean
+    failureCount?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["newsletter"]>
+
+  export type NewsletterSelectScalar = {
+    id?: boolean
+    title?: boolean
+    subject?: boolean
+    preheader?: boolean
+    content?: boolean
+    status?: boolean
+    sendToAll?: boolean
+    sentAt?: boolean
+    recipientCount?: boolean
+    successCount?: boolean
+    failureCount?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type NewsletterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "subject" | "preheader" | "content" | "status" | "sendToAll" | "sentAt" | "recipientCount" | "successCount" | "failureCount" | "createdAt" | "updatedAt", ExtArgs["result"]["newsletter"]>
+  export type NewsletterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    targetGroups?: boolean | Newsletter$targetGroupsArgs<ExtArgs>
+    _count?: boolean | NewsletterCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type NewsletterIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type NewsletterIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $NewsletterPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Newsletter"
+    objects: {
+      targetGroups: Prisma.$NewsletterTargetGroupPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      subject: string
+      preheader: string | null
+      content: string
+      status: string
+      sendToAll: boolean
+      sentAt: Date | null
+      recipientCount: number
+      successCount: number
+      failureCount: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["newsletter"]>
+    composites: {}
+  }
+
+  type NewsletterGetPayload<S extends boolean | null | undefined | NewsletterDefaultArgs> = $Result.GetResult<Prisma.$NewsletterPayload, S>
+
+  type NewsletterCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NewsletterFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NewsletterCountAggregateInputType | true
+    }
+
+  export interface NewsletterDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Newsletter'], meta: { name: 'Newsletter' } }
+    /**
+     * Find zero or one Newsletter that matches the filter.
+     * @param {NewsletterFindUniqueArgs} args - Arguments to find a Newsletter
+     * @example
+     * // Get one Newsletter
+     * const newsletter = await prisma.newsletter.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NewsletterFindUniqueArgs>(args: SelectSubset<T, NewsletterFindUniqueArgs<ExtArgs>>): Prisma__NewsletterClient<$Result.GetResult<Prisma.$NewsletterPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Newsletter that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NewsletterFindUniqueOrThrowArgs} args - Arguments to find a Newsletter
+     * @example
+     * // Get one Newsletter
+     * const newsletter = await prisma.newsletter.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NewsletterFindUniqueOrThrowArgs>(args: SelectSubset<T, NewsletterFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NewsletterClient<$Result.GetResult<Prisma.$NewsletterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Newsletter that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterFindFirstArgs} args - Arguments to find a Newsletter
+     * @example
+     * // Get one Newsletter
+     * const newsletter = await prisma.newsletter.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NewsletterFindFirstArgs>(args?: SelectSubset<T, NewsletterFindFirstArgs<ExtArgs>>): Prisma__NewsletterClient<$Result.GetResult<Prisma.$NewsletterPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Newsletter that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterFindFirstOrThrowArgs} args - Arguments to find a Newsletter
+     * @example
+     * // Get one Newsletter
+     * const newsletter = await prisma.newsletter.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NewsletterFindFirstOrThrowArgs>(args?: SelectSubset<T, NewsletterFindFirstOrThrowArgs<ExtArgs>>): Prisma__NewsletterClient<$Result.GetResult<Prisma.$NewsletterPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Newsletters that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Newsletters
+     * const newsletters = await prisma.newsletter.findMany()
+     * 
+     * // Get first 10 Newsletters
+     * const newsletters = await prisma.newsletter.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const newsletterWithIdOnly = await prisma.newsletter.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NewsletterFindManyArgs>(args?: SelectSubset<T, NewsletterFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Newsletter.
+     * @param {NewsletterCreateArgs} args - Arguments to create a Newsletter.
+     * @example
+     * // Create one Newsletter
+     * const Newsletter = await prisma.newsletter.create({
+     *   data: {
+     *     // ... data to create a Newsletter
+     *   }
+     * })
+     * 
+     */
+    create<T extends NewsletterCreateArgs>(args: SelectSubset<T, NewsletterCreateArgs<ExtArgs>>): Prisma__NewsletterClient<$Result.GetResult<Prisma.$NewsletterPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Newsletters.
+     * @param {NewsletterCreateManyArgs} args - Arguments to create many Newsletters.
+     * @example
+     * // Create many Newsletters
+     * const newsletter = await prisma.newsletter.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NewsletterCreateManyArgs>(args?: SelectSubset<T, NewsletterCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Newsletters and returns the data saved in the database.
+     * @param {NewsletterCreateManyAndReturnArgs} args - Arguments to create many Newsletters.
+     * @example
+     * // Create many Newsletters
+     * const newsletter = await prisma.newsletter.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Newsletters and only return the `id`
+     * const newsletterWithIdOnly = await prisma.newsletter.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NewsletterCreateManyAndReturnArgs>(args?: SelectSubset<T, NewsletterCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Newsletter.
+     * @param {NewsletterDeleteArgs} args - Arguments to delete one Newsletter.
+     * @example
+     * // Delete one Newsletter
+     * const Newsletter = await prisma.newsletter.delete({
+     *   where: {
+     *     // ... filter to delete one Newsletter
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NewsletterDeleteArgs>(args: SelectSubset<T, NewsletterDeleteArgs<ExtArgs>>): Prisma__NewsletterClient<$Result.GetResult<Prisma.$NewsletterPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Newsletter.
+     * @param {NewsletterUpdateArgs} args - Arguments to update one Newsletter.
+     * @example
+     * // Update one Newsletter
+     * const newsletter = await prisma.newsletter.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NewsletterUpdateArgs>(args: SelectSubset<T, NewsletterUpdateArgs<ExtArgs>>): Prisma__NewsletterClient<$Result.GetResult<Prisma.$NewsletterPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Newsletters.
+     * @param {NewsletterDeleteManyArgs} args - Arguments to filter Newsletters to delete.
+     * @example
+     * // Delete a few Newsletters
+     * const { count } = await prisma.newsletter.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NewsletterDeleteManyArgs>(args?: SelectSubset<T, NewsletterDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Newsletters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Newsletters
+     * const newsletter = await prisma.newsletter.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NewsletterUpdateManyArgs>(args: SelectSubset<T, NewsletterUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Newsletters and returns the data updated in the database.
+     * @param {NewsletterUpdateManyAndReturnArgs} args - Arguments to update many Newsletters.
+     * @example
+     * // Update many Newsletters
+     * const newsletter = await prisma.newsletter.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Newsletters and only return the `id`
+     * const newsletterWithIdOnly = await prisma.newsletter.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NewsletterUpdateManyAndReturnArgs>(args: SelectSubset<T, NewsletterUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Newsletter.
+     * @param {NewsletterUpsertArgs} args - Arguments to update or create a Newsletter.
+     * @example
+     * // Update or create a Newsletter
+     * const newsletter = await prisma.newsletter.upsert({
+     *   create: {
+     *     // ... data to create a Newsletter
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Newsletter we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NewsletterUpsertArgs>(args: SelectSubset<T, NewsletterUpsertArgs<ExtArgs>>): Prisma__NewsletterClient<$Result.GetResult<Prisma.$NewsletterPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Newsletters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterCountArgs} args - Arguments to filter Newsletters to count.
+     * @example
+     * // Count the number of Newsletters
+     * const count = await prisma.newsletter.count({
+     *   where: {
+     *     // ... the filter for the Newsletters we want to count
+     *   }
+     * })
+    **/
+    count<T extends NewsletterCountArgs>(
+      args?: Subset<T, NewsletterCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NewsletterCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Newsletter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NewsletterAggregateArgs>(args: Subset<T, NewsletterAggregateArgs>): Prisma.PrismaPromise<GetNewsletterAggregateType<T>>
+
+    /**
+     * Group by Newsletter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NewsletterGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NewsletterGroupByArgs['orderBy'] }
+        : { orderBy?: NewsletterGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NewsletterGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNewsletterGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Newsletter model
+   */
+  readonly fields: NewsletterFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Newsletter.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NewsletterClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    targetGroups<T extends Newsletter$targetGroupsArgs<ExtArgs> = {}>(args?: Subset<T, Newsletter$targetGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterTargetGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Newsletter model
+   */
+  interface NewsletterFieldRefs {
+    readonly id: FieldRef<"Newsletter", 'String'>
+    readonly title: FieldRef<"Newsletter", 'String'>
+    readonly subject: FieldRef<"Newsletter", 'String'>
+    readonly preheader: FieldRef<"Newsletter", 'String'>
+    readonly content: FieldRef<"Newsletter", 'String'>
+    readonly status: FieldRef<"Newsletter", 'String'>
+    readonly sendToAll: FieldRef<"Newsletter", 'Boolean'>
+    readonly sentAt: FieldRef<"Newsletter", 'DateTime'>
+    readonly recipientCount: FieldRef<"Newsletter", 'Int'>
+    readonly successCount: FieldRef<"Newsletter", 'Int'>
+    readonly failureCount: FieldRef<"Newsletter", 'Int'>
+    readonly createdAt: FieldRef<"Newsletter", 'DateTime'>
+    readonly updatedAt: FieldRef<"Newsletter", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Newsletter findUnique
+   */
+  export type NewsletterFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Newsletter
+     */
+    select?: NewsletterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Newsletter
+     */
+    omit?: NewsletterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterInclude<ExtArgs> | null
+    /**
+     * Filter, which Newsletter to fetch.
+     */
+    where: NewsletterWhereUniqueInput
+  }
+
+  /**
+   * Newsletter findUniqueOrThrow
+   */
+  export type NewsletterFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Newsletter
+     */
+    select?: NewsletterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Newsletter
+     */
+    omit?: NewsletterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterInclude<ExtArgs> | null
+    /**
+     * Filter, which Newsletter to fetch.
+     */
+    where: NewsletterWhereUniqueInput
+  }
+
+  /**
+   * Newsletter findFirst
+   */
+  export type NewsletterFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Newsletter
+     */
+    select?: NewsletterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Newsletter
+     */
+    omit?: NewsletterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterInclude<ExtArgs> | null
+    /**
+     * Filter, which Newsletter to fetch.
+     */
+    where?: NewsletterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Newsletters to fetch.
+     */
+    orderBy?: NewsletterOrderByWithRelationInput | NewsletterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Newsletters.
+     */
+    cursor?: NewsletterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Newsletters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Newsletters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Newsletters.
+     */
+    distinct?: NewsletterScalarFieldEnum | NewsletterScalarFieldEnum[]
+  }
+
+  /**
+   * Newsletter findFirstOrThrow
+   */
+  export type NewsletterFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Newsletter
+     */
+    select?: NewsletterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Newsletter
+     */
+    omit?: NewsletterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterInclude<ExtArgs> | null
+    /**
+     * Filter, which Newsletter to fetch.
+     */
+    where?: NewsletterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Newsletters to fetch.
+     */
+    orderBy?: NewsletterOrderByWithRelationInput | NewsletterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Newsletters.
+     */
+    cursor?: NewsletterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Newsletters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Newsletters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Newsletters.
+     */
+    distinct?: NewsletterScalarFieldEnum | NewsletterScalarFieldEnum[]
+  }
+
+  /**
+   * Newsletter findMany
+   */
+  export type NewsletterFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Newsletter
+     */
+    select?: NewsletterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Newsletter
+     */
+    omit?: NewsletterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterInclude<ExtArgs> | null
+    /**
+     * Filter, which Newsletters to fetch.
+     */
+    where?: NewsletterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Newsletters to fetch.
+     */
+    orderBy?: NewsletterOrderByWithRelationInput | NewsletterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Newsletters.
+     */
+    cursor?: NewsletterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Newsletters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Newsletters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Newsletters.
+     */
+    distinct?: NewsletterScalarFieldEnum | NewsletterScalarFieldEnum[]
+  }
+
+  /**
+   * Newsletter create
+   */
+  export type NewsletterCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Newsletter
+     */
+    select?: NewsletterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Newsletter
+     */
+    omit?: NewsletterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Newsletter.
+     */
+    data: XOR<NewsletterCreateInput, NewsletterUncheckedCreateInput>
+  }
+
+  /**
+   * Newsletter createMany
+   */
+  export type NewsletterCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Newsletters.
+     */
+    data: NewsletterCreateManyInput | NewsletterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Newsletter createManyAndReturn
+   */
+  export type NewsletterCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Newsletter
+     */
+    select?: NewsletterSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Newsletter
+     */
+    omit?: NewsletterOmit<ExtArgs> | null
+    /**
+     * The data used to create many Newsletters.
+     */
+    data: NewsletterCreateManyInput | NewsletterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Newsletter update
+   */
+  export type NewsletterUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Newsletter
+     */
+    select?: NewsletterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Newsletter
+     */
+    omit?: NewsletterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Newsletter.
+     */
+    data: XOR<NewsletterUpdateInput, NewsletterUncheckedUpdateInput>
+    /**
+     * Choose, which Newsletter to update.
+     */
+    where: NewsletterWhereUniqueInput
+  }
+
+  /**
+   * Newsletter updateMany
+   */
+  export type NewsletterUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Newsletters.
+     */
+    data: XOR<NewsletterUpdateManyMutationInput, NewsletterUncheckedUpdateManyInput>
+    /**
+     * Filter which Newsletters to update
+     */
+    where?: NewsletterWhereInput
+    /**
+     * Limit how many Newsletters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Newsletter updateManyAndReturn
+   */
+  export type NewsletterUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Newsletter
+     */
+    select?: NewsletterSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Newsletter
+     */
+    omit?: NewsletterOmit<ExtArgs> | null
+    /**
+     * The data used to update Newsletters.
+     */
+    data: XOR<NewsletterUpdateManyMutationInput, NewsletterUncheckedUpdateManyInput>
+    /**
+     * Filter which Newsletters to update
+     */
+    where?: NewsletterWhereInput
+    /**
+     * Limit how many Newsletters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Newsletter upsert
+   */
+  export type NewsletterUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Newsletter
+     */
+    select?: NewsletterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Newsletter
+     */
+    omit?: NewsletterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Newsletter to update in case it exists.
+     */
+    where: NewsletterWhereUniqueInput
+    /**
+     * In case the Newsletter found by the `where` argument doesn't exist, create a new Newsletter with this data.
+     */
+    create: XOR<NewsletterCreateInput, NewsletterUncheckedCreateInput>
+    /**
+     * In case the Newsletter was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NewsletterUpdateInput, NewsletterUncheckedUpdateInput>
+  }
+
+  /**
+   * Newsletter delete
+   */
+  export type NewsletterDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Newsletter
+     */
+    select?: NewsletterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Newsletter
+     */
+    omit?: NewsletterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterInclude<ExtArgs> | null
+    /**
+     * Filter which Newsletter to delete.
+     */
+    where: NewsletterWhereUniqueInput
+  }
+
+  /**
+   * Newsletter deleteMany
+   */
+  export type NewsletterDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Newsletters to delete
+     */
+    where?: NewsletterWhereInput
+    /**
+     * Limit how many Newsletters to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Newsletter.targetGroups
+   */
+  export type Newsletter$targetGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupInclude<ExtArgs> | null
+    where?: NewsletterTargetGroupWhereInput
+    orderBy?: NewsletterTargetGroupOrderByWithRelationInput | NewsletterTargetGroupOrderByWithRelationInput[]
+    cursor?: NewsletterTargetGroupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: NewsletterTargetGroupScalarFieldEnum | NewsletterTargetGroupScalarFieldEnum[]
+  }
+
+  /**
+   * Newsletter without action
+   */
+  export type NewsletterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Newsletter
+     */
+    select?: NewsletterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Newsletter
+     */
+    omit?: NewsletterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model NewsletterTargetGroup
+   */
+
+  export type AggregateNewsletterTargetGroup = {
+    _count: NewsletterTargetGroupCountAggregateOutputType | null
+    _min: NewsletterTargetGroupMinAggregateOutputType | null
+    _max: NewsletterTargetGroupMaxAggregateOutputType | null
+  }
+
+  export type NewsletterTargetGroupMinAggregateOutputType = {
+    newsletterId: string | null
+    groupId: string | null
+  }
+
+  export type NewsletterTargetGroupMaxAggregateOutputType = {
+    newsletterId: string | null
+    groupId: string | null
+  }
+
+  export type NewsletterTargetGroupCountAggregateOutputType = {
+    newsletterId: number
+    groupId: number
+    _all: number
+  }
+
+
+  export type NewsletterTargetGroupMinAggregateInputType = {
+    newsletterId?: true
+    groupId?: true
+  }
+
+  export type NewsletterTargetGroupMaxAggregateInputType = {
+    newsletterId?: true
+    groupId?: true
+  }
+
+  export type NewsletterTargetGroupCountAggregateInputType = {
+    newsletterId?: true
+    groupId?: true
+    _all?: true
+  }
+
+  export type NewsletterTargetGroupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NewsletterTargetGroup to aggregate.
+     */
+    where?: NewsletterTargetGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterTargetGroups to fetch.
+     */
+    orderBy?: NewsletterTargetGroupOrderByWithRelationInput | NewsletterTargetGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NewsletterTargetGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterTargetGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterTargetGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned NewsletterTargetGroups
+    **/
+    _count?: true | NewsletterTargetGroupCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NewsletterTargetGroupMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NewsletterTargetGroupMaxAggregateInputType
+  }
+
+  export type GetNewsletterTargetGroupAggregateType<T extends NewsletterTargetGroupAggregateArgs> = {
+        [P in keyof T & keyof AggregateNewsletterTargetGroup]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNewsletterTargetGroup[P]>
+      : GetScalarType<T[P], AggregateNewsletterTargetGroup[P]>
+  }
+
+
+
+
+  export type NewsletterTargetGroupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NewsletterTargetGroupWhereInput
+    orderBy?: NewsletterTargetGroupOrderByWithAggregationInput | NewsletterTargetGroupOrderByWithAggregationInput[]
+    by: NewsletterTargetGroupScalarFieldEnum[] | NewsletterTargetGroupScalarFieldEnum
+    having?: NewsletterTargetGroupScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NewsletterTargetGroupCountAggregateInputType | true
+    _min?: NewsletterTargetGroupMinAggregateInputType
+    _max?: NewsletterTargetGroupMaxAggregateInputType
+  }
+
+  export type NewsletterTargetGroupGroupByOutputType = {
+    newsletterId: string
+    groupId: string
+    _count: NewsletterTargetGroupCountAggregateOutputType | null
+    _min: NewsletterTargetGroupMinAggregateOutputType | null
+    _max: NewsletterTargetGroupMaxAggregateOutputType | null
+  }
+
+  type GetNewsletterTargetGroupGroupByPayload<T extends NewsletterTargetGroupGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NewsletterTargetGroupGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NewsletterTargetGroupGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NewsletterTargetGroupGroupByOutputType[P]>
+            : GetScalarType<T[P], NewsletterTargetGroupGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NewsletterTargetGroupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    newsletterId?: boolean
+    groupId?: boolean
+    group?: boolean | NewsletterGroupDefaultArgs<ExtArgs>
+    newsletter?: boolean | NewsletterDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["newsletterTargetGroup"]>
+
+  export type NewsletterTargetGroupSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    newsletterId?: boolean
+    groupId?: boolean
+    group?: boolean | NewsletterGroupDefaultArgs<ExtArgs>
+    newsletter?: boolean | NewsletterDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["newsletterTargetGroup"]>
+
+  export type NewsletterTargetGroupSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    newsletterId?: boolean
+    groupId?: boolean
+    group?: boolean | NewsletterGroupDefaultArgs<ExtArgs>
+    newsletter?: boolean | NewsletterDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["newsletterTargetGroup"]>
+
+  export type NewsletterTargetGroupSelectScalar = {
+    newsletterId?: boolean
+    groupId?: boolean
+  }
+
+  export type NewsletterTargetGroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"newsletterId" | "groupId", ExtArgs["result"]["newsletterTargetGroup"]>
+  export type NewsletterTargetGroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    group?: boolean | NewsletterGroupDefaultArgs<ExtArgs>
+    newsletter?: boolean | NewsletterDefaultArgs<ExtArgs>
+  }
+  export type NewsletterTargetGroupIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    group?: boolean | NewsletterGroupDefaultArgs<ExtArgs>
+    newsletter?: boolean | NewsletterDefaultArgs<ExtArgs>
+  }
+  export type NewsletterTargetGroupIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    group?: boolean | NewsletterGroupDefaultArgs<ExtArgs>
+    newsletter?: boolean | NewsletterDefaultArgs<ExtArgs>
+  }
+
+  export type $NewsletterTargetGroupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "NewsletterTargetGroup"
+    objects: {
+      group: Prisma.$NewsletterGroupPayload<ExtArgs>
+      newsletter: Prisma.$NewsletterPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      newsletterId: string
+      groupId: string
+    }, ExtArgs["result"]["newsletterTargetGroup"]>
+    composites: {}
+  }
+
+  type NewsletterTargetGroupGetPayload<S extends boolean | null | undefined | NewsletterTargetGroupDefaultArgs> = $Result.GetResult<Prisma.$NewsletterTargetGroupPayload, S>
+
+  type NewsletterTargetGroupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NewsletterTargetGroupFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NewsletterTargetGroupCountAggregateInputType | true
+    }
+
+  export interface NewsletterTargetGroupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['NewsletterTargetGroup'], meta: { name: 'NewsletterTargetGroup' } }
+    /**
+     * Find zero or one NewsletterTargetGroup that matches the filter.
+     * @param {NewsletterTargetGroupFindUniqueArgs} args - Arguments to find a NewsletterTargetGroup
+     * @example
+     * // Get one NewsletterTargetGroup
+     * const newsletterTargetGroup = await prisma.newsletterTargetGroup.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NewsletterTargetGroupFindUniqueArgs>(args: SelectSubset<T, NewsletterTargetGroupFindUniqueArgs<ExtArgs>>): Prisma__NewsletterTargetGroupClient<$Result.GetResult<Prisma.$NewsletterTargetGroupPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one NewsletterTargetGroup that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NewsletterTargetGroupFindUniqueOrThrowArgs} args - Arguments to find a NewsletterTargetGroup
+     * @example
+     * // Get one NewsletterTargetGroup
+     * const newsletterTargetGroup = await prisma.newsletterTargetGroup.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NewsletterTargetGroupFindUniqueOrThrowArgs>(args: SelectSubset<T, NewsletterTargetGroupFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NewsletterTargetGroupClient<$Result.GetResult<Prisma.$NewsletterTargetGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NewsletterTargetGroup that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterTargetGroupFindFirstArgs} args - Arguments to find a NewsletterTargetGroup
+     * @example
+     * // Get one NewsletterTargetGroup
+     * const newsletterTargetGroup = await prisma.newsletterTargetGroup.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NewsletterTargetGroupFindFirstArgs>(args?: SelectSubset<T, NewsletterTargetGroupFindFirstArgs<ExtArgs>>): Prisma__NewsletterTargetGroupClient<$Result.GetResult<Prisma.$NewsletterTargetGroupPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NewsletterTargetGroup that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterTargetGroupFindFirstOrThrowArgs} args - Arguments to find a NewsletterTargetGroup
+     * @example
+     * // Get one NewsletterTargetGroup
+     * const newsletterTargetGroup = await prisma.newsletterTargetGroup.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NewsletterTargetGroupFindFirstOrThrowArgs>(args?: SelectSubset<T, NewsletterTargetGroupFindFirstOrThrowArgs<ExtArgs>>): Prisma__NewsletterTargetGroupClient<$Result.GetResult<Prisma.$NewsletterTargetGroupPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more NewsletterTargetGroups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterTargetGroupFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all NewsletterTargetGroups
+     * const newsletterTargetGroups = await prisma.newsletterTargetGroup.findMany()
+     * 
+     * // Get first 10 NewsletterTargetGroups
+     * const newsletterTargetGroups = await prisma.newsletterTargetGroup.findMany({ take: 10 })
+     * 
+     * // Only select the `newsletterId`
+     * const newsletterTargetGroupWithNewsletterIdOnly = await prisma.newsletterTargetGroup.findMany({ select: { newsletterId: true } })
+     * 
+     */
+    findMany<T extends NewsletterTargetGroupFindManyArgs>(args?: SelectSubset<T, NewsletterTargetGroupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterTargetGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a NewsletterTargetGroup.
+     * @param {NewsletterTargetGroupCreateArgs} args - Arguments to create a NewsletterTargetGroup.
+     * @example
+     * // Create one NewsletterTargetGroup
+     * const NewsletterTargetGroup = await prisma.newsletterTargetGroup.create({
+     *   data: {
+     *     // ... data to create a NewsletterTargetGroup
+     *   }
+     * })
+     * 
+     */
+    create<T extends NewsletterTargetGroupCreateArgs>(args: SelectSubset<T, NewsletterTargetGroupCreateArgs<ExtArgs>>): Prisma__NewsletterTargetGroupClient<$Result.GetResult<Prisma.$NewsletterTargetGroupPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many NewsletterTargetGroups.
+     * @param {NewsletterTargetGroupCreateManyArgs} args - Arguments to create many NewsletterTargetGroups.
+     * @example
+     * // Create many NewsletterTargetGroups
+     * const newsletterTargetGroup = await prisma.newsletterTargetGroup.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NewsletterTargetGroupCreateManyArgs>(args?: SelectSubset<T, NewsletterTargetGroupCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many NewsletterTargetGroups and returns the data saved in the database.
+     * @param {NewsletterTargetGroupCreateManyAndReturnArgs} args - Arguments to create many NewsletterTargetGroups.
+     * @example
+     * // Create many NewsletterTargetGroups
+     * const newsletterTargetGroup = await prisma.newsletterTargetGroup.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many NewsletterTargetGroups and only return the `newsletterId`
+     * const newsletterTargetGroupWithNewsletterIdOnly = await prisma.newsletterTargetGroup.createManyAndReturn({
+     *   select: { newsletterId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NewsletterTargetGroupCreateManyAndReturnArgs>(args?: SelectSubset<T, NewsletterTargetGroupCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterTargetGroupPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a NewsletterTargetGroup.
+     * @param {NewsletterTargetGroupDeleteArgs} args - Arguments to delete one NewsletterTargetGroup.
+     * @example
+     * // Delete one NewsletterTargetGroup
+     * const NewsletterTargetGroup = await prisma.newsletterTargetGroup.delete({
+     *   where: {
+     *     // ... filter to delete one NewsletterTargetGroup
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NewsletterTargetGroupDeleteArgs>(args: SelectSubset<T, NewsletterTargetGroupDeleteArgs<ExtArgs>>): Prisma__NewsletterTargetGroupClient<$Result.GetResult<Prisma.$NewsletterTargetGroupPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one NewsletterTargetGroup.
+     * @param {NewsletterTargetGroupUpdateArgs} args - Arguments to update one NewsletterTargetGroup.
+     * @example
+     * // Update one NewsletterTargetGroup
+     * const newsletterTargetGroup = await prisma.newsletterTargetGroup.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NewsletterTargetGroupUpdateArgs>(args: SelectSubset<T, NewsletterTargetGroupUpdateArgs<ExtArgs>>): Prisma__NewsletterTargetGroupClient<$Result.GetResult<Prisma.$NewsletterTargetGroupPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more NewsletterTargetGroups.
+     * @param {NewsletterTargetGroupDeleteManyArgs} args - Arguments to filter NewsletterTargetGroups to delete.
+     * @example
+     * // Delete a few NewsletterTargetGroups
+     * const { count } = await prisma.newsletterTargetGroup.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NewsletterTargetGroupDeleteManyArgs>(args?: SelectSubset<T, NewsletterTargetGroupDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NewsletterTargetGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterTargetGroupUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many NewsletterTargetGroups
+     * const newsletterTargetGroup = await prisma.newsletterTargetGroup.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NewsletterTargetGroupUpdateManyArgs>(args: SelectSubset<T, NewsletterTargetGroupUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NewsletterTargetGroups and returns the data updated in the database.
+     * @param {NewsletterTargetGroupUpdateManyAndReturnArgs} args - Arguments to update many NewsletterTargetGroups.
+     * @example
+     * // Update many NewsletterTargetGroups
+     * const newsletterTargetGroup = await prisma.newsletterTargetGroup.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more NewsletterTargetGroups and only return the `newsletterId`
+     * const newsletterTargetGroupWithNewsletterIdOnly = await prisma.newsletterTargetGroup.updateManyAndReturn({
+     *   select: { newsletterId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NewsletterTargetGroupUpdateManyAndReturnArgs>(args: SelectSubset<T, NewsletterTargetGroupUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterTargetGroupPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one NewsletterTargetGroup.
+     * @param {NewsletterTargetGroupUpsertArgs} args - Arguments to update or create a NewsletterTargetGroup.
+     * @example
+     * // Update or create a NewsletterTargetGroup
+     * const newsletterTargetGroup = await prisma.newsletterTargetGroup.upsert({
+     *   create: {
+     *     // ... data to create a NewsletterTargetGroup
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the NewsletterTargetGroup we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NewsletterTargetGroupUpsertArgs>(args: SelectSubset<T, NewsletterTargetGroupUpsertArgs<ExtArgs>>): Prisma__NewsletterTargetGroupClient<$Result.GetResult<Prisma.$NewsletterTargetGroupPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of NewsletterTargetGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterTargetGroupCountArgs} args - Arguments to filter NewsletterTargetGroups to count.
+     * @example
+     * // Count the number of NewsletterTargetGroups
+     * const count = await prisma.newsletterTargetGroup.count({
+     *   where: {
+     *     // ... the filter for the NewsletterTargetGroups we want to count
+     *   }
+     * })
+    **/
+    count<T extends NewsletterTargetGroupCountArgs>(
+      args?: Subset<T, NewsletterTargetGroupCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NewsletterTargetGroupCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a NewsletterTargetGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterTargetGroupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NewsletterTargetGroupAggregateArgs>(args: Subset<T, NewsletterTargetGroupAggregateArgs>): Prisma.PrismaPromise<GetNewsletterTargetGroupAggregateType<T>>
+
+    /**
+     * Group by NewsletterTargetGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterTargetGroupGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NewsletterTargetGroupGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NewsletterTargetGroupGroupByArgs['orderBy'] }
+        : { orderBy?: NewsletterTargetGroupGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NewsletterTargetGroupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNewsletterTargetGroupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the NewsletterTargetGroup model
+   */
+  readonly fields: NewsletterTargetGroupFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for NewsletterTargetGroup.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NewsletterTargetGroupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    group<T extends NewsletterGroupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, NewsletterGroupDefaultArgs<ExtArgs>>): Prisma__NewsletterGroupClient<$Result.GetResult<Prisma.$NewsletterGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    newsletter<T extends NewsletterDefaultArgs<ExtArgs> = {}>(args?: Subset<T, NewsletterDefaultArgs<ExtArgs>>): Prisma__NewsletterClient<$Result.GetResult<Prisma.$NewsletterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the NewsletterTargetGroup model
+   */
+  interface NewsletterTargetGroupFieldRefs {
+    readonly newsletterId: FieldRef<"NewsletterTargetGroup", 'String'>
+    readonly groupId: FieldRef<"NewsletterTargetGroup", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * NewsletterTargetGroup findUnique
+   */
+  export type NewsletterTargetGroupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterTargetGroup to fetch.
+     */
+    where: NewsletterTargetGroupWhereUniqueInput
+  }
+
+  /**
+   * NewsletterTargetGroup findUniqueOrThrow
+   */
+  export type NewsletterTargetGroupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterTargetGroup to fetch.
+     */
+    where: NewsletterTargetGroupWhereUniqueInput
+  }
+
+  /**
+   * NewsletterTargetGroup findFirst
+   */
+  export type NewsletterTargetGroupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterTargetGroup to fetch.
+     */
+    where?: NewsletterTargetGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterTargetGroups to fetch.
+     */
+    orderBy?: NewsletterTargetGroupOrderByWithRelationInput | NewsletterTargetGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NewsletterTargetGroups.
+     */
+    cursor?: NewsletterTargetGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterTargetGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterTargetGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewsletterTargetGroups.
+     */
+    distinct?: NewsletterTargetGroupScalarFieldEnum | NewsletterTargetGroupScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterTargetGroup findFirstOrThrow
+   */
+  export type NewsletterTargetGroupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterTargetGroup to fetch.
+     */
+    where?: NewsletterTargetGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterTargetGroups to fetch.
+     */
+    orderBy?: NewsletterTargetGroupOrderByWithRelationInput | NewsletterTargetGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NewsletterTargetGroups.
+     */
+    cursor?: NewsletterTargetGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterTargetGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterTargetGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewsletterTargetGroups.
+     */
+    distinct?: NewsletterTargetGroupScalarFieldEnum | NewsletterTargetGroupScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterTargetGroup findMany
+   */
+  export type NewsletterTargetGroupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which NewsletterTargetGroups to fetch.
+     */
+    where?: NewsletterTargetGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterTargetGroups to fetch.
+     */
+    orderBy?: NewsletterTargetGroupOrderByWithRelationInput | NewsletterTargetGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing NewsletterTargetGroups.
+     */
+    cursor?: NewsletterTargetGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterTargetGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterTargetGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewsletterTargetGroups.
+     */
+    distinct?: NewsletterTargetGroupScalarFieldEnum | NewsletterTargetGroupScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterTargetGroup create
+   */
+  export type NewsletterTargetGroupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to create a NewsletterTargetGroup.
+     */
+    data: XOR<NewsletterTargetGroupCreateInput, NewsletterTargetGroupUncheckedCreateInput>
+  }
+
+  /**
+   * NewsletterTargetGroup createMany
+   */
+  export type NewsletterTargetGroupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many NewsletterTargetGroups.
+     */
+    data: NewsletterTargetGroupCreateManyInput | NewsletterTargetGroupCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * NewsletterTargetGroup createManyAndReturn
+   */
+  export type NewsletterTargetGroupCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * The data used to create many NewsletterTargetGroups.
+     */
+    data: NewsletterTargetGroupCreateManyInput | NewsletterTargetGroupCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * NewsletterTargetGroup update
+   */
+  export type NewsletterTargetGroupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to update a NewsletterTargetGroup.
+     */
+    data: XOR<NewsletterTargetGroupUpdateInput, NewsletterTargetGroupUncheckedUpdateInput>
+    /**
+     * Choose, which NewsletterTargetGroup to update.
+     */
+    where: NewsletterTargetGroupWhereUniqueInput
+  }
+
+  /**
+   * NewsletterTargetGroup updateMany
+   */
+  export type NewsletterTargetGroupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update NewsletterTargetGroups.
+     */
+    data: XOR<NewsletterTargetGroupUpdateManyMutationInput, NewsletterTargetGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which NewsletterTargetGroups to update
+     */
+    where?: NewsletterTargetGroupWhereInput
+    /**
+     * Limit how many NewsletterTargetGroups to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * NewsletterTargetGroup updateManyAndReturn
+   */
+  export type NewsletterTargetGroupUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * The data used to update NewsletterTargetGroups.
+     */
+    data: XOR<NewsletterTargetGroupUpdateManyMutationInput, NewsletterTargetGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which NewsletterTargetGroups to update
+     */
+    where?: NewsletterTargetGroupWhereInput
+    /**
+     * Limit how many NewsletterTargetGroups to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * NewsletterTargetGroup upsert
+   */
+  export type NewsletterTargetGroupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupInclude<ExtArgs> | null
+    /**
+     * The filter to search for the NewsletterTargetGroup to update in case it exists.
+     */
+    where: NewsletterTargetGroupWhereUniqueInput
+    /**
+     * In case the NewsletterTargetGroup found by the `where` argument doesn't exist, create a new NewsletterTargetGroup with this data.
+     */
+    create: XOR<NewsletterTargetGroupCreateInput, NewsletterTargetGroupUncheckedCreateInput>
+    /**
+     * In case the NewsletterTargetGroup was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NewsletterTargetGroupUpdateInput, NewsletterTargetGroupUncheckedUpdateInput>
+  }
+
+  /**
+   * NewsletterTargetGroup delete
+   */
+  export type NewsletterTargetGroupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupInclude<ExtArgs> | null
+    /**
+     * Filter which NewsletterTargetGroup to delete.
+     */
+    where: NewsletterTargetGroupWhereUniqueInput
+  }
+
+  /**
+   * NewsletterTargetGroup deleteMany
+   */
+  export type NewsletterTargetGroupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NewsletterTargetGroups to delete
+     */
+    where?: NewsletterTargetGroupWhereInput
+    /**
+     * Limit how many NewsletterTargetGroups to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * NewsletterTargetGroup without action
+   */
+  export type NewsletterTargetGroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterTargetGroup
+     */
+    select?: NewsletterTargetGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterTargetGroup
+     */
+    omit?: NewsletterTargetGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NewsletterTargetGroupInclude<ExtArgs> | null
   }
 
 
@@ -17633,6 +22905,3248 @@ export namespace Prisma {
 
 
   /**
+   * Model EmailTemplate
+   */
+
+  export type AggregateEmailTemplate = {
+    _count: EmailTemplateCountAggregateOutputType | null
+    _min: EmailTemplateMinAggregateOutputType | null
+    _max: EmailTemplateMaxAggregateOutputType | null
+  }
+
+  export type EmailTemplateMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    subject: string | null
+    body: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    description: string | null
+    isActive: boolean | null
+  }
+
+  export type EmailTemplateMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    subject: string | null
+    body: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    description: string | null
+    isActive: boolean | null
+  }
+
+  export type EmailTemplateCountAggregateOutputType = {
+    id: number
+    name: number
+    subject: number
+    body: number
+    createdAt: number
+    updatedAt: number
+    description: number
+    isActive: number
+    _all: number
+  }
+
+
+  export type EmailTemplateMinAggregateInputType = {
+    id?: true
+    name?: true
+    subject?: true
+    body?: true
+    createdAt?: true
+    updatedAt?: true
+    description?: true
+    isActive?: true
+  }
+
+  export type EmailTemplateMaxAggregateInputType = {
+    id?: true
+    name?: true
+    subject?: true
+    body?: true
+    createdAt?: true
+    updatedAt?: true
+    description?: true
+    isActive?: true
+  }
+
+  export type EmailTemplateCountAggregateInputType = {
+    id?: true
+    name?: true
+    subject?: true
+    body?: true
+    createdAt?: true
+    updatedAt?: true
+    description?: true
+    isActive?: true
+    _all?: true
+  }
+
+  export type EmailTemplateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmailTemplate to aggregate.
+     */
+    where?: EmailTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailTemplates to fetch.
+     */
+    orderBy?: EmailTemplateOrderByWithRelationInput | EmailTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmailTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmailTemplates
+    **/
+    _count?: true | EmailTemplateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmailTemplateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmailTemplateMaxAggregateInputType
+  }
+
+  export type GetEmailTemplateAggregateType<T extends EmailTemplateAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmailTemplate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmailTemplate[P]>
+      : GetScalarType<T[P], AggregateEmailTemplate[P]>
+  }
+
+
+
+
+  export type EmailTemplateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailTemplateWhereInput
+    orderBy?: EmailTemplateOrderByWithAggregationInput | EmailTemplateOrderByWithAggregationInput[]
+    by: EmailTemplateScalarFieldEnum[] | EmailTemplateScalarFieldEnum
+    having?: EmailTemplateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmailTemplateCountAggregateInputType | true
+    _min?: EmailTemplateMinAggregateInputType
+    _max?: EmailTemplateMaxAggregateInputType
+  }
+
+  export type EmailTemplateGroupByOutputType = {
+    id: string
+    name: string
+    subject: string
+    body: string
+    createdAt: Date
+    updatedAt: Date
+    description: string | null
+    isActive: boolean
+    _count: EmailTemplateCountAggregateOutputType | null
+    _min: EmailTemplateMinAggregateOutputType | null
+    _max: EmailTemplateMaxAggregateOutputType | null
+  }
+
+  type GetEmailTemplateGroupByPayload<T extends EmailTemplateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmailTemplateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmailTemplateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmailTemplateGroupByOutputType[P]>
+            : GetScalarType<T[P], EmailTemplateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmailTemplateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    subject?: boolean
+    body?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    description?: boolean
+    isActive?: boolean
+    mappings?: boolean | EmailTemplate$mappingsArgs<ExtArgs>
+    _count?: boolean | EmailTemplateCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["emailTemplate"]>
+
+  export type EmailTemplateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    subject?: boolean
+    body?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    description?: boolean
+    isActive?: boolean
+  }, ExtArgs["result"]["emailTemplate"]>
+
+  export type EmailTemplateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    subject?: boolean
+    body?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    description?: boolean
+    isActive?: boolean
+  }, ExtArgs["result"]["emailTemplate"]>
+
+  export type EmailTemplateSelectScalar = {
+    id?: boolean
+    name?: boolean
+    subject?: boolean
+    body?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    description?: boolean
+    isActive?: boolean
+  }
+
+  export type EmailTemplateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "subject" | "body" | "createdAt" | "updatedAt" | "description" | "isActive", ExtArgs["result"]["emailTemplate"]>
+  export type EmailTemplateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mappings?: boolean | EmailTemplate$mappingsArgs<ExtArgs>
+    _count?: boolean | EmailTemplateCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type EmailTemplateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type EmailTemplateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $EmailTemplatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmailTemplate"
+    objects: {
+      mappings: Prisma.$FormEmailMappingPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      subject: string
+      body: string
+      createdAt: Date
+      updatedAt: Date
+      description: string | null
+      isActive: boolean
+    }, ExtArgs["result"]["emailTemplate"]>
+    composites: {}
+  }
+
+  type EmailTemplateGetPayload<S extends boolean | null | undefined | EmailTemplateDefaultArgs> = $Result.GetResult<Prisma.$EmailTemplatePayload, S>
+
+  type EmailTemplateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmailTemplateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmailTemplateCountAggregateInputType | true
+    }
+
+  export interface EmailTemplateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmailTemplate'], meta: { name: 'EmailTemplate' } }
+    /**
+     * Find zero or one EmailTemplate that matches the filter.
+     * @param {EmailTemplateFindUniqueArgs} args - Arguments to find a EmailTemplate
+     * @example
+     * // Get one EmailTemplate
+     * const emailTemplate = await prisma.emailTemplate.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmailTemplateFindUniqueArgs>(args: SelectSubset<T, EmailTemplateFindUniqueArgs<ExtArgs>>): Prisma__EmailTemplateClient<$Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmailTemplate that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmailTemplateFindUniqueOrThrowArgs} args - Arguments to find a EmailTemplate
+     * @example
+     * // Get one EmailTemplate
+     * const emailTemplate = await prisma.emailTemplate.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmailTemplateFindUniqueOrThrowArgs>(args: SelectSubset<T, EmailTemplateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmailTemplateClient<$Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmailTemplate that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailTemplateFindFirstArgs} args - Arguments to find a EmailTemplate
+     * @example
+     * // Get one EmailTemplate
+     * const emailTemplate = await prisma.emailTemplate.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmailTemplateFindFirstArgs>(args?: SelectSubset<T, EmailTemplateFindFirstArgs<ExtArgs>>): Prisma__EmailTemplateClient<$Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmailTemplate that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailTemplateFindFirstOrThrowArgs} args - Arguments to find a EmailTemplate
+     * @example
+     * // Get one EmailTemplate
+     * const emailTemplate = await prisma.emailTemplate.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmailTemplateFindFirstOrThrowArgs>(args?: SelectSubset<T, EmailTemplateFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmailTemplateClient<$Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmailTemplates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailTemplateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmailTemplates
+     * const emailTemplates = await prisma.emailTemplate.findMany()
+     * 
+     * // Get first 10 EmailTemplates
+     * const emailTemplates = await prisma.emailTemplate.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const emailTemplateWithIdOnly = await prisma.emailTemplate.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmailTemplateFindManyArgs>(args?: SelectSubset<T, EmailTemplateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmailTemplate.
+     * @param {EmailTemplateCreateArgs} args - Arguments to create a EmailTemplate.
+     * @example
+     * // Create one EmailTemplate
+     * const EmailTemplate = await prisma.emailTemplate.create({
+     *   data: {
+     *     // ... data to create a EmailTemplate
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmailTemplateCreateArgs>(args: SelectSubset<T, EmailTemplateCreateArgs<ExtArgs>>): Prisma__EmailTemplateClient<$Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmailTemplates.
+     * @param {EmailTemplateCreateManyArgs} args - Arguments to create many EmailTemplates.
+     * @example
+     * // Create many EmailTemplates
+     * const emailTemplate = await prisma.emailTemplate.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmailTemplateCreateManyArgs>(args?: SelectSubset<T, EmailTemplateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmailTemplates and returns the data saved in the database.
+     * @param {EmailTemplateCreateManyAndReturnArgs} args - Arguments to create many EmailTemplates.
+     * @example
+     * // Create many EmailTemplates
+     * const emailTemplate = await prisma.emailTemplate.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmailTemplates and only return the `id`
+     * const emailTemplateWithIdOnly = await prisma.emailTemplate.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmailTemplateCreateManyAndReturnArgs>(args?: SelectSubset<T, EmailTemplateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmailTemplate.
+     * @param {EmailTemplateDeleteArgs} args - Arguments to delete one EmailTemplate.
+     * @example
+     * // Delete one EmailTemplate
+     * const EmailTemplate = await prisma.emailTemplate.delete({
+     *   where: {
+     *     // ... filter to delete one EmailTemplate
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmailTemplateDeleteArgs>(args: SelectSubset<T, EmailTemplateDeleteArgs<ExtArgs>>): Prisma__EmailTemplateClient<$Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmailTemplate.
+     * @param {EmailTemplateUpdateArgs} args - Arguments to update one EmailTemplate.
+     * @example
+     * // Update one EmailTemplate
+     * const emailTemplate = await prisma.emailTemplate.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmailTemplateUpdateArgs>(args: SelectSubset<T, EmailTemplateUpdateArgs<ExtArgs>>): Prisma__EmailTemplateClient<$Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmailTemplates.
+     * @param {EmailTemplateDeleteManyArgs} args - Arguments to filter EmailTemplates to delete.
+     * @example
+     * // Delete a few EmailTemplates
+     * const { count } = await prisma.emailTemplate.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmailTemplateDeleteManyArgs>(args?: SelectSubset<T, EmailTemplateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmailTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailTemplateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmailTemplates
+     * const emailTemplate = await prisma.emailTemplate.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmailTemplateUpdateManyArgs>(args: SelectSubset<T, EmailTemplateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmailTemplates and returns the data updated in the database.
+     * @param {EmailTemplateUpdateManyAndReturnArgs} args - Arguments to update many EmailTemplates.
+     * @example
+     * // Update many EmailTemplates
+     * const emailTemplate = await prisma.emailTemplate.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmailTemplates and only return the `id`
+     * const emailTemplateWithIdOnly = await prisma.emailTemplate.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmailTemplateUpdateManyAndReturnArgs>(args: SelectSubset<T, EmailTemplateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmailTemplate.
+     * @param {EmailTemplateUpsertArgs} args - Arguments to update or create a EmailTemplate.
+     * @example
+     * // Update or create a EmailTemplate
+     * const emailTemplate = await prisma.emailTemplate.upsert({
+     *   create: {
+     *     // ... data to create a EmailTemplate
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmailTemplate we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmailTemplateUpsertArgs>(args: SelectSubset<T, EmailTemplateUpsertArgs<ExtArgs>>): Prisma__EmailTemplateClient<$Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmailTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailTemplateCountArgs} args - Arguments to filter EmailTemplates to count.
+     * @example
+     * // Count the number of EmailTemplates
+     * const count = await prisma.emailTemplate.count({
+     *   where: {
+     *     // ... the filter for the EmailTemplates we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmailTemplateCountArgs>(
+      args?: Subset<T, EmailTemplateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmailTemplateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmailTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailTemplateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmailTemplateAggregateArgs>(args: Subset<T, EmailTemplateAggregateArgs>): Prisma.PrismaPromise<GetEmailTemplateAggregateType<T>>
+
+    /**
+     * Group by EmailTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailTemplateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmailTemplateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmailTemplateGroupByArgs['orderBy'] }
+        : { orderBy?: EmailTemplateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmailTemplateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmailTemplateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmailTemplate model
+   */
+  readonly fields: EmailTemplateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmailTemplate.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmailTemplateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    mappings<T extends EmailTemplate$mappingsArgs<ExtArgs> = {}>(args?: Subset<T, EmailTemplate$mappingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FormEmailMappingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmailTemplate model
+   */
+  interface EmailTemplateFieldRefs {
+    readonly id: FieldRef<"EmailTemplate", 'String'>
+    readonly name: FieldRef<"EmailTemplate", 'String'>
+    readonly subject: FieldRef<"EmailTemplate", 'String'>
+    readonly body: FieldRef<"EmailTemplate", 'String'>
+    readonly createdAt: FieldRef<"EmailTemplate", 'DateTime'>
+    readonly updatedAt: FieldRef<"EmailTemplate", 'DateTime'>
+    readonly description: FieldRef<"EmailTemplate", 'String'>
+    readonly isActive: FieldRef<"EmailTemplate", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmailTemplate findUnique
+   */
+  export type EmailTemplateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailTemplate
+     */
+    select?: EmailTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailTemplate
+     */
+    omit?: EmailTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailTemplate to fetch.
+     */
+    where: EmailTemplateWhereUniqueInput
+  }
+
+  /**
+   * EmailTemplate findUniqueOrThrow
+   */
+  export type EmailTemplateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailTemplate
+     */
+    select?: EmailTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailTemplate
+     */
+    omit?: EmailTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailTemplate to fetch.
+     */
+    where: EmailTemplateWhereUniqueInput
+  }
+
+  /**
+   * EmailTemplate findFirst
+   */
+  export type EmailTemplateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailTemplate
+     */
+    select?: EmailTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailTemplate
+     */
+    omit?: EmailTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailTemplate to fetch.
+     */
+    where?: EmailTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailTemplates to fetch.
+     */
+    orderBy?: EmailTemplateOrderByWithRelationInput | EmailTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmailTemplates.
+     */
+    cursor?: EmailTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmailTemplates.
+     */
+    distinct?: EmailTemplateScalarFieldEnum | EmailTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * EmailTemplate findFirstOrThrow
+   */
+  export type EmailTemplateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailTemplate
+     */
+    select?: EmailTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailTemplate
+     */
+    omit?: EmailTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailTemplate to fetch.
+     */
+    where?: EmailTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailTemplates to fetch.
+     */
+    orderBy?: EmailTemplateOrderByWithRelationInput | EmailTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmailTemplates.
+     */
+    cursor?: EmailTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmailTemplates.
+     */
+    distinct?: EmailTemplateScalarFieldEnum | EmailTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * EmailTemplate findMany
+   */
+  export type EmailTemplateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailTemplate
+     */
+    select?: EmailTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailTemplate
+     */
+    omit?: EmailTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailTemplates to fetch.
+     */
+    where?: EmailTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailTemplates to fetch.
+     */
+    orderBy?: EmailTemplateOrderByWithRelationInput | EmailTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmailTemplates.
+     */
+    cursor?: EmailTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmailTemplates.
+     */
+    distinct?: EmailTemplateScalarFieldEnum | EmailTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * EmailTemplate create
+   */
+  export type EmailTemplateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailTemplate
+     */
+    select?: EmailTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailTemplate
+     */
+    omit?: EmailTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailTemplateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EmailTemplate.
+     */
+    data: XOR<EmailTemplateCreateInput, EmailTemplateUncheckedCreateInput>
+  }
+
+  /**
+   * EmailTemplate createMany
+   */
+  export type EmailTemplateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmailTemplates.
+     */
+    data: EmailTemplateCreateManyInput | EmailTemplateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmailTemplate createManyAndReturn
+   */
+  export type EmailTemplateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailTemplate
+     */
+    select?: EmailTemplateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailTemplate
+     */
+    omit?: EmailTemplateOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmailTemplates.
+     */
+    data: EmailTemplateCreateManyInput | EmailTemplateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmailTemplate update
+   */
+  export type EmailTemplateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailTemplate
+     */
+    select?: EmailTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailTemplate
+     */
+    omit?: EmailTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailTemplateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EmailTemplate.
+     */
+    data: XOR<EmailTemplateUpdateInput, EmailTemplateUncheckedUpdateInput>
+    /**
+     * Choose, which EmailTemplate to update.
+     */
+    where: EmailTemplateWhereUniqueInput
+  }
+
+  /**
+   * EmailTemplate updateMany
+   */
+  export type EmailTemplateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmailTemplates.
+     */
+    data: XOR<EmailTemplateUpdateManyMutationInput, EmailTemplateUncheckedUpdateManyInput>
+    /**
+     * Filter which EmailTemplates to update
+     */
+    where?: EmailTemplateWhereInput
+    /**
+     * Limit how many EmailTemplates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmailTemplate updateManyAndReturn
+   */
+  export type EmailTemplateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailTemplate
+     */
+    select?: EmailTemplateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailTemplate
+     */
+    omit?: EmailTemplateOmit<ExtArgs> | null
+    /**
+     * The data used to update EmailTemplates.
+     */
+    data: XOR<EmailTemplateUpdateManyMutationInput, EmailTemplateUncheckedUpdateManyInput>
+    /**
+     * Filter which EmailTemplates to update
+     */
+    where?: EmailTemplateWhereInput
+    /**
+     * Limit how many EmailTemplates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmailTemplate upsert
+   */
+  export type EmailTemplateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailTemplate
+     */
+    select?: EmailTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailTemplate
+     */
+    omit?: EmailTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailTemplateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EmailTemplate to update in case it exists.
+     */
+    where: EmailTemplateWhereUniqueInput
+    /**
+     * In case the EmailTemplate found by the `where` argument doesn't exist, create a new EmailTemplate with this data.
+     */
+    create: XOR<EmailTemplateCreateInput, EmailTemplateUncheckedCreateInput>
+    /**
+     * In case the EmailTemplate was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmailTemplateUpdateInput, EmailTemplateUncheckedUpdateInput>
+  }
+
+  /**
+   * EmailTemplate delete
+   */
+  export type EmailTemplateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailTemplate
+     */
+    select?: EmailTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailTemplate
+     */
+    omit?: EmailTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailTemplateInclude<ExtArgs> | null
+    /**
+     * Filter which EmailTemplate to delete.
+     */
+    where: EmailTemplateWhereUniqueInput
+  }
+
+  /**
+   * EmailTemplate deleteMany
+   */
+  export type EmailTemplateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmailTemplates to delete
+     */
+    where?: EmailTemplateWhereInput
+    /**
+     * Limit how many EmailTemplates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmailTemplate.mappings
+   */
+  export type EmailTemplate$mappingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FormEmailMapping
+     */
+    select?: FormEmailMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FormEmailMapping
+     */
+    omit?: FormEmailMappingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FormEmailMappingInclude<ExtArgs> | null
+    where?: FormEmailMappingWhereInput
+    orderBy?: FormEmailMappingOrderByWithRelationInput | FormEmailMappingOrderByWithRelationInput[]
+    cursor?: FormEmailMappingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FormEmailMappingScalarFieldEnum | FormEmailMappingScalarFieldEnum[]
+  }
+
+  /**
+   * EmailTemplate without action
+   */
+  export type EmailTemplateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailTemplate
+     */
+    select?: EmailTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailTemplate
+     */
+    omit?: EmailTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailTemplateInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FormEmailMapping
+   */
+
+  export type AggregateFormEmailMapping = {
+    _count: FormEmailMappingCountAggregateOutputType | null
+    _min: FormEmailMappingMinAggregateOutputType | null
+    _max: FormEmailMappingMaxAggregateOutputType | null
+  }
+
+  export type FormEmailMappingMinAggregateOutputType = {
+    id: string | null
+    formKey: string | null
+    templateId: string | null
+    enabled: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FormEmailMappingMaxAggregateOutputType = {
+    id: string | null
+    formKey: string | null
+    templateId: string | null
+    enabled: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FormEmailMappingCountAggregateOutputType = {
+    id: number
+    formKey: number
+    templateId: number
+    enabled: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FormEmailMappingMinAggregateInputType = {
+    id?: true
+    formKey?: true
+    templateId?: true
+    enabled?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FormEmailMappingMaxAggregateInputType = {
+    id?: true
+    formKey?: true
+    templateId?: true
+    enabled?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FormEmailMappingCountAggregateInputType = {
+    id?: true
+    formKey?: true
+    templateId?: true
+    enabled?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FormEmailMappingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FormEmailMapping to aggregate.
+     */
+    where?: FormEmailMappingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FormEmailMappings to fetch.
+     */
+    orderBy?: FormEmailMappingOrderByWithRelationInput | FormEmailMappingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FormEmailMappingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FormEmailMappings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FormEmailMappings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FormEmailMappings
+    **/
+    _count?: true | FormEmailMappingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FormEmailMappingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FormEmailMappingMaxAggregateInputType
+  }
+
+  export type GetFormEmailMappingAggregateType<T extends FormEmailMappingAggregateArgs> = {
+        [P in keyof T & keyof AggregateFormEmailMapping]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFormEmailMapping[P]>
+      : GetScalarType<T[P], AggregateFormEmailMapping[P]>
+  }
+
+
+
+
+  export type FormEmailMappingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FormEmailMappingWhereInput
+    orderBy?: FormEmailMappingOrderByWithAggregationInput | FormEmailMappingOrderByWithAggregationInput[]
+    by: FormEmailMappingScalarFieldEnum[] | FormEmailMappingScalarFieldEnum
+    having?: FormEmailMappingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FormEmailMappingCountAggregateInputType | true
+    _min?: FormEmailMappingMinAggregateInputType
+    _max?: FormEmailMappingMaxAggregateInputType
+  }
+
+  export type FormEmailMappingGroupByOutputType = {
+    id: string
+    formKey: string
+    templateId: string
+    enabled: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: FormEmailMappingCountAggregateOutputType | null
+    _min: FormEmailMappingMinAggregateOutputType | null
+    _max: FormEmailMappingMaxAggregateOutputType | null
+  }
+
+  type GetFormEmailMappingGroupByPayload<T extends FormEmailMappingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FormEmailMappingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FormEmailMappingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FormEmailMappingGroupByOutputType[P]>
+            : GetScalarType<T[P], FormEmailMappingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FormEmailMappingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    formKey?: boolean
+    templateId?: boolean
+    enabled?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    template?: boolean | EmailTemplateDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["formEmailMapping"]>
+
+  export type FormEmailMappingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    formKey?: boolean
+    templateId?: boolean
+    enabled?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    template?: boolean | EmailTemplateDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["formEmailMapping"]>
+
+  export type FormEmailMappingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    formKey?: boolean
+    templateId?: boolean
+    enabled?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    template?: boolean | EmailTemplateDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["formEmailMapping"]>
+
+  export type FormEmailMappingSelectScalar = {
+    id?: boolean
+    formKey?: boolean
+    templateId?: boolean
+    enabled?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FormEmailMappingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "formKey" | "templateId" | "enabled" | "createdAt" | "updatedAt", ExtArgs["result"]["formEmailMapping"]>
+  export type FormEmailMappingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    template?: boolean | EmailTemplateDefaultArgs<ExtArgs>
+  }
+  export type FormEmailMappingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    template?: boolean | EmailTemplateDefaultArgs<ExtArgs>
+  }
+  export type FormEmailMappingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    template?: boolean | EmailTemplateDefaultArgs<ExtArgs>
+  }
+
+  export type $FormEmailMappingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FormEmailMapping"
+    objects: {
+      template: Prisma.$EmailTemplatePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      formKey: string
+      templateId: string
+      enabled: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["formEmailMapping"]>
+    composites: {}
+  }
+
+  type FormEmailMappingGetPayload<S extends boolean | null | undefined | FormEmailMappingDefaultArgs> = $Result.GetResult<Prisma.$FormEmailMappingPayload, S>
+
+  type FormEmailMappingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FormEmailMappingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FormEmailMappingCountAggregateInputType | true
+    }
+
+  export interface FormEmailMappingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FormEmailMapping'], meta: { name: 'FormEmailMapping' } }
+    /**
+     * Find zero or one FormEmailMapping that matches the filter.
+     * @param {FormEmailMappingFindUniqueArgs} args - Arguments to find a FormEmailMapping
+     * @example
+     * // Get one FormEmailMapping
+     * const formEmailMapping = await prisma.formEmailMapping.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FormEmailMappingFindUniqueArgs>(args: SelectSubset<T, FormEmailMappingFindUniqueArgs<ExtArgs>>): Prisma__FormEmailMappingClient<$Result.GetResult<Prisma.$FormEmailMappingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FormEmailMapping that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FormEmailMappingFindUniqueOrThrowArgs} args - Arguments to find a FormEmailMapping
+     * @example
+     * // Get one FormEmailMapping
+     * const formEmailMapping = await prisma.formEmailMapping.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FormEmailMappingFindUniqueOrThrowArgs>(args: SelectSubset<T, FormEmailMappingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FormEmailMappingClient<$Result.GetResult<Prisma.$FormEmailMappingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FormEmailMapping that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FormEmailMappingFindFirstArgs} args - Arguments to find a FormEmailMapping
+     * @example
+     * // Get one FormEmailMapping
+     * const formEmailMapping = await prisma.formEmailMapping.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FormEmailMappingFindFirstArgs>(args?: SelectSubset<T, FormEmailMappingFindFirstArgs<ExtArgs>>): Prisma__FormEmailMappingClient<$Result.GetResult<Prisma.$FormEmailMappingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FormEmailMapping that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FormEmailMappingFindFirstOrThrowArgs} args - Arguments to find a FormEmailMapping
+     * @example
+     * // Get one FormEmailMapping
+     * const formEmailMapping = await prisma.formEmailMapping.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FormEmailMappingFindFirstOrThrowArgs>(args?: SelectSubset<T, FormEmailMappingFindFirstOrThrowArgs<ExtArgs>>): Prisma__FormEmailMappingClient<$Result.GetResult<Prisma.$FormEmailMappingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FormEmailMappings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FormEmailMappingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FormEmailMappings
+     * const formEmailMappings = await prisma.formEmailMapping.findMany()
+     * 
+     * // Get first 10 FormEmailMappings
+     * const formEmailMappings = await prisma.formEmailMapping.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const formEmailMappingWithIdOnly = await prisma.formEmailMapping.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FormEmailMappingFindManyArgs>(args?: SelectSubset<T, FormEmailMappingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FormEmailMappingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FormEmailMapping.
+     * @param {FormEmailMappingCreateArgs} args - Arguments to create a FormEmailMapping.
+     * @example
+     * // Create one FormEmailMapping
+     * const FormEmailMapping = await prisma.formEmailMapping.create({
+     *   data: {
+     *     // ... data to create a FormEmailMapping
+     *   }
+     * })
+     * 
+     */
+    create<T extends FormEmailMappingCreateArgs>(args: SelectSubset<T, FormEmailMappingCreateArgs<ExtArgs>>): Prisma__FormEmailMappingClient<$Result.GetResult<Prisma.$FormEmailMappingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FormEmailMappings.
+     * @param {FormEmailMappingCreateManyArgs} args - Arguments to create many FormEmailMappings.
+     * @example
+     * // Create many FormEmailMappings
+     * const formEmailMapping = await prisma.formEmailMapping.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FormEmailMappingCreateManyArgs>(args?: SelectSubset<T, FormEmailMappingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FormEmailMappings and returns the data saved in the database.
+     * @param {FormEmailMappingCreateManyAndReturnArgs} args - Arguments to create many FormEmailMappings.
+     * @example
+     * // Create many FormEmailMappings
+     * const formEmailMapping = await prisma.formEmailMapping.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FormEmailMappings and only return the `id`
+     * const formEmailMappingWithIdOnly = await prisma.formEmailMapping.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FormEmailMappingCreateManyAndReturnArgs>(args?: SelectSubset<T, FormEmailMappingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FormEmailMappingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FormEmailMapping.
+     * @param {FormEmailMappingDeleteArgs} args - Arguments to delete one FormEmailMapping.
+     * @example
+     * // Delete one FormEmailMapping
+     * const FormEmailMapping = await prisma.formEmailMapping.delete({
+     *   where: {
+     *     // ... filter to delete one FormEmailMapping
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FormEmailMappingDeleteArgs>(args: SelectSubset<T, FormEmailMappingDeleteArgs<ExtArgs>>): Prisma__FormEmailMappingClient<$Result.GetResult<Prisma.$FormEmailMappingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FormEmailMapping.
+     * @param {FormEmailMappingUpdateArgs} args - Arguments to update one FormEmailMapping.
+     * @example
+     * // Update one FormEmailMapping
+     * const formEmailMapping = await prisma.formEmailMapping.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FormEmailMappingUpdateArgs>(args: SelectSubset<T, FormEmailMappingUpdateArgs<ExtArgs>>): Prisma__FormEmailMappingClient<$Result.GetResult<Prisma.$FormEmailMappingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FormEmailMappings.
+     * @param {FormEmailMappingDeleteManyArgs} args - Arguments to filter FormEmailMappings to delete.
+     * @example
+     * // Delete a few FormEmailMappings
+     * const { count } = await prisma.formEmailMapping.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FormEmailMappingDeleteManyArgs>(args?: SelectSubset<T, FormEmailMappingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FormEmailMappings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FormEmailMappingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FormEmailMappings
+     * const formEmailMapping = await prisma.formEmailMapping.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FormEmailMappingUpdateManyArgs>(args: SelectSubset<T, FormEmailMappingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FormEmailMappings and returns the data updated in the database.
+     * @param {FormEmailMappingUpdateManyAndReturnArgs} args - Arguments to update many FormEmailMappings.
+     * @example
+     * // Update many FormEmailMappings
+     * const formEmailMapping = await prisma.formEmailMapping.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FormEmailMappings and only return the `id`
+     * const formEmailMappingWithIdOnly = await prisma.formEmailMapping.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FormEmailMappingUpdateManyAndReturnArgs>(args: SelectSubset<T, FormEmailMappingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FormEmailMappingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FormEmailMapping.
+     * @param {FormEmailMappingUpsertArgs} args - Arguments to update or create a FormEmailMapping.
+     * @example
+     * // Update or create a FormEmailMapping
+     * const formEmailMapping = await prisma.formEmailMapping.upsert({
+     *   create: {
+     *     // ... data to create a FormEmailMapping
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FormEmailMapping we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FormEmailMappingUpsertArgs>(args: SelectSubset<T, FormEmailMappingUpsertArgs<ExtArgs>>): Prisma__FormEmailMappingClient<$Result.GetResult<Prisma.$FormEmailMappingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FormEmailMappings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FormEmailMappingCountArgs} args - Arguments to filter FormEmailMappings to count.
+     * @example
+     * // Count the number of FormEmailMappings
+     * const count = await prisma.formEmailMapping.count({
+     *   where: {
+     *     // ... the filter for the FormEmailMappings we want to count
+     *   }
+     * })
+    **/
+    count<T extends FormEmailMappingCountArgs>(
+      args?: Subset<T, FormEmailMappingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FormEmailMappingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FormEmailMapping.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FormEmailMappingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FormEmailMappingAggregateArgs>(args: Subset<T, FormEmailMappingAggregateArgs>): Prisma.PrismaPromise<GetFormEmailMappingAggregateType<T>>
+
+    /**
+     * Group by FormEmailMapping.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FormEmailMappingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FormEmailMappingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FormEmailMappingGroupByArgs['orderBy'] }
+        : { orderBy?: FormEmailMappingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FormEmailMappingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFormEmailMappingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FormEmailMapping model
+   */
+  readonly fields: FormEmailMappingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FormEmailMapping.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FormEmailMappingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    template<T extends EmailTemplateDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmailTemplateDefaultArgs<ExtArgs>>): Prisma__EmailTemplateClient<$Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FormEmailMapping model
+   */
+  interface FormEmailMappingFieldRefs {
+    readonly id: FieldRef<"FormEmailMapping", 'String'>
+    readonly formKey: FieldRef<"FormEmailMapping", 'String'>
+    readonly templateId: FieldRef<"FormEmailMapping", 'String'>
+    readonly enabled: FieldRef<"FormEmailMapping", 'Boolean'>
+    readonly createdAt: FieldRef<"FormEmailMapping", 'DateTime'>
+    readonly updatedAt: FieldRef<"FormEmailMapping", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FormEmailMapping findUnique
+   */
+  export type FormEmailMappingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FormEmailMapping
+     */
+    select?: FormEmailMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FormEmailMapping
+     */
+    omit?: FormEmailMappingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FormEmailMappingInclude<ExtArgs> | null
+    /**
+     * Filter, which FormEmailMapping to fetch.
+     */
+    where: FormEmailMappingWhereUniqueInput
+  }
+
+  /**
+   * FormEmailMapping findUniqueOrThrow
+   */
+  export type FormEmailMappingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FormEmailMapping
+     */
+    select?: FormEmailMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FormEmailMapping
+     */
+    omit?: FormEmailMappingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FormEmailMappingInclude<ExtArgs> | null
+    /**
+     * Filter, which FormEmailMapping to fetch.
+     */
+    where: FormEmailMappingWhereUniqueInput
+  }
+
+  /**
+   * FormEmailMapping findFirst
+   */
+  export type FormEmailMappingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FormEmailMapping
+     */
+    select?: FormEmailMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FormEmailMapping
+     */
+    omit?: FormEmailMappingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FormEmailMappingInclude<ExtArgs> | null
+    /**
+     * Filter, which FormEmailMapping to fetch.
+     */
+    where?: FormEmailMappingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FormEmailMappings to fetch.
+     */
+    orderBy?: FormEmailMappingOrderByWithRelationInput | FormEmailMappingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FormEmailMappings.
+     */
+    cursor?: FormEmailMappingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FormEmailMappings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FormEmailMappings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FormEmailMappings.
+     */
+    distinct?: FormEmailMappingScalarFieldEnum | FormEmailMappingScalarFieldEnum[]
+  }
+
+  /**
+   * FormEmailMapping findFirstOrThrow
+   */
+  export type FormEmailMappingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FormEmailMapping
+     */
+    select?: FormEmailMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FormEmailMapping
+     */
+    omit?: FormEmailMappingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FormEmailMappingInclude<ExtArgs> | null
+    /**
+     * Filter, which FormEmailMapping to fetch.
+     */
+    where?: FormEmailMappingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FormEmailMappings to fetch.
+     */
+    orderBy?: FormEmailMappingOrderByWithRelationInput | FormEmailMappingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FormEmailMappings.
+     */
+    cursor?: FormEmailMappingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FormEmailMappings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FormEmailMappings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FormEmailMappings.
+     */
+    distinct?: FormEmailMappingScalarFieldEnum | FormEmailMappingScalarFieldEnum[]
+  }
+
+  /**
+   * FormEmailMapping findMany
+   */
+  export type FormEmailMappingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FormEmailMapping
+     */
+    select?: FormEmailMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FormEmailMapping
+     */
+    omit?: FormEmailMappingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FormEmailMappingInclude<ExtArgs> | null
+    /**
+     * Filter, which FormEmailMappings to fetch.
+     */
+    where?: FormEmailMappingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FormEmailMappings to fetch.
+     */
+    orderBy?: FormEmailMappingOrderByWithRelationInput | FormEmailMappingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FormEmailMappings.
+     */
+    cursor?: FormEmailMappingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FormEmailMappings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FormEmailMappings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FormEmailMappings.
+     */
+    distinct?: FormEmailMappingScalarFieldEnum | FormEmailMappingScalarFieldEnum[]
+  }
+
+  /**
+   * FormEmailMapping create
+   */
+  export type FormEmailMappingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FormEmailMapping
+     */
+    select?: FormEmailMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FormEmailMapping
+     */
+    omit?: FormEmailMappingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FormEmailMappingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FormEmailMapping.
+     */
+    data: XOR<FormEmailMappingCreateInput, FormEmailMappingUncheckedCreateInput>
+  }
+
+  /**
+   * FormEmailMapping createMany
+   */
+  export type FormEmailMappingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FormEmailMappings.
+     */
+    data: FormEmailMappingCreateManyInput | FormEmailMappingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FormEmailMapping createManyAndReturn
+   */
+  export type FormEmailMappingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FormEmailMapping
+     */
+    select?: FormEmailMappingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FormEmailMapping
+     */
+    omit?: FormEmailMappingOmit<ExtArgs> | null
+    /**
+     * The data used to create many FormEmailMappings.
+     */
+    data: FormEmailMappingCreateManyInput | FormEmailMappingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FormEmailMappingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FormEmailMapping update
+   */
+  export type FormEmailMappingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FormEmailMapping
+     */
+    select?: FormEmailMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FormEmailMapping
+     */
+    omit?: FormEmailMappingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FormEmailMappingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FormEmailMapping.
+     */
+    data: XOR<FormEmailMappingUpdateInput, FormEmailMappingUncheckedUpdateInput>
+    /**
+     * Choose, which FormEmailMapping to update.
+     */
+    where: FormEmailMappingWhereUniqueInput
+  }
+
+  /**
+   * FormEmailMapping updateMany
+   */
+  export type FormEmailMappingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FormEmailMappings.
+     */
+    data: XOR<FormEmailMappingUpdateManyMutationInput, FormEmailMappingUncheckedUpdateManyInput>
+    /**
+     * Filter which FormEmailMappings to update
+     */
+    where?: FormEmailMappingWhereInput
+    /**
+     * Limit how many FormEmailMappings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FormEmailMapping updateManyAndReturn
+   */
+  export type FormEmailMappingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FormEmailMapping
+     */
+    select?: FormEmailMappingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FormEmailMapping
+     */
+    omit?: FormEmailMappingOmit<ExtArgs> | null
+    /**
+     * The data used to update FormEmailMappings.
+     */
+    data: XOR<FormEmailMappingUpdateManyMutationInput, FormEmailMappingUncheckedUpdateManyInput>
+    /**
+     * Filter which FormEmailMappings to update
+     */
+    where?: FormEmailMappingWhereInput
+    /**
+     * Limit how many FormEmailMappings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FormEmailMappingIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FormEmailMapping upsert
+   */
+  export type FormEmailMappingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FormEmailMapping
+     */
+    select?: FormEmailMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FormEmailMapping
+     */
+    omit?: FormEmailMappingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FormEmailMappingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FormEmailMapping to update in case it exists.
+     */
+    where: FormEmailMappingWhereUniqueInput
+    /**
+     * In case the FormEmailMapping found by the `where` argument doesn't exist, create a new FormEmailMapping with this data.
+     */
+    create: XOR<FormEmailMappingCreateInput, FormEmailMappingUncheckedCreateInput>
+    /**
+     * In case the FormEmailMapping was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FormEmailMappingUpdateInput, FormEmailMappingUncheckedUpdateInput>
+  }
+
+  /**
+   * FormEmailMapping delete
+   */
+  export type FormEmailMappingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FormEmailMapping
+     */
+    select?: FormEmailMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FormEmailMapping
+     */
+    omit?: FormEmailMappingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FormEmailMappingInclude<ExtArgs> | null
+    /**
+     * Filter which FormEmailMapping to delete.
+     */
+    where: FormEmailMappingWhereUniqueInput
+  }
+
+  /**
+   * FormEmailMapping deleteMany
+   */
+  export type FormEmailMappingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FormEmailMappings to delete
+     */
+    where?: FormEmailMappingWhereInput
+    /**
+     * Limit how many FormEmailMappings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FormEmailMapping without action
+   */
+  export type FormEmailMappingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FormEmailMapping
+     */
+    select?: FormEmailMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FormEmailMapping
+     */
+    omit?: FormEmailMappingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FormEmailMappingInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EmailLog
+   */
+
+  export type AggregateEmailLog = {
+    _count: EmailLogCountAggregateOutputType | null
+    _min: EmailLogMinAggregateOutputType | null
+    _max: EmailLogMaxAggregateOutputType | null
+  }
+
+  export type EmailLogMinAggregateOutputType = {
+    id: string | null
+    formKey: string | null
+    templateId: string | null
+    to: string | null
+    subject: string | null
+    status: string | null
+    error: string | null
+    messageId: string | null
+    createdAt: Date | null
+  }
+
+  export type EmailLogMaxAggregateOutputType = {
+    id: string | null
+    formKey: string | null
+    templateId: string | null
+    to: string | null
+    subject: string | null
+    status: string | null
+    error: string | null
+    messageId: string | null
+    createdAt: Date | null
+  }
+
+  export type EmailLogCountAggregateOutputType = {
+    id: number
+    formKey: number
+    templateId: number
+    to: number
+    subject: number
+    status: number
+    error: number
+    messageId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type EmailLogMinAggregateInputType = {
+    id?: true
+    formKey?: true
+    templateId?: true
+    to?: true
+    subject?: true
+    status?: true
+    error?: true
+    messageId?: true
+    createdAt?: true
+  }
+
+  export type EmailLogMaxAggregateInputType = {
+    id?: true
+    formKey?: true
+    templateId?: true
+    to?: true
+    subject?: true
+    status?: true
+    error?: true
+    messageId?: true
+    createdAt?: true
+  }
+
+  export type EmailLogCountAggregateInputType = {
+    id?: true
+    formKey?: true
+    templateId?: true
+    to?: true
+    subject?: true
+    status?: true
+    error?: true
+    messageId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type EmailLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmailLog to aggregate.
+     */
+    where?: EmailLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailLogs to fetch.
+     */
+    orderBy?: EmailLogOrderByWithRelationInput | EmailLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmailLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmailLogs
+    **/
+    _count?: true | EmailLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmailLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmailLogMaxAggregateInputType
+  }
+
+  export type GetEmailLogAggregateType<T extends EmailLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmailLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmailLog[P]>
+      : GetScalarType<T[P], AggregateEmailLog[P]>
+  }
+
+
+
+
+  export type EmailLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailLogWhereInput
+    orderBy?: EmailLogOrderByWithAggregationInput | EmailLogOrderByWithAggregationInput[]
+    by: EmailLogScalarFieldEnum[] | EmailLogScalarFieldEnum
+    having?: EmailLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmailLogCountAggregateInputType | true
+    _min?: EmailLogMinAggregateInputType
+    _max?: EmailLogMaxAggregateInputType
+  }
+
+  export type EmailLogGroupByOutputType = {
+    id: string
+    formKey: string
+    templateId: string | null
+    to: string
+    subject: string
+    status: string
+    error: string | null
+    messageId: string | null
+    createdAt: Date
+    _count: EmailLogCountAggregateOutputType | null
+    _min: EmailLogMinAggregateOutputType | null
+    _max: EmailLogMaxAggregateOutputType | null
+  }
+
+  type GetEmailLogGroupByPayload<T extends EmailLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmailLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmailLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmailLogGroupByOutputType[P]>
+            : GetScalarType<T[P], EmailLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmailLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    formKey?: boolean
+    templateId?: boolean
+    to?: boolean
+    subject?: boolean
+    status?: boolean
+    error?: boolean
+    messageId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["emailLog"]>
+
+  export type EmailLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    formKey?: boolean
+    templateId?: boolean
+    to?: boolean
+    subject?: boolean
+    status?: boolean
+    error?: boolean
+    messageId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["emailLog"]>
+
+  export type EmailLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    formKey?: boolean
+    templateId?: boolean
+    to?: boolean
+    subject?: boolean
+    status?: boolean
+    error?: boolean
+    messageId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["emailLog"]>
+
+  export type EmailLogSelectScalar = {
+    id?: boolean
+    formKey?: boolean
+    templateId?: boolean
+    to?: boolean
+    subject?: boolean
+    status?: boolean
+    error?: boolean
+    messageId?: boolean
+    createdAt?: boolean
+  }
+
+  export type EmailLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "formKey" | "templateId" | "to" | "subject" | "status" | "error" | "messageId" | "createdAt", ExtArgs["result"]["emailLog"]>
+
+  export type $EmailLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmailLog"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      formKey: string
+      templateId: string | null
+      to: string
+      subject: string
+      status: string
+      error: string | null
+      messageId: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["emailLog"]>
+    composites: {}
+  }
+
+  type EmailLogGetPayload<S extends boolean | null | undefined | EmailLogDefaultArgs> = $Result.GetResult<Prisma.$EmailLogPayload, S>
+
+  type EmailLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmailLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmailLogCountAggregateInputType | true
+    }
+
+  export interface EmailLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmailLog'], meta: { name: 'EmailLog' } }
+    /**
+     * Find zero or one EmailLog that matches the filter.
+     * @param {EmailLogFindUniqueArgs} args - Arguments to find a EmailLog
+     * @example
+     * // Get one EmailLog
+     * const emailLog = await prisma.emailLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmailLogFindUniqueArgs>(args: SelectSubset<T, EmailLogFindUniqueArgs<ExtArgs>>): Prisma__EmailLogClient<$Result.GetResult<Prisma.$EmailLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmailLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmailLogFindUniqueOrThrowArgs} args - Arguments to find a EmailLog
+     * @example
+     * // Get one EmailLog
+     * const emailLog = await prisma.emailLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmailLogFindUniqueOrThrowArgs>(args: SelectSubset<T, EmailLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmailLogClient<$Result.GetResult<Prisma.$EmailLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmailLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailLogFindFirstArgs} args - Arguments to find a EmailLog
+     * @example
+     * // Get one EmailLog
+     * const emailLog = await prisma.emailLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmailLogFindFirstArgs>(args?: SelectSubset<T, EmailLogFindFirstArgs<ExtArgs>>): Prisma__EmailLogClient<$Result.GetResult<Prisma.$EmailLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmailLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailLogFindFirstOrThrowArgs} args - Arguments to find a EmailLog
+     * @example
+     * // Get one EmailLog
+     * const emailLog = await prisma.emailLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmailLogFindFirstOrThrowArgs>(args?: SelectSubset<T, EmailLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmailLogClient<$Result.GetResult<Prisma.$EmailLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmailLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmailLogs
+     * const emailLogs = await prisma.emailLog.findMany()
+     * 
+     * // Get first 10 EmailLogs
+     * const emailLogs = await prisma.emailLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const emailLogWithIdOnly = await prisma.emailLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmailLogFindManyArgs>(args?: SelectSubset<T, EmailLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmailLog.
+     * @param {EmailLogCreateArgs} args - Arguments to create a EmailLog.
+     * @example
+     * // Create one EmailLog
+     * const EmailLog = await prisma.emailLog.create({
+     *   data: {
+     *     // ... data to create a EmailLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmailLogCreateArgs>(args: SelectSubset<T, EmailLogCreateArgs<ExtArgs>>): Prisma__EmailLogClient<$Result.GetResult<Prisma.$EmailLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmailLogs.
+     * @param {EmailLogCreateManyArgs} args - Arguments to create many EmailLogs.
+     * @example
+     * // Create many EmailLogs
+     * const emailLog = await prisma.emailLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmailLogCreateManyArgs>(args?: SelectSubset<T, EmailLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmailLogs and returns the data saved in the database.
+     * @param {EmailLogCreateManyAndReturnArgs} args - Arguments to create many EmailLogs.
+     * @example
+     * // Create many EmailLogs
+     * const emailLog = await prisma.emailLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmailLogs and only return the `id`
+     * const emailLogWithIdOnly = await prisma.emailLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmailLogCreateManyAndReturnArgs>(args?: SelectSubset<T, EmailLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmailLog.
+     * @param {EmailLogDeleteArgs} args - Arguments to delete one EmailLog.
+     * @example
+     * // Delete one EmailLog
+     * const EmailLog = await prisma.emailLog.delete({
+     *   where: {
+     *     // ... filter to delete one EmailLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmailLogDeleteArgs>(args: SelectSubset<T, EmailLogDeleteArgs<ExtArgs>>): Prisma__EmailLogClient<$Result.GetResult<Prisma.$EmailLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmailLog.
+     * @param {EmailLogUpdateArgs} args - Arguments to update one EmailLog.
+     * @example
+     * // Update one EmailLog
+     * const emailLog = await prisma.emailLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmailLogUpdateArgs>(args: SelectSubset<T, EmailLogUpdateArgs<ExtArgs>>): Prisma__EmailLogClient<$Result.GetResult<Prisma.$EmailLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmailLogs.
+     * @param {EmailLogDeleteManyArgs} args - Arguments to filter EmailLogs to delete.
+     * @example
+     * // Delete a few EmailLogs
+     * const { count } = await prisma.emailLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmailLogDeleteManyArgs>(args?: SelectSubset<T, EmailLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmailLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmailLogs
+     * const emailLog = await prisma.emailLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmailLogUpdateManyArgs>(args: SelectSubset<T, EmailLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmailLogs and returns the data updated in the database.
+     * @param {EmailLogUpdateManyAndReturnArgs} args - Arguments to update many EmailLogs.
+     * @example
+     * // Update many EmailLogs
+     * const emailLog = await prisma.emailLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmailLogs and only return the `id`
+     * const emailLogWithIdOnly = await prisma.emailLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmailLogUpdateManyAndReturnArgs>(args: SelectSubset<T, EmailLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmailLog.
+     * @param {EmailLogUpsertArgs} args - Arguments to update or create a EmailLog.
+     * @example
+     * // Update or create a EmailLog
+     * const emailLog = await prisma.emailLog.upsert({
+     *   create: {
+     *     // ... data to create a EmailLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmailLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmailLogUpsertArgs>(args: SelectSubset<T, EmailLogUpsertArgs<ExtArgs>>): Prisma__EmailLogClient<$Result.GetResult<Prisma.$EmailLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmailLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailLogCountArgs} args - Arguments to filter EmailLogs to count.
+     * @example
+     * // Count the number of EmailLogs
+     * const count = await prisma.emailLog.count({
+     *   where: {
+     *     // ... the filter for the EmailLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmailLogCountArgs>(
+      args?: Subset<T, EmailLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmailLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmailLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmailLogAggregateArgs>(args: Subset<T, EmailLogAggregateArgs>): Prisma.PrismaPromise<GetEmailLogAggregateType<T>>
+
+    /**
+     * Group by EmailLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmailLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmailLogGroupByArgs['orderBy'] }
+        : { orderBy?: EmailLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmailLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmailLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmailLog model
+   */
+  readonly fields: EmailLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmailLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmailLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmailLog model
+   */
+  interface EmailLogFieldRefs {
+    readonly id: FieldRef<"EmailLog", 'String'>
+    readonly formKey: FieldRef<"EmailLog", 'String'>
+    readonly templateId: FieldRef<"EmailLog", 'String'>
+    readonly to: FieldRef<"EmailLog", 'String'>
+    readonly subject: FieldRef<"EmailLog", 'String'>
+    readonly status: FieldRef<"EmailLog", 'String'>
+    readonly error: FieldRef<"EmailLog", 'String'>
+    readonly messageId: FieldRef<"EmailLog", 'String'>
+    readonly createdAt: FieldRef<"EmailLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmailLog findUnique
+   */
+  export type EmailLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailLog
+     */
+    select?: EmailLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailLog
+     */
+    omit?: EmailLogOmit<ExtArgs> | null
+    /**
+     * Filter, which EmailLog to fetch.
+     */
+    where: EmailLogWhereUniqueInput
+  }
+
+  /**
+   * EmailLog findUniqueOrThrow
+   */
+  export type EmailLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailLog
+     */
+    select?: EmailLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailLog
+     */
+    omit?: EmailLogOmit<ExtArgs> | null
+    /**
+     * Filter, which EmailLog to fetch.
+     */
+    where: EmailLogWhereUniqueInput
+  }
+
+  /**
+   * EmailLog findFirst
+   */
+  export type EmailLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailLog
+     */
+    select?: EmailLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailLog
+     */
+    omit?: EmailLogOmit<ExtArgs> | null
+    /**
+     * Filter, which EmailLog to fetch.
+     */
+    where?: EmailLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailLogs to fetch.
+     */
+    orderBy?: EmailLogOrderByWithRelationInput | EmailLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmailLogs.
+     */
+    cursor?: EmailLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmailLogs.
+     */
+    distinct?: EmailLogScalarFieldEnum | EmailLogScalarFieldEnum[]
+  }
+
+  /**
+   * EmailLog findFirstOrThrow
+   */
+  export type EmailLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailLog
+     */
+    select?: EmailLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailLog
+     */
+    omit?: EmailLogOmit<ExtArgs> | null
+    /**
+     * Filter, which EmailLog to fetch.
+     */
+    where?: EmailLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailLogs to fetch.
+     */
+    orderBy?: EmailLogOrderByWithRelationInput | EmailLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmailLogs.
+     */
+    cursor?: EmailLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmailLogs.
+     */
+    distinct?: EmailLogScalarFieldEnum | EmailLogScalarFieldEnum[]
+  }
+
+  /**
+   * EmailLog findMany
+   */
+  export type EmailLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailLog
+     */
+    select?: EmailLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailLog
+     */
+    omit?: EmailLogOmit<ExtArgs> | null
+    /**
+     * Filter, which EmailLogs to fetch.
+     */
+    where?: EmailLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailLogs to fetch.
+     */
+    orderBy?: EmailLogOrderByWithRelationInput | EmailLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmailLogs.
+     */
+    cursor?: EmailLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmailLogs.
+     */
+    distinct?: EmailLogScalarFieldEnum | EmailLogScalarFieldEnum[]
+  }
+
+  /**
+   * EmailLog create
+   */
+  export type EmailLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailLog
+     */
+    select?: EmailLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailLog
+     */
+    omit?: EmailLogOmit<ExtArgs> | null
+    /**
+     * The data needed to create a EmailLog.
+     */
+    data: XOR<EmailLogCreateInput, EmailLogUncheckedCreateInput>
+  }
+
+  /**
+   * EmailLog createMany
+   */
+  export type EmailLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmailLogs.
+     */
+    data: EmailLogCreateManyInput | EmailLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmailLog createManyAndReturn
+   */
+  export type EmailLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailLog
+     */
+    select?: EmailLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailLog
+     */
+    omit?: EmailLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmailLogs.
+     */
+    data: EmailLogCreateManyInput | EmailLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmailLog update
+   */
+  export type EmailLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailLog
+     */
+    select?: EmailLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailLog
+     */
+    omit?: EmailLogOmit<ExtArgs> | null
+    /**
+     * The data needed to update a EmailLog.
+     */
+    data: XOR<EmailLogUpdateInput, EmailLogUncheckedUpdateInput>
+    /**
+     * Choose, which EmailLog to update.
+     */
+    where: EmailLogWhereUniqueInput
+  }
+
+  /**
+   * EmailLog updateMany
+   */
+  export type EmailLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmailLogs.
+     */
+    data: XOR<EmailLogUpdateManyMutationInput, EmailLogUncheckedUpdateManyInput>
+    /**
+     * Filter which EmailLogs to update
+     */
+    where?: EmailLogWhereInput
+    /**
+     * Limit how many EmailLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmailLog updateManyAndReturn
+   */
+  export type EmailLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailLog
+     */
+    select?: EmailLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailLog
+     */
+    omit?: EmailLogOmit<ExtArgs> | null
+    /**
+     * The data used to update EmailLogs.
+     */
+    data: XOR<EmailLogUpdateManyMutationInput, EmailLogUncheckedUpdateManyInput>
+    /**
+     * Filter which EmailLogs to update
+     */
+    where?: EmailLogWhereInput
+    /**
+     * Limit how many EmailLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmailLog upsert
+   */
+  export type EmailLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailLog
+     */
+    select?: EmailLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailLog
+     */
+    omit?: EmailLogOmit<ExtArgs> | null
+    /**
+     * The filter to search for the EmailLog to update in case it exists.
+     */
+    where: EmailLogWhereUniqueInput
+    /**
+     * In case the EmailLog found by the `where` argument doesn't exist, create a new EmailLog with this data.
+     */
+    create: XOR<EmailLogCreateInput, EmailLogUncheckedCreateInput>
+    /**
+     * In case the EmailLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmailLogUpdateInput, EmailLogUncheckedUpdateInput>
+  }
+
+  /**
+   * EmailLog delete
+   */
+  export type EmailLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailLog
+     */
+    select?: EmailLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailLog
+     */
+    omit?: EmailLogOmit<ExtArgs> | null
+    /**
+     * Filter which EmailLog to delete.
+     */
+    where: EmailLogWhereUniqueInput
+  }
+
+  /**
+   * EmailLog deleteMany
+   */
+  export type EmailLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmailLogs to delete
+     */
+    where?: EmailLogWhereInput
+    /**
+     * Limit how many EmailLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmailLog without action
+   */
+  export type EmailLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailLog
+     */
+    select?: EmailLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailLog
+     */
+    omit?: EmailLogOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -17650,16 +26164,16 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     email: 'email',
-    employeeId: 'employeeId',
     phone: 'phone',
     password: 'password',
     role: 'role',
-    image: 'image',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
     about: 'about',
     designation: 'designation',
+    image: 'image',
     socials: 'socials',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    employeeId: 'employeeId'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -17672,19 +26186,19 @@ export namespace Prisma {
     excerpt: 'excerpt',
     content: 'content',
     image: 'image',
-    thumbnail: 'thumbnail',
     category: 'category',
     readTime: 'readTime',
     published: 'published',
-    status: 'status',
-    reviewComment: 'reviewComment',
     date: 'date',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     dislikes: 'dislikes',
     likes: 'likes',
     tags: 'tags',
-    authorId: 'authorId'
+    authorId: 'authorId',
+    reviewComment: 'reviewComment',
+    status: 'status',
+    thumbnail: 'thumbnail'
   };
 
   export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
@@ -17840,10 +26354,59 @@ export namespace Prisma {
     id: 'id',
     email: 'email',
     status: 'status',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    name: 'name'
   };
 
   export type NewsletterSubscriberScalarFieldEnum = (typeof NewsletterSubscriberScalarFieldEnum)[keyof typeof NewsletterSubscriberScalarFieldEnum]
+
+
+  export const NewsletterGroupScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    color: 'color',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type NewsletterGroupScalarFieldEnum = (typeof NewsletterGroupScalarFieldEnum)[keyof typeof NewsletterGroupScalarFieldEnum]
+
+
+  export const NewsletterGroupMemberScalarFieldEnum: {
+    groupId: 'groupId',
+    subscriberId: 'subscriberId',
+    createdAt: 'createdAt'
+  };
+
+  export type NewsletterGroupMemberScalarFieldEnum = (typeof NewsletterGroupMemberScalarFieldEnum)[keyof typeof NewsletterGroupMemberScalarFieldEnum]
+
+
+  export const NewsletterScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    subject: 'subject',
+    preheader: 'preheader',
+    content: 'content',
+    status: 'status',
+    sendToAll: 'sendToAll',
+    sentAt: 'sentAt',
+    recipientCount: 'recipientCount',
+    successCount: 'successCount',
+    failureCount: 'failureCount',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type NewsletterScalarFieldEnum = (typeof NewsletterScalarFieldEnum)[keyof typeof NewsletterScalarFieldEnum]
+
+
+  export const NewsletterTargetGroupScalarFieldEnum: {
+    newsletterId: 'newsletterId',
+    groupId: 'groupId'
+  };
+
+  export type NewsletterTargetGroupScalarFieldEnum = (typeof NewsletterTargetGroupScalarFieldEnum)[keyof typeof NewsletterTargetGroupScalarFieldEnum]
 
 
   export const NotificationScalarFieldEnum: {
@@ -17857,6 +26420,47 @@ export namespace Prisma {
   };
 
   export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+  export const EmailTemplateScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    subject: 'subject',
+    body: 'body',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    description: 'description',
+    isActive: 'isActive'
+  };
+
+  export type EmailTemplateScalarFieldEnum = (typeof EmailTemplateScalarFieldEnum)[keyof typeof EmailTemplateScalarFieldEnum]
+
+
+  export const FormEmailMappingScalarFieldEnum: {
+    id: 'id',
+    formKey: 'formKey',
+    templateId: 'templateId',
+    enabled: 'enabled',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FormEmailMappingScalarFieldEnum = (typeof FormEmailMappingScalarFieldEnum)[keyof typeof FormEmailMappingScalarFieldEnum]
+
+
+  export const EmailLogScalarFieldEnum: {
+    id: 'id',
+    formKey: 'formKey',
+    templateId: 'templateId',
+    to: 'to',
+    subject: 'subject',
+    status: 'status',
+    error: 'error',
+    messageId: 'messageId',
+    createdAt: 'createdAt'
+  };
+
+  export type EmailLogScalarFieldEnum = (typeof EmailLogScalarFieldEnum)[keyof typeof EmailLogScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -17920,20 +26524,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Json'
-   */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-  /**
-   * Reference to a field of type 'QueryMode'
-   */
-  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -17944,6 +26534,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -17992,73 +26596,73 @@ export namespace Prisma {
     id?: StringFilter<"User"> | string
     name?: StringNullableFilter<"User"> | string | null
     email?: StringNullableFilter<"User"> | string | null
-    employeeId?: StringNullableFilter<"User"> | string | null
     phone?: StringNullableFilter<"User"> | string | null
     password?: StringNullableFilter<"User"> | string | null
     role?: StringFilter<"User"> | string
-    image?: StringNullableFilter<"User"> | string | null
-    about?: StringNullableFilter<"User"> | string | null
-    designation?: StringNullableFilter<"User"> | string | null
-    socials?: JsonNullableFilter<"User">
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    posts?: PostListRelationFilter
+    about?: StringNullableFilter<"User"> | string | null
+    designation?: StringNullableFilter<"User"> | string | null
+    image?: StringNullableFilter<"User"> | string | null
+    socials?: JsonNullableFilter<"User">
+    employeeId?: StringNullableFilter<"User"> | string | null
     notifications?: NotificationListRelationFilter
+    posts?: PostListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
-    employeeId?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
     role?: SortOrder
-    image?: SortOrderInput | SortOrder
-    about?: SortOrderInput | SortOrder
-    designation?: SortOrderInput | SortOrder
-    socials?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    posts?: PostOrderByRelationAggregateInput
+    about?: SortOrderInput | SortOrder
+    designation?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
+    socials?: SortOrderInput | SortOrder
+    employeeId?: SortOrderInput | SortOrder
     notifications?: NotificationOrderByRelationAggregateInput
+    posts?: PostOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
-    employeeId?: string
     phone?: string
+    employeeId?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringNullableFilter<"User"> | string | null
     password?: StringNullableFilter<"User"> | string | null
     role?: StringFilter<"User"> | string
-    image?: StringNullableFilter<"User"> | string | null
-    about?: StringNullableFilter<"User"> | string | null
-    designation?: StringNullableFilter<"User"> | string | null
-    socials?: JsonNullableFilter<"User">
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    posts?: PostListRelationFilter
+    about?: StringNullableFilter<"User"> | string | null
+    designation?: StringNullableFilter<"User"> | string | null
+    image?: StringNullableFilter<"User"> | string | null
+    socials?: JsonNullableFilter<"User">
     notifications?: NotificationListRelationFilter
-  }, "id" | "email" | "employeeId" | "phone">
+    posts?: PostListRelationFilter
+  }, "id" | "email" | "phone" | "employeeId">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
-    employeeId?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
     role?: SortOrder
-    image?: SortOrderInput | SortOrder
-    about?: SortOrderInput | SortOrder
-    designation?: SortOrderInput | SortOrder
-    socials?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    about?: SortOrderInput | SortOrder
+    designation?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
+    socials?: SortOrderInput | SortOrder
+    employeeId?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -18071,16 +26675,16 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"User"> | string
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
     email?: StringNullableWithAggregatesFilter<"User"> | string | null
-    employeeId?: StringNullableWithAggregatesFilter<"User"> | string | null
     phone?: StringNullableWithAggregatesFilter<"User"> | string | null
     password?: StringNullableWithAggregatesFilter<"User"> | string | null
     role?: StringWithAggregatesFilter<"User"> | string
-    image?: StringNullableWithAggregatesFilter<"User"> | string | null
-    about?: StringNullableWithAggregatesFilter<"User"> | string | null
-    designation?: StringNullableWithAggregatesFilter<"User"> | string | null
-    socials?: JsonNullableWithAggregatesFilter<"User">
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    about?: StringNullableWithAggregatesFilter<"User"> | string | null
+    designation?: StringNullableWithAggregatesFilter<"User"> | string | null
+    image?: StringNullableWithAggregatesFilter<"User"> | string | null
+    socials?: JsonNullableWithAggregatesFilter<"User">
+    employeeId?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type PostWhereInput = {
@@ -18093,12 +26697,9 @@ export namespace Prisma {
     excerpt?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
     image?: StringNullableFilter<"Post"> | string | null
-    thumbnail?: StringNullableFilter<"Post"> | string | null
     category?: StringFilter<"Post"> | string
     readTime?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
-    status?: StringFilter<"Post"> | string
-    reviewComment?: StringNullableFilter<"Post"> | string | null
     date?: DateTimeFilter<"Post"> | Date | string
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
@@ -18106,6 +26707,9 @@ export namespace Prisma {
     likes?: IntFilter<"Post"> | number
     tags?: StringNullableListFilter<"Post">
     authorId?: StringNullableFilter<"Post"> | string | null
+    reviewComment?: StringNullableFilter<"Post"> | string | null
+    status?: StringFilter<"Post"> | string
+    thumbnail?: StringNullableFilter<"Post"> | string | null
     comments?: CommentListRelationFilter
     author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
@@ -18117,12 +26721,9 @@ export namespace Prisma {
     excerpt?: SortOrder
     content?: SortOrder
     image?: SortOrderInput | SortOrder
-    thumbnail?: SortOrderInput | SortOrder
     category?: SortOrder
     readTime?: SortOrder
     published?: SortOrder
-    status?: SortOrder
-    reviewComment?: SortOrderInput | SortOrder
     date?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18130,6 +26731,9 @@ export namespace Prisma {
     likes?: SortOrder
     tags?: SortOrder
     authorId?: SortOrderInput | SortOrder
+    reviewComment?: SortOrderInput | SortOrder
+    status?: SortOrder
+    thumbnail?: SortOrderInput | SortOrder
     comments?: CommentOrderByRelationAggregateInput
     author?: UserOrderByWithRelationInput
   }
@@ -18144,12 +26748,9 @@ export namespace Prisma {
     excerpt?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
     image?: StringNullableFilter<"Post"> | string | null
-    thumbnail?: StringNullableFilter<"Post"> | string | null
     category?: StringFilter<"Post"> | string
     readTime?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
-    status?: StringFilter<"Post"> | string
-    reviewComment?: StringNullableFilter<"Post"> | string | null
     date?: DateTimeFilter<"Post"> | Date | string
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
@@ -18157,6 +26758,9 @@ export namespace Prisma {
     likes?: IntFilter<"Post"> | number
     tags?: StringNullableListFilter<"Post">
     authorId?: StringNullableFilter<"Post"> | string | null
+    reviewComment?: StringNullableFilter<"Post"> | string | null
+    status?: StringFilter<"Post"> | string
+    thumbnail?: StringNullableFilter<"Post"> | string | null
     comments?: CommentListRelationFilter
     author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id" | "slug">
@@ -18168,12 +26772,9 @@ export namespace Prisma {
     excerpt?: SortOrder
     content?: SortOrder
     image?: SortOrderInput | SortOrder
-    thumbnail?: SortOrderInput | SortOrder
     category?: SortOrder
     readTime?: SortOrder
     published?: SortOrder
-    status?: SortOrder
-    reviewComment?: SortOrderInput | SortOrder
     date?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18181,6 +26782,9 @@ export namespace Prisma {
     likes?: SortOrder
     tags?: SortOrder
     authorId?: SortOrderInput | SortOrder
+    reviewComment?: SortOrderInput | SortOrder
+    status?: SortOrder
+    thumbnail?: SortOrderInput | SortOrder
     _count?: PostCountOrderByAggregateInput
     _avg?: PostAvgOrderByAggregateInput
     _max?: PostMaxOrderByAggregateInput
@@ -18198,12 +26802,9 @@ export namespace Prisma {
     excerpt?: StringWithAggregatesFilter<"Post"> | string
     content?: StringWithAggregatesFilter<"Post"> | string
     image?: StringNullableWithAggregatesFilter<"Post"> | string | null
-    thumbnail?: StringNullableWithAggregatesFilter<"Post"> | string | null
     category?: StringWithAggregatesFilter<"Post"> | string
     readTime?: StringWithAggregatesFilter<"Post"> | string
     published?: BoolWithAggregatesFilter<"Post"> | boolean
-    status?: StringWithAggregatesFilter<"Post"> | string
-    reviewComment?: StringNullableWithAggregatesFilter<"Post"> | string | null
     date?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
@@ -18211,6 +26812,9 @@ export namespace Prisma {
     likes?: IntWithAggregatesFilter<"Post"> | number
     tags?: StringNullableListFilter<"Post">
     authorId?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    reviewComment?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    status?: StringWithAggregatesFilter<"Post"> | string
+    thumbnail?: StringNullableWithAggregatesFilter<"Post"> | string | null
   }
 
   export type CommentWhereInput = {
@@ -18938,6 +27542,8 @@ export namespace Prisma {
     email?: StringFilter<"NewsletterSubscriber"> | string
     status?: StringFilter<"NewsletterSubscriber"> | string
     createdAt?: DateTimeFilter<"NewsletterSubscriber"> | Date | string
+    name?: StringNullableFilter<"NewsletterSubscriber"> | string | null
+    groups?: NewsletterGroupMemberListRelationFilter
   }
 
   export type NewsletterSubscriberOrderByWithRelationInput = {
@@ -18945,6 +27551,8 @@ export namespace Prisma {
     email?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    name?: SortOrderInput | SortOrder
+    groups?: NewsletterGroupMemberOrderByRelationAggregateInput
   }
 
   export type NewsletterSubscriberWhereUniqueInput = Prisma.AtLeast<{
@@ -18955,6 +27563,8 @@ export namespace Prisma {
     NOT?: NewsletterSubscriberWhereInput | NewsletterSubscriberWhereInput[]
     status?: StringFilter<"NewsletterSubscriber"> | string
     createdAt?: DateTimeFilter<"NewsletterSubscriber"> | Date | string
+    name?: StringNullableFilter<"NewsletterSubscriber"> | string | null
+    groups?: NewsletterGroupMemberListRelationFilter
   }, "id" | "email">
 
   export type NewsletterSubscriberOrderByWithAggregationInput = {
@@ -18962,6 +27572,7 @@ export namespace Prisma {
     email?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    name?: SortOrderInput | SortOrder
     _count?: NewsletterSubscriberCountOrderByAggregateInput
     _max?: NewsletterSubscriberMaxOrderByAggregateInput
     _min?: NewsletterSubscriberMinOrderByAggregateInput
@@ -18975,6 +27586,260 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"NewsletterSubscriber"> | string
     status?: StringWithAggregatesFilter<"NewsletterSubscriber"> | string
     createdAt?: DateTimeWithAggregatesFilter<"NewsletterSubscriber"> | Date | string
+    name?: StringNullableWithAggregatesFilter<"NewsletterSubscriber"> | string | null
+  }
+
+  export type NewsletterGroupWhereInput = {
+    AND?: NewsletterGroupWhereInput | NewsletterGroupWhereInput[]
+    OR?: NewsletterGroupWhereInput[]
+    NOT?: NewsletterGroupWhereInput | NewsletterGroupWhereInput[]
+    id?: StringFilter<"NewsletterGroup"> | string
+    name?: StringFilter<"NewsletterGroup"> | string
+    description?: StringNullableFilter<"NewsletterGroup"> | string | null
+    color?: StringNullableFilter<"NewsletterGroup"> | string | null
+    createdAt?: DateTimeFilter<"NewsletterGroup"> | Date | string
+    updatedAt?: DateTimeFilter<"NewsletterGroup"> | Date | string
+    members?: NewsletterGroupMemberListRelationFilter
+    newsletters?: NewsletterTargetGroupListRelationFilter
+  }
+
+  export type NewsletterGroupOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    members?: NewsletterGroupMemberOrderByRelationAggregateInput
+    newsletters?: NewsletterTargetGroupOrderByRelationAggregateInput
+  }
+
+  export type NewsletterGroupWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: NewsletterGroupWhereInput | NewsletterGroupWhereInput[]
+    OR?: NewsletterGroupWhereInput[]
+    NOT?: NewsletterGroupWhereInput | NewsletterGroupWhereInput[]
+    description?: StringNullableFilter<"NewsletterGroup"> | string | null
+    color?: StringNullableFilter<"NewsletterGroup"> | string | null
+    createdAt?: DateTimeFilter<"NewsletterGroup"> | Date | string
+    updatedAt?: DateTimeFilter<"NewsletterGroup"> | Date | string
+    members?: NewsletterGroupMemberListRelationFilter
+    newsletters?: NewsletterTargetGroupListRelationFilter
+  }, "id" | "name">
+
+  export type NewsletterGroupOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: NewsletterGroupCountOrderByAggregateInput
+    _max?: NewsletterGroupMaxOrderByAggregateInput
+    _min?: NewsletterGroupMinOrderByAggregateInput
+  }
+
+  export type NewsletterGroupScalarWhereWithAggregatesInput = {
+    AND?: NewsletterGroupScalarWhereWithAggregatesInput | NewsletterGroupScalarWhereWithAggregatesInput[]
+    OR?: NewsletterGroupScalarWhereWithAggregatesInput[]
+    NOT?: NewsletterGroupScalarWhereWithAggregatesInput | NewsletterGroupScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"NewsletterGroup"> | string
+    name?: StringWithAggregatesFilter<"NewsletterGroup"> | string
+    description?: StringNullableWithAggregatesFilter<"NewsletterGroup"> | string | null
+    color?: StringNullableWithAggregatesFilter<"NewsletterGroup"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"NewsletterGroup"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"NewsletterGroup"> | Date | string
+  }
+
+  export type NewsletterGroupMemberWhereInput = {
+    AND?: NewsletterGroupMemberWhereInput | NewsletterGroupMemberWhereInput[]
+    OR?: NewsletterGroupMemberWhereInput[]
+    NOT?: NewsletterGroupMemberWhereInput | NewsletterGroupMemberWhereInput[]
+    groupId?: StringFilter<"NewsletterGroupMember"> | string
+    subscriberId?: StringFilter<"NewsletterGroupMember"> | string
+    createdAt?: DateTimeFilter<"NewsletterGroupMember"> | Date | string
+    group?: XOR<NewsletterGroupScalarRelationFilter, NewsletterGroupWhereInput>
+    subscriber?: XOR<NewsletterSubscriberScalarRelationFilter, NewsletterSubscriberWhereInput>
+  }
+
+  export type NewsletterGroupMemberOrderByWithRelationInput = {
+    groupId?: SortOrder
+    subscriberId?: SortOrder
+    createdAt?: SortOrder
+    group?: NewsletterGroupOrderByWithRelationInput
+    subscriber?: NewsletterSubscriberOrderByWithRelationInput
+  }
+
+  export type NewsletterGroupMemberWhereUniqueInput = Prisma.AtLeast<{
+    groupId_subscriberId?: NewsletterGroupMemberGroupIdSubscriberIdCompoundUniqueInput
+    AND?: NewsletterGroupMemberWhereInput | NewsletterGroupMemberWhereInput[]
+    OR?: NewsletterGroupMemberWhereInput[]
+    NOT?: NewsletterGroupMemberWhereInput | NewsletterGroupMemberWhereInput[]
+    groupId?: StringFilter<"NewsletterGroupMember"> | string
+    subscriberId?: StringFilter<"NewsletterGroupMember"> | string
+    createdAt?: DateTimeFilter<"NewsletterGroupMember"> | Date | string
+    group?: XOR<NewsletterGroupScalarRelationFilter, NewsletterGroupWhereInput>
+    subscriber?: XOR<NewsletterSubscriberScalarRelationFilter, NewsletterSubscriberWhereInput>
+  }, "groupId_subscriberId">
+
+  export type NewsletterGroupMemberOrderByWithAggregationInput = {
+    groupId?: SortOrder
+    subscriberId?: SortOrder
+    createdAt?: SortOrder
+    _count?: NewsletterGroupMemberCountOrderByAggregateInput
+    _max?: NewsletterGroupMemberMaxOrderByAggregateInput
+    _min?: NewsletterGroupMemberMinOrderByAggregateInput
+  }
+
+  export type NewsletterGroupMemberScalarWhereWithAggregatesInput = {
+    AND?: NewsletterGroupMemberScalarWhereWithAggregatesInput | NewsletterGroupMemberScalarWhereWithAggregatesInput[]
+    OR?: NewsletterGroupMemberScalarWhereWithAggregatesInput[]
+    NOT?: NewsletterGroupMemberScalarWhereWithAggregatesInput | NewsletterGroupMemberScalarWhereWithAggregatesInput[]
+    groupId?: StringWithAggregatesFilter<"NewsletterGroupMember"> | string
+    subscriberId?: StringWithAggregatesFilter<"NewsletterGroupMember"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"NewsletterGroupMember"> | Date | string
+  }
+
+  export type NewsletterWhereInput = {
+    AND?: NewsletterWhereInput | NewsletterWhereInput[]
+    OR?: NewsletterWhereInput[]
+    NOT?: NewsletterWhereInput | NewsletterWhereInput[]
+    id?: StringFilter<"Newsletter"> | string
+    title?: StringFilter<"Newsletter"> | string
+    subject?: StringFilter<"Newsletter"> | string
+    preheader?: StringNullableFilter<"Newsletter"> | string | null
+    content?: StringFilter<"Newsletter"> | string
+    status?: StringFilter<"Newsletter"> | string
+    sendToAll?: BoolFilter<"Newsletter"> | boolean
+    sentAt?: DateTimeNullableFilter<"Newsletter"> | Date | string | null
+    recipientCount?: IntFilter<"Newsletter"> | number
+    successCount?: IntFilter<"Newsletter"> | number
+    failureCount?: IntFilter<"Newsletter"> | number
+    createdAt?: DateTimeFilter<"Newsletter"> | Date | string
+    updatedAt?: DateTimeFilter<"Newsletter"> | Date | string
+    targetGroups?: NewsletterTargetGroupListRelationFilter
+  }
+
+  export type NewsletterOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subject?: SortOrder
+    preheader?: SortOrderInput | SortOrder
+    content?: SortOrder
+    status?: SortOrder
+    sendToAll?: SortOrder
+    sentAt?: SortOrderInput | SortOrder
+    recipientCount?: SortOrder
+    successCount?: SortOrder
+    failureCount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    targetGroups?: NewsletterTargetGroupOrderByRelationAggregateInput
+  }
+
+  export type NewsletterWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: NewsletterWhereInput | NewsletterWhereInput[]
+    OR?: NewsletterWhereInput[]
+    NOT?: NewsletterWhereInput | NewsletterWhereInput[]
+    title?: StringFilter<"Newsletter"> | string
+    subject?: StringFilter<"Newsletter"> | string
+    preheader?: StringNullableFilter<"Newsletter"> | string | null
+    content?: StringFilter<"Newsletter"> | string
+    status?: StringFilter<"Newsletter"> | string
+    sendToAll?: BoolFilter<"Newsletter"> | boolean
+    sentAt?: DateTimeNullableFilter<"Newsletter"> | Date | string | null
+    recipientCount?: IntFilter<"Newsletter"> | number
+    successCount?: IntFilter<"Newsletter"> | number
+    failureCount?: IntFilter<"Newsletter"> | number
+    createdAt?: DateTimeFilter<"Newsletter"> | Date | string
+    updatedAt?: DateTimeFilter<"Newsletter"> | Date | string
+    targetGroups?: NewsletterTargetGroupListRelationFilter
+  }, "id">
+
+  export type NewsletterOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subject?: SortOrder
+    preheader?: SortOrderInput | SortOrder
+    content?: SortOrder
+    status?: SortOrder
+    sendToAll?: SortOrder
+    sentAt?: SortOrderInput | SortOrder
+    recipientCount?: SortOrder
+    successCount?: SortOrder
+    failureCount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: NewsletterCountOrderByAggregateInput
+    _avg?: NewsletterAvgOrderByAggregateInput
+    _max?: NewsletterMaxOrderByAggregateInput
+    _min?: NewsletterMinOrderByAggregateInput
+    _sum?: NewsletterSumOrderByAggregateInput
+  }
+
+  export type NewsletterScalarWhereWithAggregatesInput = {
+    AND?: NewsletterScalarWhereWithAggregatesInput | NewsletterScalarWhereWithAggregatesInput[]
+    OR?: NewsletterScalarWhereWithAggregatesInput[]
+    NOT?: NewsletterScalarWhereWithAggregatesInput | NewsletterScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Newsletter"> | string
+    title?: StringWithAggregatesFilter<"Newsletter"> | string
+    subject?: StringWithAggregatesFilter<"Newsletter"> | string
+    preheader?: StringNullableWithAggregatesFilter<"Newsletter"> | string | null
+    content?: StringWithAggregatesFilter<"Newsletter"> | string
+    status?: StringWithAggregatesFilter<"Newsletter"> | string
+    sendToAll?: BoolWithAggregatesFilter<"Newsletter"> | boolean
+    sentAt?: DateTimeNullableWithAggregatesFilter<"Newsletter"> | Date | string | null
+    recipientCount?: IntWithAggregatesFilter<"Newsletter"> | number
+    successCount?: IntWithAggregatesFilter<"Newsletter"> | number
+    failureCount?: IntWithAggregatesFilter<"Newsletter"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Newsletter"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Newsletter"> | Date | string
+  }
+
+  export type NewsletterTargetGroupWhereInput = {
+    AND?: NewsletterTargetGroupWhereInput | NewsletterTargetGroupWhereInput[]
+    OR?: NewsletterTargetGroupWhereInput[]
+    NOT?: NewsletterTargetGroupWhereInput | NewsletterTargetGroupWhereInput[]
+    newsletterId?: StringFilter<"NewsletterTargetGroup"> | string
+    groupId?: StringFilter<"NewsletterTargetGroup"> | string
+    group?: XOR<NewsletterGroupScalarRelationFilter, NewsletterGroupWhereInput>
+    newsletter?: XOR<NewsletterScalarRelationFilter, NewsletterWhereInput>
+  }
+
+  export type NewsletterTargetGroupOrderByWithRelationInput = {
+    newsletterId?: SortOrder
+    groupId?: SortOrder
+    group?: NewsletterGroupOrderByWithRelationInput
+    newsletter?: NewsletterOrderByWithRelationInput
+  }
+
+  export type NewsletterTargetGroupWhereUniqueInput = Prisma.AtLeast<{
+    newsletterId_groupId?: NewsletterTargetGroupNewsletterIdGroupIdCompoundUniqueInput
+    AND?: NewsletterTargetGroupWhereInput | NewsletterTargetGroupWhereInput[]
+    OR?: NewsletterTargetGroupWhereInput[]
+    NOT?: NewsletterTargetGroupWhereInput | NewsletterTargetGroupWhereInput[]
+    newsletterId?: StringFilter<"NewsletterTargetGroup"> | string
+    groupId?: StringFilter<"NewsletterTargetGroup"> | string
+    group?: XOR<NewsletterGroupScalarRelationFilter, NewsletterGroupWhereInput>
+    newsletter?: XOR<NewsletterScalarRelationFilter, NewsletterWhereInput>
+  }, "newsletterId_groupId">
+
+  export type NewsletterTargetGroupOrderByWithAggregationInput = {
+    newsletterId?: SortOrder
+    groupId?: SortOrder
+    _count?: NewsletterTargetGroupCountOrderByAggregateInput
+    _max?: NewsletterTargetGroupMaxOrderByAggregateInput
+    _min?: NewsletterTargetGroupMinOrderByAggregateInput
+  }
+
+  export type NewsletterTargetGroupScalarWhereWithAggregatesInput = {
+    AND?: NewsletterTargetGroupScalarWhereWithAggregatesInput | NewsletterTargetGroupScalarWhereWithAggregatesInput[]
+    OR?: NewsletterTargetGroupScalarWhereWithAggregatesInput[]
+    NOT?: NewsletterTargetGroupScalarWhereWithAggregatesInput | NewsletterTargetGroupScalarWhereWithAggregatesInput[]
+    newsletterId?: StringWithAggregatesFilter<"NewsletterTargetGroup"> | string
+    groupId?: StringWithAggregatesFilter<"NewsletterTargetGroup"> | string
   }
 
   export type NotificationWhereInput = {
@@ -19042,124 +27907,326 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
   }
 
+  export type EmailTemplateWhereInput = {
+    AND?: EmailTemplateWhereInput | EmailTemplateWhereInput[]
+    OR?: EmailTemplateWhereInput[]
+    NOT?: EmailTemplateWhereInput | EmailTemplateWhereInput[]
+    id?: StringFilter<"EmailTemplate"> | string
+    name?: StringFilter<"EmailTemplate"> | string
+    subject?: StringFilter<"EmailTemplate"> | string
+    body?: StringFilter<"EmailTemplate"> | string
+    createdAt?: DateTimeFilter<"EmailTemplate"> | Date | string
+    updatedAt?: DateTimeFilter<"EmailTemplate"> | Date | string
+    description?: StringNullableFilter<"EmailTemplate"> | string | null
+    isActive?: BoolFilter<"EmailTemplate"> | boolean
+    mappings?: FormEmailMappingListRelationFilter
+  }
+
+  export type EmailTemplateOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    subject?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    description?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    mappings?: FormEmailMappingOrderByRelationAggregateInput
+  }
+
+  export type EmailTemplateWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: EmailTemplateWhereInput | EmailTemplateWhereInput[]
+    OR?: EmailTemplateWhereInput[]
+    NOT?: EmailTemplateWhereInput | EmailTemplateWhereInput[]
+    subject?: StringFilter<"EmailTemplate"> | string
+    body?: StringFilter<"EmailTemplate"> | string
+    createdAt?: DateTimeFilter<"EmailTemplate"> | Date | string
+    updatedAt?: DateTimeFilter<"EmailTemplate"> | Date | string
+    description?: StringNullableFilter<"EmailTemplate"> | string | null
+    isActive?: BoolFilter<"EmailTemplate"> | boolean
+    mappings?: FormEmailMappingListRelationFilter
+  }, "id" | "name">
+
+  export type EmailTemplateOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    subject?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    description?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    _count?: EmailTemplateCountOrderByAggregateInput
+    _max?: EmailTemplateMaxOrderByAggregateInput
+    _min?: EmailTemplateMinOrderByAggregateInput
+  }
+
+  export type EmailTemplateScalarWhereWithAggregatesInput = {
+    AND?: EmailTemplateScalarWhereWithAggregatesInput | EmailTemplateScalarWhereWithAggregatesInput[]
+    OR?: EmailTemplateScalarWhereWithAggregatesInput[]
+    NOT?: EmailTemplateScalarWhereWithAggregatesInput | EmailTemplateScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmailTemplate"> | string
+    name?: StringWithAggregatesFilter<"EmailTemplate"> | string
+    subject?: StringWithAggregatesFilter<"EmailTemplate"> | string
+    body?: StringWithAggregatesFilter<"EmailTemplate"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"EmailTemplate"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"EmailTemplate"> | Date | string
+    description?: StringNullableWithAggregatesFilter<"EmailTemplate"> | string | null
+    isActive?: BoolWithAggregatesFilter<"EmailTemplate"> | boolean
+  }
+
+  export type FormEmailMappingWhereInput = {
+    AND?: FormEmailMappingWhereInput | FormEmailMappingWhereInput[]
+    OR?: FormEmailMappingWhereInput[]
+    NOT?: FormEmailMappingWhereInput | FormEmailMappingWhereInput[]
+    id?: StringFilter<"FormEmailMapping"> | string
+    formKey?: StringFilter<"FormEmailMapping"> | string
+    templateId?: StringFilter<"FormEmailMapping"> | string
+    enabled?: BoolFilter<"FormEmailMapping"> | boolean
+    createdAt?: DateTimeFilter<"FormEmailMapping"> | Date | string
+    updatedAt?: DateTimeFilter<"FormEmailMapping"> | Date | string
+    template?: XOR<EmailTemplateScalarRelationFilter, EmailTemplateWhereInput>
+  }
+
+  export type FormEmailMappingOrderByWithRelationInput = {
+    id?: SortOrder
+    formKey?: SortOrder
+    templateId?: SortOrder
+    enabled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    template?: EmailTemplateOrderByWithRelationInput
+  }
+
+  export type FormEmailMappingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    formKey?: string
+    AND?: FormEmailMappingWhereInput | FormEmailMappingWhereInput[]
+    OR?: FormEmailMappingWhereInput[]
+    NOT?: FormEmailMappingWhereInput | FormEmailMappingWhereInput[]
+    templateId?: StringFilter<"FormEmailMapping"> | string
+    enabled?: BoolFilter<"FormEmailMapping"> | boolean
+    createdAt?: DateTimeFilter<"FormEmailMapping"> | Date | string
+    updatedAt?: DateTimeFilter<"FormEmailMapping"> | Date | string
+    template?: XOR<EmailTemplateScalarRelationFilter, EmailTemplateWhereInput>
+  }, "id" | "formKey">
+
+  export type FormEmailMappingOrderByWithAggregationInput = {
+    id?: SortOrder
+    formKey?: SortOrder
+    templateId?: SortOrder
+    enabled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FormEmailMappingCountOrderByAggregateInput
+    _max?: FormEmailMappingMaxOrderByAggregateInput
+    _min?: FormEmailMappingMinOrderByAggregateInput
+  }
+
+  export type FormEmailMappingScalarWhereWithAggregatesInput = {
+    AND?: FormEmailMappingScalarWhereWithAggregatesInput | FormEmailMappingScalarWhereWithAggregatesInput[]
+    OR?: FormEmailMappingScalarWhereWithAggregatesInput[]
+    NOT?: FormEmailMappingScalarWhereWithAggregatesInput | FormEmailMappingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FormEmailMapping"> | string
+    formKey?: StringWithAggregatesFilter<"FormEmailMapping"> | string
+    templateId?: StringWithAggregatesFilter<"FormEmailMapping"> | string
+    enabled?: BoolWithAggregatesFilter<"FormEmailMapping"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"FormEmailMapping"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FormEmailMapping"> | Date | string
+  }
+
+  export type EmailLogWhereInput = {
+    AND?: EmailLogWhereInput | EmailLogWhereInput[]
+    OR?: EmailLogWhereInput[]
+    NOT?: EmailLogWhereInput | EmailLogWhereInput[]
+    id?: StringFilter<"EmailLog"> | string
+    formKey?: StringFilter<"EmailLog"> | string
+    templateId?: StringNullableFilter<"EmailLog"> | string | null
+    to?: StringFilter<"EmailLog"> | string
+    subject?: StringFilter<"EmailLog"> | string
+    status?: StringFilter<"EmailLog"> | string
+    error?: StringNullableFilter<"EmailLog"> | string | null
+    messageId?: StringNullableFilter<"EmailLog"> | string | null
+    createdAt?: DateTimeFilter<"EmailLog"> | Date | string
+  }
+
+  export type EmailLogOrderByWithRelationInput = {
+    id?: SortOrder
+    formKey?: SortOrder
+    templateId?: SortOrderInput | SortOrder
+    to?: SortOrder
+    subject?: SortOrder
+    status?: SortOrder
+    error?: SortOrderInput | SortOrder
+    messageId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EmailLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EmailLogWhereInput | EmailLogWhereInput[]
+    OR?: EmailLogWhereInput[]
+    NOT?: EmailLogWhereInput | EmailLogWhereInput[]
+    formKey?: StringFilter<"EmailLog"> | string
+    templateId?: StringNullableFilter<"EmailLog"> | string | null
+    to?: StringFilter<"EmailLog"> | string
+    subject?: StringFilter<"EmailLog"> | string
+    status?: StringFilter<"EmailLog"> | string
+    error?: StringNullableFilter<"EmailLog"> | string | null
+    messageId?: StringNullableFilter<"EmailLog"> | string | null
+    createdAt?: DateTimeFilter<"EmailLog"> | Date | string
+  }, "id">
+
+  export type EmailLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    formKey?: SortOrder
+    templateId?: SortOrderInput | SortOrder
+    to?: SortOrder
+    subject?: SortOrder
+    status?: SortOrder
+    error?: SortOrderInput | SortOrder
+    messageId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: EmailLogCountOrderByAggregateInput
+    _max?: EmailLogMaxOrderByAggregateInput
+    _min?: EmailLogMinOrderByAggregateInput
+  }
+
+  export type EmailLogScalarWhereWithAggregatesInput = {
+    AND?: EmailLogScalarWhereWithAggregatesInput | EmailLogScalarWhereWithAggregatesInput[]
+    OR?: EmailLogScalarWhereWithAggregatesInput[]
+    NOT?: EmailLogScalarWhereWithAggregatesInput | EmailLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmailLog"> | string
+    formKey?: StringWithAggregatesFilter<"EmailLog"> | string
+    templateId?: StringNullableWithAggregatesFilter<"EmailLog"> | string | null
+    to?: StringWithAggregatesFilter<"EmailLog"> | string
+    subject?: StringWithAggregatesFilter<"EmailLog"> | string
+    status?: StringWithAggregatesFilter<"EmailLog"> | string
+    error?: StringNullableWithAggregatesFilter<"EmailLog"> | string | null
+    messageId?: StringNullableWithAggregatesFilter<"EmailLog"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"EmailLog"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
     email?: string | null
-    employeeId?: string | null
     phone?: string | null
     password?: string | null
     role?: string
-    image?: string | null
-    about?: string | null
-    designation?: string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
-    posts?: PostCreateNestedManyWithoutAuthorInput
+    about?: string | null
+    designation?: string | null
+    image?: string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: string | null
     notifications?: NotificationCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
     name?: string | null
     email?: string | null
-    employeeId?: string | null
     phone?: string | null
     password?: string | null
     role?: string
-    image?: string | null
-    about?: string | null
-    designation?: string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
-    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    about?: string | null
+    designation?: string | null
+    image?: string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: string | null
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    about?: NullableStringFieldUpdateOperationsInput | string | null
-    designation?: NullableStringFieldUpdateOperationsInput | string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUpdateManyWithoutAuthorNestedInput
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    designation?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     notifications?: NotificationUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    about?: NullableStringFieldUpdateOperationsInput | string | null
-    designation?: NullableStringFieldUpdateOperationsInput | string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    designation?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: string
     name?: string | null
     email?: string | null
-    employeeId?: string | null
     phone?: string | null
     password?: string | null
     role?: string
-    image?: string | null
-    about?: string | null
-    designation?: string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    about?: string | null
+    designation?: string | null
+    image?: string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    about?: NullableStringFieldUpdateOperationsInput | string | null
-    designation?: NullableStringFieldUpdateOperationsInput | string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    designation?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    about?: NullableStringFieldUpdateOperationsInput | string | null
-    designation?: NullableStringFieldUpdateOperationsInput | string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    designation?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PostCreateInput = {
@@ -19169,18 +28236,18 @@ export namespace Prisma {
     excerpt: string
     content: string
     image?: string | null
-    thumbnail?: string | null
     category: string
     readTime: string
     published?: boolean
-    status?: string
-    reviewComment?: string | null
     date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     dislikes?: number
     likes?: number
     tags?: PostCreatetagsInput | string[]
+    reviewComment?: string | null
+    status?: string
+    thumbnail?: string | null
     comments?: CommentCreateNestedManyWithoutPostInput
     author?: UserCreateNestedOneWithoutPostsInput
   }
@@ -19192,12 +28259,9 @@ export namespace Prisma {
     excerpt: string
     content: string
     image?: string | null
-    thumbnail?: string | null
     category: string
     readTime: string
     published?: boolean
-    status?: string
-    reviewComment?: string | null
     date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19205,6 +28269,9 @@ export namespace Prisma {
     likes?: number
     tags?: PostCreatetagsInput | string[]
     authorId?: string | null
+    reviewComment?: string | null
+    status?: string
+    thumbnail?: string | null
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -19215,18 +28282,18 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dislikes?: IntFieldUpdateOperationsInput | number
     likes?: IntFieldUpdateOperationsInput | number
     tags?: PostUpdatetagsInput | string[]
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: CommentUpdateManyWithoutPostNestedInput
     author?: UserUpdateOneWithoutPostsNestedInput
   }
@@ -19238,12 +28305,9 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19251,6 +28315,9 @@ export namespace Prisma {
     likes?: IntFieldUpdateOperationsInput | number
     tags?: PostUpdatetagsInput | string[]
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
   }
 
@@ -19261,12 +28328,9 @@ export namespace Prisma {
     excerpt: string
     content: string
     image?: string | null
-    thumbnail?: string | null
     category: string
     readTime: string
     published?: boolean
-    status?: string
-    reviewComment?: string | null
     date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19274,6 +28338,9 @@ export namespace Prisma {
     likes?: number
     tags?: PostCreatetagsInput | string[]
     authorId?: string | null
+    reviewComment?: string | null
+    status?: string
+    thumbnail?: string | null
   }
 
   export type PostUpdateManyMutationInput = {
@@ -19283,18 +28350,18 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dislikes?: IntFieldUpdateOperationsInput | number
     likes?: IntFieldUpdateOperationsInput | number
     tags?: PostUpdatetagsInput | string[]
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PostUncheckedUpdateManyInput = {
@@ -19304,12 +28371,9 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19317,6 +28381,9 @@ export namespace Prisma {
     likes?: IntFieldUpdateOperationsInput | number
     tags?: PostUpdatetagsInput | string[]
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CommentCreateInput = {
@@ -20141,6 +29208,8 @@ export namespace Prisma {
     email: string
     status?: string
     createdAt?: Date | string
+    name?: string | null
+    groups?: NewsletterGroupMemberCreateNestedManyWithoutSubscriberInput
   }
 
   export type NewsletterSubscriberUncheckedCreateInput = {
@@ -20148,6 +29217,8 @@ export namespace Prisma {
     email: string
     status?: string
     createdAt?: Date | string
+    name?: string | null
+    groups?: NewsletterGroupMemberUncheckedCreateNestedManyWithoutSubscriberInput
   }
 
   export type NewsletterSubscriberUpdateInput = {
@@ -20155,6 +29226,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    groups?: NewsletterGroupMemberUpdateManyWithoutSubscriberNestedInput
   }
 
   export type NewsletterSubscriberUncheckedUpdateInput = {
@@ -20162,6 +29235,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    groups?: NewsletterGroupMemberUncheckedUpdateManyWithoutSubscriberNestedInput
   }
 
   export type NewsletterSubscriberCreateManyInput = {
@@ -20169,6 +29244,7 @@ export namespace Prisma {
     email: string
     status?: string
     createdAt?: Date | string
+    name?: string | null
   }
 
   export type NewsletterSubscriberUpdateManyMutationInput = {
@@ -20176,6 +29252,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type NewsletterSubscriberUncheckedUpdateManyInput = {
@@ -20183,6 +29260,268 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type NewsletterGroupCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    color?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: NewsletterGroupMemberCreateNestedManyWithoutGroupInput
+    newsletters?: NewsletterTargetGroupCreateNestedManyWithoutGroupInput
+  }
+
+  export type NewsletterGroupUncheckedCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    color?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: NewsletterGroupMemberUncheckedCreateNestedManyWithoutGroupInput
+    newsletters?: NewsletterTargetGroupUncheckedCreateNestedManyWithoutGroupInput
+  }
+
+  export type NewsletterGroupUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: NewsletterGroupMemberUpdateManyWithoutGroupNestedInput
+    newsletters?: NewsletterTargetGroupUpdateManyWithoutGroupNestedInput
+  }
+
+  export type NewsletterGroupUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: NewsletterGroupMemberUncheckedUpdateManyWithoutGroupNestedInput
+    newsletters?: NewsletterTargetGroupUncheckedUpdateManyWithoutGroupNestedInput
+  }
+
+  export type NewsletterGroupCreateManyInput = {
+    id?: string
+    name: string
+    description?: string | null
+    color?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NewsletterGroupUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterGroupUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterGroupMemberCreateInput = {
+    createdAt?: Date | string
+    group: NewsletterGroupCreateNestedOneWithoutMembersInput
+    subscriber: NewsletterSubscriberCreateNestedOneWithoutGroupsInput
+  }
+
+  export type NewsletterGroupMemberUncheckedCreateInput = {
+    groupId: string
+    subscriberId: string
+    createdAt?: Date | string
+  }
+
+  export type NewsletterGroupMemberUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    group?: NewsletterGroupUpdateOneRequiredWithoutMembersNestedInput
+    subscriber?: NewsletterSubscriberUpdateOneRequiredWithoutGroupsNestedInput
+  }
+
+  export type NewsletterGroupMemberUncheckedUpdateInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    subscriberId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterGroupMemberCreateManyInput = {
+    groupId: string
+    subscriberId: string
+    createdAt?: Date | string
+  }
+
+  export type NewsletterGroupMemberUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterGroupMemberUncheckedUpdateManyInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    subscriberId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterCreateInput = {
+    id?: string
+    title: string
+    subject: string
+    preheader?: string | null
+    content: string
+    status?: string
+    sendToAll?: boolean
+    sentAt?: Date | string | null
+    recipientCount?: number
+    successCount?: number
+    failureCount?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    targetGroups?: NewsletterTargetGroupCreateNestedManyWithoutNewsletterInput
+  }
+
+  export type NewsletterUncheckedCreateInput = {
+    id?: string
+    title: string
+    subject: string
+    preheader?: string | null
+    content: string
+    status?: string
+    sendToAll?: boolean
+    sentAt?: Date | string | null
+    recipientCount?: number
+    successCount?: number
+    failureCount?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    targetGroups?: NewsletterTargetGroupUncheckedCreateNestedManyWithoutNewsletterInput
+  }
+
+  export type NewsletterUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    preheader?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendToAll?: BoolFieldUpdateOperationsInput | boolean
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recipientCount?: IntFieldUpdateOperationsInput | number
+    successCount?: IntFieldUpdateOperationsInput | number
+    failureCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    targetGroups?: NewsletterTargetGroupUpdateManyWithoutNewsletterNestedInput
+  }
+
+  export type NewsletterUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    preheader?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendToAll?: BoolFieldUpdateOperationsInput | boolean
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recipientCount?: IntFieldUpdateOperationsInput | number
+    successCount?: IntFieldUpdateOperationsInput | number
+    failureCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    targetGroups?: NewsletterTargetGroupUncheckedUpdateManyWithoutNewsletterNestedInput
+  }
+
+  export type NewsletterCreateManyInput = {
+    id?: string
+    title: string
+    subject: string
+    preheader?: string | null
+    content: string
+    status?: string
+    sendToAll?: boolean
+    sentAt?: Date | string | null
+    recipientCount?: number
+    successCount?: number
+    failureCount?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NewsletterUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    preheader?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendToAll?: BoolFieldUpdateOperationsInput | boolean
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recipientCount?: IntFieldUpdateOperationsInput | number
+    successCount?: IntFieldUpdateOperationsInput | number
+    failureCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    preheader?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendToAll?: BoolFieldUpdateOperationsInput | boolean
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recipientCount?: IntFieldUpdateOperationsInput | number
+    successCount?: IntFieldUpdateOperationsInput | number
+    failureCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterTargetGroupCreateInput = {
+    group: NewsletterGroupCreateNestedOneWithoutNewslettersInput
+    newsletter: NewsletterCreateNestedOneWithoutTargetGroupsInput
+  }
+
+  export type NewsletterTargetGroupUncheckedCreateInput = {
+    newsletterId: string
+    groupId: string
+  }
+
+  export type NewsletterTargetGroupUpdateInput = {
+    group?: NewsletterGroupUpdateOneRequiredWithoutNewslettersNestedInput
+    newsletter?: NewsletterUpdateOneRequiredWithoutTargetGroupsNestedInput
+  }
+
+  export type NewsletterTargetGroupUncheckedUpdateInput = {
+    newsletterId?: StringFieldUpdateOperationsInput | string
+    groupId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type NewsletterTargetGroupCreateManyInput = {
+    newsletterId: string
+    groupId: string
+  }
+
+  export type NewsletterTargetGroupUpdateManyMutationInput = {
+
+  }
+
+  export type NewsletterTargetGroupUncheckedUpdateManyInput = {
+    newsletterId?: StringFieldUpdateOperationsInput | string
+    groupId?: StringFieldUpdateOperationsInput | string
   }
 
   export type NotificationCreateInput = {
@@ -20254,6 +29593,233 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EmailTemplateCreateInput = {
+    id?: string
+    name: string
+    subject: string
+    body: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    description?: string | null
+    isActive?: boolean
+    mappings?: FormEmailMappingCreateNestedManyWithoutTemplateInput
+  }
+
+  export type EmailTemplateUncheckedCreateInput = {
+    id?: string
+    name: string
+    subject: string
+    body: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    description?: string | null
+    isActive?: boolean
+    mappings?: FormEmailMappingUncheckedCreateNestedManyWithoutTemplateInput
+  }
+
+  export type EmailTemplateUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    mappings?: FormEmailMappingUpdateManyWithoutTemplateNestedInput
+  }
+
+  export type EmailTemplateUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    mappings?: FormEmailMappingUncheckedUpdateManyWithoutTemplateNestedInput
+  }
+
+  export type EmailTemplateCreateManyInput = {
+    id?: string
+    name: string
+    subject: string
+    body: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    description?: string | null
+    isActive?: boolean
+  }
+
+  export type EmailTemplateUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type EmailTemplateUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type FormEmailMappingCreateInput = {
+    id?: string
+    formKey: string
+    enabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    template: EmailTemplateCreateNestedOneWithoutMappingsInput
+  }
+
+  export type FormEmailMappingUncheckedCreateInput = {
+    id?: string
+    formKey: string
+    templateId: string
+    enabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FormEmailMappingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formKey?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    template?: EmailTemplateUpdateOneRequiredWithoutMappingsNestedInput
+  }
+
+  export type FormEmailMappingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formKey?: StringFieldUpdateOperationsInput | string
+    templateId?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FormEmailMappingCreateManyInput = {
+    id?: string
+    formKey: string
+    templateId: string
+    enabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FormEmailMappingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formKey?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FormEmailMappingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formKey?: StringFieldUpdateOperationsInput | string
+    templateId?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailLogCreateInput = {
+    id?: string
+    formKey: string
+    templateId?: string | null
+    to: string
+    subject: string
+    status: string
+    error?: string | null
+    messageId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailLogUncheckedCreateInput = {
+    id?: string
+    formKey: string
+    templateId?: string | null
+    to: string
+    subject: string
+    status: string
+    error?: string | null
+    messageId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formKey?: StringFieldUpdateOperationsInput | string
+    templateId?: NullableStringFieldUpdateOperationsInput | string | null
+    to?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formKey?: StringFieldUpdateOperationsInput | string
+    templateId?: NullableStringFieldUpdateOperationsInput | string | null
+    to?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailLogCreateManyInput = {
+    id?: string
+    formKey: string
+    templateId?: string | null
+    to: string
+    subject: string
+    status: string
+    error?: string | null
+    messageId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formKey?: StringFieldUpdateOperationsInput | string
+    templateId?: NullableStringFieldUpdateOperationsInput | string | null
+    to?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formKey?: StringFieldUpdateOperationsInput | string
+    templateId?: NullableStringFieldUpdateOperationsInput | string | null
+    to?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -20283,6 +29849,17 @@ export namespace Prisma {
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -20307,15 +29884,10 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  export type NotificationListRelationFilter = {
+    every?: NotificationWhereInput
+    some?: NotificationWhereInput
+    none?: NotificationWhereInput
   }
 
   export type PostListRelationFilter = {
@@ -20324,22 +29896,16 @@ export namespace Prisma {
     none?: PostWhereInput
   }
 
-  export type NotificationListRelationFilter = {
-    every?: NotificationWhereInput
-    some?: NotificationWhereInput
-    none?: NotificationWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
-  export type PostOrderByRelationAggregateInput = {
+  export type NotificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type NotificationOrderByRelationAggregateInput = {
+  export type PostOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -20347,46 +29913,46 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    employeeId?: SortOrder
     phone?: SortOrder
     password?: SortOrder
     role?: SortOrder
-    image?: SortOrder
-    about?: SortOrder
-    designation?: SortOrder
-    socials?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    about?: SortOrder
+    designation?: SortOrder
+    image?: SortOrder
+    socials?: SortOrder
+    employeeId?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    employeeId?: SortOrder
     phone?: SortOrder
     password?: SortOrder
     role?: SortOrder
-    image?: SortOrder
-    about?: SortOrder
-    designation?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    about?: SortOrder
+    designation?: SortOrder
+    image?: SortOrder
+    employeeId?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    employeeId?: SortOrder
     phone?: SortOrder
     password?: SortOrder
     role?: SortOrder
-    image?: SortOrder
-    about?: SortOrder
-    designation?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    about?: SortOrder
+    designation?: SortOrder
+    image?: SortOrder
+    employeeId?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -20424,6 +29990,20 @@ export namespace Prisma {
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
@@ -20449,20 +30029,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedJsonNullableFilter<$PrismaModel>
     _max?: NestedJsonNullableFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -20511,12 +30077,9 @@ export namespace Prisma {
     excerpt?: SortOrder
     content?: SortOrder
     image?: SortOrder
-    thumbnail?: SortOrder
     category?: SortOrder
     readTime?: SortOrder
     published?: SortOrder
-    status?: SortOrder
-    reviewComment?: SortOrder
     date?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -20524,6 +30087,9 @@ export namespace Prisma {
     likes?: SortOrder
     tags?: SortOrder
     authorId?: SortOrder
+    reviewComment?: SortOrder
+    status?: SortOrder
+    thumbnail?: SortOrder
   }
 
   export type PostAvgOrderByAggregateInput = {
@@ -20538,18 +30104,18 @@ export namespace Prisma {
     excerpt?: SortOrder
     content?: SortOrder
     image?: SortOrder
-    thumbnail?: SortOrder
     category?: SortOrder
     readTime?: SortOrder
     published?: SortOrder
-    status?: SortOrder
-    reviewComment?: SortOrder
     date?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     dislikes?: SortOrder
     likes?: SortOrder
     authorId?: SortOrder
+    reviewComment?: SortOrder
+    status?: SortOrder
+    thumbnail?: SortOrder
   }
 
   export type PostMinOrderByAggregateInput = {
@@ -20559,18 +30125,18 @@ export namespace Prisma {
     excerpt?: SortOrder
     content?: SortOrder
     image?: SortOrder
-    thumbnail?: SortOrder
     category?: SortOrder
     readTime?: SortOrder
     published?: SortOrder
-    status?: SortOrder
-    reviewComment?: SortOrder
     date?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     dislikes?: SortOrder
     likes?: SortOrder
     authorId?: SortOrder
+    reviewComment?: SortOrder
+    status?: SortOrder
+    thumbnail?: SortOrder
   }
 
   export type PostSumOrderByAggregateInput = {
@@ -20985,11 +30551,22 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type NewsletterGroupMemberListRelationFilter = {
+    every?: NewsletterGroupMemberWhereInput
+    some?: NewsletterGroupMemberWhereInput
+    none?: NewsletterGroupMemberWhereInput
+  }
+
+  export type NewsletterGroupMemberOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type NewsletterSubscriberCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    name?: SortOrder
   }
 
   export type NewsletterSubscriberMaxOrderByAggregateInput = {
@@ -20997,6 +30574,7 @@ export namespace Prisma {
     email?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    name?: SortOrder
   }
 
   export type NewsletterSubscriberMinOrderByAggregateInput = {
@@ -21004,6 +30582,187 @@ export namespace Prisma {
     email?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    name?: SortOrder
+  }
+
+  export type NewsletterTargetGroupListRelationFilter = {
+    every?: NewsletterTargetGroupWhereInput
+    some?: NewsletterTargetGroupWhereInput
+    none?: NewsletterTargetGroupWhereInput
+  }
+
+  export type NewsletterTargetGroupOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type NewsletterGroupCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    color?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewsletterGroupMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    color?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewsletterGroupMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    color?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewsletterGroupScalarRelationFilter = {
+    is?: NewsletterGroupWhereInput
+    isNot?: NewsletterGroupWhereInput
+  }
+
+  export type NewsletterSubscriberScalarRelationFilter = {
+    is?: NewsletterSubscriberWhereInput
+    isNot?: NewsletterSubscriberWhereInput
+  }
+
+  export type NewsletterGroupMemberGroupIdSubscriberIdCompoundUniqueInput = {
+    groupId: string
+    subscriberId: string
+  }
+
+  export type NewsletterGroupMemberCountOrderByAggregateInput = {
+    groupId?: SortOrder
+    subscriberId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type NewsletterGroupMemberMaxOrderByAggregateInput = {
+    groupId?: SortOrder
+    subscriberId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type NewsletterGroupMemberMinOrderByAggregateInput = {
+    groupId?: SortOrder
+    subscriberId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NewsletterCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subject?: SortOrder
+    preheader?: SortOrder
+    content?: SortOrder
+    status?: SortOrder
+    sendToAll?: SortOrder
+    sentAt?: SortOrder
+    recipientCount?: SortOrder
+    successCount?: SortOrder
+    failureCount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewsletterAvgOrderByAggregateInput = {
+    recipientCount?: SortOrder
+    successCount?: SortOrder
+    failureCount?: SortOrder
+  }
+
+  export type NewsletterMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subject?: SortOrder
+    preheader?: SortOrder
+    content?: SortOrder
+    status?: SortOrder
+    sendToAll?: SortOrder
+    sentAt?: SortOrder
+    recipientCount?: SortOrder
+    successCount?: SortOrder
+    failureCount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewsletterMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subject?: SortOrder
+    preheader?: SortOrder
+    content?: SortOrder
+    status?: SortOrder
+    sendToAll?: SortOrder
+    sentAt?: SortOrder
+    recipientCount?: SortOrder
+    successCount?: SortOrder
+    failureCount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewsletterSumOrderByAggregateInput = {
+    recipientCount?: SortOrder
+    successCount?: SortOrder
+    failureCount?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NewsletterScalarRelationFilter = {
+    is?: NewsletterWhereInput
+    isNot?: NewsletterWhereInput
+  }
+
+  export type NewsletterTargetGroupNewsletterIdGroupIdCompoundUniqueInput = {
+    newsletterId: string
+    groupId: string
+  }
+
+  export type NewsletterTargetGroupCountOrderByAggregateInput = {
+    newsletterId?: SortOrder
+    groupId?: SortOrder
+  }
+
+  export type NewsletterTargetGroupMaxOrderByAggregateInput = {
+    newsletterId?: SortOrder
+    groupId?: SortOrder
+  }
+
+  export type NewsletterTargetGroupMinOrderByAggregateInput = {
+    newsletterId?: SortOrder
+    groupId?: SortOrder
   }
 
   export type UserScalarRelationFilter = {
@@ -21041,11 +30800,115 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
-  export type PostCreateNestedManyWithoutAuthorInput = {
-    create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
-    createMany?: PostCreateManyAuthorInputEnvelope
-    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  export type FormEmailMappingListRelationFilter = {
+    every?: FormEmailMappingWhereInput
+    some?: FormEmailMappingWhereInput
+    none?: FormEmailMappingWhereInput
+  }
+
+  export type FormEmailMappingOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EmailTemplateCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    subject?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+  }
+
+  export type EmailTemplateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    subject?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+  }
+
+  export type EmailTemplateMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    subject?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+  }
+
+  export type EmailTemplateScalarRelationFilter = {
+    is?: EmailTemplateWhereInput
+    isNot?: EmailTemplateWhereInput
+  }
+
+  export type FormEmailMappingCountOrderByAggregateInput = {
+    id?: SortOrder
+    formKey?: SortOrder
+    templateId?: SortOrder
+    enabled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FormEmailMappingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    formKey?: SortOrder
+    templateId?: SortOrder
+    enabled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FormEmailMappingMinOrderByAggregateInput = {
+    id?: SortOrder
+    formKey?: SortOrder
+    templateId?: SortOrder
+    enabled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmailLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    formKey?: SortOrder
+    templateId?: SortOrder
+    to?: SortOrder
+    subject?: SortOrder
+    status?: SortOrder
+    error?: SortOrder
+    messageId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EmailLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    formKey?: SortOrder
+    templateId?: SortOrder
+    to?: SortOrder
+    subject?: SortOrder
+    status?: SortOrder
+    error?: SortOrder
+    messageId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EmailLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    formKey?: SortOrder
+    templateId?: SortOrder
+    to?: SortOrder
+    subject?: SortOrder
+    status?: SortOrder
+    error?: SortOrder
+    messageId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type NotificationCreateNestedManyWithoutUserInput = {
@@ -21055,7 +30918,7 @@ export namespace Prisma {
     connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
   }
 
-  export type PostUncheckedCreateNestedManyWithoutAuthorInput = {
+  export type PostCreateNestedManyWithoutAuthorInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
     createMany?: PostCreateManyAuthorInputEnvelope
@@ -21069,6 +30932,13 @@ export namespace Prisma {
     connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
   }
 
+  export type PostUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
+    createMany?: PostCreateManyAuthorInputEnvelope
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -21079,20 +30949,6 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
-  }
-
-  export type PostUpdateManyWithoutAuthorNestedInput = {
-    create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
-    upsert?: PostUpsertWithWhereUniqueWithoutAuthorInput | PostUpsertWithWhereUniqueWithoutAuthorInput[]
-    createMany?: PostCreateManyAuthorInputEnvelope
-    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    update?: PostUpdateWithWhereUniqueWithoutAuthorInput | PostUpdateWithWhereUniqueWithoutAuthorInput[]
-    updateMany?: PostUpdateManyWithWhereWithoutAuthorInput | PostUpdateManyWithWhereWithoutAuthorInput[]
-    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
   export type NotificationUpdateManyWithoutUserNestedInput = {
@@ -21109,7 +30965,7 @@ export namespace Prisma {
     deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
   }
 
-  export type PostUncheckedUpdateManyWithoutAuthorNestedInput = {
+  export type PostUpdateManyWithoutAuthorNestedInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
     upsert?: PostUpsertWithWhereUniqueWithoutAuthorInput | PostUpsertWithWhereUniqueWithoutAuthorInput[]
@@ -21135,6 +30991,20 @@ export namespace Prisma {
     update?: NotificationUpdateWithWhereUniqueWithoutUserInput | NotificationUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: NotificationUpdateManyWithWhereWithoutUserInput | NotificationUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  }
+
+  export type PostUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutAuthorInput | PostUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: PostCreateManyAuthorInputEnvelope
+    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    update?: PostUpdateWithWhereUniqueWithoutAuthorInput | PostUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutAuthorInput | PostUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
   export type PostCreatetagsInput = {
@@ -21353,6 +31223,234 @@ export namespace Prisma {
     update?: XOR<XOR<ExpertUpdateToOneWithWhereWithoutAppointmentsInput, ExpertUpdateWithoutAppointmentsInput>, ExpertUncheckedUpdateWithoutAppointmentsInput>
   }
 
+  export type NewsletterGroupMemberCreateNestedManyWithoutSubscriberInput = {
+    create?: XOR<NewsletterGroupMemberCreateWithoutSubscriberInput, NewsletterGroupMemberUncheckedCreateWithoutSubscriberInput> | NewsletterGroupMemberCreateWithoutSubscriberInput[] | NewsletterGroupMemberUncheckedCreateWithoutSubscriberInput[]
+    connectOrCreate?: NewsletterGroupMemberCreateOrConnectWithoutSubscriberInput | NewsletterGroupMemberCreateOrConnectWithoutSubscriberInput[]
+    createMany?: NewsletterGroupMemberCreateManySubscriberInputEnvelope
+    connect?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+  }
+
+  export type NewsletterGroupMemberUncheckedCreateNestedManyWithoutSubscriberInput = {
+    create?: XOR<NewsletterGroupMemberCreateWithoutSubscriberInput, NewsletterGroupMemberUncheckedCreateWithoutSubscriberInput> | NewsletterGroupMemberCreateWithoutSubscriberInput[] | NewsletterGroupMemberUncheckedCreateWithoutSubscriberInput[]
+    connectOrCreate?: NewsletterGroupMemberCreateOrConnectWithoutSubscriberInput | NewsletterGroupMemberCreateOrConnectWithoutSubscriberInput[]
+    createMany?: NewsletterGroupMemberCreateManySubscriberInputEnvelope
+    connect?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+  }
+
+  export type NewsletterGroupMemberUpdateManyWithoutSubscriberNestedInput = {
+    create?: XOR<NewsletterGroupMemberCreateWithoutSubscriberInput, NewsletterGroupMemberUncheckedCreateWithoutSubscriberInput> | NewsletterGroupMemberCreateWithoutSubscriberInput[] | NewsletterGroupMemberUncheckedCreateWithoutSubscriberInput[]
+    connectOrCreate?: NewsletterGroupMemberCreateOrConnectWithoutSubscriberInput | NewsletterGroupMemberCreateOrConnectWithoutSubscriberInput[]
+    upsert?: NewsletterGroupMemberUpsertWithWhereUniqueWithoutSubscriberInput | NewsletterGroupMemberUpsertWithWhereUniqueWithoutSubscriberInput[]
+    createMany?: NewsletterGroupMemberCreateManySubscriberInputEnvelope
+    set?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    disconnect?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    delete?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    connect?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    update?: NewsletterGroupMemberUpdateWithWhereUniqueWithoutSubscriberInput | NewsletterGroupMemberUpdateWithWhereUniqueWithoutSubscriberInput[]
+    updateMany?: NewsletterGroupMemberUpdateManyWithWhereWithoutSubscriberInput | NewsletterGroupMemberUpdateManyWithWhereWithoutSubscriberInput[]
+    deleteMany?: NewsletterGroupMemberScalarWhereInput | NewsletterGroupMemberScalarWhereInput[]
+  }
+
+  export type NewsletterGroupMemberUncheckedUpdateManyWithoutSubscriberNestedInput = {
+    create?: XOR<NewsletterGroupMemberCreateWithoutSubscriberInput, NewsletterGroupMemberUncheckedCreateWithoutSubscriberInput> | NewsletterGroupMemberCreateWithoutSubscriberInput[] | NewsletterGroupMemberUncheckedCreateWithoutSubscriberInput[]
+    connectOrCreate?: NewsletterGroupMemberCreateOrConnectWithoutSubscriberInput | NewsletterGroupMemberCreateOrConnectWithoutSubscriberInput[]
+    upsert?: NewsletterGroupMemberUpsertWithWhereUniqueWithoutSubscriberInput | NewsletterGroupMemberUpsertWithWhereUniqueWithoutSubscriberInput[]
+    createMany?: NewsletterGroupMemberCreateManySubscriberInputEnvelope
+    set?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    disconnect?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    delete?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    connect?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    update?: NewsletterGroupMemberUpdateWithWhereUniqueWithoutSubscriberInput | NewsletterGroupMemberUpdateWithWhereUniqueWithoutSubscriberInput[]
+    updateMany?: NewsletterGroupMemberUpdateManyWithWhereWithoutSubscriberInput | NewsletterGroupMemberUpdateManyWithWhereWithoutSubscriberInput[]
+    deleteMany?: NewsletterGroupMemberScalarWhereInput | NewsletterGroupMemberScalarWhereInput[]
+  }
+
+  export type NewsletterGroupMemberCreateNestedManyWithoutGroupInput = {
+    create?: XOR<NewsletterGroupMemberCreateWithoutGroupInput, NewsletterGroupMemberUncheckedCreateWithoutGroupInput> | NewsletterGroupMemberCreateWithoutGroupInput[] | NewsletterGroupMemberUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: NewsletterGroupMemberCreateOrConnectWithoutGroupInput | NewsletterGroupMemberCreateOrConnectWithoutGroupInput[]
+    createMany?: NewsletterGroupMemberCreateManyGroupInputEnvelope
+    connect?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+  }
+
+  export type NewsletterTargetGroupCreateNestedManyWithoutGroupInput = {
+    create?: XOR<NewsletterTargetGroupCreateWithoutGroupInput, NewsletterTargetGroupUncheckedCreateWithoutGroupInput> | NewsletterTargetGroupCreateWithoutGroupInput[] | NewsletterTargetGroupUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: NewsletterTargetGroupCreateOrConnectWithoutGroupInput | NewsletterTargetGroupCreateOrConnectWithoutGroupInput[]
+    createMany?: NewsletterTargetGroupCreateManyGroupInputEnvelope
+    connect?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+  }
+
+  export type NewsletterGroupMemberUncheckedCreateNestedManyWithoutGroupInput = {
+    create?: XOR<NewsletterGroupMemberCreateWithoutGroupInput, NewsletterGroupMemberUncheckedCreateWithoutGroupInput> | NewsletterGroupMemberCreateWithoutGroupInput[] | NewsletterGroupMemberUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: NewsletterGroupMemberCreateOrConnectWithoutGroupInput | NewsletterGroupMemberCreateOrConnectWithoutGroupInput[]
+    createMany?: NewsletterGroupMemberCreateManyGroupInputEnvelope
+    connect?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+  }
+
+  export type NewsletterTargetGroupUncheckedCreateNestedManyWithoutGroupInput = {
+    create?: XOR<NewsletterTargetGroupCreateWithoutGroupInput, NewsletterTargetGroupUncheckedCreateWithoutGroupInput> | NewsletterTargetGroupCreateWithoutGroupInput[] | NewsletterTargetGroupUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: NewsletterTargetGroupCreateOrConnectWithoutGroupInput | NewsletterTargetGroupCreateOrConnectWithoutGroupInput[]
+    createMany?: NewsletterTargetGroupCreateManyGroupInputEnvelope
+    connect?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+  }
+
+  export type NewsletterGroupMemberUpdateManyWithoutGroupNestedInput = {
+    create?: XOR<NewsletterGroupMemberCreateWithoutGroupInput, NewsletterGroupMemberUncheckedCreateWithoutGroupInput> | NewsletterGroupMemberCreateWithoutGroupInput[] | NewsletterGroupMemberUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: NewsletterGroupMemberCreateOrConnectWithoutGroupInput | NewsletterGroupMemberCreateOrConnectWithoutGroupInput[]
+    upsert?: NewsletterGroupMemberUpsertWithWhereUniqueWithoutGroupInput | NewsletterGroupMemberUpsertWithWhereUniqueWithoutGroupInput[]
+    createMany?: NewsletterGroupMemberCreateManyGroupInputEnvelope
+    set?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    disconnect?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    delete?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    connect?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    update?: NewsletterGroupMemberUpdateWithWhereUniqueWithoutGroupInput | NewsletterGroupMemberUpdateWithWhereUniqueWithoutGroupInput[]
+    updateMany?: NewsletterGroupMemberUpdateManyWithWhereWithoutGroupInput | NewsletterGroupMemberUpdateManyWithWhereWithoutGroupInput[]
+    deleteMany?: NewsletterGroupMemberScalarWhereInput | NewsletterGroupMemberScalarWhereInput[]
+  }
+
+  export type NewsletterTargetGroupUpdateManyWithoutGroupNestedInput = {
+    create?: XOR<NewsletterTargetGroupCreateWithoutGroupInput, NewsletterTargetGroupUncheckedCreateWithoutGroupInput> | NewsletterTargetGroupCreateWithoutGroupInput[] | NewsletterTargetGroupUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: NewsletterTargetGroupCreateOrConnectWithoutGroupInput | NewsletterTargetGroupCreateOrConnectWithoutGroupInput[]
+    upsert?: NewsletterTargetGroupUpsertWithWhereUniqueWithoutGroupInput | NewsletterTargetGroupUpsertWithWhereUniqueWithoutGroupInput[]
+    createMany?: NewsletterTargetGroupCreateManyGroupInputEnvelope
+    set?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    disconnect?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    delete?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    connect?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    update?: NewsletterTargetGroupUpdateWithWhereUniqueWithoutGroupInput | NewsletterTargetGroupUpdateWithWhereUniqueWithoutGroupInput[]
+    updateMany?: NewsletterTargetGroupUpdateManyWithWhereWithoutGroupInput | NewsletterTargetGroupUpdateManyWithWhereWithoutGroupInput[]
+    deleteMany?: NewsletterTargetGroupScalarWhereInput | NewsletterTargetGroupScalarWhereInput[]
+  }
+
+  export type NewsletterGroupMemberUncheckedUpdateManyWithoutGroupNestedInput = {
+    create?: XOR<NewsletterGroupMemberCreateWithoutGroupInput, NewsletterGroupMemberUncheckedCreateWithoutGroupInput> | NewsletterGroupMemberCreateWithoutGroupInput[] | NewsletterGroupMemberUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: NewsletterGroupMemberCreateOrConnectWithoutGroupInput | NewsletterGroupMemberCreateOrConnectWithoutGroupInput[]
+    upsert?: NewsletterGroupMemberUpsertWithWhereUniqueWithoutGroupInput | NewsletterGroupMemberUpsertWithWhereUniqueWithoutGroupInput[]
+    createMany?: NewsletterGroupMemberCreateManyGroupInputEnvelope
+    set?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    disconnect?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    delete?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    connect?: NewsletterGroupMemberWhereUniqueInput | NewsletterGroupMemberWhereUniqueInput[]
+    update?: NewsletterGroupMemberUpdateWithWhereUniqueWithoutGroupInput | NewsletterGroupMemberUpdateWithWhereUniqueWithoutGroupInput[]
+    updateMany?: NewsletterGroupMemberUpdateManyWithWhereWithoutGroupInput | NewsletterGroupMemberUpdateManyWithWhereWithoutGroupInput[]
+    deleteMany?: NewsletterGroupMemberScalarWhereInput | NewsletterGroupMemberScalarWhereInput[]
+  }
+
+  export type NewsletterTargetGroupUncheckedUpdateManyWithoutGroupNestedInput = {
+    create?: XOR<NewsletterTargetGroupCreateWithoutGroupInput, NewsletterTargetGroupUncheckedCreateWithoutGroupInput> | NewsletterTargetGroupCreateWithoutGroupInput[] | NewsletterTargetGroupUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: NewsletterTargetGroupCreateOrConnectWithoutGroupInput | NewsletterTargetGroupCreateOrConnectWithoutGroupInput[]
+    upsert?: NewsletterTargetGroupUpsertWithWhereUniqueWithoutGroupInput | NewsletterTargetGroupUpsertWithWhereUniqueWithoutGroupInput[]
+    createMany?: NewsletterTargetGroupCreateManyGroupInputEnvelope
+    set?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    disconnect?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    delete?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    connect?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    update?: NewsletterTargetGroupUpdateWithWhereUniqueWithoutGroupInput | NewsletterTargetGroupUpdateWithWhereUniqueWithoutGroupInput[]
+    updateMany?: NewsletterTargetGroupUpdateManyWithWhereWithoutGroupInput | NewsletterTargetGroupUpdateManyWithWhereWithoutGroupInput[]
+    deleteMany?: NewsletterTargetGroupScalarWhereInput | NewsletterTargetGroupScalarWhereInput[]
+  }
+
+  export type NewsletterGroupCreateNestedOneWithoutMembersInput = {
+    create?: XOR<NewsletterGroupCreateWithoutMembersInput, NewsletterGroupUncheckedCreateWithoutMembersInput>
+    connectOrCreate?: NewsletterGroupCreateOrConnectWithoutMembersInput
+    connect?: NewsletterGroupWhereUniqueInput
+  }
+
+  export type NewsletterSubscriberCreateNestedOneWithoutGroupsInput = {
+    create?: XOR<NewsletterSubscriberCreateWithoutGroupsInput, NewsletterSubscriberUncheckedCreateWithoutGroupsInput>
+    connectOrCreate?: NewsletterSubscriberCreateOrConnectWithoutGroupsInput
+    connect?: NewsletterSubscriberWhereUniqueInput
+  }
+
+  export type NewsletterGroupUpdateOneRequiredWithoutMembersNestedInput = {
+    create?: XOR<NewsletterGroupCreateWithoutMembersInput, NewsletterGroupUncheckedCreateWithoutMembersInput>
+    connectOrCreate?: NewsletterGroupCreateOrConnectWithoutMembersInput
+    upsert?: NewsletterGroupUpsertWithoutMembersInput
+    connect?: NewsletterGroupWhereUniqueInput
+    update?: XOR<XOR<NewsletterGroupUpdateToOneWithWhereWithoutMembersInput, NewsletterGroupUpdateWithoutMembersInput>, NewsletterGroupUncheckedUpdateWithoutMembersInput>
+  }
+
+  export type NewsletterSubscriberUpdateOneRequiredWithoutGroupsNestedInput = {
+    create?: XOR<NewsletterSubscriberCreateWithoutGroupsInput, NewsletterSubscriberUncheckedCreateWithoutGroupsInput>
+    connectOrCreate?: NewsletterSubscriberCreateOrConnectWithoutGroupsInput
+    upsert?: NewsletterSubscriberUpsertWithoutGroupsInput
+    connect?: NewsletterSubscriberWhereUniqueInput
+    update?: XOR<XOR<NewsletterSubscriberUpdateToOneWithWhereWithoutGroupsInput, NewsletterSubscriberUpdateWithoutGroupsInput>, NewsletterSubscriberUncheckedUpdateWithoutGroupsInput>
+  }
+
+  export type NewsletterTargetGroupCreateNestedManyWithoutNewsletterInput = {
+    create?: XOR<NewsletterTargetGroupCreateWithoutNewsletterInput, NewsletterTargetGroupUncheckedCreateWithoutNewsletterInput> | NewsletterTargetGroupCreateWithoutNewsletterInput[] | NewsletterTargetGroupUncheckedCreateWithoutNewsletterInput[]
+    connectOrCreate?: NewsletterTargetGroupCreateOrConnectWithoutNewsletterInput | NewsletterTargetGroupCreateOrConnectWithoutNewsletterInput[]
+    createMany?: NewsletterTargetGroupCreateManyNewsletterInputEnvelope
+    connect?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+  }
+
+  export type NewsletterTargetGroupUncheckedCreateNestedManyWithoutNewsletterInput = {
+    create?: XOR<NewsletterTargetGroupCreateWithoutNewsletterInput, NewsletterTargetGroupUncheckedCreateWithoutNewsletterInput> | NewsletterTargetGroupCreateWithoutNewsletterInput[] | NewsletterTargetGroupUncheckedCreateWithoutNewsletterInput[]
+    connectOrCreate?: NewsletterTargetGroupCreateOrConnectWithoutNewsletterInput | NewsletterTargetGroupCreateOrConnectWithoutNewsletterInput[]
+    createMany?: NewsletterTargetGroupCreateManyNewsletterInputEnvelope
+    connect?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type NewsletterTargetGroupUpdateManyWithoutNewsletterNestedInput = {
+    create?: XOR<NewsletterTargetGroupCreateWithoutNewsletterInput, NewsletterTargetGroupUncheckedCreateWithoutNewsletterInput> | NewsletterTargetGroupCreateWithoutNewsletterInput[] | NewsletterTargetGroupUncheckedCreateWithoutNewsletterInput[]
+    connectOrCreate?: NewsletterTargetGroupCreateOrConnectWithoutNewsletterInput | NewsletterTargetGroupCreateOrConnectWithoutNewsletterInput[]
+    upsert?: NewsletterTargetGroupUpsertWithWhereUniqueWithoutNewsletterInput | NewsletterTargetGroupUpsertWithWhereUniqueWithoutNewsletterInput[]
+    createMany?: NewsletterTargetGroupCreateManyNewsletterInputEnvelope
+    set?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    disconnect?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    delete?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    connect?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    update?: NewsletterTargetGroupUpdateWithWhereUniqueWithoutNewsletterInput | NewsletterTargetGroupUpdateWithWhereUniqueWithoutNewsletterInput[]
+    updateMany?: NewsletterTargetGroupUpdateManyWithWhereWithoutNewsletterInput | NewsletterTargetGroupUpdateManyWithWhereWithoutNewsletterInput[]
+    deleteMany?: NewsletterTargetGroupScalarWhereInput | NewsletterTargetGroupScalarWhereInput[]
+  }
+
+  export type NewsletterTargetGroupUncheckedUpdateManyWithoutNewsletterNestedInput = {
+    create?: XOR<NewsletterTargetGroupCreateWithoutNewsletterInput, NewsletterTargetGroupUncheckedCreateWithoutNewsletterInput> | NewsletterTargetGroupCreateWithoutNewsletterInput[] | NewsletterTargetGroupUncheckedCreateWithoutNewsletterInput[]
+    connectOrCreate?: NewsletterTargetGroupCreateOrConnectWithoutNewsletterInput | NewsletterTargetGroupCreateOrConnectWithoutNewsletterInput[]
+    upsert?: NewsletterTargetGroupUpsertWithWhereUniqueWithoutNewsletterInput | NewsletterTargetGroupUpsertWithWhereUniqueWithoutNewsletterInput[]
+    createMany?: NewsletterTargetGroupCreateManyNewsletterInputEnvelope
+    set?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    disconnect?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    delete?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    connect?: NewsletterTargetGroupWhereUniqueInput | NewsletterTargetGroupWhereUniqueInput[]
+    update?: NewsletterTargetGroupUpdateWithWhereUniqueWithoutNewsletterInput | NewsletterTargetGroupUpdateWithWhereUniqueWithoutNewsletterInput[]
+    updateMany?: NewsletterTargetGroupUpdateManyWithWhereWithoutNewsletterInput | NewsletterTargetGroupUpdateManyWithWhereWithoutNewsletterInput[]
+    deleteMany?: NewsletterTargetGroupScalarWhereInput | NewsletterTargetGroupScalarWhereInput[]
+  }
+
+  export type NewsletterGroupCreateNestedOneWithoutNewslettersInput = {
+    create?: XOR<NewsletterGroupCreateWithoutNewslettersInput, NewsletterGroupUncheckedCreateWithoutNewslettersInput>
+    connectOrCreate?: NewsletterGroupCreateOrConnectWithoutNewslettersInput
+    connect?: NewsletterGroupWhereUniqueInput
+  }
+
+  export type NewsletterCreateNestedOneWithoutTargetGroupsInput = {
+    create?: XOR<NewsletterCreateWithoutTargetGroupsInput, NewsletterUncheckedCreateWithoutTargetGroupsInput>
+    connectOrCreate?: NewsletterCreateOrConnectWithoutTargetGroupsInput
+    connect?: NewsletterWhereUniqueInput
+  }
+
+  export type NewsletterGroupUpdateOneRequiredWithoutNewslettersNestedInput = {
+    create?: XOR<NewsletterGroupCreateWithoutNewslettersInput, NewsletterGroupUncheckedCreateWithoutNewslettersInput>
+    connectOrCreate?: NewsletterGroupCreateOrConnectWithoutNewslettersInput
+    upsert?: NewsletterGroupUpsertWithoutNewslettersInput
+    connect?: NewsletterGroupWhereUniqueInput
+    update?: XOR<XOR<NewsletterGroupUpdateToOneWithWhereWithoutNewslettersInput, NewsletterGroupUpdateWithoutNewslettersInput>, NewsletterGroupUncheckedUpdateWithoutNewslettersInput>
+  }
+
+  export type NewsletterUpdateOneRequiredWithoutTargetGroupsNestedInput = {
+    create?: XOR<NewsletterCreateWithoutTargetGroupsInput, NewsletterUncheckedCreateWithoutTargetGroupsInput>
+    connectOrCreate?: NewsletterCreateOrConnectWithoutTargetGroupsInput
+    upsert?: NewsletterUpsertWithoutTargetGroupsInput
+    connect?: NewsletterWhereUniqueInput
+    update?: XOR<XOR<NewsletterUpdateToOneWithWhereWithoutTargetGroupsInput, NewsletterUpdateWithoutTargetGroupsInput>, NewsletterUncheckedUpdateWithoutTargetGroupsInput>
+  }
+
   export type UserCreateNestedOneWithoutNotificationsInput = {
     create?: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
     connectOrCreate?: UserCreateOrConnectWithoutNotificationsInput
@@ -21365,6 +31463,62 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutNotificationsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNotificationsInput, UserUpdateWithoutNotificationsInput>, UserUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type FormEmailMappingCreateNestedManyWithoutTemplateInput = {
+    create?: XOR<FormEmailMappingCreateWithoutTemplateInput, FormEmailMappingUncheckedCreateWithoutTemplateInput> | FormEmailMappingCreateWithoutTemplateInput[] | FormEmailMappingUncheckedCreateWithoutTemplateInput[]
+    connectOrCreate?: FormEmailMappingCreateOrConnectWithoutTemplateInput | FormEmailMappingCreateOrConnectWithoutTemplateInput[]
+    createMany?: FormEmailMappingCreateManyTemplateInputEnvelope
+    connect?: FormEmailMappingWhereUniqueInput | FormEmailMappingWhereUniqueInput[]
+  }
+
+  export type FormEmailMappingUncheckedCreateNestedManyWithoutTemplateInput = {
+    create?: XOR<FormEmailMappingCreateWithoutTemplateInput, FormEmailMappingUncheckedCreateWithoutTemplateInput> | FormEmailMappingCreateWithoutTemplateInput[] | FormEmailMappingUncheckedCreateWithoutTemplateInput[]
+    connectOrCreate?: FormEmailMappingCreateOrConnectWithoutTemplateInput | FormEmailMappingCreateOrConnectWithoutTemplateInput[]
+    createMany?: FormEmailMappingCreateManyTemplateInputEnvelope
+    connect?: FormEmailMappingWhereUniqueInput | FormEmailMappingWhereUniqueInput[]
+  }
+
+  export type FormEmailMappingUpdateManyWithoutTemplateNestedInput = {
+    create?: XOR<FormEmailMappingCreateWithoutTemplateInput, FormEmailMappingUncheckedCreateWithoutTemplateInput> | FormEmailMappingCreateWithoutTemplateInput[] | FormEmailMappingUncheckedCreateWithoutTemplateInput[]
+    connectOrCreate?: FormEmailMappingCreateOrConnectWithoutTemplateInput | FormEmailMappingCreateOrConnectWithoutTemplateInput[]
+    upsert?: FormEmailMappingUpsertWithWhereUniqueWithoutTemplateInput | FormEmailMappingUpsertWithWhereUniqueWithoutTemplateInput[]
+    createMany?: FormEmailMappingCreateManyTemplateInputEnvelope
+    set?: FormEmailMappingWhereUniqueInput | FormEmailMappingWhereUniqueInput[]
+    disconnect?: FormEmailMappingWhereUniqueInput | FormEmailMappingWhereUniqueInput[]
+    delete?: FormEmailMappingWhereUniqueInput | FormEmailMappingWhereUniqueInput[]
+    connect?: FormEmailMappingWhereUniqueInput | FormEmailMappingWhereUniqueInput[]
+    update?: FormEmailMappingUpdateWithWhereUniqueWithoutTemplateInput | FormEmailMappingUpdateWithWhereUniqueWithoutTemplateInput[]
+    updateMany?: FormEmailMappingUpdateManyWithWhereWithoutTemplateInput | FormEmailMappingUpdateManyWithWhereWithoutTemplateInput[]
+    deleteMany?: FormEmailMappingScalarWhereInput | FormEmailMappingScalarWhereInput[]
+  }
+
+  export type FormEmailMappingUncheckedUpdateManyWithoutTemplateNestedInput = {
+    create?: XOR<FormEmailMappingCreateWithoutTemplateInput, FormEmailMappingUncheckedCreateWithoutTemplateInput> | FormEmailMappingCreateWithoutTemplateInput[] | FormEmailMappingUncheckedCreateWithoutTemplateInput[]
+    connectOrCreate?: FormEmailMappingCreateOrConnectWithoutTemplateInput | FormEmailMappingCreateOrConnectWithoutTemplateInput[]
+    upsert?: FormEmailMappingUpsertWithWhereUniqueWithoutTemplateInput | FormEmailMappingUpsertWithWhereUniqueWithoutTemplateInput[]
+    createMany?: FormEmailMappingCreateManyTemplateInputEnvelope
+    set?: FormEmailMappingWhereUniqueInput | FormEmailMappingWhereUniqueInput[]
+    disconnect?: FormEmailMappingWhereUniqueInput | FormEmailMappingWhereUniqueInput[]
+    delete?: FormEmailMappingWhereUniqueInput | FormEmailMappingWhereUniqueInput[]
+    connect?: FormEmailMappingWhereUniqueInput | FormEmailMappingWhereUniqueInput[]
+    update?: FormEmailMappingUpdateWithWhereUniqueWithoutTemplateInput | FormEmailMappingUpdateWithWhereUniqueWithoutTemplateInput[]
+    updateMany?: FormEmailMappingUpdateManyWithWhereWithoutTemplateInput | FormEmailMappingUpdateManyWithWhereWithoutTemplateInput[]
+    deleteMany?: FormEmailMappingScalarWhereInput | FormEmailMappingScalarWhereInput[]
+  }
+
+  export type EmailTemplateCreateNestedOneWithoutMappingsInput = {
+    create?: XOR<EmailTemplateCreateWithoutMappingsInput, EmailTemplateUncheckedCreateWithoutMappingsInput>
+    connectOrCreate?: EmailTemplateCreateOrConnectWithoutMappingsInput
+    connect?: EmailTemplateWhereUniqueInput
+  }
+
+  export type EmailTemplateUpdateOneRequiredWithoutMappingsNestedInput = {
+    create?: XOR<EmailTemplateCreateWithoutMappingsInput, EmailTemplateUncheckedCreateWithoutMappingsInput>
+    connectOrCreate?: EmailTemplateCreateOrConnectWithoutMappingsInput
+    upsert?: EmailTemplateUpsertWithoutMappingsInput
+    connect?: EmailTemplateWhereUniqueInput
+    update?: XOR<XOR<EmailTemplateUpdateToOneWithWhereWithoutMappingsInput, EmailTemplateUpdateWithoutMappingsInput>, EmailTemplateUncheckedUpdateWithoutMappingsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -21461,6 +31615,20 @@ export namespace Prisma {
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -21483,20 +31651,6 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -21539,58 +31693,29 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type PostCreateWithoutAuthorInput = {
-    id?: string
-    slug: string
-    title: string
-    excerpt: string
-    content: string
-    image?: string | null
-    thumbnail?: string | null
-    category: string
-    readTime: string
-    published?: boolean
-    status?: string
-    reviewComment?: string | null
-    date?: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    dislikes?: number
-    likes?: number
-    tags?: PostCreatetagsInput | string[]
-    comments?: CommentCreateNestedManyWithoutPostInput
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type PostUncheckedCreateWithoutAuthorInput = {
-    id?: string
-    slug: string
-    title: string
-    excerpt: string
-    content: string
-    image?: string | null
-    thumbnail?: string | null
-    category: string
-    readTime: string
-    published?: boolean
-    status?: string
-    reviewComment?: string | null
-    date?: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    dislikes?: number
-    likes?: number
-    tags?: PostCreatetagsInput | string[]
-    comments?: CommentUncheckedCreateNestedManyWithoutPostInput
-  }
-
-  export type PostCreateOrConnectWithoutAuthorInput = {
-    where: PostWhereUniqueInput
-    create: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput>
-  }
-
-  export type PostCreateManyAuthorInputEnvelope = {
-    data: PostCreateManyAuthorInput | PostCreateManyAuthorInput[]
-    skipDuplicates?: boolean
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NotificationCreateWithoutUserInput = {
@@ -21621,45 +31746,58 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type PostUpsertWithWhereUniqueWithoutAuthorInput = {
+  export type PostCreateWithoutAuthorInput = {
+    id?: string
+    slug: string
+    title: string
+    excerpt: string
+    content: string
+    image?: string | null
+    category: string
+    readTime: string
+    published?: boolean
+    date?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    dislikes?: number
+    likes?: number
+    tags?: PostCreatetagsInput | string[]
+    reviewComment?: string | null
+    status?: string
+    thumbnail?: string | null
+    comments?: CommentCreateNestedManyWithoutPostInput
+  }
+
+  export type PostUncheckedCreateWithoutAuthorInput = {
+    id?: string
+    slug: string
+    title: string
+    excerpt: string
+    content: string
+    image?: string | null
+    category: string
+    readTime: string
+    published?: boolean
+    date?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    dislikes?: number
+    likes?: number
+    tags?: PostCreatetagsInput | string[]
+    reviewComment?: string | null
+    status?: string
+    thumbnail?: string | null
+    comments?: CommentUncheckedCreateNestedManyWithoutPostInput
+  }
+
+  export type PostCreateOrConnectWithoutAuthorInput = {
     where: PostWhereUniqueInput
-    update: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
     create: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput>
   }
 
-  export type PostUpdateWithWhereUniqueWithoutAuthorInput = {
-    where: PostWhereUniqueInput
-    data: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
-  }
-
-  export type PostUpdateManyWithWhereWithoutAuthorInput = {
-    where: PostScalarWhereInput
-    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyWithoutAuthorInput>
-  }
-
-  export type PostScalarWhereInput = {
-    AND?: PostScalarWhereInput | PostScalarWhereInput[]
-    OR?: PostScalarWhereInput[]
-    NOT?: PostScalarWhereInput | PostScalarWhereInput[]
-    id?: StringFilter<"Post"> | string
-    slug?: StringFilter<"Post"> | string
-    title?: StringFilter<"Post"> | string
-    excerpt?: StringFilter<"Post"> | string
-    content?: StringFilter<"Post"> | string
-    image?: StringNullableFilter<"Post"> | string | null
-    thumbnail?: StringNullableFilter<"Post"> | string | null
-    category?: StringFilter<"Post"> | string
-    readTime?: StringFilter<"Post"> | string
-    published?: BoolFilter<"Post"> | boolean
-    status?: StringFilter<"Post"> | string
-    reviewComment?: StringNullableFilter<"Post"> | string | null
-    date?: DateTimeFilter<"Post"> | Date | string
-    createdAt?: DateTimeFilter<"Post"> | Date | string
-    updatedAt?: DateTimeFilter<"Post"> | Date | string
-    dislikes?: IntFilter<"Post"> | number
-    likes?: IntFilter<"Post"> | number
-    tags?: StringNullableListFilter<"Post">
-    authorId?: StringNullableFilter<"Post"> | string | null
+  export type PostCreateManyAuthorInputEnvelope = {
+    data: PostCreateManyAuthorInput | PostCreateManyAuthorInput[]
+    skipDuplicates?: boolean
   }
 
   export type NotificationUpsertWithWhereUniqueWithoutUserInput = {
@@ -21691,6 +31829,47 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Notification"> | Date | string
   }
 
+  export type PostUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: PostWhereUniqueInput
+    update: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
+    create: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type PostUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: PostWhereUniqueInput
+    data: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type PostUpdateManyWithWhereWithoutAuthorInput = {
+    where: PostScalarWhereInput
+    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type PostScalarWhereInput = {
+    AND?: PostScalarWhereInput | PostScalarWhereInput[]
+    OR?: PostScalarWhereInput[]
+    NOT?: PostScalarWhereInput | PostScalarWhereInput[]
+    id?: StringFilter<"Post"> | string
+    slug?: StringFilter<"Post"> | string
+    title?: StringFilter<"Post"> | string
+    excerpt?: StringFilter<"Post"> | string
+    content?: StringFilter<"Post"> | string
+    image?: StringNullableFilter<"Post"> | string | null
+    category?: StringFilter<"Post"> | string
+    readTime?: StringFilter<"Post"> | string
+    published?: BoolFilter<"Post"> | boolean
+    date?: DateTimeFilter<"Post"> | Date | string
+    createdAt?: DateTimeFilter<"Post"> | Date | string
+    updatedAt?: DateTimeFilter<"Post"> | Date | string
+    dislikes?: IntFilter<"Post"> | number
+    likes?: IntFilter<"Post"> | number
+    tags?: StringNullableListFilter<"Post">
+    authorId?: StringNullableFilter<"Post"> | string | null
+    reviewComment?: StringNullableFilter<"Post"> | string | null
+    status?: StringFilter<"Post"> | string
+    thumbnail?: StringNullableFilter<"Post"> | string | null
+  }
+
   export type CommentCreateWithoutPostInput = {
     id?: string
     author: string
@@ -21719,16 +31898,16 @@ export namespace Prisma {
     id?: string
     name?: string | null
     email?: string | null
-    employeeId?: string | null
     phone?: string | null
     password?: string | null
     role?: string
-    image?: string | null
-    about?: string | null
-    designation?: string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    about?: string | null
+    designation?: string | null
+    image?: string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: string | null
     notifications?: NotificationCreateNestedManyWithoutUserInput
   }
 
@@ -21736,16 +31915,16 @@ export namespace Prisma {
     id?: string
     name?: string | null
     email?: string | null
-    employeeId?: string | null
     phone?: string | null
     password?: string | null
     role?: string
-    image?: string | null
-    about?: string | null
-    designation?: string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    about?: string | null
+    designation?: string | null
+    image?: string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: string | null
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -21796,16 +31975,16 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    about?: NullableStringFieldUpdateOperationsInput | string | null
-    designation?: NullableStringFieldUpdateOperationsInput | string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    designation?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     notifications?: NotificationUpdateManyWithoutUserNestedInput
   }
 
@@ -21813,16 +31992,16 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    about?: NullableStringFieldUpdateOperationsInput | string | null
-    designation?: NullableStringFieldUpdateOperationsInput | string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    designation?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -21833,18 +32012,18 @@ export namespace Prisma {
     excerpt: string
     content: string
     image?: string | null
-    thumbnail?: string | null
     category: string
     readTime: string
     published?: boolean
-    status?: string
-    reviewComment?: string | null
     date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     dislikes?: number
     likes?: number
     tags?: PostCreatetagsInput | string[]
+    reviewComment?: string | null
+    status?: string
+    thumbnail?: string | null
     author?: UserCreateNestedOneWithoutPostsInput
   }
 
@@ -21855,12 +32034,9 @@ export namespace Prisma {
     excerpt: string
     content: string
     image?: string | null
-    thumbnail?: string | null
     category: string
     readTime: string
     published?: boolean
-    status?: string
-    reviewComment?: string | null
     date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -21868,6 +32044,9 @@ export namespace Prisma {
     likes?: number
     tags?: PostCreatetagsInput | string[]
     authorId?: string | null
+    reviewComment?: string | null
+    status?: string
+    thumbnail?: string | null
   }
 
   export type PostCreateOrConnectWithoutCommentsInput = {
@@ -21893,18 +32072,18 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dislikes?: IntFieldUpdateOperationsInput | number
     likes?: IntFieldUpdateOperationsInput | number
     tags?: PostUpdatetagsInput | string[]
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     author?: UserUpdateOneWithoutPostsNestedInput
   }
 
@@ -21915,12 +32094,9 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     readTime?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21928,6 +32104,9 @@ export namespace Prisma {
     likes?: IntFieldUpdateOperationsInput | number
     tags?: PostUpdatetagsInput | string[]
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationCreateWithoutJobInput = {
@@ -22201,20 +32380,417 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type NewsletterGroupMemberCreateWithoutSubscriberInput = {
+    createdAt?: Date | string
+    group: NewsletterGroupCreateNestedOneWithoutMembersInput
+  }
+
+  export type NewsletterGroupMemberUncheckedCreateWithoutSubscriberInput = {
+    groupId: string
+    createdAt?: Date | string
+  }
+
+  export type NewsletterGroupMemberCreateOrConnectWithoutSubscriberInput = {
+    where: NewsletterGroupMemberWhereUniqueInput
+    create: XOR<NewsletterGroupMemberCreateWithoutSubscriberInput, NewsletterGroupMemberUncheckedCreateWithoutSubscriberInput>
+  }
+
+  export type NewsletterGroupMemberCreateManySubscriberInputEnvelope = {
+    data: NewsletterGroupMemberCreateManySubscriberInput | NewsletterGroupMemberCreateManySubscriberInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type NewsletterGroupMemberUpsertWithWhereUniqueWithoutSubscriberInput = {
+    where: NewsletterGroupMemberWhereUniqueInput
+    update: XOR<NewsletterGroupMemberUpdateWithoutSubscriberInput, NewsletterGroupMemberUncheckedUpdateWithoutSubscriberInput>
+    create: XOR<NewsletterGroupMemberCreateWithoutSubscriberInput, NewsletterGroupMemberUncheckedCreateWithoutSubscriberInput>
+  }
+
+  export type NewsletterGroupMemberUpdateWithWhereUniqueWithoutSubscriberInput = {
+    where: NewsletterGroupMemberWhereUniqueInput
+    data: XOR<NewsletterGroupMemberUpdateWithoutSubscriberInput, NewsletterGroupMemberUncheckedUpdateWithoutSubscriberInput>
+  }
+
+  export type NewsletterGroupMemberUpdateManyWithWhereWithoutSubscriberInput = {
+    where: NewsletterGroupMemberScalarWhereInput
+    data: XOR<NewsletterGroupMemberUpdateManyMutationInput, NewsletterGroupMemberUncheckedUpdateManyWithoutSubscriberInput>
+  }
+
+  export type NewsletterGroupMemberScalarWhereInput = {
+    AND?: NewsletterGroupMemberScalarWhereInput | NewsletterGroupMemberScalarWhereInput[]
+    OR?: NewsletterGroupMemberScalarWhereInput[]
+    NOT?: NewsletterGroupMemberScalarWhereInput | NewsletterGroupMemberScalarWhereInput[]
+    groupId?: StringFilter<"NewsletterGroupMember"> | string
+    subscriberId?: StringFilter<"NewsletterGroupMember"> | string
+    createdAt?: DateTimeFilter<"NewsletterGroupMember"> | Date | string
+  }
+
+  export type NewsletterGroupMemberCreateWithoutGroupInput = {
+    createdAt?: Date | string
+    subscriber: NewsletterSubscriberCreateNestedOneWithoutGroupsInput
+  }
+
+  export type NewsletterGroupMemberUncheckedCreateWithoutGroupInput = {
+    subscriberId: string
+    createdAt?: Date | string
+  }
+
+  export type NewsletterGroupMemberCreateOrConnectWithoutGroupInput = {
+    where: NewsletterGroupMemberWhereUniqueInput
+    create: XOR<NewsletterGroupMemberCreateWithoutGroupInput, NewsletterGroupMemberUncheckedCreateWithoutGroupInput>
+  }
+
+  export type NewsletterGroupMemberCreateManyGroupInputEnvelope = {
+    data: NewsletterGroupMemberCreateManyGroupInput | NewsletterGroupMemberCreateManyGroupInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type NewsletterTargetGroupCreateWithoutGroupInput = {
+    newsletter: NewsletterCreateNestedOneWithoutTargetGroupsInput
+  }
+
+  export type NewsletterTargetGroupUncheckedCreateWithoutGroupInput = {
+    newsletterId: string
+  }
+
+  export type NewsletterTargetGroupCreateOrConnectWithoutGroupInput = {
+    where: NewsletterTargetGroupWhereUniqueInput
+    create: XOR<NewsletterTargetGroupCreateWithoutGroupInput, NewsletterTargetGroupUncheckedCreateWithoutGroupInput>
+  }
+
+  export type NewsletterTargetGroupCreateManyGroupInputEnvelope = {
+    data: NewsletterTargetGroupCreateManyGroupInput | NewsletterTargetGroupCreateManyGroupInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type NewsletterGroupMemberUpsertWithWhereUniqueWithoutGroupInput = {
+    where: NewsletterGroupMemberWhereUniqueInput
+    update: XOR<NewsletterGroupMemberUpdateWithoutGroupInput, NewsletterGroupMemberUncheckedUpdateWithoutGroupInput>
+    create: XOR<NewsletterGroupMemberCreateWithoutGroupInput, NewsletterGroupMemberUncheckedCreateWithoutGroupInput>
+  }
+
+  export type NewsletterGroupMemberUpdateWithWhereUniqueWithoutGroupInput = {
+    where: NewsletterGroupMemberWhereUniqueInput
+    data: XOR<NewsletterGroupMemberUpdateWithoutGroupInput, NewsletterGroupMemberUncheckedUpdateWithoutGroupInput>
+  }
+
+  export type NewsletterGroupMemberUpdateManyWithWhereWithoutGroupInput = {
+    where: NewsletterGroupMemberScalarWhereInput
+    data: XOR<NewsletterGroupMemberUpdateManyMutationInput, NewsletterGroupMemberUncheckedUpdateManyWithoutGroupInput>
+  }
+
+  export type NewsletterTargetGroupUpsertWithWhereUniqueWithoutGroupInput = {
+    where: NewsletterTargetGroupWhereUniqueInput
+    update: XOR<NewsletterTargetGroupUpdateWithoutGroupInput, NewsletterTargetGroupUncheckedUpdateWithoutGroupInput>
+    create: XOR<NewsletterTargetGroupCreateWithoutGroupInput, NewsletterTargetGroupUncheckedCreateWithoutGroupInput>
+  }
+
+  export type NewsletterTargetGroupUpdateWithWhereUniqueWithoutGroupInput = {
+    where: NewsletterTargetGroupWhereUniqueInput
+    data: XOR<NewsletterTargetGroupUpdateWithoutGroupInput, NewsletterTargetGroupUncheckedUpdateWithoutGroupInput>
+  }
+
+  export type NewsletterTargetGroupUpdateManyWithWhereWithoutGroupInput = {
+    where: NewsletterTargetGroupScalarWhereInput
+    data: XOR<NewsletterTargetGroupUpdateManyMutationInput, NewsletterTargetGroupUncheckedUpdateManyWithoutGroupInput>
+  }
+
+  export type NewsletterTargetGroupScalarWhereInput = {
+    AND?: NewsletterTargetGroupScalarWhereInput | NewsletterTargetGroupScalarWhereInput[]
+    OR?: NewsletterTargetGroupScalarWhereInput[]
+    NOT?: NewsletterTargetGroupScalarWhereInput | NewsletterTargetGroupScalarWhereInput[]
+    newsletterId?: StringFilter<"NewsletterTargetGroup"> | string
+    groupId?: StringFilter<"NewsletterTargetGroup"> | string
+  }
+
+  export type NewsletterGroupCreateWithoutMembersInput = {
+    id?: string
+    name: string
+    description?: string | null
+    color?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    newsletters?: NewsletterTargetGroupCreateNestedManyWithoutGroupInput
+  }
+
+  export type NewsletterGroupUncheckedCreateWithoutMembersInput = {
+    id?: string
+    name: string
+    description?: string | null
+    color?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    newsletters?: NewsletterTargetGroupUncheckedCreateNestedManyWithoutGroupInput
+  }
+
+  export type NewsletterGroupCreateOrConnectWithoutMembersInput = {
+    where: NewsletterGroupWhereUniqueInput
+    create: XOR<NewsletterGroupCreateWithoutMembersInput, NewsletterGroupUncheckedCreateWithoutMembersInput>
+  }
+
+  export type NewsletterSubscriberCreateWithoutGroupsInput = {
+    id?: string
+    email: string
+    status?: string
+    createdAt?: Date | string
+    name?: string | null
+  }
+
+  export type NewsletterSubscriberUncheckedCreateWithoutGroupsInput = {
+    id?: string
+    email: string
+    status?: string
+    createdAt?: Date | string
+    name?: string | null
+  }
+
+  export type NewsletterSubscriberCreateOrConnectWithoutGroupsInput = {
+    where: NewsletterSubscriberWhereUniqueInput
+    create: XOR<NewsletterSubscriberCreateWithoutGroupsInput, NewsletterSubscriberUncheckedCreateWithoutGroupsInput>
+  }
+
+  export type NewsletterGroupUpsertWithoutMembersInput = {
+    update: XOR<NewsletterGroupUpdateWithoutMembersInput, NewsletterGroupUncheckedUpdateWithoutMembersInput>
+    create: XOR<NewsletterGroupCreateWithoutMembersInput, NewsletterGroupUncheckedCreateWithoutMembersInput>
+    where?: NewsletterGroupWhereInput
+  }
+
+  export type NewsletterGroupUpdateToOneWithWhereWithoutMembersInput = {
+    where?: NewsletterGroupWhereInput
+    data: XOR<NewsletterGroupUpdateWithoutMembersInput, NewsletterGroupUncheckedUpdateWithoutMembersInput>
+  }
+
+  export type NewsletterGroupUpdateWithoutMembersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    newsletters?: NewsletterTargetGroupUpdateManyWithoutGroupNestedInput
+  }
+
+  export type NewsletterGroupUncheckedUpdateWithoutMembersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    newsletters?: NewsletterTargetGroupUncheckedUpdateManyWithoutGroupNestedInput
+  }
+
+  export type NewsletterSubscriberUpsertWithoutGroupsInput = {
+    update: XOR<NewsletterSubscriberUpdateWithoutGroupsInput, NewsletterSubscriberUncheckedUpdateWithoutGroupsInput>
+    create: XOR<NewsletterSubscriberCreateWithoutGroupsInput, NewsletterSubscriberUncheckedCreateWithoutGroupsInput>
+    where?: NewsletterSubscriberWhereInput
+  }
+
+  export type NewsletterSubscriberUpdateToOneWithWhereWithoutGroupsInput = {
+    where?: NewsletterSubscriberWhereInput
+    data: XOR<NewsletterSubscriberUpdateWithoutGroupsInput, NewsletterSubscriberUncheckedUpdateWithoutGroupsInput>
+  }
+
+  export type NewsletterSubscriberUpdateWithoutGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type NewsletterSubscriberUncheckedUpdateWithoutGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type NewsletterTargetGroupCreateWithoutNewsletterInput = {
+    group: NewsletterGroupCreateNestedOneWithoutNewslettersInput
+  }
+
+  export type NewsletterTargetGroupUncheckedCreateWithoutNewsletterInput = {
+    groupId: string
+  }
+
+  export type NewsletterTargetGroupCreateOrConnectWithoutNewsletterInput = {
+    where: NewsletterTargetGroupWhereUniqueInput
+    create: XOR<NewsletterTargetGroupCreateWithoutNewsletterInput, NewsletterTargetGroupUncheckedCreateWithoutNewsletterInput>
+  }
+
+  export type NewsletterTargetGroupCreateManyNewsletterInputEnvelope = {
+    data: NewsletterTargetGroupCreateManyNewsletterInput | NewsletterTargetGroupCreateManyNewsletterInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type NewsletterTargetGroupUpsertWithWhereUniqueWithoutNewsletterInput = {
+    where: NewsletterTargetGroupWhereUniqueInput
+    update: XOR<NewsletterTargetGroupUpdateWithoutNewsletterInput, NewsletterTargetGroupUncheckedUpdateWithoutNewsletterInput>
+    create: XOR<NewsletterTargetGroupCreateWithoutNewsletterInput, NewsletterTargetGroupUncheckedCreateWithoutNewsletterInput>
+  }
+
+  export type NewsletterTargetGroupUpdateWithWhereUniqueWithoutNewsletterInput = {
+    where: NewsletterTargetGroupWhereUniqueInput
+    data: XOR<NewsletterTargetGroupUpdateWithoutNewsletterInput, NewsletterTargetGroupUncheckedUpdateWithoutNewsletterInput>
+  }
+
+  export type NewsletterTargetGroupUpdateManyWithWhereWithoutNewsletterInput = {
+    where: NewsletterTargetGroupScalarWhereInput
+    data: XOR<NewsletterTargetGroupUpdateManyMutationInput, NewsletterTargetGroupUncheckedUpdateManyWithoutNewsletterInput>
+  }
+
+  export type NewsletterGroupCreateWithoutNewslettersInput = {
+    id?: string
+    name: string
+    description?: string | null
+    color?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: NewsletterGroupMemberCreateNestedManyWithoutGroupInput
+  }
+
+  export type NewsletterGroupUncheckedCreateWithoutNewslettersInput = {
+    id?: string
+    name: string
+    description?: string | null
+    color?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: NewsletterGroupMemberUncheckedCreateNestedManyWithoutGroupInput
+  }
+
+  export type NewsletterGroupCreateOrConnectWithoutNewslettersInput = {
+    where: NewsletterGroupWhereUniqueInput
+    create: XOR<NewsletterGroupCreateWithoutNewslettersInput, NewsletterGroupUncheckedCreateWithoutNewslettersInput>
+  }
+
+  export type NewsletterCreateWithoutTargetGroupsInput = {
+    id?: string
+    title: string
+    subject: string
+    preheader?: string | null
+    content: string
+    status?: string
+    sendToAll?: boolean
+    sentAt?: Date | string | null
+    recipientCount?: number
+    successCount?: number
+    failureCount?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NewsletterUncheckedCreateWithoutTargetGroupsInput = {
+    id?: string
+    title: string
+    subject: string
+    preheader?: string | null
+    content: string
+    status?: string
+    sendToAll?: boolean
+    sentAt?: Date | string | null
+    recipientCount?: number
+    successCount?: number
+    failureCount?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NewsletterCreateOrConnectWithoutTargetGroupsInput = {
+    where: NewsletterWhereUniqueInput
+    create: XOR<NewsletterCreateWithoutTargetGroupsInput, NewsletterUncheckedCreateWithoutTargetGroupsInput>
+  }
+
+  export type NewsletterGroupUpsertWithoutNewslettersInput = {
+    update: XOR<NewsletterGroupUpdateWithoutNewslettersInput, NewsletterGroupUncheckedUpdateWithoutNewslettersInput>
+    create: XOR<NewsletterGroupCreateWithoutNewslettersInput, NewsletterGroupUncheckedCreateWithoutNewslettersInput>
+    where?: NewsletterGroupWhereInput
+  }
+
+  export type NewsletterGroupUpdateToOneWithWhereWithoutNewslettersInput = {
+    where?: NewsletterGroupWhereInput
+    data: XOR<NewsletterGroupUpdateWithoutNewslettersInput, NewsletterGroupUncheckedUpdateWithoutNewslettersInput>
+  }
+
+  export type NewsletterGroupUpdateWithoutNewslettersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: NewsletterGroupMemberUpdateManyWithoutGroupNestedInput
+  }
+
+  export type NewsletterGroupUncheckedUpdateWithoutNewslettersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: NewsletterGroupMemberUncheckedUpdateManyWithoutGroupNestedInput
+  }
+
+  export type NewsletterUpsertWithoutTargetGroupsInput = {
+    update: XOR<NewsletterUpdateWithoutTargetGroupsInput, NewsletterUncheckedUpdateWithoutTargetGroupsInput>
+    create: XOR<NewsletterCreateWithoutTargetGroupsInput, NewsletterUncheckedCreateWithoutTargetGroupsInput>
+    where?: NewsletterWhereInput
+  }
+
+  export type NewsletterUpdateToOneWithWhereWithoutTargetGroupsInput = {
+    where?: NewsletterWhereInput
+    data: XOR<NewsletterUpdateWithoutTargetGroupsInput, NewsletterUncheckedUpdateWithoutTargetGroupsInput>
+  }
+
+  export type NewsletterUpdateWithoutTargetGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    preheader?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendToAll?: BoolFieldUpdateOperationsInput | boolean
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recipientCount?: IntFieldUpdateOperationsInput | number
+    successCount?: IntFieldUpdateOperationsInput | number
+    failureCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterUncheckedUpdateWithoutTargetGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    preheader?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendToAll?: BoolFieldUpdateOperationsInput | boolean
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recipientCount?: IntFieldUpdateOperationsInput | number
+    successCount?: IntFieldUpdateOperationsInput | number
+    failureCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateWithoutNotificationsInput = {
     id?: string
     name?: string | null
     email?: string | null
-    employeeId?: string | null
     phone?: string | null
     password?: string | null
     role?: string
-    image?: string | null
-    about?: string | null
-    designation?: string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    about?: string | null
+    designation?: string | null
+    image?: string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
   }
 
@@ -22222,16 +32798,16 @@ export namespace Prisma {
     id?: string
     name?: string | null
     email?: string | null
-    employeeId?: string | null
     phone?: string | null
     password?: string | null
     role?: string
-    image?: string | null
-    about?: string | null
-    designation?: string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    about?: string | null
+    designation?: string | null
+    image?: string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
   }
 
@@ -22255,16 +32831,16 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    about?: NullableStringFieldUpdateOperationsInput | string | null
-    designation?: NullableStringFieldUpdateOperationsInput | string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    designation?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
   }
 
@@ -22272,38 +32848,131 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    about?: NullableStringFieldUpdateOperationsInput | string | null
-    designation?: NullableStringFieldUpdateOperationsInput | string | null
-    socials?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    designation?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    socials?: NullableJsonNullValueInput | InputJsonValue
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
-  export type PostCreateManyAuthorInput = {
+  export type FormEmailMappingCreateWithoutTemplateInput = {
     id?: string
-    slug: string
-    title: string
-    excerpt: string
-    content: string
-    image?: string | null
-    thumbnail?: string | null
-    category: string
-    readTime: string
-    published?: boolean
-    status?: string
-    reviewComment?: string | null
-    date?: Date | string
+    formKey: string
+    enabled?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    dislikes?: number
-    likes?: number
-    tags?: PostCreatetagsInput | string[]
+  }
+
+  export type FormEmailMappingUncheckedCreateWithoutTemplateInput = {
+    id?: string
+    formKey: string
+    enabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FormEmailMappingCreateOrConnectWithoutTemplateInput = {
+    where: FormEmailMappingWhereUniqueInput
+    create: XOR<FormEmailMappingCreateWithoutTemplateInput, FormEmailMappingUncheckedCreateWithoutTemplateInput>
+  }
+
+  export type FormEmailMappingCreateManyTemplateInputEnvelope = {
+    data: FormEmailMappingCreateManyTemplateInput | FormEmailMappingCreateManyTemplateInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FormEmailMappingUpsertWithWhereUniqueWithoutTemplateInput = {
+    where: FormEmailMappingWhereUniqueInput
+    update: XOR<FormEmailMappingUpdateWithoutTemplateInput, FormEmailMappingUncheckedUpdateWithoutTemplateInput>
+    create: XOR<FormEmailMappingCreateWithoutTemplateInput, FormEmailMappingUncheckedCreateWithoutTemplateInput>
+  }
+
+  export type FormEmailMappingUpdateWithWhereUniqueWithoutTemplateInput = {
+    where: FormEmailMappingWhereUniqueInput
+    data: XOR<FormEmailMappingUpdateWithoutTemplateInput, FormEmailMappingUncheckedUpdateWithoutTemplateInput>
+  }
+
+  export type FormEmailMappingUpdateManyWithWhereWithoutTemplateInput = {
+    where: FormEmailMappingScalarWhereInput
+    data: XOR<FormEmailMappingUpdateManyMutationInput, FormEmailMappingUncheckedUpdateManyWithoutTemplateInput>
+  }
+
+  export type FormEmailMappingScalarWhereInput = {
+    AND?: FormEmailMappingScalarWhereInput | FormEmailMappingScalarWhereInput[]
+    OR?: FormEmailMappingScalarWhereInput[]
+    NOT?: FormEmailMappingScalarWhereInput | FormEmailMappingScalarWhereInput[]
+    id?: StringFilter<"FormEmailMapping"> | string
+    formKey?: StringFilter<"FormEmailMapping"> | string
+    templateId?: StringFilter<"FormEmailMapping"> | string
+    enabled?: BoolFilter<"FormEmailMapping"> | boolean
+    createdAt?: DateTimeFilter<"FormEmailMapping"> | Date | string
+    updatedAt?: DateTimeFilter<"FormEmailMapping"> | Date | string
+  }
+
+  export type EmailTemplateCreateWithoutMappingsInput = {
+    id?: string
+    name: string
+    subject: string
+    body: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    description?: string | null
+    isActive?: boolean
+  }
+
+  export type EmailTemplateUncheckedCreateWithoutMappingsInput = {
+    id?: string
+    name: string
+    subject: string
+    body: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    description?: string | null
+    isActive?: boolean
+  }
+
+  export type EmailTemplateCreateOrConnectWithoutMappingsInput = {
+    where: EmailTemplateWhereUniqueInput
+    create: XOR<EmailTemplateCreateWithoutMappingsInput, EmailTemplateUncheckedCreateWithoutMappingsInput>
+  }
+
+  export type EmailTemplateUpsertWithoutMappingsInput = {
+    update: XOR<EmailTemplateUpdateWithoutMappingsInput, EmailTemplateUncheckedUpdateWithoutMappingsInput>
+    create: XOR<EmailTemplateCreateWithoutMappingsInput, EmailTemplateUncheckedCreateWithoutMappingsInput>
+    where?: EmailTemplateWhereInput
+  }
+
+  export type EmailTemplateUpdateToOneWithWhereWithoutMappingsInput = {
+    where?: EmailTemplateWhereInput
+    data: XOR<EmailTemplateUpdateWithoutMappingsInput, EmailTemplateUncheckedUpdateWithoutMappingsInput>
+  }
+
+  export type EmailTemplateUpdateWithoutMappingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type EmailTemplateUncheckedUpdateWithoutMappingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type NotificationCreateManyUserInput = {
@@ -22315,69 +32984,25 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
-  export type PostUpdateWithoutAuthorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: StringFieldUpdateOperationsInput | string
-    readTime?: StringFieldUpdateOperationsInput | string
-    published?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    dislikes?: IntFieldUpdateOperationsInput | number
-    likes?: IntFieldUpdateOperationsInput | number
-    tags?: PostUpdatetagsInput | string[]
-    comments?: CommentUpdateManyWithoutPostNestedInput
-  }
-
-  export type PostUncheckedUpdateWithoutAuthorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: StringFieldUpdateOperationsInput | string
-    readTime?: StringFieldUpdateOperationsInput | string
-    published?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    dislikes?: IntFieldUpdateOperationsInput | number
-    likes?: IntFieldUpdateOperationsInput | number
-    tags?: PostUpdatetagsInput | string[]
-    comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
-  }
-
-  export type PostUncheckedUpdateManyWithoutAuthorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: StringFieldUpdateOperationsInput | string
-    readTime?: StringFieldUpdateOperationsInput | string
-    published?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    dislikes?: IntFieldUpdateOperationsInput | number
-    likes?: IntFieldUpdateOperationsInput | number
-    tags?: PostUpdatetagsInput | string[]
+  export type PostCreateManyAuthorInput = {
+    id?: string
+    slug: string
+    title: string
+    excerpt: string
+    content: string
+    image?: string | null
+    category: string
+    readTime: string
+    published?: boolean
+    date?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    dislikes?: number
+    likes?: number
+    tags?: PostCreatetagsInput | string[]
+    reviewComment?: string | null
+    status?: string
+    thumbnail?: string | null
   }
 
   export type NotificationUpdateWithoutUserInput = {
@@ -22405,6 +33030,71 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     read?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    excerpt?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
+    readTime?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dislikes?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
+    tags?: PostUpdatetagsInput | string[]
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: CommentUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    excerpt?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
+    readTime?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dislikes?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
+    tags?: PostUpdatetagsInput | string[]
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateManyWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    excerpt?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
+    readTime?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dislikes?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
+    tags?: PostUpdatetagsInput | string[]
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CommentCreateManyPostInput = {
@@ -22531,6 +33221,110 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterGroupMemberCreateManySubscriberInput = {
+    groupId: string
+    createdAt?: Date | string
+  }
+
+  export type NewsletterGroupMemberUpdateWithoutSubscriberInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    group?: NewsletterGroupUpdateOneRequiredWithoutMembersNestedInput
+  }
+
+  export type NewsletterGroupMemberUncheckedUpdateWithoutSubscriberInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterGroupMemberUncheckedUpdateManyWithoutSubscriberInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterGroupMemberCreateManyGroupInput = {
+    subscriberId: string
+    createdAt?: Date | string
+  }
+
+  export type NewsletterTargetGroupCreateManyGroupInput = {
+    newsletterId: string
+  }
+
+  export type NewsletterGroupMemberUpdateWithoutGroupInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subscriber?: NewsletterSubscriberUpdateOneRequiredWithoutGroupsNestedInput
+  }
+
+  export type NewsletterGroupMemberUncheckedUpdateWithoutGroupInput = {
+    subscriberId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterGroupMemberUncheckedUpdateManyWithoutGroupInput = {
+    subscriberId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterTargetGroupUpdateWithoutGroupInput = {
+    newsletter?: NewsletterUpdateOneRequiredWithoutTargetGroupsNestedInput
+  }
+
+  export type NewsletterTargetGroupUncheckedUpdateWithoutGroupInput = {
+    newsletterId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type NewsletterTargetGroupUncheckedUpdateManyWithoutGroupInput = {
+    newsletterId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type NewsletterTargetGroupCreateManyNewsletterInput = {
+    groupId: string
+  }
+
+  export type NewsletterTargetGroupUpdateWithoutNewsletterInput = {
+    group?: NewsletterGroupUpdateOneRequiredWithoutNewslettersNestedInput
+  }
+
+  export type NewsletterTargetGroupUncheckedUpdateWithoutNewsletterInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type NewsletterTargetGroupUncheckedUpdateManyWithoutNewsletterInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FormEmailMappingCreateManyTemplateInput = {
+    id?: string
+    formKey: string
+    enabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FormEmailMappingUpdateWithoutTemplateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formKey?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FormEmailMappingUncheckedUpdateWithoutTemplateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formKey?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FormEmailMappingUncheckedUpdateManyWithoutTemplateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formKey?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

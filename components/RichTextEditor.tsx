@@ -4,13 +4,14 @@
 import { useEditor, EditorContent, Node, mergeAttributes, Extension } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
+import Link from "@tiptap/extension-link";
 import { TextStyle } from "@tiptap/extension-text-style";
 import { FontFamily } from "@tiptap/extension-font-family";
 
 import { 
     Bold, Italic, List, ListOrdered, Quote, 
     Undo, Redo, Image as ImageIcon, Heading1, Heading2,
-    Code, Terminal, User, Type, Baseline
+    Code, Terminal, User, Type, Baseline, Link as LinkIcon
 } from "lucide-react";
 
 
@@ -107,6 +108,22 @@ const MenuBar = ({ editor }: { editor: any }) => {
         input.click();
     };
 
+    const setLink = () => {
+        const previousUrl = editor.getAttributes("link").href as string | undefined;
+        const url = window.prompt("Enter URL", previousUrl ?? "");
+
+        if (url === null) {
+            return;
+        }
+
+        if (url.trim() === "") {
+            editor.chain().focus().extendMarkRange("link").unsetLink().run();
+            return;
+        }
+
+        editor.chain().focus().extendMarkRange("link").setLink({ href: url.trim() }).run();
+    };
+
     return (
         <div className="sticky top-0 z-10 border-b border-slate-100 bg-white/90 backdrop-blur-md p-3 rounded-t-2xl flex flex-wrap gap-1 items-center shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)]">
             {/* Font Control Section */}
@@ -156,6 +173,14 @@ const MenuBar = ({ editor }: { editor: any }) => {
                 className={`p-2 rounded-lg hover:bg-slate-200 transition-colors ${editor.isActive("italic") ? "bg-slate-200 text-brand" : "text-slate-600"}`}
             >
                 <Italic className="w-4 h-4" />
+            </button>
+            <button
+                type="button"
+                onClick={setLink}
+                className={`p-2 rounded-lg hover:bg-slate-200 transition-colors ${editor.isActive("link") ? "bg-slate-200 text-brand" : "text-slate-600"}`}
+                title="Hyperlink"
+            >
+                <LinkIcon className="w-4 h-4" />
             </button>
             <div className="w-px h-6 bg-slate-200 self-center mx-1" />
             <button
@@ -273,6 +298,16 @@ export default function RichTextEditor({ content, onChange, placeholder }: Edito
             TextStyle,
             FontFamily,
             FontSize,
+            Link.configure({
+                autolink: true,
+                openOnClick: false,
+                defaultProtocol: "https",
+                HTMLAttributes: {
+                    class: "text-brand underline underline-offset-2",
+                    rel: "noopener noreferrer",
+                    target: "_blank",
+                },
+            }),
         ],
 
 

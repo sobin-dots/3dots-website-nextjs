@@ -248,7 +248,12 @@ export default function BlogAdminPage() {
                             Review
                          </Link>
                       )}
-                      <Link href={`/blog/${post.slug}`} target="_blank" className="p-2 text-slate-400 hover:text-brand transition-colors">
+                      <Link
+                        href={post.status === "PUBLISHED" ? `/blog/${post.slug}` : `/blog/${post.slug}?preview=1`}
+                        target="_blank"
+                        className="p-2 text-slate-400 hover:text-brand transition-colors"
+                        title={post.status === "PUBLISHED" ? "View live post" : "Preview draft post"}
+                      >
                         <ExternalLink className="w-4 h-4" />
                       </Link>
                       <Link href={`/admin/blog/edit/${post.id}`} className="p-2 text-slate-400 hover:text-brand transition-colors">

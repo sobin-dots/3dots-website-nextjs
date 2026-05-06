@@ -3,11 +3,37 @@ import { notFound } from "next/navigation";
 import BlogPostClient from "./BlogPostClient";
 import { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/lib/auth";
 
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+type BlogPageProps = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ preview?: string }>;
+};
+
+const isPreviewEnabled = (preview: string | undefined) => preview === "1";
+
+const getPostBySlug = async (slug: string, allowDraftPreview: boolean) => {
+  if (allowDraftPreview) {
+    return prisma.post.findUnique({
+      where: { slug },
+    });
+  }
+
+  return prisma.post.findFirst({
+    where: {
+      slug,
+      status: "PUBLISHED",
+    },
+  });
+};
+
+export async function generateMetadata({ params, searchParams }: BlogPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await prisma.post.findUnique({ where: { slug } });
+  const { preview } = await searchParams;
+  const session = await auth();
+  const allowDraftPreview = isPreviewEnabled(preview) && !!session;
+  const post = await getPostBySlug(slug, allowDraftPreview);
 
   if (!post) {
     return {
@@ -25,19 +51,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
     alternates: {
       canonical: `/blog/${slug}`,
-    }
+    },
   };
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPostPage({ params, searchParams }: BlogPageProps) {
   const { slug } = await params;
+  const { preview } = await searchParams;
+  const session = await auth();
+  const allowDraftPreview = isPreviewEnabled(preview) && !!session;
   
-  const post = await prisma.post.findUnique({
-    where: { 
-        slug,
+  const post = await prisma.post.findFirst({
+    where: {
+      slug,
+      ...(allowDraftPreview ? {} : {
         status: "PUBLISHED"
+      }),
     },
-
 
     include: {
       author: {
@@ -68,7 +98,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const prevPost = await prisma.post.findFirst({
     where: { 
         date: { lt: post.date },
-        status: "PUBLISHED"
+        status: "PUBLISHED",
+        ...(allowDraftPreview ? {} : { slug: { not: post.slug } }),
     },
 
 
@@ -78,7 +109,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const nextPost = await prisma.post.findFirst({
     where: { 
         date: { gt: post.date },
-        status: "PUBLISHED"
+        status: "PUBLISHED",
+        ...(allowDraftPreview ? {} : { slug: { not: post.slug } }),
     },
 
 

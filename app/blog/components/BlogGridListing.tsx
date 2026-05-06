@@ -169,10 +169,23 @@ function BlogGridContent() {
                                             </div>
 
                                             <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
-                                                <div className="flex items-center gap-2">
-                                                    <div className="w-6 h-6 rounded-full bg-brand/10 flex items-center justify-center text-[10px] font-bold text-brand">
-                                                        {post.author?.name?.charAt(0) || "3"}
-                                                    </div>
+                                                <div className="flex items-center gap-2.5">
+                                                    {post.author?.image ? (
+                                                        <div className="relative w-9 h-9 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
+                                                            <Image
+                                                                src={post.author.image}
+                                                                alt={post.author?.name || "Author"}
+                                                                fill
+                                                                className="object-cover"
+                                                                sizes="36px"
+                                                                unoptimized
+                                                            />
+                                                        </div>
+                                                    ) : (
+                                                        <div className="w-9 h-9 rounded-full bg-brand/10 flex items-center justify-center text-xs font-bold text-brand ring-2 ring-white shadow-sm">
+                                                            {post.author?.name?.charAt(0) || "3"}
+                                                        </div>
+                                                    )}
                                                     <span className="text-xs font-medium text-slate-600">{post.author?.name || "3Dots Team"}</span>
                                                 </div>
                                                 <div className="text-xs font-medium text-slate-400 group-hover:text-brand transition-colors flex items-center gap-1">

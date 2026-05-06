@@ -8,48 +8,45 @@ datasource db {
 }
 
 model User {
-  id         String  @id @default(cuid())
-  name       String?
-  email      String? @unique
-  employeeId String? @unique
-
-  phone       String?  @unique
-  password    String?
-  role        String   @default("Admin")
-  image       String?
-  about       String?
-  designation String?
-  socials     Json?
-  createdAt   DateTime @default(now())
-
+  id            String         @id @default(cuid())
+  name          String?
+  email         String?        @unique
+  phone         String?        @unique
+  password      String?
+  role          String         @default("Admin")
+  createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
-  posts         Post[]
+  about         String?
+  designation   String?
+  image         String?
+  socials       Json?
+  employeeId    String?        @unique
   notifications Notification[]
+  posts         Post[]
 }
 
 model Post {
-  id            String   @id @default(cuid())
-  slug          String   @unique
+  id            String    @id @default(cuid())
+  slug          String    @unique
   title         String
   excerpt       String
   content       String
   image         String?
-  thumbnail     String?
   category      String
   readTime      String
-  published     Boolean  @default(false)
-  status        String   @default("DRAFT")
+  published     Boolean   @default(false)
+  date          DateTime  @default(now())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  dislikes      Int       @default(0)
+  likes         Int       @default(0)
+  tags          String[]  @default([])
+  authorId      String?
   reviewComment String?
-  date          DateTime @default(now())
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  dislikes  Int       @default(0)
-  likes     Int       @default(0)
-  tags      String[]  @default([])
-  authorId  String?
-  comments  Comment[]
-  author    User?     @relation(fields: [authorId], references: [id])
+  status        String    @default("DRAFT")
+  thumbnail     String?
+  comments      Comment[]
+  author        User?     @relation(fields: [authorId], references: [id])
 }
 
 model Comment {
@@ -174,10 +171,59 @@ model Appointment {
 }
 
 model NewsletterSubscriber {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  status    String   @default("ACTIVE")
-  createdAt DateTime @default(now())
+  id        String                  @id @default(cuid())
+  email     String                  @unique
+  status    String                  @default("ACTIVE")
+  createdAt DateTime                @default(now())
+  name      String?
+  groups    NewsletterGroupMember[]
+}
+
+model NewsletterGroup {
+  id          String                  @id @default(cuid())
+  name        String                  @unique
+  description String?
+  color       String?
+  createdAt   DateTime                @default(now())
+  updatedAt   DateTime                @updatedAt
+  members     NewsletterGroupMember[]
+  newsletters NewsletterTargetGroup[]
+}
+
+model NewsletterGroupMember {
+  groupId      String
+  subscriberId String
+  createdAt    DateTime             @default(now())
+  group        NewsletterGroup      @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  subscriber   NewsletterSubscriber @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
+
+  @@id([groupId, subscriberId])
+}
+
+model Newsletter {
+  id             String                  @id @default(cuid())
+  title          String
+  subject        String
+  preheader      String?
+  content        String
+  status         String                  @default("DRAFT")
+  sendToAll      Boolean                 @default(false)
+  sentAt         DateTime?
+  recipientCount Int                     @default(0)
+  successCount   Int                     @default(0)
+  failureCount   Int                     @default(0)
+  createdAt      DateTime                @default(now())
+  updatedAt      DateTime                @updatedAt
+  targetGroups   NewsletterTargetGroup[]
+}
+
+model NewsletterTargetGroup {
+  newsletterId String
+  groupId      String
+  group        NewsletterGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  newsletter   Newsletter      @relation(fields: [newsletterId], references: [id], onDelete: Cascade)
+
+  @@id([newsletterId, groupId])
 }
 
 model Notification {
@@ -189,4 +235,38 @@ model Notification {
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model EmailTemplate {
+  id          String             @id @default(cuid())
+  name        String             @unique
+  subject     String
+  body        String
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  description String?
+  isActive    Boolean            @default(true)
+  mappings    FormEmailMapping[]
+}
+
+model FormEmailMapping {
+  id         String        @id @default(cuid())
+  formKey    String        @unique
+  templateId String
+  enabled    Boolean       @default(true)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  template   EmailTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+}
+
+model EmailLog {
+  id         String   @id @default(cuid())
+  formKey    String
+  templateId String?
+  to         String
+  subject    String
+  status     String
+  error      String?
+  messageId  String?
+  createdAt  DateTime @default(now())
 }

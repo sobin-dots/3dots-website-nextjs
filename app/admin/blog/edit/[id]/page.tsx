@@ -30,6 +30,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
     image: "/images/blog/default.jpg",
     thumbnail: "/images/blog/default.jpg",
     published: false,
+    status: "DRAFT",
     authorName: "Admin",
     authorRole: "Editor",
     tags: [] as string[],
@@ -195,6 +196,15 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
         <Link href="/admin/blog" className="p-2 bg-white border border-slate-100 rounded-xl text-slate-400 hover:text-slate-800 transition-all">
           <ChevronLeft className="w-5 h-5" />
         </Link>
+        {formData.slug && (
+          <Link
+            href={formData.status === "PUBLISHED" ? `/blog/${formData.slug}` : `/blog/${formData.slug}?preview=1`}
+            target="_blank"
+            className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-500 hover:text-brand hover:border-brand/30 transition-all text-sm font-medium"
+          >
+            Preview
+          </Link>
+        )}
         <div>
           <h1 className="text-3xl font-light text-slate-800 tracking-tight">
             Edit <span className="font-medium">Post</span>

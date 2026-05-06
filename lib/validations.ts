@@ -162,3 +162,33 @@ export const userSchema = z.object({
 
 
 export type UserInput = z.infer<typeof userSchema>;
+
+// Email Template Validation
+export const emailTemplateSchema = z.object({
+  name: z.string().min(2, "Template name is required"),
+  subject: z.string().min(2, "Subject is required"),
+  body: z.string().min(10, "Template body is required"),
+  description: z.string().optional().nullable(),
+  isActive: z.boolean().optional(),
+});
+
+export type EmailTemplateInput = z.infer<typeof emailTemplateSchema>;
+
+// Form -> Template Mapping Validation
+export const formEmailMappingSchema = z.object({
+  formKey: z.string().min(2, "Form key is required"),
+  templateId: z.string().min(1, "Template is required"),
+  enabled: z.boolean().optional().default(true),
+});
+
+export type FormEmailMappingInput = z.infer<typeof formEmailMappingSchema>;
+
+// Test-send a template
+export const emailTestSendSchema = z.object({
+  templateId: z.string().min(1),
+  to: z.string().email("Invalid email address"),
+  variables: z.record(z.string(), z.union([z.string(), z.number()])).optional(),
+});
+
+export type EmailTestSendInput = z.infer<typeof emailTestSendSchema>;
+
