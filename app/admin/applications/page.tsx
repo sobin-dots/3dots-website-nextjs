@@ -181,6 +181,16 @@ export default function ApplicationsAdminPage() {
         return <span className="px-3 py-1 bg-red-50 text-red-600 rounded-full text-xs font-semibold flex items-center gap-1"><XCircle className="w-3 h-3" /> Rejected</span>;
       case "REVIEWING":
         return <span className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold flex items-center gap-1"><Clock className="w-3 h-3" /> Reviewing</span>;
+      case "INTERVIEW_CONDUCTED":
+        return <span className="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-xs font-semibold flex items-center gap-1"><CheckCircle className="w-3 h-3" /> Interview Conducted</span>;
+      case "NOT_INTERESTED":
+        return <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-semibold flex items-center gap-1"><XCircle className="w-3 h-3" /> Not Interested</span>;
+      case "BLACKLISTED":
+        return <span className="px-3 py-1 bg-slate-800 text-slate-100 rounded-full text-xs font-semibold flex items-center gap-1"><XCircle className="w-3 h-3" /> Blacklisted</span>;
+      case "NOT_QUALIFIED":
+        return <span className="px-3 py-1 bg-orange-50 text-orange-600 rounded-full text-xs font-semibold flex items-center gap-1"><XCircle className="w-3 h-3" /> Not Qualified</span>;
+      case "FUTURE_REFERENCE":
+        return <span className="px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-xs font-semibold flex items-center gap-1"><Clock className="w-3 h-3" /> Future Reference</span>;
       default:
         return <span className="px-3 py-1 bg-yellow-50 text-yellow-600 rounded-full text-xs font-semibold flex items-center gap-1"><Clock className="w-3 h-3" /> Pending</span>;
     }
@@ -236,7 +246,11 @@ export default function ApplicationsAdminPage() {
             <option value="PENDING">Pending</option>
             <option value="REVIEWING">Reviewing</option>
             <option value="SHORTLISTED">Shortlisted</option>
+            <option value="INTERVIEW_CONDUCTED">Interview Conducted</option>
+            <option value="NOT_QUALIFIED">Not Qualified</option>
+            <option value="NOT_INTERESTED">Not Interested</option>
             <option value="REJECTED">Rejected</option>
+            <option value="BLACKLISTED">Blacklisted</option>
             <option value="FUTURE_REFERENCE">Future Reference</option>
           </select>
 
@@ -310,7 +324,12 @@ export default function ApplicationsAdminPage() {
                               <option value="PENDING">Pending</option>
                               <option value="REVIEWING">Reviewing</option>
                               <option value="SHORTLISTED">Shortlist</option>
+                              <option value="INTERVIEW_CONDUCTED">Interview Conducted</option>
+                              <option value="NOT_QUALIFIED">Not Qualified</option>
+                              <option value="NOT_INTERESTED">Not Interested</option>
                               <option value="REJECTED">Reject</option>
+                              <option value="BLACKLISTED">Blacklist</option>
+                              <option value="FUTURE_REFERENCE">Future Reference</option>
                             </select>
                             <button onClick={() => handleDelete(item.id)} className="p-2 text-slate-400 hover:text-red-500 transition-colors"><XCircle className="w-4 h-4" /></button>
                           </div>
@@ -402,32 +421,27 @@ export default function ApplicationsAdminPage() {
 
                     <div className="pt-4 border-t border-slate-100 space-y-2">
                       <p className="text-xs font-medium text-slate-400 uppercase tracking-widest text-center mb-3">Update Status</p>
-                      <div className="grid grid-cols-2 gap-2">
-                        <button
-                          onClick={() => handleUpdateStatus(item.id, "REVIEWING")}
-                          className={`py-2 text-xs font-semibold rounded-lg transition-all ${item.status === 'REVIEWING' ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-600 hover:bg-blue-50'}`}
-                        >
-                          Review
-                        </button>
-                        <button
-                          onClick={() => handleUpdateStatus(item.id, "SHORTLISTED")}
-                          className={`py-2 text-xs font-semibold rounded-lg transition-all ${item.status === 'SHORTLISTED' ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-600 hover:bg-green-50'}`}
-                        >
-                          Shortlist
-                        </button>
-                        <button
-                          onClick={() => handleUpdateStatus(item.id, "REJECTED")}
-                          className={`py-2 text-xs font-semibold rounded-lg transition-all ${item.status === 'REJECTED' ? 'bg-red-100 text-red-700' : 'bg-slate-100 text-slate-600 hover:bg-red-50'}`}
-                        >
-                          Reject
-                        </button>
-                        <button
-                          onClick={() => handleDelete(item.id)}
-                          className="py-2 bg-red-50 text-red-600 hover:bg-red-100 text-xs font-semibold rounded-lg transition-all"
-                        >
-                          Delete
-                        </button>
-                      </div>
+                      <select 
+                        className="w-full text-xs px-3 py-2 bg-slate-100 border-none rounded-lg outline-none text-slate-700"
+                        value={item.status}
+                        onChange={(e) => handleUpdateStatus(item.id, e.target.value)}
+                      >
+                        <option value="PENDING">Pending</option>
+                        <option value="REVIEWING">Reviewing</option>
+                        <option value="SHORTLISTED">Shortlisted</option>
+                        <option value="INTERVIEW_CONDUCTED">Interview Conducted</option>
+                        <option value="NOT_QUALIFIED">Not Qualified</option>
+                        <option value="NOT_INTERESTED">Not Interested</option>
+                        <option value="REJECTED">Rejected</option>
+                        <option value="BLACKLISTED">Blacklisted</option>
+                        <option value="FUTURE_REFERENCE">Future Reference</option>
+                      </select>
+                      <button
+                        onClick={() => handleDelete(item.id)}
+                        className="w-full mt-2 py-2 bg-red-50 text-red-600 hover:bg-red-100 text-xs font-semibold rounded-lg transition-all"
+                      >
+                        Delete
+                      </button>
                     </div>
                   </div>
                 </div>

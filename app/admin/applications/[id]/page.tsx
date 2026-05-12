@@ -128,6 +128,14 @@ export default function ApplicationDetailPage() {
         return <span className="px-4 py-1.5 bg-purple-50 text-purple-600 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"><Clock className="w-4 h-4" /> Future Reference</span>;
       case "REVIEWING":
         return <span className="px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"><Clock className="w-4 h-4" /> Reviewing</span>;
+      case "INTERVIEW_CONDUCTED":
+        return <span className="px-4 py-1.5 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"><CheckCircle className="w-4 h-4" /> Interview Conducted</span>;
+      case "NOT_INTERESTED":
+        return <span className="px-4 py-1.5 bg-gray-100 text-gray-600 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"><XCircle className="w-4 h-4" /> Not Interested</span>;
+      case "BLACKLISTED":
+        return <span className="px-4 py-1.5 bg-slate-800 text-slate-100 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"><XCircle className="w-4 h-4" /> Blacklisted</span>;
+      case "NOT_QUALIFIED":
+        return <span className="px-4 py-1.5 bg-orange-50 text-orange-600 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"><XCircle className="w-4 h-4" /> Not Qualified</span>;
       default:
         return <span className="px-4 py-1.5 bg-yellow-50 text-yellow-600 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"><Clock className="w-4 h-4" /> Pending</span>;
     }
@@ -279,38 +287,21 @@ export default function ApplicationDetailPage() {
 
             <div className="space-y-3 border-t border-slate-100 pt-6">
               <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4">Update Status</p>
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  onClick={() => handleUpdateStatus("REVIEWING")}
-                  className={`py-3 text-xs font-semibold rounded-xl border transition-all ${app.status === 'REVIEWING' ? 'bg-blue-50 border-blue-200 text-blue-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300'}`}
-                >
-                  Reviewing
-                </button>
-                <button
-                  onClick={() => handleUpdateStatus("SHORTLISTED")}
-                  className={`py-3 text-xs font-semibold rounded-xl border transition-all ${app.status === 'SHORTLISTED' ? 'bg-green-50 border-green-200 text-green-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300'}`}
-                >
-                  Shortlist
-                </button>
-                <button
-                  onClick={() => handleUpdateStatus("FUTURE_REFERENCE")}
-                  className={`py-3 text-xs font-semibold rounded-xl border transition-all ${app.status === 'FUTURE_REFERENCE' ? 'bg-purple-50 border-purple-200 text-purple-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300'}`}
-                >
-                  Future Ref
-                </button>
-                <button
-                  onClick={() => handleUpdateStatus("REJECTED")}
-                  className={`py-3 text-xs font-semibold rounded-xl border transition-all ${app.status === 'REJECTED' ? 'bg-red-50 border-red-200 text-red-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300'}`}
-                >
-                  Reject
-                </button>
-                <button
-                  onClick={() => handleUpdateStatus("PENDING")}
-                  className={`py-3 text-xs font-semibold rounded-xl border transition-all col-span-2 ${app.status === 'PENDING' ? 'bg-yellow-50 border-yellow-200 text-yellow-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300'}`}
-                >
-                  Reset to Pending
-                </button>
-              </div>
+              <select 
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:border-brand"
+                value={app.status}
+                onChange={(e) => handleUpdateStatus(e.target.value)}
+              >
+                <option value="PENDING">Pending</option>
+                <option value="REVIEWING">Reviewing</option>
+                <option value="SHORTLISTED">Shortlisted</option>
+                <option value="INTERVIEW_CONDUCTED">Interview Conducted</option>
+                <option value="NOT_QUALIFIED">Not Qualified</option>
+                <option value="NOT_INTERESTED">Not Interested</option>
+                <option value="REJECTED">Rejected</option>
+                <option value="BLACKLISTED">Blacklisted</option>
+                <option value="FUTURE_REFERENCE">Future Reference</option>
+              </select>
             </div>
 
             <div className="space-y-3 border-t border-slate-100 pt-6 mt-6">
