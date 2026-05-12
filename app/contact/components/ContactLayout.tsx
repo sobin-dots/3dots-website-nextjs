@@ -11,7 +11,7 @@ export default function ContactLayout() {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [errorMessage, setErrorMessage] = useState("");
 
-  
+
     const generateCaptcha = useCallback(() => {
         setNum1(Math.floor(Math.random() * 10) + 1);
         setNum2(Math.floor(Math.random() * 10) + 1);
@@ -68,7 +68,7 @@ export default function ContactLayout() {
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-24">
 
                 {/* Left Side: Contact Form */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
@@ -174,7 +174,7 @@ export default function ContactLayout() {
                 </motion.div>
 
                 {/* Right Side: Contact Info & Map */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
@@ -186,11 +186,12 @@ export default function ContactLayout() {
                         <h3 className="text-2xl font-medium text-slate-800 tracking-tight">Contact Information</h3>
 
                         {[
-                            { icon: <MapPin className="w-5 h-5" />, title: "Our Office", desc: <>317/4 Joe Daniel Street, <br />Kottar-Parvathipuram Rd, <br /> Nagercoil, Tamil Nadu 629003</> },
+                            { icon: <MapPin className="w-5 h-5" />, title: "Head Office", desc: <>317/4 Joe Daniel Street, <br />Kottar-Parvathipuram Rd, <br /> Nagercoil, Tamil Nadu 629003</> },
+                            { icon: <MapPin className="w-5 h-5" />, title: "US Office", desc: <>3 DOTS LLC, <br /> 8 The Green STE B, <br />Dover DE 19901</> },
                             { icon: <Mail className="w-5 h-5" />, title: "Email Us", desc: <>hello@3dots.co</> },
                             { icon: <Phone className="w-5 h-5" />, title: "Call Us", desc: <>+91 995 228 2868<br />Mon-Fri, 9am - 7pm IST</> }
                         ].map((item, i) => (
-                            <motion.div 
+                            <motion.div
                                 key={i}
                                 initial={{ opacity: 0, y: 10 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -211,7 +212,7 @@ export default function ContactLayout() {
                         ))}
                     </div>
 
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.6 }}
@@ -221,7 +222,7 @@ export default function ContactLayout() {
                         {/* Google Maps iFrame embedding a stylized location view */}
 
                         <iframe
-                           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.82478381335758!2d77.41452352638932!3d8.182946408357378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04f1000f40b44d%3A0xd715e519a02b64fc!2s3dots!5e0!3m2!1sen!2sin!4v1774278438952!5m2!1sen!2sin"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.82478381335758!2d77.41452352638932!3d8.182946408357378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04f1000f40b44d%3A0xd715e519a02b64fc!2s3dots!5e0!3m2!1sen!2sin!4v1774278438952!5m2!1sen!2sin"
                             className="w-full h-full absolute inset-0 filter grayscale opacity-90 group-hover:grayscale-0 transition-all duration-700"
                             allowFullScreen={false}
                             loading="lazy"

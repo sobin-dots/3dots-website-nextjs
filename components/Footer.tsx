@@ -36,13 +36,13 @@ export default function Footer() {
 
     return (
         <div className="mt-20">
-           
+
 
             {/* Dark Main Footer */}
             <footer className="bg-[#0F172A] text-slate-300 pt-24 pb-12 relative overflow-hidden">
                 {/* Subtle Gradient Glow */}
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 rounded-full blur-[120px] -mr-64 -mt-64"></div>
-                
+
                 <div className="max-w-[1400px] mx-auto px-6">
                     {/* Main Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
@@ -65,9 +65,9 @@ export default function Footer() {
                                     { Icon: Instagram, href: "https://www.instagram.com/3dotstechcollective?igsh=MTdjZGZ5YjR2NmU3aA%3D%3D&utm_source=qr" },
                                     { Icon: Youtube, href: "https://www.youtube.com/@3dotstechcollective" }
                                 ].map(({ Icon, href }, i) => (
-                                    <Link 
-                                        key={i} 
-                                        href={href} 
+                                    <Link
+                                        key={i}
+                                        href={href}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center hover:bg-brand hover:border-brand hover:text-white transition-all duration-300"
@@ -84,8 +84,8 @@ export default function Footer() {
                                 <ul className="space-y-4">
                                     {section.links.map((link, lIdx) => (
                                         <li key={lIdx}>
-                                            <Link 
-                                                href={link.href} 
+                                            <Link
+                                                href={link.href}
                                                 className="text-slate-400 hover:text-brand transition-colors text-sm font-light inline-flex items-center group"
                                             >
                                                 {link.name}
@@ -99,7 +99,7 @@ export default function Footer() {
                     </div>
 
                     {/* Lower Contact Info Bar */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-10 border-t border-slate-800/50 mb-10">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-10 border-t border-slate-800/50 mb-10">
                         <div className="flex items-start gap-4">
                             <div className="w-10 h-10 rounded-2xl bg-slate-800/50 flex items-center justify-center shrink-0">
                                 <Mail className="w-4 h-4 text-brand" />
@@ -123,14 +123,23 @@ export default function Footer() {
                                 <MapPin className="w-4 h-4 text-brand" />
                             </div>
                             <div>
-                                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Find Us</p>
-                                <p className="text-white">Nagercoil, Tamil Nadu - 629003</p>
+                                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Head Office</p>
+                                {/* <p className="text-white">Nagercoil, Tamil Nadu - 629003</p> */}
+                                <p className="text-white">317/4 Joe Daniel Street, <br />Kottar-Parvathipuram Rd, <br /> Nagercoil, Tamil Nadu 629003</p></div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                            <div className="w-10 h-10 rounded-2xl bg-slate-800/50 flex items-center justify-center shrink-0">
+                                <MapPin className="w-4 h-4 text-brand" />
                             </div>
+                            <div>
+                                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">US Office</p>
+                                {/* <p className="text-white">Nagercoil, Tamil Nadu - 629003</p> */}
+                                <p className="text-white">3 DOTS LLC, <br /> 8 THE GREEN STE B, <br />DOVER DE 19901</p></div>
                         </div>
                     </div>
 
                     {/* Copyright Bar */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 1 }}
@@ -138,7 +147,7 @@ export default function Footer() {
                         className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6"
                     >
                         <p className="text-slate-500 font-light text-xs tracking-wide">
-                            © {currentYear} 3dots. All rights reserved. Handcrafted by 3dots Engineering Team.
+                            © {currentYear} 3dots LLC. All rights reserved. Handcrafted by 3dots Engineering Team.
                         </p>
                         <div className="flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
                             <Link href="/sitemap" className="hover:text-brand transition-colors">Sitemap</Link>
