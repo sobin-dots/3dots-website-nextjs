@@ -134,7 +134,7 @@ export default function Footer() {
                             <div>
                                 <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">US Office</p>
                                 {/* <p className="text-white">Nagercoil, Tamil Nadu - 629003</p> */}
-                                <p className="text-white">3 DOTS LLC, <br /> 8 THE GREEN STE B, <br />DOVER DE 19901</p></div>
+                                <p className="text-white">3 DOTS LLC, <br /> 8 The Green STE B, <br />Dover, DE 19901</p></div>
                         </div>
                     </div>
 
