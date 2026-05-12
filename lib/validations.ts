@@ -64,6 +64,13 @@ export const jobApplicationSchema = z.object({
   coverLetter: z.string().optional().nullable(),
   additionalInfo: z.string().optional().nullable(),
   position: z.string().optional().nullable(),
+  isStudent: z.boolean().optional(),
+  currentCompany: z.string().optional().nullable(),
+  experienceYear: z.string().optional().nullable(),
+  yearOfStudy: z.string().optional().nullable(),
+  department: z.string().optional().nullable(),
+  course: z.string().optional().nullable(),
+  referredRole: z.string().optional().nullable(),
 });
 
 export type JobApplicationInput = z.infer<typeof jobApplicationSchema>;

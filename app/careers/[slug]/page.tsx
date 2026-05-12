@@ -20,6 +20,9 @@ export default function JobDetailPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedRole, setSelectedRole] = useState("");
     const [positions, setPositions] = useState<any[]>([]);
+    
+    // Application Extra Fields
+    const [isStudent, setIsStudent] = useState(false);
 
     // Math Captcha State
     const [num1, setNum1] = useState(0);
@@ -141,6 +144,12 @@ export default function JobDetailPage() {
                 resumeUrl: uploadedResumeUrl,
                 coverLetter: (formData.get("coverLetter") as string) || null,
                 additionalInfo: (formData.get("additionalInfo") as string) || null,
+                isStudent,
+                currentCompany: (formData.get("currentCompany") as string) || null,
+                experienceYear: (formData.get("experienceYear") as string) || null,
+                yearOfStudy: (formData.get("yearOfStudy") as string) || null,
+                department: (formData.get("department") as string) || null,
+                course: (formData.get("course") as string) || null,
             };
 
             const applyRes = await fetch("/api/careers/apply", {
@@ -394,6 +403,102 @@ export default function JobDetailPage() {
                                                     ))}
                                                 </select>
                                             </div>
+
+                                            {/* Profile Type Toggle */}
+                                            <div className="space-y-3">
+                                                <label className="text-sm font-medium text-slate-700">Are you a Student or Professional? <span className="text-brand">*</span></label>
+                                                <div className="flex items-center gap-4">
+                                                    <label className="flex items-center gap-2 cursor-pointer">
+                                                        <input 
+                                                            type="radio" 
+                                                            name="profileType" 
+                                                            checked={!isStudent} 
+                                                            onChange={() => setIsStudent(false)} 
+                                                            className="w-4 h-4 text-brand focus:ring-brand accent-brand"
+                                                        />
+                                                        <span className="text-sm text-slate-700">Professional</span>
+                                                    </label>
+                                                    <label className="flex items-center gap-2 cursor-pointer">
+                                                        <input 
+                                                            type="radio" 
+                                                            name="profileType" 
+                                                            checked={isStudent} 
+                                                            onChange={() => setIsStudent(true)} 
+                                                            className="w-4 h-4 text-brand focus:ring-brand accent-brand"
+                                                        />
+                                                        <span className="text-sm text-slate-700">Student</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            {/* Conditional Fields based on Profile Type */}
+                                            {isStudent ? (
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50 p-5 rounded-xl border border-slate-100">
+                                                    <div className="space-y-2 sm:col-span-2">
+                                                        <label className="text-sm font-medium text-slate-700">Studying Institute <span className="text-brand">*</span></label>
+                                                        <input
+                                                            type="text"
+                                                            name="currentCompany"
+                                                            required={isStudent}
+                                                            className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand font-light text-slate-800 transition-all placeholder:text-slate-400"
+                                                            placeholder="e.g. University of Science"
+                                                        />
+                                                    </div>
+                                                    <div className="space-y-2">
+                                                        <label className="text-sm font-medium text-slate-700">Course <span className="text-brand">*</span></label>
+                                                        <input
+                                                            type="text"
+                                                            name="course"
+                                                            required={isStudent}
+                                                            className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand font-light text-slate-800 transition-all placeholder:text-slate-400"
+                                                            placeholder="e.g. BE, ME, BA"
+                                                        />
+                                                    </div>
+                                                    <div className="space-y-2">
+                                                        <label className="text-sm font-medium text-slate-700">Department <span className="text-brand">*</span></label>
+                                                        <input
+                                                            type="text"
+                                                            name="department"
+                                                            required={isStudent}
+                                                            className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand font-light text-slate-800 transition-all placeholder:text-slate-400"
+                                                            placeholder="e.g. Computer Science"
+                                                        />
+                                                    </div>
+                                                    <div className="space-y-2 sm:col-span-2">
+                                                        <label className="text-sm font-medium text-slate-700">Current Year of Study <span className="text-brand">*</span></label>
+                                                        <input
+                                                            type="text"
+                                                            name="yearOfStudy"
+                                                            required={isStudent}
+                                                            className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand font-light text-slate-800 transition-all placeholder:text-slate-400"
+                                                            placeholder="e.g. 3rd Year"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50 p-5 rounded-xl border border-slate-100">
+                                                    <div className="space-y-2">
+                                                        <label className="text-sm font-medium text-slate-700">Current Company <span className="text-brand">*</span></label>
+                                                        <input
+                                                            type="text"
+                                                            name="currentCompany"
+                                                            required={!isStudent}
+                                                            className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand font-light text-slate-800 transition-all placeholder:text-slate-400"
+                                                            placeholder="e.g. Acme Corp"
+                                                        />
+                                                    </div>
+                                                    <div className="space-y-2">
+                                                        <label className="text-sm font-medium text-slate-700">Years of Experience <span className="text-brand">*</span></label>
+                                                        <input
+                                                            type="text"
+                                                            name="experienceYear"
+                                                            required={!isStudent}
+                                                            className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand font-light text-slate-800 transition-all placeholder:text-slate-400"
+                                                            placeholder="e.g. 4.5 years"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            )}
 
                                             {/* Resume Upload */}
                                             <div className="space-y-2">

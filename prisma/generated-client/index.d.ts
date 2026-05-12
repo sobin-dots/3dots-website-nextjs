@@ -8742,6 +8742,13 @@ export namespace Prisma {
     status: string | null
     createdAt: Date | null
     position: string | null
+    isStudent: boolean | null
+    currentCompany: string | null
+    experienceYear: string | null
+    yearOfStudy: string | null
+    department: string | null
+    course: string | null
+    referredRole: string | null
   }
 
   export type JobApplicationMaxAggregateOutputType = {
@@ -8756,6 +8763,13 @@ export namespace Prisma {
     status: string | null
     createdAt: Date | null
     position: string | null
+    isStudent: boolean | null
+    currentCompany: string | null
+    experienceYear: string | null
+    yearOfStudy: string | null
+    department: string | null
+    course: string | null
+    referredRole: string | null
   }
 
   export type JobApplicationCountAggregateOutputType = {
@@ -8770,6 +8784,13 @@ export namespace Prisma {
     status: number
     createdAt: number
     position: number
+    isStudent: number
+    currentCompany: number
+    experienceYear: number
+    yearOfStudy: number
+    department: number
+    course: number
+    referredRole: number
     _all: number
   }
 
@@ -8786,6 +8807,13 @@ export namespace Prisma {
     status?: true
     createdAt?: true
     position?: true
+    isStudent?: true
+    currentCompany?: true
+    experienceYear?: true
+    yearOfStudy?: true
+    department?: true
+    course?: true
+    referredRole?: true
   }
 
   export type JobApplicationMaxAggregateInputType = {
@@ -8800,6 +8828,13 @@ export namespace Prisma {
     status?: true
     createdAt?: true
     position?: true
+    isStudent?: true
+    currentCompany?: true
+    experienceYear?: true
+    yearOfStudy?: true
+    department?: true
+    course?: true
+    referredRole?: true
   }
 
   export type JobApplicationCountAggregateInputType = {
@@ -8814,6 +8849,13 @@ export namespace Prisma {
     status?: true
     createdAt?: true
     position?: true
+    isStudent?: true
+    currentCompany?: true
+    experienceYear?: true
+    yearOfStudy?: true
+    department?: true
+    course?: true
+    referredRole?: true
     _all?: true
   }
 
@@ -8901,6 +8943,13 @@ export namespace Prisma {
     status: string
     createdAt: Date
     position: string | null
+    isStudent: boolean | null
+    currentCompany: string | null
+    experienceYear: string | null
+    yearOfStudy: string | null
+    department: string | null
+    course: string | null
+    referredRole: string | null
     _count: JobApplicationCountAggregateOutputType | null
     _min: JobApplicationMinAggregateOutputType | null
     _max: JobApplicationMaxAggregateOutputType | null
@@ -8932,6 +8981,13 @@ export namespace Prisma {
     status?: boolean
     createdAt?: boolean
     position?: boolean
+    isStudent?: boolean
+    currentCompany?: boolean
+    experienceYear?: boolean
+    yearOfStudy?: boolean
+    department?: boolean
+    course?: boolean
+    referredRole?: boolean
     job?: boolean | JobApplication$jobArgs<ExtArgs>
   }, ExtArgs["result"]["jobApplication"]>
 
@@ -8947,6 +9003,13 @@ export namespace Prisma {
     status?: boolean
     createdAt?: boolean
     position?: boolean
+    isStudent?: boolean
+    currentCompany?: boolean
+    experienceYear?: boolean
+    yearOfStudy?: boolean
+    department?: boolean
+    course?: boolean
+    referredRole?: boolean
     job?: boolean | JobApplication$jobArgs<ExtArgs>
   }, ExtArgs["result"]["jobApplication"]>
 
@@ -8962,6 +9025,13 @@ export namespace Prisma {
     status?: boolean
     createdAt?: boolean
     position?: boolean
+    isStudent?: boolean
+    currentCompany?: boolean
+    experienceYear?: boolean
+    yearOfStudy?: boolean
+    department?: boolean
+    course?: boolean
+    referredRole?: boolean
     job?: boolean | JobApplication$jobArgs<ExtArgs>
   }, ExtArgs["result"]["jobApplication"]>
 
@@ -8977,9 +9047,16 @@ export namespace Prisma {
     status?: boolean
     createdAt?: boolean
     position?: boolean
+    isStudent?: boolean
+    currentCompany?: boolean
+    experienceYear?: boolean
+    yearOfStudy?: boolean
+    department?: boolean
+    course?: boolean
+    referredRole?: boolean
   }
 
-  export type JobApplicationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "jobId" | "fullName" | "email" | "phone" | "resumeUrl" | "coverLetter" | "additionalInfo" | "status" | "createdAt" | "position", ExtArgs["result"]["jobApplication"]>
+  export type JobApplicationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "jobId" | "fullName" | "email" | "phone" | "resumeUrl" | "coverLetter" | "additionalInfo" | "status" | "createdAt" | "position" | "isStudent" | "currentCompany" | "experienceYear" | "yearOfStudy" | "department" | "course" | "referredRole", ExtArgs["result"]["jobApplication"]>
   export type JobApplicationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     job?: boolean | JobApplication$jobArgs<ExtArgs>
   }
@@ -9007,6 +9084,13 @@ export namespace Prisma {
       status: string
       createdAt: Date
       position: string | null
+      isStudent: boolean | null
+      currentCompany: string | null
+      experienceYear: string | null
+      yearOfStudy: string | null
+      department: string | null
+      course: string | null
+      referredRole: string | null
     }, ExtArgs["result"]["jobApplication"]>
     composites: {}
   }
@@ -9442,6 +9526,13 @@ export namespace Prisma {
     readonly status: FieldRef<"JobApplication", 'String'>
     readonly createdAt: FieldRef<"JobApplication", 'DateTime'>
     readonly position: FieldRef<"JobApplication", 'String'>
+    readonly isStudent: FieldRef<"JobApplication", 'Boolean'>
+    readonly currentCompany: FieldRef<"JobApplication", 'String'>
+    readonly experienceYear: FieldRef<"JobApplication", 'String'>
+    readonly yearOfStudy: FieldRef<"JobApplication", 'String'>
+    readonly department: FieldRef<"JobApplication", 'String'>
+    readonly course: FieldRef<"JobApplication", 'String'>
+    readonly referredRole: FieldRef<"JobApplication", 'String'>
   }
     
 
@@ -26256,7 +26347,14 @@ export namespace Prisma {
     additionalInfo: 'additionalInfo',
     status: 'status',
     createdAt: 'createdAt',
-    position: 'position'
+    position: 'position',
+    isStudent: 'isStudent',
+    currentCompany: 'currentCompany',
+    experienceYear: 'experienceYear',
+    yearOfStudy: 'yearOfStudy',
+    department: 'department',
+    course: 'course',
+    referredRole: 'referredRole'
   };
 
   export type JobApplicationScalarFieldEnum = (typeof JobApplicationScalarFieldEnum)[keyof typeof JobApplicationScalarFieldEnum]
@@ -27034,6 +27132,13 @@ export namespace Prisma {
     status?: StringFilter<"JobApplication"> | string
     createdAt?: DateTimeFilter<"JobApplication"> | Date | string
     position?: StringNullableFilter<"JobApplication"> | string | null
+    isStudent?: BoolNullableFilter<"JobApplication"> | boolean | null
+    currentCompany?: StringNullableFilter<"JobApplication"> | string | null
+    experienceYear?: StringNullableFilter<"JobApplication"> | string | null
+    yearOfStudy?: StringNullableFilter<"JobApplication"> | string | null
+    department?: StringNullableFilter<"JobApplication"> | string | null
+    course?: StringNullableFilter<"JobApplication"> | string | null
+    referredRole?: StringNullableFilter<"JobApplication"> | string | null
     job?: XOR<JobNullableScalarRelationFilter, JobWhereInput> | null
   }
 
@@ -27049,6 +27154,13 @@ export namespace Prisma {
     status?: SortOrder
     createdAt?: SortOrder
     position?: SortOrderInput | SortOrder
+    isStudent?: SortOrderInput | SortOrder
+    currentCompany?: SortOrderInput | SortOrder
+    experienceYear?: SortOrderInput | SortOrder
+    yearOfStudy?: SortOrderInput | SortOrder
+    department?: SortOrderInput | SortOrder
+    course?: SortOrderInput | SortOrder
+    referredRole?: SortOrderInput | SortOrder
     job?: JobOrderByWithRelationInput
   }
 
@@ -27067,6 +27179,13 @@ export namespace Prisma {
     status?: StringFilter<"JobApplication"> | string
     createdAt?: DateTimeFilter<"JobApplication"> | Date | string
     position?: StringNullableFilter<"JobApplication"> | string | null
+    isStudent?: BoolNullableFilter<"JobApplication"> | boolean | null
+    currentCompany?: StringNullableFilter<"JobApplication"> | string | null
+    experienceYear?: StringNullableFilter<"JobApplication"> | string | null
+    yearOfStudy?: StringNullableFilter<"JobApplication"> | string | null
+    department?: StringNullableFilter<"JobApplication"> | string | null
+    course?: StringNullableFilter<"JobApplication"> | string | null
+    referredRole?: StringNullableFilter<"JobApplication"> | string | null
     job?: XOR<JobNullableScalarRelationFilter, JobWhereInput> | null
   }, "id">
 
@@ -27082,6 +27201,13 @@ export namespace Prisma {
     status?: SortOrder
     createdAt?: SortOrder
     position?: SortOrderInput | SortOrder
+    isStudent?: SortOrderInput | SortOrder
+    currentCompany?: SortOrderInput | SortOrder
+    experienceYear?: SortOrderInput | SortOrder
+    yearOfStudy?: SortOrderInput | SortOrder
+    department?: SortOrderInput | SortOrder
+    course?: SortOrderInput | SortOrder
+    referredRole?: SortOrderInput | SortOrder
     _count?: JobApplicationCountOrderByAggregateInput
     _max?: JobApplicationMaxOrderByAggregateInput
     _min?: JobApplicationMinOrderByAggregateInput
@@ -27102,6 +27228,13 @@ export namespace Prisma {
     status?: StringWithAggregatesFilter<"JobApplication"> | string
     createdAt?: DateTimeWithAggregatesFilter<"JobApplication"> | Date | string
     position?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+    isStudent?: BoolNullableWithAggregatesFilter<"JobApplication"> | boolean | null
+    currentCompany?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+    experienceYear?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+    yearOfStudy?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+    department?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+    course?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+    referredRole?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
   }
 
   export type ContactInquiryWhereInput = {
@@ -28624,6 +28757,13 @@ export namespace Prisma {
     status?: string
     createdAt?: Date | string
     position?: string | null
+    isStudent?: boolean | null
+    currentCompany?: string | null
+    experienceYear?: string | null
+    yearOfStudy?: string | null
+    department?: string | null
+    course?: string | null
+    referredRole?: string | null
     job?: JobCreateNestedOneWithoutApplicationsInput
   }
 
@@ -28639,6 +28779,13 @@ export namespace Prisma {
     status?: string
     createdAt?: Date | string
     position?: string | null
+    isStudent?: boolean | null
+    currentCompany?: string | null
+    experienceYear?: string | null
+    yearOfStudy?: string | null
+    department?: string | null
+    course?: string | null
+    referredRole?: string | null
   }
 
   export type JobApplicationUpdateInput = {
@@ -28652,6 +28799,13 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: NullableStringFieldUpdateOperationsInput | string | null
+    isStudent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    currentCompany?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceYear?: NullableStringFieldUpdateOperationsInput | string | null
+    yearOfStudy?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    course?: NullableStringFieldUpdateOperationsInput | string | null
+    referredRole?: NullableStringFieldUpdateOperationsInput | string | null
     job?: JobUpdateOneWithoutApplicationsNestedInput
   }
 
@@ -28667,6 +28821,13 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: NullableStringFieldUpdateOperationsInput | string | null
+    isStudent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    currentCompany?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceYear?: NullableStringFieldUpdateOperationsInput | string | null
+    yearOfStudy?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    course?: NullableStringFieldUpdateOperationsInput | string | null
+    referredRole?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationCreateManyInput = {
@@ -28681,6 +28842,13 @@ export namespace Prisma {
     status?: string
     createdAt?: Date | string
     position?: string | null
+    isStudent?: boolean | null
+    currentCompany?: string | null
+    experienceYear?: string | null
+    yearOfStudy?: string | null
+    department?: string | null
+    course?: string | null
+    referredRole?: string | null
   }
 
   export type JobApplicationUpdateManyMutationInput = {
@@ -28694,6 +28862,13 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: NullableStringFieldUpdateOperationsInput | string | null
+    isStudent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    currentCompany?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceYear?: NullableStringFieldUpdateOperationsInput | string | null
+    yearOfStudy?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    course?: NullableStringFieldUpdateOperationsInput | string | null
+    referredRole?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationUncheckedUpdateManyInput = {
@@ -28708,6 +28883,13 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: NullableStringFieldUpdateOperationsInput | string | null
+    isStudent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    currentCompany?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceYear?: NullableStringFieldUpdateOperationsInput | string | null
+    yearOfStudy?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    course?: NullableStringFieldUpdateOperationsInput | string | null
+    referredRole?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContactInquiryCreateInput = {
@@ -30277,6 +30459,11 @@ export namespace Prisma {
     howToApply?: SortOrder
   }
 
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
   export type JobNullableScalarRelationFilter = {
     is?: JobWhereInput | null
     isNot?: JobWhereInput | null
@@ -30294,6 +30481,13 @@ export namespace Prisma {
     status?: SortOrder
     createdAt?: SortOrder
     position?: SortOrder
+    isStudent?: SortOrder
+    currentCompany?: SortOrder
+    experienceYear?: SortOrder
+    yearOfStudy?: SortOrder
+    department?: SortOrder
+    course?: SortOrder
+    referredRole?: SortOrder
   }
 
   export type JobApplicationMaxOrderByAggregateInput = {
@@ -30308,6 +30502,13 @@ export namespace Prisma {
     status?: SortOrder
     createdAt?: SortOrder
     position?: SortOrder
+    isStudent?: SortOrder
+    currentCompany?: SortOrder
+    experienceYear?: SortOrder
+    yearOfStudy?: SortOrder
+    department?: SortOrder
+    course?: SortOrder
+    referredRole?: SortOrder
   }
 
   export type JobApplicationMinOrderByAggregateInput = {
@@ -30322,6 +30523,21 @@ export namespace Prisma {
     status?: SortOrder
     createdAt?: SortOrder
     position?: SortOrder
+    isStudent?: SortOrder
+    currentCompany?: SortOrder
+    experienceYear?: SortOrder
+    yearOfStudy?: SortOrder
+    department?: SortOrder
+    course?: SortOrder
+    referredRole?: SortOrder
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type ContactInquiryCountOrderByAggregateInput = {
@@ -31148,6 +31364,10 @@ export namespace Prisma {
     connect?: JobWhereUniqueInput
   }
 
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
+  }
+
   export type JobUpdateOneWithoutApplicationsNestedInput = {
     create?: XOR<JobCreateWithoutApplicationsInput, JobUncheckedCreateWithoutApplicationsInput>
     connectOrCreate?: JobCreateOrConnectWithoutApplicationsInput
@@ -31693,6 +31913,19 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -32120,6 +32353,13 @@ export namespace Prisma {
     status?: string
     createdAt?: Date | string
     position?: string | null
+    isStudent?: boolean | null
+    currentCompany?: string | null
+    experienceYear?: string | null
+    yearOfStudy?: string | null
+    department?: string | null
+    course?: string | null
+    referredRole?: string | null
   }
 
   export type JobApplicationUncheckedCreateWithoutJobInput = {
@@ -32133,6 +32373,13 @@ export namespace Prisma {
     status?: string
     createdAt?: Date | string
     position?: string | null
+    isStudent?: boolean | null
+    currentCompany?: string | null
+    experienceYear?: string | null
+    yearOfStudy?: string | null
+    department?: string | null
+    course?: string | null
+    referredRole?: string | null
   }
 
   export type JobApplicationCreateOrConnectWithoutJobInput = {
@@ -32176,6 +32423,13 @@ export namespace Prisma {
     status?: StringFilter<"JobApplication"> | string
     createdAt?: DateTimeFilter<"JobApplication"> | Date | string
     position?: StringNullableFilter<"JobApplication"> | string | null
+    isStudent?: BoolNullableFilter<"JobApplication"> | boolean | null
+    currentCompany?: StringNullableFilter<"JobApplication"> | string | null
+    experienceYear?: StringNullableFilter<"JobApplication"> | string | null
+    yearOfStudy?: StringNullableFilter<"JobApplication"> | string | null
+    department?: StringNullableFilter<"JobApplication"> | string | null
+    course?: StringNullableFilter<"JobApplication"> | string | null
+    referredRole?: StringNullableFilter<"JobApplication"> | string | null
   }
 
   export type JobCreateWithoutApplicationsInput = {
@@ -33136,6 +33390,13 @@ export namespace Prisma {
     status?: string
     createdAt?: Date | string
     position?: string | null
+    isStudent?: boolean | null
+    currentCompany?: string | null
+    experienceYear?: string | null
+    yearOfStudy?: string | null
+    department?: string | null
+    course?: string | null
+    referredRole?: string | null
   }
 
   export type JobApplicationUpdateWithoutJobInput = {
@@ -33149,6 +33410,13 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: NullableStringFieldUpdateOperationsInput | string | null
+    isStudent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    currentCompany?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceYear?: NullableStringFieldUpdateOperationsInput | string | null
+    yearOfStudy?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    course?: NullableStringFieldUpdateOperationsInput | string | null
+    referredRole?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationUncheckedUpdateWithoutJobInput = {
@@ -33162,6 +33430,13 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: NullableStringFieldUpdateOperationsInput | string | null
+    isStudent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    currentCompany?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceYear?: NullableStringFieldUpdateOperationsInput | string | null
+    yearOfStudy?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    course?: NullableStringFieldUpdateOperationsInput | string | null
+    referredRole?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationUncheckedUpdateManyWithoutJobInput = {
@@ -33175,6 +33450,13 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: NullableStringFieldUpdateOperationsInput | string | null
+    isStudent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    currentCompany?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceYear?: NullableStringFieldUpdateOperationsInput | string | null
+    yearOfStudy?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    course?: NullableStringFieldUpdateOperationsInput | string | null
+    referredRole?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AppointmentCreateManyExpertInput = {

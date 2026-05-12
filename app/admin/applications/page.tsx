@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Mail, Phone, Calendar as CalendarIcon, FileText, CheckCircle, XCircle, Clock, Link as LinkIcon, Briefcase, LayoutGrid, List, Eye } from "lucide-react";
+import { Mail, Phone, Calendar as CalendarIcon, FileText, CheckCircle, XCircle, Clock, Link as LinkIcon, Briefcase, LayoutGrid, List, Eye, Download } from "lucide-react";
 import Link from "next/link";
 import Pagination from "../components/Pagination";
 
@@ -17,6 +17,13 @@ interface JobApplication {
   status: string;
   position: string | null;
   createdAt: string;
+  isStudent?: boolean;
+  currentCompany?: string | null;
+  experienceYear?: string | null;
+  yearOfStudy?: string | null;
+  department?: string | null;
+  course?: string | null;
+  referredRole?: string | null;
   job?: { id: string; title: string };
 }
 
@@ -100,6 +107,66 @@ export default function ApplicationsAdminPage() {
     return true;
   });
 
+  const handleDownloadCSV = () => {
+    if (filteredApplications.length === 0) return;
+
+    const headers = [
+      "ID",
+      "Full Name",
+      "Email",
+      "Phone",
+      "Position/Job Title",
+      "Status",
+      "Applied Date",
+      "Referred Role",
+      "Profile Type",
+      "Current Company / Institute",
+      "Experience / Year of Study",
+      "Department",
+      "Course",
+      "Cover Letter",
+      "Additional Info"
+    ];
+
+    const escapeCsv = (val: any) => {
+      if (val === null || val === undefined) return '""';
+      const str = String(val).replace(/"/g, '""');
+      return `"${str}"`;
+    };
+
+    const rows = filteredApplications.map(app => [
+      app.id,
+      app.fullName,
+      app.email,
+      app.phone || "",
+      app.job?.title || app.position || "General Application",
+      app.status,
+      new Date(app.createdAt).toLocaleString(),
+      app.referredRole || "",
+      app.isStudent ? "Student" : "Professional",
+      app.currentCompany || "",
+      app.isStudent ? (app.yearOfStudy || "") : (app.experienceYear || ""),
+      app.department || "",
+      app.course || "",
+      app.coverLetter || "",
+      app.additionalInfo || ""
+    ]);
+
+    const csvContent = [
+      headers.map(escapeCsv).join(","),
+      ...rows.map(row => row.map(escapeCsv).join(","))
+    ].join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", `applications_export_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const totalPages = Math.ceil(filteredApplications.length / ITEMS_PER_PAGE);
   const paginatedApplications = filteredApplications.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
@@ -170,7 +237,17 @@ export default function ApplicationsAdminPage() {
             <option value="REVIEWING">Reviewing</option>
             <option value="SHORTLISTED">Shortlisted</option>
             <option value="REJECTED">Rejected</option>
+            <option value="FUTURE_REFERENCE">Future Reference</option>
           </select>
+
+          <button
+            onClick={handleDownloadCSV}
+            disabled={filteredApplications.length === 0}
+            className="px-4 py-2 bg-slate-800 text-white rounded-xl text-sm font-semibold flex items-center gap-2 hover:bg-slate-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm shrink-0"
+            title="Download Filtered Applications as CSV"
+          >
+            <Download className="w-4 h-4" /> Export
+          </button>
         </div>
       </div>
 

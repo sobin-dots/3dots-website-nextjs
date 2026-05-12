@@ -19,6 +19,13 @@ interface JobApplication {
   status: string;
   position: string | null;
   createdAt: string;
+  isStudent: boolean;
+  currentCompany: string | null;
+  experienceYear: string | null;
+  yearOfStudy: string | null;
+  department: string | null;
+  course: string | null;
+  referredRole: string | null;
   job?: { id: string; title: string; tag: string; location: string; type: string };
 }
 
@@ -62,6 +69,22 @@ export default function ApplicationDetailPage() {
     }
   };
 
+  const handleUpdateReferredRole = async (role: string) => {
+    if (!app) return;
+    try {
+      const res = await fetch(`/api/admin/applications/${app.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ referredRole: role || null }),
+      });
+      if (res.ok) {
+        setApp({ ...app, referredRole: role || null });
+      }
+    } catch (error) {
+      console.error("Failed to update referred role", error);
+    }
+  };
+
   const handleDelete = async () => {
     if (!app || !confirm("Are you sure you want to permanently delete this application?")) return;
 
@@ -101,6 +124,8 @@ export default function ApplicationDetailPage() {
         return <span className="px-4 py-1.5 bg-green-50 text-green-600 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"><CheckCircle className="w-4 h-4" /> Shortlisted</span>;
       case "REJECTED":
         return <span className="px-4 py-1.5 bg-red-50 text-red-600 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"><XCircle className="w-4 h-4" /> Rejected</span>;
+      case "FUTURE_REFERENCE":
+        return <span className="px-4 py-1.5 bg-purple-50 text-purple-600 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"><Clock className="w-4 h-4" /> Future Reference</span>;
       case "REVIEWING":
         return <span className="px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"><Clock className="w-4 h-4" /> Reviewing</span>;
       default:
@@ -127,6 +152,11 @@ export default function ApplicationDetailPage() {
               <p className={`text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5 px-3 py-1.5 rounded-lg border ${!app.jobId ? "bg-amber-50 text-amber-600 border-amber-100" : "bg-brand/5 text-brand border-brand/10"}`}>
                 <Briefcase className="w-3.5 h-3.5" /> {app.job?.title || app.position || "General Application"}
               </p>
+              {app.referredRole && (
+                <p className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5 px-3 py-1.5 rounded-lg border bg-purple-50 text-purple-600 border-purple-100">
+                  <Briefcase className="w-3.5 h-3.5" /> Referred: {app.referredRole}
+                </p>
+              )}
               <p className="text-xs font-medium text-slate-500 flex items-center gap-1.5">
                 <CalendarIcon className="w-3.5 h-3.5" /> Applied on {new Date(app.createdAt).toLocaleDateString()}
               </p>
@@ -176,6 +206,52 @@ export default function ApplicationDetailPage() {
               </a>
             </div>
           )}
+
+          {/* Background Information */}
+          <div className="bg-white p-8 rounded-4xl border border-slate-100 shadow-sm">
+            <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-6">Background Info</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {app.isStudent ? (
+                <>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase text-slate-400 mb-1">Profile Type</p>
+                    <p className="text-sm font-medium text-slate-700">Student</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase text-slate-400 mb-1">Studying Institute</p>
+                    <p className="text-sm font-medium text-slate-700">{app.currentCompany || "N/A"}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase text-slate-400 mb-1">Course</p>
+                    <p className="text-sm font-medium text-slate-700">{app.course || "N/A"}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase text-slate-400 mb-1">Department</p>
+                    <p className="text-sm font-medium text-slate-700">{app.department || "N/A"}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase text-slate-400 mb-1">Year of Study</p>
+                    <p className="text-sm font-medium text-slate-700">{app.yearOfStudy || "N/A"}</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase text-slate-400 mb-1">Profile Type</p>
+                    <p className="text-sm font-medium text-slate-700">Professional</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase text-slate-400 mb-1">Current Company</p>
+                    <p className="text-sm font-medium text-slate-700">{app.currentCompany || "N/A"}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase text-slate-400 mb-1">Years of Experience</p>
+                    <p className="text-sm font-medium text-slate-700">{app.experienceYear || "N/A"}</p>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
         </div>
 
         <div className="space-y-6">
@@ -217,6 +293,12 @@ export default function ApplicationDetailPage() {
                   Shortlist
                 </button>
                 <button
+                  onClick={() => handleUpdateStatus("FUTURE_REFERENCE")}
+                  className={`py-3 text-xs font-semibold rounded-xl border transition-all ${app.status === 'FUTURE_REFERENCE' ? 'bg-purple-50 border-purple-200 text-purple-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300'}`}
+                >
+                  Future Ref
+                </button>
+                <button
                   onClick={() => handleUpdateStatus("REJECTED")}
                   className={`py-3 text-xs font-semibold rounded-xl border transition-all ${app.status === 'REJECTED' ? 'bg-red-50 border-red-200 text-red-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300'}`}
                 >
@@ -224,11 +306,29 @@ export default function ApplicationDetailPage() {
                 </button>
                 <button
                   onClick={() => handleUpdateStatus("PENDING")}
-                  className={`py-3 text-xs font-semibold rounded-xl border transition-all ${app.status === 'PENDING' ? 'bg-yellow-50 border-yellow-200 text-yellow-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300'}`}
+                  className={`py-3 text-xs font-semibold rounded-xl border transition-all col-span-2 ${app.status === 'PENDING' ? 'bg-yellow-50 border-yellow-200 text-yellow-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300'}`}
                 >
-                  Reset Pending
+                  Reset to Pending
                 </button>
               </div>
+            </div>
+
+            <div className="space-y-3 border-t border-slate-100 pt-6 mt-6">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4">Refer to Another Role</p>
+              <select
+                value={app.referredRole || ""}
+                onChange={(e) => handleUpdateReferredRole(e.target.value)}
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:border-brand"
+              >
+                <option value="">None (Current Role Only)</option>
+                <option value="Frontend Developer">Frontend Developer</option>
+                <option value="Backend Developer">Backend Developer</option>
+                <option value="Fullstack Developer">Fullstack Developer</option>
+                <option value="Quality Assurance (QA)">Quality Assurance (QA)</option>
+                <option value="Business Analyst (BA)">Business Analyst (BA)</option>
+                <option value="UI/UX Designer">UI/UX Designer</option>
+                <option value="Project Manager">Project Manager</option>
+              </select>
             </div>
 
             <div className="border-t border-red-50 mt-6 pt-6">

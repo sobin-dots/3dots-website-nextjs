@@ -96,6 +96,15 @@ model JobApplication {
   createdAt      DateTime @default(now())
   position       String?
   job            Job?     @relation(fields: [jobId], references: [id])
+  
+  // New applicant fields
+  isStudent      Boolean? @default(false)
+  currentCompany String?
+  experienceYear String?
+  yearOfStudy    String?
+  department     String?
+  course         String?
+  referredRole   String?
 }
 
 model ContactInquiry {

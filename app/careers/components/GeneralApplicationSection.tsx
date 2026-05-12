@@ -13,6 +13,9 @@ export default function GeneralApplicationSection() {
     const [errorMessage, setErrorMessage] = useState("");
     const [fileName, setFileName] = useState("No file chosen");
 
+    // Application Extra Fields
+    const [isStudent, setIsStudent] = useState(false);
+
     const generateCaptcha = useCallback(() => {
         setNum1(Math.floor(Math.random() * 10) + 1);
         setNum2(Math.floor(Math.random() * 10) + 1);
@@ -66,6 +69,12 @@ export default function GeneralApplicationSection() {
                 resumeUrl: uploadedResumeUrl,
                 coverLetter: (formData.get("coverLetter") as string) || null,
                 additionalInfo: (formData.get("additionalInfo") as string) || null,
+                isStudent,
+                currentCompany: (formData.get("currentCompany") as string) || null,
+                experienceYear: (formData.get("experienceYear") as string) || null,
+                yearOfStudy: (formData.get("yearOfStudy") as string) || null,
+                department: (formData.get("department") as string) || null,
+                course: (formData.get("course") as string) || null,
             };
 
             const applyRes = await fetch("/api/careers/apply", {
@@ -186,6 +195,102 @@ export default function GeneralApplicationSection() {
                                     placeholder="e.g. Senior Backend Engineer"
                                 />
                             </div>
+
+                            {/* Profile Type Toggle */}
+                            <div className="space-y-3">
+                                <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">Are you a Student or Professional?</label>
+                                <div className="flex items-center gap-4 ml-1">
+                                    <label className="flex items-center gap-2 cursor-pointer">
+                                        <input 
+                                            type="radio" 
+                                            name="generalProfileType" 
+                                            checked={!isStudent} 
+                                            onChange={() => setIsStudent(false)} 
+                                            className="w-4 h-4 text-brand focus:ring-brand accent-brand"
+                                        />
+                                        <span className="text-sm text-slate-700">Professional</span>
+                                    </label>
+                                    <label className="flex items-center gap-2 cursor-pointer">
+                                        <input 
+                                            type="radio" 
+                                            name="generalProfileType" 
+                                            checked={isStudent} 
+                                            onChange={() => setIsStudent(true)} 
+                                            className="w-4 h-4 text-brand focus:ring-brand accent-brand"
+                                        />
+                                        <span className="text-sm text-slate-700">Student</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            {/* Conditional Fields based on Profile Type */}
+                            {isStudent ? (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                    <div className="space-y-1.5 sm:col-span-2">
+                                        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">Studying Institute</label>
+                                        <input
+                                            type="text"
+                                            name="currentCompany"
+                                            required={isStudent}
+                                            className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-brand transition-all text-slate-800 text-sm"
+                                            placeholder="e.g. University of Science"
+                                        />
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">Course</label>
+                                        <input
+                                            type="text"
+                                            name="course"
+                                            required={isStudent}
+                                            className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-brand transition-all text-slate-800 text-sm"
+                                            placeholder="e.g. BE, ME, BA"
+                                        />
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">Department</label>
+                                        <input
+                                            type="text"
+                                            name="department"
+                                            required={isStudent}
+                                            className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-brand transition-all text-slate-800 text-sm"
+                                            placeholder="e.g. Computer Science"
+                                        />
+                                    </div>
+                                    <div className="space-y-1.5 sm:col-span-2">
+                                        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">Current Year of Study</label>
+                                        <input
+                                            type="text"
+                                            name="yearOfStudy"
+                                            required={isStudent}
+                                            className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-brand transition-all text-slate-800 text-sm"
+                                            placeholder="e.g. 3rd Year"
+                                        />
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                    <div className="space-y-1.5">
+                                        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">Current Company</label>
+                                        <input
+                                            type="text"
+                                            name="currentCompany"
+                                            required={!isStudent}
+                                            className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-brand transition-all text-slate-800 text-sm"
+                                            placeholder="e.g. Acme Corp"
+                                        />
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">Years of Experience</label>
+                                        <input
+                                            type="text"
+                                            name="experienceYear"
+                                            required={!isStudent}
+                                            className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-brand transition-all text-slate-800 text-sm"
+                                            placeholder="e.g. 4.5 years"
+                                        />
+                                    </div>
+                                </div>
+                            )}
 
                             <div className="space-y-1.5">
                                 <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">Resume (PDF/DOC)</label>
