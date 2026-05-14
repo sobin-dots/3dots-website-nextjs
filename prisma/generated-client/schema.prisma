@@ -98,13 +98,15 @@ model JobApplication {
   job            Job?     @relation(fields: [jobId], references: [id])
 
   // New applicant fields
-  isStudent      Boolean? @default(false)
-  currentCompany String?
-  experienceYear String?
-  yearOfStudy    String?
-  department     String?
-  course         String?
-  referredRole   String?
+  isStudent       Boolean? @default(false)
+  currentCompany  String?
+  experienceYear  String?
+  yearOfStudy     String?
+  department      String?
+  course          String?
+  referredRole    String?
+  interviewStatus String   @default("NOT_SCHEDULED")
+  statusRemark    String?
 }
 
 model ContactInquiry {

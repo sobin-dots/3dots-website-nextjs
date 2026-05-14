@@ -8749,6 +8749,8 @@ export namespace Prisma {
     department: string | null
     course: string | null
     referredRole: string | null
+    interviewStatus: string | null
+    statusRemark: string | null
   }
 
   export type JobApplicationMaxAggregateOutputType = {
@@ -8770,6 +8772,8 @@ export namespace Prisma {
     department: string | null
     course: string | null
     referredRole: string | null
+    interviewStatus: string | null
+    statusRemark: string | null
   }
 
   export type JobApplicationCountAggregateOutputType = {
@@ -8791,6 +8795,8 @@ export namespace Prisma {
     department: number
     course: number
     referredRole: number
+    interviewStatus: number
+    statusRemark: number
     _all: number
   }
 
@@ -8814,6 +8820,8 @@ export namespace Prisma {
     department?: true
     course?: true
     referredRole?: true
+    interviewStatus?: true
+    statusRemark?: true
   }
 
   export type JobApplicationMaxAggregateInputType = {
@@ -8835,6 +8843,8 @@ export namespace Prisma {
     department?: true
     course?: true
     referredRole?: true
+    interviewStatus?: true
+    statusRemark?: true
   }
 
   export type JobApplicationCountAggregateInputType = {
@@ -8856,6 +8866,8 @@ export namespace Prisma {
     department?: true
     course?: true
     referredRole?: true
+    interviewStatus?: true
+    statusRemark?: true
     _all?: true
   }
 
@@ -8950,6 +8962,8 @@ export namespace Prisma {
     department: string | null
     course: string | null
     referredRole: string | null
+    interviewStatus: string
+    statusRemark: string | null
     _count: JobApplicationCountAggregateOutputType | null
     _min: JobApplicationMinAggregateOutputType | null
     _max: JobApplicationMaxAggregateOutputType | null
@@ -8988,6 +9002,8 @@ export namespace Prisma {
     department?: boolean
     course?: boolean
     referredRole?: boolean
+    interviewStatus?: boolean
+    statusRemark?: boolean
     job?: boolean | JobApplication$jobArgs<ExtArgs>
   }, ExtArgs["result"]["jobApplication"]>
 
@@ -9010,6 +9026,8 @@ export namespace Prisma {
     department?: boolean
     course?: boolean
     referredRole?: boolean
+    interviewStatus?: boolean
+    statusRemark?: boolean
     job?: boolean | JobApplication$jobArgs<ExtArgs>
   }, ExtArgs["result"]["jobApplication"]>
 
@@ -9032,6 +9050,8 @@ export namespace Prisma {
     department?: boolean
     course?: boolean
     referredRole?: boolean
+    interviewStatus?: boolean
+    statusRemark?: boolean
     job?: boolean | JobApplication$jobArgs<ExtArgs>
   }, ExtArgs["result"]["jobApplication"]>
 
@@ -9054,9 +9074,11 @@ export namespace Prisma {
     department?: boolean
     course?: boolean
     referredRole?: boolean
+    interviewStatus?: boolean
+    statusRemark?: boolean
   }
 
-  export type JobApplicationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "jobId" | "fullName" | "email" | "phone" | "resumeUrl" | "coverLetter" | "additionalInfo" | "status" | "createdAt" | "position" | "isStudent" | "currentCompany" | "experienceYear" | "yearOfStudy" | "department" | "course" | "referredRole", ExtArgs["result"]["jobApplication"]>
+  export type JobApplicationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "jobId" | "fullName" | "email" | "phone" | "resumeUrl" | "coverLetter" | "additionalInfo" | "status" | "createdAt" | "position" | "isStudent" | "currentCompany" | "experienceYear" | "yearOfStudy" | "department" | "course" | "referredRole" | "interviewStatus" | "statusRemark", ExtArgs["result"]["jobApplication"]>
   export type JobApplicationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     job?: boolean | JobApplication$jobArgs<ExtArgs>
   }
@@ -9091,6 +9113,8 @@ export namespace Prisma {
       department: string | null
       course: string | null
       referredRole: string | null
+      interviewStatus: string
+      statusRemark: string | null
     }, ExtArgs["result"]["jobApplication"]>
     composites: {}
   }
@@ -9533,6 +9557,8 @@ export namespace Prisma {
     readonly department: FieldRef<"JobApplication", 'String'>
     readonly course: FieldRef<"JobApplication", 'String'>
     readonly referredRole: FieldRef<"JobApplication", 'String'>
+    readonly interviewStatus: FieldRef<"JobApplication", 'String'>
+    readonly statusRemark: FieldRef<"JobApplication", 'String'>
   }
     
 
@@ -26354,7 +26380,9 @@ export namespace Prisma {
     yearOfStudy: 'yearOfStudy',
     department: 'department',
     course: 'course',
-    referredRole: 'referredRole'
+    referredRole: 'referredRole',
+    interviewStatus: 'interviewStatus',
+    statusRemark: 'statusRemark'
   };
 
   export type JobApplicationScalarFieldEnum = (typeof JobApplicationScalarFieldEnum)[keyof typeof JobApplicationScalarFieldEnum]
@@ -27139,6 +27167,8 @@ export namespace Prisma {
     department?: StringNullableFilter<"JobApplication"> | string | null
     course?: StringNullableFilter<"JobApplication"> | string | null
     referredRole?: StringNullableFilter<"JobApplication"> | string | null
+    interviewStatus?: StringFilter<"JobApplication"> | string
+    statusRemark?: StringNullableFilter<"JobApplication"> | string | null
     job?: XOR<JobNullableScalarRelationFilter, JobWhereInput> | null
   }
 
@@ -27161,6 +27191,8 @@ export namespace Prisma {
     department?: SortOrderInput | SortOrder
     course?: SortOrderInput | SortOrder
     referredRole?: SortOrderInput | SortOrder
+    interviewStatus?: SortOrder
+    statusRemark?: SortOrderInput | SortOrder
     job?: JobOrderByWithRelationInput
   }
 
@@ -27186,6 +27218,8 @@ export namespace Prisma {
     department?: StringNullableFilter<"JobApplication"> | string | null
     course?: StringNullableFilter<"JobApplication"> | string | null
     referredRole?: StringNullableFilter<"JobApplication"> | string | null
+    interviewStatus?: StringFilter<"JobApplication"> | string
+    statusRemark?: StringNullableFilter<"JobApplication"> | string | null
     job?: XOR<JobNullableScalarRelationFilter, JobWhereInput> | null
   }, "id">
 
@@ -27208,6 +27242,8 @@ export namespace Prisma {
     department?: SortOrderInput | SortOrder
     course?: SortOrderInput | SortOrder
     referredRole?: SortOrderInput | SortOrder
+    interviewStatus?: SortOrder
+    statusRemark?: SortOrderInput | SortOrder
     _count?: JobApplicationCountOrderByAggregateInput
     _max?: JobApplicationMaxOrderByAggregateInput
     _min?: JobApplicationMinOrderByAggregateInput
@@ -27235,6 +27271,8 @@ export namespace Prisma {
     department?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
     course?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
     referredRole?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+    interviewStatus?: StringWithAggregatesFilter<"JobApplication"> | string
+    statusRemark?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
   }
 
   export type ContactInquiryWhereInput = {
@@ -28764,6 +28802,8 @@ export namespace Prisma {
     department?: string | null
     course?: string | null
     referredRole?: string | null
+    interviewStatus?: string
+    statusRemark?: string | null
     job?: JobCreateNestedOneWithoutApplicationsInput
   }
 
@@ -28786,6 +28826,8 @@ export namespace Prisma {
     department?: string | null
     course?: string | null
     referredRole?: string | null
+    interviewStatus?: string
+    statusRemark?: string | null
   }
 
   export type JobApplicationUpdateInput = {
@@ -28806,6 +28848,8 @@ export namespace Prisma {
     department?: NullableStringFieldUpdateOperationsInput | string | null
     course?: NullableStringFieldUpdateOperationsInput | string | null
     referredRole?: NullableStringFieldUpdateOperationsInput | string | null
+    interviewStatus?: StringFieldUpdateOperationsInput | string
+    statusRemark?: NullableStringFieldUpdateOperationsInput | string | null
     job?: JobUpdateOneWithoutApplicationsNestedInput
   }
 
@@ -28828,6 +28872,8 @@ export namespace Prisma {
     department?: NullableStringFieldUpdateOperationsInput | string | null
     course?: NullableStringFieldUpdateOperationsInput | string | null
     referredRole?: NullableStringFieldUpdateOperationsInput | string | null
+    interviewStatus?: StringFieldUpdateOperationsInput | string
+    statusRemark?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationCreateManyInput = {
@@ -28849,6 +28895,8 @@ export namespace Prisma {
     department?: string | null
     course?: string | null
     referredRole?: string | null
+    interviewStatus?: string
+    statusRemark?: string | null
   }
 
   export type JobApplicationUpdateManyMutationInput = {
@@ -28869,6 +28917,8 @@ export namespace Prisma {
     department?: NullableStringFieldUpdateOperationsInput | string | null
     course?: NullableStringFieldUpdateOperationsInput | string | null
     referredRole?: NullableStringFieldUpdateOperationsInput | string | null
+    interviewStatus?: StringFieldUpdateOperationsInput | string
+    statusRemark?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationUncheckedUpdateManyInput = {
@@ -28890,6 +28940,8 @@ export namespace Prisma {
     department?: NullableStringFieldUpdateOperationsInput | string | null
     course?: NullableStringFieldUpdateOperationsInput | string | null
     referredRole?: NullableStringFieldUpdateOperationsInput | string | null
+    interviewStatus?: StringFieldUpdateOperationsInput | string
+    statusRemark?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContactInquiryCreateInput = {
@@ -30488,6 +30540,8 @@ export namespace Prisma {
     department?: SortOrder
     course?: SortOrder
     referredRole?: SortOrder
+    interviewStatus?: SortOrder
+    statusRemark?: SortOrder
   }
 
   export type JobApplicationMaxOrderByAggregateInput = {
@@ -30509,6 +30563,8 @@ export namespace Prisma {
     department?: SortOrder
     course?: SortOrder
     referredRole?: SortOrder
+    interviewStatus?: SortOrder
+    statusRemark?: SortOrder
   }
 
   export type JobApplicationMinOrderByAggregateInput = {
@@ -30530,6 +30586,8 @@ export namespace Prisma {
     department?: SortOrder
     course?: SortOrder
     referredRole?: SortOrder
+    interviewStatus?: SortOrder
+    statusRemark?: SortOrder
   }
 
   export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -32360,6 +32418,8 @@ export namespace Prisma {
     department?: string | null
     course?: string | null
     referredRole?: string | null
+    interviewStatus?: string
+    statusRemark?: string | null
   }
 
   export type JobApplicationUncheckedCreateWithoutJobInput = {
@@ -32380,6 +32440,8 @@ export namespace Prisma {
     department?: string | null
     course?: string | null
     referredRole?: string | null
+    interviewStatus?: string
+    statusRemark?: string | null
   }
 
   export type JobApplicationCreateOrConnectWithoutJobInput = {
@@ -32430,6 +32492,8 @@ export namespace Prisma {
     department?: StringNullableFilter<"JobApplication"> | string | null
     course?: StringNullableFilter<"JobApplication"> | string | null
     referredRole?: StringNullableFilter<"JobApplication"> | string | null
+    interviewStatus?: StringFilter<"JobApplication"> | string
+    statusRemark?: StringNullableFilter<"JobApplication"> | string | null
   }
 
   export type JobCreateWithoutApplicationsInput = {
@@ -33397,6 +33461,8 @@ export namespace Prisma {
     department?: string | null
     course?: string | null
     referredRole?: string | null
+    interviewStatus?: string
+    statusRemark?: string | null
   }
 
   export type JobApplicationUpdateWithoutJobInput = {
@@ -33417,6 +33483,8 @@ export namespace Prisma {
     department?: NullableStringFieldUpdateOperationsInput | string | null
     course?: NullableStringFieldUpdateOperationsInput | string | null
     referredRole?: NullableStringFieldUpdateOperationsInput | string | null
+    interviewStatus?: StringFieldUpdateOperationsInput | string
+    statusRemark?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationUncheckedUpdateWithoutJobInput = {
@@ -33437,6 +33505,8 @@ export namespace Prisma {
     department?: NullableStringFieldUpdateOperationsInput | string | null
     course?: NullableStringFieldUpdateOperationsInput | string | null
     referredRole?: NullableStringFieldUpdateOperationsInput | string | null
+    interviewStatus?: StringFieldUpdateOperationsInput | string
+    statusRemark?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobApplicationUncheckedUpdateManyWithoutJobInput = {
@@ -33457,6 +33527,8 @@ export namespace Prisma {
     department?: NullableStringFieldUpdateOperationsInput | string | null
     course?: NullableStringFieldUpdateOperationsInput | string | null
     referredRole?: NullableStringFieldUpdateOperationsInput | string | null
+    interviewStatus?: StringFieldUpdateOperationsInput | string
+    statusRemark?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AppointmentCreateManyExpertInput = {

@@ -208,7 +208,9 @@ exports.Prisma.JobApplicationScalarFieldEnum = {
   yearOfStudy: 'yearOfStudy',
   department: 'department',
   course: 'course',
-  referredRole: 'referredRole'
+  referredRole: 'referredRole',
+  interviewStatus: 'interviewStatus',
+  statusRemark: 'statusRemark'
 };
 
 exports.Prisma.ContactInquiryScalarFieldEnum = {

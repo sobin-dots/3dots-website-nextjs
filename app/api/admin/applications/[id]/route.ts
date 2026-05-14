@@ -31,12 +31,14 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
-    const { status, referredRole } = await req.json();
+    const { status, referredRole, interviewStatus, statusRemark } = await req.json();
     const resolvedParams = await params;
 
     const dataToUpdate: any = {};
     if (status !== undefined) dataToUpdate.status = status;
     if (referredRole !== undefined) dataToUpdate.referredRole = referredRole;
+    if (interviewStatus !== undefined) dataToUpdate.interviewStatus = interviewStatus;
+    if (statusRemark !== undefined) dataToUpdate.statusRemark = statusRemark;
 
     const updated = await prisma.jobApplication.update({
       where: { id: resolvedParams.id },

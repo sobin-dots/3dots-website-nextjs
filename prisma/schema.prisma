@@ -105,6 +105,8 @@ model JobApplication {
   department     String?
   course         String?
   referredRole   String?
+  interviewStatus String  @default("NOT_SCHEDULED")
+  statusRemark    String?
 }
 
 model ContactInquiry {

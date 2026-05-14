@@ -315,7 +315,7 @@ async function main() {
         "Sent when an admin schedules an interview via the Schedule Interview action.",
       subject: "Interview invitation — {{jobTitle}} at 3Dots",
       body: `<p>Hi {{fullName}},</p>
-<p>We'd like to invite you to an interview for the <strong>{{jobTitle}}</strong> role at 3Dots. Please find the details below:</p>
+<p>Thank you for your application. We are pleased to move forward with your candidature and invite you for an interview for the <strong>{{jobTitle}}</strong> role at 3Dots. Please find the interview scheduled details below:</p>
 <table cellpadding="8" style="border-collapse:collapse;border:1px solid #e5e7eb;font-size:14px;margin:16px 0">
   <tr><td style="background:#f9fafb"><strong>Date</strong></td><td>{{interviewDate}}</td></tr>
   <tr><td style="background:#f9fafb"><strong>Time</strong></td><td>{{interviewTime}}</td></tr>

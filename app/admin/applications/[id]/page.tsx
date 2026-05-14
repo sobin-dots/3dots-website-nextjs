@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, Mail, Phone, Calendar as CalendarIcon, FileText, CheckCircle, XCircle, Clock, Link as LinkIcon, Briefcase, Download, Trash2 } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Calendar as CalendarIcon, FileText, CheckCircle, XCircle, Clock, Link as LinkIcon, Briefcase, Download, Trash2, Info } from "lucide-react";
 import Link from "next/link";
 import ApplicationActions from "@/components/admin/ApplicationActions";
 
@@ -26,6 +26,8 @@ interface JobApplication {
   department: string | null;
   course: string | null;
   referredRole: string | null;
+  interviewStatus: string;
+  statusRemark: string | null;
   job?: { id: string; title: string; tag: string; location: string; type: string };
 }
 
@@ -34,6 +36,7 @@ export default function ApplicationDetailPage() {
   const router = useRouter();
   const [app, setApp] = useState<JobApplication | null>(null);
   const [loading, setLoading] = useState(true);
+  const [remark, setRemark] = useState("");
 
   useEffect(() => {
     fetch(`/api/admin/applications/${id}`)
@@ -59,13 +62,32 @@ export default function ApplicationDetailPage() {
       const res = await fetch(`/api/admin/applications/${app.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: newStatus }),
+        body: JSON.stringify({ status: newStatus, statusRemark: remark }),
       });
       if (res.ok) {
-        setApp({ ...app, status: newStatus });
+        setApp({ ...app, status: newStatus, statusRemark: remark });
+        setRemark(""); // Reset remark after update
+        alert("Status updated successfully");
       }
     } catch (error) {
       console.error("Failed to update status", error);
+    }
+  };
+
+  const handleUpdateInterviewStatus = async (newStatus: string) => {
+    if (!app || !confirm(`Change interview status to ${newStatus}?`)) return;
+
+    try {
+      const res = await fetch(`/api/admin/applications/${app.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ interviewStatus: newStatus }),
+      });
+      if (res.ok) {
+        setApp({ ...app, interviewStatus: newStatus });
+      }
+    } catch (error) {
+      console.error("Failed to update interview status", error);
     }
   };
 
@@ -215,6 +237,18 @@ export default function ApplicationDetailPage() {
             </div>
           )}
 
+          {app.statusRemark && (
+            <div className="bg-amber-50 p-6 rounded-2xl border border-amber-100/50 mb-8">
+              <div className="flex items-center gap-2 mb-2">
+                <Info className="w-4 h-4 text-amber-600" />
+                <h3 className="text-xs font-bold uppercase tracking-widest text-amber-600">Internal Status Remark</h3>
+              </div>
+              <p className="text-sm text-amber-900 leading-relaxed italic">
+                "{app.statusRemark}"
+              </p>
+            </div>
+          )}
+
           {/* Background Information */}
           <div className="bg-white p-8 rounded-4xl border border-slate-100 shadow-sm">
             <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-6">Background Info</h3>
@@ -286,6 +320,17 @@ export default function ApplicationDetailPage() {
             </a>
 
             <div className="space-y-3 border-t border-slate-100 pt-6">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Update Remark</p>
+              <textarea
+                placeholder="Enter remark for status change..."
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:border-brand resize-none"
+                rows={3}
+                value={remark}
+                onChange={(e) => setRemark(e.target.value)}
+              />
+            </div>
+
+            <div className="space-y-3 border-t border-slate-100 pt-6">
               <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4">Update Status</p>
               <select 
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:border-brand"
@@ -301,6 +346,23 @@ export default function ApplicationDetailPage() {
                 <option value="REJECTED">Rejected</option>
                 <option value="BLACKLISTED">Blacklisted</option>
                 <option value="FUTURE_REFERENCE">Future Reference</option>
+              </select>
+            </div>
+
+            <div className="space-y-3 border-t border-slate-100 pt-6 mt-6">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4">Interview Status</p>
+              <select 
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:border-brand"
+                value={app.interviewStatus}
+                onChange={(e) => handleUpdateInterviewStatus(e.target.value)}
+              >
+                <option value="NOT_SCHEDULED">Not Scheduled</option>
+                <option value="SCHEDULED">Scheduled</option>
+                <option value="ATTENDED">Attended</option>
+                <option value="NOT_ATTENDED">Not Attended</option>
+                <option value="PASSED">Passed</option>
+                <option value="FAILED">Failed</option>
+                <option value="CLEARED_BUDGET_PENDING">Cleared (Budget Pending)</option>
               </select>
             </div>
 
