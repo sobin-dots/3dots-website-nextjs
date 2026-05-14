@@ -22,8 +22,8 @@ async function main() {
   const adminUser = await prisma.user.upsert({
     where: { email: adminEmail },
     update: {
-        role: "Admin",
-        employeeId: "ADM-001"
+      role: "Admin",
+      employeeId: "ADM-001"
     },
     create: {
       email: adminEmail,
@@ -108,9 +108,9 @@ async function main() {
 
   for (const job of jobs) {
     await prisma.job.upsert({
-        where: { slug: job.slug },
-        update: job,
-        create: job as any
+      where: { slug: job.slug },
+      update: job,
+      create: job as any
     });
   }
 
@@ -125,9 +125,9 @@ async function main() {
 
   for (const cat of categories) {
     await prisma.blogCategory.upsert({
-        where: { slug: cat.slug },
-        update: cat,
-        create: cat
+      where: { slug: cat.slug },
+      update: cat,
+      create: cat
     });
   }
 
@@ -163,28 +163,28 @@ async function main() {
       authorId: teamMember.id,
     },
     {
-        slug: "design-systems-at-scale",
-        title: "Design Systems at Scale",
-        excerpt: "Building consistent UIs across large organizations.",
-        content: "<p>Design systems are the bridge between design and engineering...</p>",
-        category: "Creative",
-        readTime: "7 min",
-        published: false,
-        status: "DRAFT",
-        image: "/images/blog/default.jpg",
-        thumbnail: "/images/blog/default.jpg",
-        tags: ["Design", "Systems"],
-        authorId: contentManager.id,
-      },
+      slug: "design-systems-at-scale",
+      title: "Design Systems at Scale",
+      excerpt: "Building consistent UIs across large organizations.",
+      content: "<p>Design systems are the bridge between design and engineering...</p>",
+      category: "Creative",
+      readTime: "7 min",
+      published: false,
+      status: "DRAFT",
+      image: "/images/blog/default.jpg",
+      thumbnail: "/images/blog/default.jpg",
+      tags: ["Design", "Systems"],
+      authorId: contentManager.id,
+    },
   ];
 
   for (const post of posts) {
     await prisma.post.upsert({
       where: { slug: post.slug },
-      update: { 
-          status: post.status,
-          published: post.published,
-          authorId: post.authorId 
+      update: {
+        status: post.status,
+        published: post.published,
+        authorId: post.authorId
       },
       create: post as any,
     });
@@ -206,35 +206,35 @@ async function main() {
     description: string;
     formKey: string;
   }> = [
-    {
-      name: "Contact — Admin Notification",
-      formKey: "contact_admin",
-      description: "Sent to admin when someone submits the contact form.",
-      subject: "New Contact Inquiry: {{name}}",
-      body: `<h2>New Contact Inquiry</h2>
+      {
+        name: "Contact — Admin Notification",
+        formKey: "contact_admin",
+        description: "Sent to admin when someone submits the contact form.",
+        subject: "New Contact Inquiry: {{name}}",
+        body: `<h2>New Contact Inquiry</h2>
 <p><strong>Name:</strong> {{name}}</p>
 <p><strong>Email:</strong> {{email}}</p>
 <p><strong>Phone:</strong> {{phone}}</p>
 <p><strong>Submitted:</strong> {{submittedAt}}</p>
 <hr>
 <p>{{message}}</p>`,
-    },
-    {
-      name: "Contact — User Confirmation",
-      formKey: "contact_user",
-      description: "Auto-reply to the visitor after they submit the contact form.",
-      subject: "We've received your message — 3Dots",
-      body: `<p>Hi {{name}},</p>
+      },
+      {
+        name: "Contact — User Confirmation",
+        formKey: "contact_user",
+        description: "Auto-reply to the visitor after they submit the contact form.",
+        subject: "We've received your message — 3Dots",
+        body: `<p>Hi {{name}},</p>
 <p>Thanks for reaching out to 3Dots. Our team will review your message and get back to you soon.</p>
 <p style="color:#666"><em>For your records:</em><br>{{message}}</p>
 <p>— The 3Dots Team</p>`,
-    },
-    {
-      name: "Launchpad — Admin Notification",
-      formKey: "launchpad_admin",
-      description: "Sent to admin when a Launchpad application is received.",
-      subject: "New Launchpad Application: {{startupName}}",
-      body: `<h2>New Launchpad Application</h2>
+      },
+      {
+        name: "Launchpad — Admin Notification",
+        formKey: "launchpad_admin",
+        description: "Sent to admin when a Launchpad application is received.",
+        subject: "New Launchpad Application:  {{startupName}}",
+        body: `<h2>New Launchpad Application</h2>
 <p><strong>Founder:</strong> {{fullName}} ({{email}})</p>
 <p><strong>Mobile:</strong> {{mobileNumber}}</p>
 <p><strong>Startup:</strong> {{startupName}}</p>
@@ -242,23 +242,23 @@ async function main() {
 <p><strong>Submitted:</strong> {{submittedAt}}</p>
 <hr>
 <p>{{description}}</p>`,
-    },
-    {
-      name: "Launchpad — User Confirmation",
-      formKey: "launchpad_user",
-      description: "Auto-reply to the founder confirming their pitch.",
-      subject: "Your Launchpad application is in — {{startupName}}",
-      body: `<p>Hi {{fullName}},</p>
+      },
+      {
+        name: "Launchpad — User Confirmation",
+        formKey: "launchpad_user",
+        description: "Auto-reply to the founder confirming their pitch.",
+        subject: "Your Launchpad application is in — {{startupName}}",
+        body: `<p>Hi {{fullName}},</p>
 <p>Thanks for applying to <strong>3Dots Launchpad</strong> with <strong>{{startupName}}</strong>.</p>
 <p>Our team is reviewing your pitch and will reach out with next steps shortly.</p>
 <p>— 3Dots Launchpad</p>`,
-    },
-    {
-      name: "Careers — Admin Notification",
-      formKey: "job_application_admin",
-      description: "Sent to HR/admin for every new job application.",
-      subject: "New Job Application: {{fullName}} — {{jobTitle}}",
-      body: `<h2>New Job Application</h2>
+      },
+      {
+        name: "Careers — Admin Notification",
+        formKey: "job_application_admin",
+        description: "Sent to HR/admin for every new job application.",
+        subject: "New Job Application: {{fullName}} — {{jobTitle}}",
+        body: `<h2>New Job Application</h2>
 <p><strong>Name:</strong> {{fullName}}</p>
 <p><strong>Email:</strong> {{email}}</p>
 <p><strong>Phone:</strong> {{phone}}</p>
@@ -268,53 +268,53 @@ async function main() {
 <hr>
 <p><strong>Cover Letter:</strong></p>
 <p>{{coverLetter}}</p>`,
-    },
-    {
-      name: "Careers — Candidate Confirmation",
-      formKey: "job_application_user",
-      description: "Auto-reply confirming a candidate's application.",
-      subject: "We received your application for {{jobTitle}} — 3Dots",
-      body: `<p>Hi {{fullName}},</p>
+      },
+      {
+        name: "Careers — Candidate Confirmation",
+        formKey: "job_application_user",
+        description: "Auto-reply confirming a candidate's application.",
+        subject: "We received your application for {{jobTitle}} — 3Dots",
+        body: `<p>Hi {{fullName}},</p>
 <p>Thanks for applying for the <strong>{{jobTitle}}</strong> role at 3Dots. We've received your application and our team will be in touch if there's a strong fit.</p>
 <p>— 3Dots Talent Team</p>`,
-    },
-    {
-      name: "Careers — Shortlist Notification",
-      formKey: "job_application_shortlist",
-      description: "Sent when the admin shortlists a candidate via 'Inform Applicant'.",
-      subject: "Great news! You've been shortlisted for {{jobTitle}}",
-      body: `<p>Hi {{fullName}},</p>
+      },
+      {
+        name: "Careers — Shortlist Notification",
+        formKey: "job_application_shortlist",
+        description: "Sent when the admin shortlists a candidate via 'Inform Applicant'.",
+        subject: "Great news! You've been shortlisted for {{jobTitle}}",
+        body: `<p>Hi {{fullName}},</p>
 <p>We're delighted to let you know that your application for the <strong>{{jobTitle}}</strong> role has been <strong>shortlisted</strong>.</p>
 <p>One of our team members will be in touch shortly with the next steps. In the meantime, feel free to reply to this email if you have any questions.</p>
 <p>— 3Dots Talent Team</p>`,
-    },
-    {
-      name: "Careers — Rejection Notification",
-      formKey: "job_application_reject",
-      description: "Sent when the admin rejects a candidate via 'Inform Applicant'.",
-      subject: "Update on your application for {{jobTitle}}",
-      body: `<p>Hi {{fullName}},</p>
+      },
+      {
+        name: "Careers — Rejection Notification",
+        formKey: "job_application_reject",
+        description: "Sent when the admin rejects a candidate via 'Inform Applicant'.",
+        subject: "Update on your application for {{jobTitle}}",
+        body: `<p>Hi {{fullName}},</p>
 <p>Thank you for your interest in the <strong>{{jobTitle}}</strong> role at 3Dots and for taking the time to apply.</p>
 <p>After careful consideration, we've decided not to move forward with your application at this time. This decision wasn't easy — we received many strong applications.</p>
 <p>We genuinely appreciate the effort you put in and we wish you all the best in your career journey. We'll keep your details on file and reach out if a more suitable opportunity opens up.</p>
 <p>— 3Dots Talent Team</p>`,
-    },
-    {
-      name: "Careers — Under Review Notification",
-      formKey: "job_application_reviewing",
-      description: "Optional update letting the candidate know their application is under review.",
-      subject: "Your application for {{jobTitle}} is under review",
-      body: `<p>Hi {{fullName}},</p>
+      },
+      {
+        name: "Careers — Under Review Notification",
+        formKey: "job_application_reviewing",
+        description: "Optional update letting the candidate know their application is under review.",
+        subject: "Your application for {{jobTitle}} is under review",
+        body: `<p>Hi {{fullName}},</p>
 <p>Just a quick note to let you know that your application for the <strong>{{jobTitle}}</strong> role is now being reviewed by our team. We'll get back to you with an update soon.</p>
 <p>— 3Dots Talent Team</p>`,
-    },
-    {
-      name: "Careers — Interview Invitation",
-      formKey: "interview_invite",
-      description:
-        "Sent when an admin schedules an interview via the Schedule Interview action.",
-      subject: "Interview invitation — {{jobTitle}} at 3Dots",
-      body: `<p>Hi {{fullName}},</p>
+      },
+      {
+        name: "Careers — Interview Invitation",
+        formKey: "interview_invite",
+        description:
+          "Sent when an admin schedules an interview via the Schedule Interview action.",
+        subject: "Interview invitation — {{jobTitle}} at 3Dots",
+        body: `<p>Hi {{fullName}},</p>
 <p>Thank you for your application. We are pleased to move forward with your candidature and invite you for an interview for the <strong>{{jobTitle}}</strong> role at 3Dots. Please find the interview scheduled details below:</p>
 <table cellpadding="8" style="border-collapse:collapse;border:1px solid #e5e7eb;font-size:14px;margin:16px 0">
   <tr><td style="background:#f9fafb"><strong>Date</strong></td><td>{{interviewDate}}</td></tr>
@@ -328,42 +328,42 @@ async function main() {
 <p>Please confirm by replying to this email. If the proposed time doesn't work, let us know and we'll find an alternative.</p>
 <p>Looking forward to speaking with you.</p>
 <p>— 3Dots Talent Team</p>`,
-    },
-    {
-      name: "Newsletter — Welcome",
-      formKey: "newsletter_user",
-      description: "Welcome email after a successful newsletter subscription.",
-      subject: "Welcome to 3Dots",
-      body: `<p>Hi,</p>
+      },
+      {
+        name: "Newsletter — Welcome",
+        formKey: "newsletter_user",
+        description: "Welcome email after a successful newsletter subscription.",
+        subject: "Welcome to 3Dots",
+        body: `<p>Hi,</p>
 <p>Thanks for subscribing to the 3Dots newsletter. You'll get our latest stories, AI insights, and product updates straight to your inbox.</p>
 <p style="font-size:12px;color:#888">No longer interested? <a href="{{unsubscribeUrl}}">Unsubscribe</a>.</p>`,
-    },
-    {
-      name: "Newsletter — Admin Notification",
-      formKey: "newsletter_admin",
-      description: "Sent to admin when someone subscribes.",
-      subject: "New Newsletter Subscriber",
-      body: `<p>{{email}} subscribed to the newsletter at {{submittedAt}}.</p>`,
-    },
-    {
-      name: "Appointment — Client Confirmation",
-      formKey: "appointment_user",
-      description: "Sent to the client after they book an appointment.",
-      subject: "Your appointment with {{expertName}} is confirmed",
-      body: `<p>Hi {{clientName}},</p>
+      },
+      {
+        name: "Newsletter — Admin Notification",
+        formKey: "newsletter_admin",
+        description: "Sent to admin when someone subscribes.",
+        subject: "New Newsletter Subscriber",
+        body: `<p>{{email}} subscribed to the newsletter at {{submittedAt}}.</p>`,
+      },
+      {
+        name: "Appointment — Client Confirmation",
+        formKey: "appointment_user",
+        description: "Sent to the client after they book an appointment.",
+        subject: "Your appointment with {{expertName}} is confirmed",
+        body: `<p>Hi {{clientName}},</p>
 <p>Your appointment with <strong>{{expertName}}</strong> is confirmed for <strong>{{date}}</strong>.</p>
 <p><strong>Reason:</strong> {{reason}}</p>
 <p>— 3Dots</p>`,
-    },
-    {
-      name: "Appointment — Admin Notification",
-      formKey: "appointment_admin",
-      description: "Sent to admin when an appointment is booked.",
-      subject: "New appointment booked — {{clientName}}",
-      body: `<p>{{clientName}} ({{clientEmail}}) booked an appointment with <strong>{{expertName}}</strong> on <strong>{{date}}</strong>.</p>
+      },
+      {
+        name: "Appointment — Admin Notification",
+        formKey: "appointment_admin",
+        description: "Sent to admin when an appointment is booked.",
+        subject: "New appointment booked — {{clientName}}",
+        body: `<p>{{clientName}} ({{clientEmail}}) booked an appointment with <strong>{{expertName}}</strong> on <strong>{{date}}</strong>.</p>
 <p><strong>Reason:</strong> {{reason}}</p>`,
-    },
-  ];
+      },
+    ];
 
   for (const t of emailTemplates) {
     const template = await prisma.emailTemplate.upsert({
