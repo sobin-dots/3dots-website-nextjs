@@ -40,18 +40,18 @@ export async function POST(req: Request) {
           jobTitle: app.job?.title || app.position || "the position",
         };
 
-        if (status === "SHORTLISTED") {
-          formKey = "job_application_shortlist";
-        } else if (status === "REJECTED") {
-          formKey = "job_application_reject";
-        } else if (status === "REVIEWING") {
-          formKey = "job_application_reviewing";
-        } else if (interviewStatus === "SCHEDULED") {
+        if (interviewStatus === "SCHEDULED") {
           formKey = "interview_invite";
           variables = {
             ...variables,
             ...emailDetails, // interviewDate, interviewTime, etc.
           };
+        } else if (status === "SHORTLISTED") {
+          formKey = "job_application_shortlist";
+        } else if (status === "REJECTED") {
+          formKey = "job_application_reject";
+        } else if (status === "REVIEWING") {
+          formKey = "job_application_reviewing";
         }
 
         if (formKey) {
